@@ -1,9 +1,9 @@
 {
-  "name": "rohit-gupta",
+  "name": "namedicinu",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Rohit Gupta <rohitguptab33@gmail.com>",
+  "author": "Dominik Gmiterko <d.gmiterko@gmail.com>",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "disqus-react": "^1.0.7",
@@ -21,6 +21,7 @@
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.5.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-share": "^4.0.1",
@@ -45,9 +46,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rohitguptab/rg-portfolio"
+    "url": "https://github.com/Linzee/namedicinu"
   },
   "bugs": {
-    "url": "https://github.com/rohitguptab/rg-portfolio/issues"
+    "url": "https://github.com/Linzee/namedicinu/issues"
   }
 }

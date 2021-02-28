@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import Img from "gatsby-image";
 
 export default class Banner extends Component {
@@ -8,23 +9,25 @@ export default class Banner extends Component {
       <div className="banner">
         <Img
           fluid={data.bannerImage.fluid}
-          objectFit="cover"
-          objectPosition="50% 50%"
+          style={{
+            left: "50%",
+          }}
         />
-        <div className="container">
+        <Container>
           <div className="banner-details">
-            <span>Hello...</span>
-            <h1>I'm {data.designation}.</h1>
-            <ul className="sub-data">
-              {data.bannerList.map((item, index) => {
-                return <li key={index}>{item}</li>;
-              })}
-            </ul>
+            <h1>{data.siteName}</h1>
+            <p className="subTitle">
+              <strong>Dostaň sa na svoju vysnenú lekársku fakultu.</strong>
+            </p>
+            <p>
+              Príde ti to ťažké alebo nevieš, kde začať? Prípravné kurzy <b>na medicínu</b> ťa prevedú celou cestou.
+            </p>
+
             <ul className="social">
               <li>
                 <a
                   className="fab fa-facebook-f"
-                  href={data.facebook}
+                  // href={data.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                 ></a>
@@ -32,7 +35,7 @@ export default class Banner extends Component {
               <li>
                 <a
                   className="fab fa-twitter"
-                  href={data.twitter}
+                  // href={data.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                 ></a>
@@ -40,7 +43,7 @@ export default class Banner extends Component {
               <li>
                 <a
                   className="fab fa-instagram"
-                  href={data.instagram}
+                  // href={data.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                 ></a>
@@ -48,7 +51,7 @@ export default class Banner extends Component {
               <li>
                 <a
                   className="fab fa-linkedin-in"
-                  href={data.linkdin}
+                  // href={data.linkdin}
                   target="_blank"
                   rel="noopener noreferrer"
                 ></a>
@@ -56,14 +59,14 @@ export default class Banner extends Component {
               <li>
                 <a
                   className="fab fa-github"
-                  href={data.github}
+                  // href={data.github}
                   target="_blank"
                   rel="noopener noreferrer"
                 ></a>
               </li>
             </ul>
           </div>
-        </div>
+        </Container>
       </div>
     );
   }

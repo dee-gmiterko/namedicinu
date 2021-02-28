@@ -35,117 +35,55 @@ export default class Header extends Component {
             >
               <span></span>
             </div>
-            {header === "home" ? (
-              <div className="menu">
-                <ul
-                  onClick={() => {
-                    this.setState({
-                      menu: false
-                    });
-                  }}
-                >
-                  <li key="home">
-                    <Link to="/#home">Home</Link>
+            <div className="menu">
+              <ul
+                onClick={() => {
+                  this.setState({
+                    menu: false
+                  });
+                }}
+              >
+                <li key="home">
+                  <Link to="/#home">Home</Link>
+                </li>
+                {
+                  data.menus.includes("Faculties") &&
+                  <li key="Faculties">
+                    <Link to={`/faculties/#Faculties`}>Faculties</Link>
                   </li>
-                  {data.menus
-                    .filter(item => item === "About")
-                    .map(t => {
-                      return (
-                        <li key="About">
-                          <Link to={`/#About`}>About</Link>
-                        </li>
-                      );
-                    })}
-                  {data.menus
-                    .filter(item => item === "Service")
-                    .map(t => {
-                      return (
-                        <li key="Service">
-                          <Link to={`/#Service`}>Service</Link>
-                        </li>
-                      );
-                    })}
-                  {data.menus
-                    .filter(item => item === "Blogs")
-                    .map(t => {
-                      return (
-                        <li key="Blogs">
-                          <Link to={`/#Blogs`}>Blogs</Link>
-                        </li>
-                      );
-                    })}
-
-                  {data.menus
-                    .filter(item => item === "Work")
-                    .map(t => {
-                      return (
-                        <li key="Work">
-                          <Link to={`/#Work`}>Work</Link>
-                        </li>
-                      );
-                    })}
-                  {data.menus
-                    .filter(item => item === "Testimonials")
-                    .map(t => {
-                      return (
-                        <li key="Testimonials">
-                          <Link to={`/#Testimonials`}>Testimonials</Link>
-                        </li>
-                      );
-                    })}
-                  {data.menus
-                    .filter(item => item === "Photos")
-                    .map(t => {
-                      return (
-                        <li key="Photos">
-                          <Link to={`/#Photos`}>Photos</Link>
-                        </li>
-                      );
-                    })}
-                  {data.menus
-                    .filter(item => item === "Contact")
-                    .map(t => {
-                      return (
-                        <li key="Contact">
-                          <Link to={`/#Contact`}>Contact</Link>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            ) : (
-              <div className="menu">
-                <ul
-                  onClick={() => {
-                    this.setState({
-                      menu: false
-                    });
-                  }}
-                >
-                  <li key="home">
-                    <Link to="/#home">Home</Link>
+                }
+                {
+                  data.menus.includes("Courses") &&
+                  <li key="Courses">
+                    <Link to={`/#Courses`}>Courses</Link>
                   </li>
-                  {data.menus
-                    .filter(item => item === "Blogs")
-                    .map(t => {
-                      return (
-                        <li key="blogs">
-                          <Link to="/blogs">Blogs</Link>
-                        </li>
-                      );
-                    })}
-                  {data.menus
-                    .filter(item => item === "Photos")
-                    .map(t => {
-                      return (
-                        <li key="photos">
-                          <Link to="/photos">Photos</Link>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            )}
+                }
+                {
+                  data.menus.includes("Register") &&
+                  <li key="Register">
+                    <Link to={`/#Register`}>Register</Link>
+                  </li>
+                }
+                {
+                  data.menus.includes("Testimonials") &&
+                  <li key="Testimonials">
+                    <Link to={`/#Testimonials`}>Testimonials</Link>
+                  </li>
+                }
+                {
+                  data.menus.includes("Lecturers") &&
+                  <li key="Lecturers">
+                    <Link to={`/#Lecturers`}>Lecturers</Link>
+                  </li>
+                }
+                {
+                  data.menus.includes("Contact") &&
+                  <li key="Contact">
+                    <Link to={`/#Contact`}>Contact</Link>
+                  </li>
+                }
+              </ul>
+            </div>
           </div>
         </div>
       </header>

@@ -17,7 +17,7 @@ function SEO({ description, lang, meta, keywords, title, data }) {
             titleTemplate={`%s | ${data.contentfulSiteInformation.siteName}`}
             meta={[
               {
-                name: `description`,
+                nsame: `description`,
                 content: data.contentfulSiteInformation.siteDescription
               },
               {
@@ -37,10 +37,6 @@ function SEO({ description, lang, meta, keywords, title, data }) {
                 content: `summary`
               },
               {
-                name: `twitter:creator`,
-                content: data.contentfulSiteInformation.twiteerHandle
-              },
-              {
                 name: `twitter:title`,
                 content: title
               },
@@ -58,7 +54,8 @@ function SEO({ description, lang, meta, keywords, title, data }) {
                   : []
               )
               .concat(meta)}
-          />
+          >
+          </Helmet>
         );
       }}
     />
@@ -86,7 +83,6 @@ const detailsQuery = graphql`
     contentfulSiteInformation {
       siteName
       siteDescription
-      twiteerHandle
     }
   }
 `;
