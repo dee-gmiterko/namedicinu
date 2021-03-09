@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import Img from "gatsby-image";
 import { Link } from "gatsby";
-import moment from "moment";
+
+import Markdown from "./markdown";
 
 export default class FacultiesOverview extends Component {
   render() {
@@ -28,13 +29,9 @@ export default class FacultiesOverview extends Component {
                     }}
                   />
                   <Card.Body>
-                    <Card.Title>{item.node.title}</Card.Title>
+                    <Card.Title><Link to={"/faculties#"+item.node.title}>{item.node.title}</Link></Card.Title>
                     <Card.Text>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: item.node.description.childMarkdownRemark.html
-                        }}
-                      />
+                      <Markdown value={item.node.description} />
                     </Card.Text>
                   </Card.Body>
                   <ListGroup className="list-group-flush">

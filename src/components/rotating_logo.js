@@ -11,17 +11,17 @@ const RotatingLogo = ({ value }) => {
     <div class="rotating-logo">
       <div className="ccw">
         <div className="part-1">
-          <img src={logo_part_1} className="cw" />
+          <img src={logo_part_1} className="cw" alt="" />
         </div>
         <div className="part-2">
-          <img src={logo_part_2} className="cw" />
+          <img src={logo_part_2} className="cw" alt="" />
         </div>
         <div className="part-3">
-          <img src={logo_part_3} className="cw" />
+          <img src={logo_part_3} className="cw" alt="" />
         </div>
-        <img src={logo_base} className="part-base" />
+        <img src={logo_base} className="part-base" alt="" />
       </div>
-      <img src={logo_center} className="part-center" />
+      <img src={logo_center} className="part-center" alt="" />
     </div>
   );
 };

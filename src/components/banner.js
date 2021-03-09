@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import Img from "gatsby-image";
+import { Container } from 'react-bootstrap';
+// import Img from "gatsby-image";
 
 import Markdown from "./markdown";
 import RotatingLogo from "./rotating_logo"
@@ -35,7 +35,7 @@ export default class Banner extends Component {
                     href={site.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                  ></a>
+                  >Facebook</a>
                 </li>
               }
               {
@@ -46,7 +46,7 @@ export default class Banner extends Component {
                     href={site.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                  ></a>
+                  >Twitter</a>
                 </li>
               }
               {
@@ -57,7 +57,7 @@ export default class Banner extends Component {
                     href={site.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                  ></a>
+                  >Instagram</a>
                 </li>
               }
               {
@@ -68,7 +68,7 @@ export default class Banner extends Component {
                     href={site.linkdin}
                     target="_blank"
                     rel="noopener noreferrer"
-                  ></a>
+                  >LinkedIn</a>
                 </li>
               }
               {
@@ -79,18 +79,18 @@ export default class Banner extends Component {
                     href={site.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                  ></a>
+                  >Github</a>
                 </li>
               }
               {
                 site.email &&
                 <li>
                   <a
-                    className="fab fa-envelope"
+                    className="far fa-envelope"
                     href={"mailto:"+site.email}
                     target="_blank"
                     rel="noopener noreferrer"
-                  ></a>
+                  >Email</a>
                 </li>
               }
             </ul>

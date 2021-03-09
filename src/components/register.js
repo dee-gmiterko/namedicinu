@@ -11,7 +11,7 @@ export default class Register extends Component {
       <Container className="p-3">
         <Row className="justify-content-center align-items-center">
           <Col md={12} className="p-3">
-            <h2 className="text-black" id="Register">Register</h2>
+            <h2 id="Register">Register</h2>
             <Markdown value={site.registerDescription} />
           </Col>
         </Row>

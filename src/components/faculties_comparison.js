@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
-import Img from "gatsby-image";
-import { Link } from "gatsby";
-import moment from "moment";
+import { Container, Row, Col } from 'react-bootstrap';
+
+import Markdown from "./markdown";
 
 export default class FacultiesComparison extends Component {
   render() {
@@ -14,16 +13,12 @@ export default class FacultiesComparison extends Component {
             <>
               <Row>
                 <Col md={12}>
-                  <h2>{item.node.title}</h2>
+                  <h2 id={item.node.title}>{item.node.title}</h2>
                 </Col>
               </Row>
               <Row>
                 <Col md={12}>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: item.node.description.childMarkdownRemark.html
-                    }}
-                  />
+                  <Markdown value={item.node.description} />
                 </Col>
               </Row>
             </>

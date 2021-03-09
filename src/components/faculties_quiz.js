@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import Img from "gatsby-image";
 
 
 export default class FacultiesQuiz extends Component {

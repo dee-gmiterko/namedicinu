@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Img from "gatsby-image";
-import { Link } from "gatsby";
-import moment from "moment";
 
 import Markdown from "./markdown";
 
@@ -36,7 +34,7 @@ export default class Lecturers extends Component {
           )
           return (
             <Row className="p-3">
-              {index % 2 == 0 && photo_col}
+              {index % 2 === 0 && photo_col}
               <Col md={8}>
                 <h3>
                   {item.node.name}
@@ -45,13 +43,9 @@ export default class Lecturers extends Component {
                   item.node.designation &&
                   <p>{item.node.designation}</p>
                 }
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: item.node.description.childMarkdownRemark.html
-                  }}
-                />
+                <Markdown value={item.node.description} />
               </Col>
-              {index % 2 == 1 && photo_col}
+              {index % 2 === 1 && photo_col}
             </Row>
           );
         })}

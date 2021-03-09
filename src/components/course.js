@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-import Slider from "react-slick";
-import { Link } from "gatsby";
-import Img from "gatsby-image";
 
 export default class Course extends Component {
   render() {
-    const { data } = this.props;
+    // const { site } = this.props;
 
     return (
       <Container className="p-3">
         <Row className="justify-content-center align-items-center">
           <Col md={12} className="p-3">
-            <h2 className="text-black" id="Course">Course</h2>
+            <h2 id="Course">Course</h2>
           </Col>
         </Row>
         <Row>

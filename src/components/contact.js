@@ -9,7 +9,7 @@ export default class service extends Component {
       <Container className="p-3">
         <Row>
           <Col md={12} className="p-3">
-            <h2 className="text-black" id="Contact">Contact</h2>
+            <h2 id="Contact">Contact</h2>
           </Col>
         </Row>
         <dl>
@@ -44,7 +44,7 @@ export default class service extends Component {
                       href={site.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                    ></a>
+                    >Facebook</a>
                   </li>
                   <li>
                     <a
@@ -52,7 +52,7 @@ export default class service extends Component {
                       href={site.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                    ></a>
+                    >Instagram</a>
                   </li>
                 </ul>
               </dd>
