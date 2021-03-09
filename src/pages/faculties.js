@@ -16,23 +16,23 @@ const IndexPage = ({ data }) => (
       keywords={[`Rohit Gupta`, `Frontend Developer`, `Developer`]}
     />
 
-    <div className="spacer" style={{height: "100px"}}></div>
+    <div className="banner-spacer"></div>
 
     {
       data.contentfulSiteInformation.menus.includes("Faculties") &&
-      <FacultiesOverview key="Faculties" data={data.allContentfulFaculties} />
+      <FacultiesOverview key="Faculties" faculties={data.allContentfulFaculties} />
     }
     {
       data.contentfulSiteInformation.menus.includes("FacultiesQuiz") &&
-      <FacultiesQuiz key="FacultiesQuiz" data={data.allContentfulFaculties} />
+      <FacultiesQuiz key="FacultiesQuiz" />
     }
     {
       data.contentfulSiteInformation.menus.includes("FacultiesComparison") &&
-      <FacultiesComparison key="FacultiesComparison" data={data.allContentfulFaculties} />
+      <FacultiesComparison key="FacultiesComparison" faculties={data.allContentfulFaculties} />
     }
     {
       data.contentfulSiteInformation.menus.includes("Contact") &&
-      <Contact key="Contact" data={data.contentfulSiteInformation} />
+      <Contact key="Contact" site={data.contentfulSiteInformation} />
     }
   </Layout>
 );
@@ -45,27 +45,9 @@ export const pageQuery = graphql`
       menus
       siteName
       siteDescription
-      contacts {
-        icon
-        contact
-        link
-      }
-      bannerImage {
-        fluid(maxWidth: 600) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
-      }
-      siteBannerDescription {
-        childMarkdownRemark {
-          html
-        }
-      }
+      email
+      fbPageId
+      fbAppId
     }
     allContentfulFaculties {
       edges {

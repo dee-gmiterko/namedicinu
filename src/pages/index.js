@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 import Banner from "../components/banner";
-import Courses from "../components/courses";
+import Course from "../components/course";
 import Register from "../components/register";
 import Testimonials from "../components/testimonials";
 import Lecturers from "../components/lecturers";
@@ -17,27 +17,27 @@ const IndexPage = ({ data }) => (
       title={data.contentfulSiteInformation.siteName}
       keywords={[`Rohit Gupta`, `Frontend Developer`, `Developer`]}
     />
-    <Banner data={data.contentfulSiteInformation}></Banner>
+    <Banner site={data.contentfulSiteInformation}></Banner>
 
     {
-      data.contentfulSiteInformation.menus.includes("Courses") &&
-      <Courses key="Courses" data={data.allContentfulCourses}></Courses>
+      data.contentfulSiteInformation.menus.includes("Course") &&
+      <Course key="Course" site={data.contentfulSiteInformation}></Course>
     }
     {
       data.contentfulSiteInformation.menus.includes("Register") &&
-      <Register key="Register" data={data.allContentfulFaculties}></Register>
+      <Register key="Register" site={data.contentfulSiteInformation} faculties={data.allContentfulFaculties}></Register>
     }
     {
       data.contentfulSiteInformation.menus.includes("Testimonials") &&
-      <Testimonials key="Testimonials" data={data.allContentfulTestimonials}></Testimonials>
+      <Testimonials key="Testimonials" site={data.contentfulSiteInformation} testimonials={data.allContentfulTestimonials}></Testimonials>
     }
     {
       data.contentfulSiteInformation.menus.includes("Lecturers") &&
-      <Lecturers key="Lecturers" data={data.allContentfulLecturers}></Lecturers>
+      <Lecturers key="Lecturers" site={data.contentfulSiteInformation} lecturers={data.allContentfulLecturers}></Lecturers>
     }
     {
       data.contentfulSiteInformation.menus.includes("Contact") &&
-      <Contact key="Contact" data={data.contentfulSiteInformation}></Contact>
+      <Contact key="Contact" site={data.contentfulSiteInformation}></Contact>
     }
   </Layout>
 );
@@ -46,24 +46,6 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allContentfulCourses {
-      edges {
-        node {
-          name
-          image {
-            fluid(maxWidth: 600) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
-          }
-        }
-      }
-    }
     allContentfulTestimonials {
       edges {
         node {
@@ -102,13 +84,24 @@ export const pageQuery = graphql`
       }
     }
     contentfulSiteInformation {
-      menus
       siteName
       siteDescription
-      contacts {
-        icon
-        contact
-        link
+      menus
+      fbPageId
+      fbAppId
+
+      facebook
+      # twitter
+      instagram
+      # linkdin
+      # github
+      email
+
+      bannerSubtitle
+      bannerDescription {
+        childMarkdownRemark {
+          html
+        }
       }
       bannerImage {
         fluid(maxWidth: 1000) {
@@ -121,7 +114,22 @@ export const pageQuery = graphql`
           sizes
         }
       }
-      siteBannerDescription {
+      registerDescription {
+        childMarkdownRemark {
+          html
+        }
+      }
+      registerConsent {
+        childMarkdownRemark {
+          html
+        }
+      }
+      testimonialsDescription {
+        childMarkdownRemark {
+          html
+        }
+      }
+      lecturersDescription {
         childMarkdownRemark {
           html
         }

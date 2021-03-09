@@ -10,8 +10,7 @@ export default class footer extends Component {
             <p class="float-right">
               <a href="#">Back to top</a>
             </p>
-            <p>© {this.props.siteName}, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+            <p>© {this.props.siteName} {new Date().getFullYear()}</p>
           </Col>
         </Container>
       </div>

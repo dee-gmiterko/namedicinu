@@ -6,32 +6,29 @@ import moment from "moment";
 
 export default class FacultiesComparison extends Component {
   render() {
-    const { data } = this.props;
+    const { faculties } = this.props;
     return (
       <Container className="p-3">
-        <Row className="justify-content-center align-items-center">
-          <Col md={8}>
-            <h2 className="text-black">Faculties comparison</h2>
-            <p className="text-black pt-3">
-              fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies
-              tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam
-              eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a
-              scelerisque purus semper eget duisfermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies
-              tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam
-              eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a
-              scelerisque purus semper eget duisfermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies
-              tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam
-              eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a
-              scelerisque purus semper eget duisfermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies
-              tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam
-              eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a
-              scelerisque purus semper eget duisfermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies
-              tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam
-              eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a
-              scelerisque purus semper eget duis
-            </p>
-          </Col>
-        </Row>
+        {faculties.edges.map((item, index) => {
+          return (
+            <>
+              <Row>
+                <Col md={12}>
+                  <h2>{item.node.title}</h2>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={12}>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: item.node.description.childMarkdownRemark.html
+                    }}
+                  />
+                </Col>
+              </Row>
+            </>
+          );
+        })}
       </Container>
     );
   }

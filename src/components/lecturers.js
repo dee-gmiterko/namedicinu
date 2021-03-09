@@ -4,21 +4,20 @@ import Img from "gatsby-image";
 import { Link } from "gatsby";
 import moment from "moment";
 
+import Markdown from "./markdown";
+
 export default class Lecturers extends Component {
   render() {
-    const { data } = this.props;
+    const { site, lecturers } = this.props;
     return (
       <Container className="p-3">
-        <Row className="justify-content-center align-items-center">
-          <Col md={8} className="p-3">
-            <h2 className="text-black" id="Lecturers">Lecturers</h2>
-            <p className="text-black pt-3">
-              fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies
-              tristique nulla aliquet
-            </p>
+        <Row>
+          <Col md={12} className="p-3">
+            <h2 id="Lecturers">Lecturers</h2>
+            <Markdown value={site.lecturersDescription} />
           </Col>
         </Row>
-        {data.edges.map((item, index) => {
+        {lecturers.edges.map((item, index) => {
           const photo_col = (
             <Col md={4} style={{padding: "0 6%"}}>
               <div className="square">

@@ -28,6 +28,7 @@ module.exports = {
         accessToken
       }
     },
+    `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-remark`,

@@ -6,22 +6,16 @@ import moment from "moment";
 
 export default class FacultiesOverview extends Component {
   render() {
-    const { data } = this.props;
+    const { faculties } = this.props;
     return (
       <Container className="p-3">
-        <Row className="justify-content-center align-items-center">
-          <Col md={8}>
-            <h2 className="text-black">Faculties</h2>
-            <p className="text-black pt-3">
-              fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies
-              tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam
-              eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a
-              scelerisque purus semper eget duis
-            </p>
+        <Row>
+          <Col md={12}>
+            <h2>Faculties</h2>
           </Col>
         </Row>
-        <Row className="p-1 justify-content-center align-items-start">
-          {data.edges.map((item, index) => {
+        <Row className="p-1">
+          {faculties.edges.map((item, index) => {
             return (
               <Col md={4}>
                 <Card>

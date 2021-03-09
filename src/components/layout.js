@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import "bootstrap/dist/css/bootstrap.css";
 
 import Header from "./header";
 import Footer from "./footer";
 
-import "../css/style.css";
+import "../css/style.scss";
 import "../css/font-awesome.css";
 
 if (typeof window !== "undefined") {
@@ -29,7 +28,7 @@ const Layout = ({ children, header }) => (
         }
       }
     `}
-    
+
     render={data => (
       <>
         <Header

@@ -1,44 +1,46 @@
 import React, { Component } from "react";
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Img from "gatsby-image";
+
 
 export default class FacultiesQuiz extends Component {
   render() {
-    const { data } = this.props;
-    return (
-      <div className="work section" id="Work">
-        <div className="container">
-          <div className="section-head">
-            <h2 className="text-center">Quiz</h2>
+
+    const quiz = (
+      <Form>
+        <p className="question p-5 text-center">
+          ¿De quién son estos libros?
+        </p>
+        <div className="answers">
+          <div>
+            <Button type="submit">Option 1</Button>
           </div>
-          <form
-            name="faculties-quiz"
-            method="POST"
-            data-netlify="true"
-          >
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked />
-              <label class="form-check-label" for="flexRadioDefault1">
-                Lala lala option numero uno
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-              <label class="form-check-label" for="flexRadioDefault2">
-                Only lala lala
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked />
-              <label class="form-check-label" for="flexRadioDefault3">
-                Something totaly different
-              </label>
-            </div>
-            <div>
-              <button type="submit">Next</button>
-            </div>
-          </form>
+          <div >
+            <Button type="submit">Option 2</Button>
+          </div>
+          <div >
+            <Button type="submit">Option 3</Button>
+          </div>
+          <div >
+            <Button type="submit">Option 4</Button>
+          </div>
         </div>
-      </div>
+      </Form>
+    );
+
+    return (
+      <Container className="p-3 faculties-quiz">
+        <Row>
+          <Col md={12}>
+            <h2 id="Quiz">Quiz</h2>
+          </Col>
+        </Row>
+        <Row className="p-1">
+          <Col md={12}>
+            {quiz}
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

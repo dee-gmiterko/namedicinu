@@ -2,68 +2,97 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Img from "gatsby-image";
 
+import Markdown from "./markdown";
+import RotatingLogo from "./rotating_logo"
+
 export default class Banner extends Component {
   render() {
-    const { data } = this.props;
+    const { site } = this.props;
     return (
       <div className="banner">
+        {/*
         <Img
-          fluid={data.bannerImage.fluid}
-          style={{
-            left: "50%",
-          }}
+          fluid={site.bannerImage.fluid}
         />
+        */}
+        <RotatingLogo />
         <Container>
           <div className="banner-details">
-            <h1>{data.siteName}</h1>
+            <h1>{site.siteName}</h1>
+
             <p className="subTitle">
-              <strong>Dostaň sa na svoju vysnenú lekársku fakultu.</strong>
-            </p>
-            <p>
-              Príde ti to ťažké alebo nevieš, kde začať? Prípravné kurzy <b>na medicínu</b> ťa prevedú celou cestou.
+              {site.bannerSubtitle}
             </p>
 
+            <Markdown value={site.bannerDescription} />
+
             <ul className="social">
-              <li>
-                <a
-                  className="fab fa-facebook-f"
-                  // href={data.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></a>
-              </li>
-              <li>
-                <a
-                  className="fab fa-twitter"
-                  // href={data.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></a>
-              </li>
-              <li>
-                <a
-                  className="fab fa-instagram"
-                  // href={data.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></a>
-              </li>
-              <li>
-                <a
-                  className="fab fa-linkedin-in"
-                  // href={data.linkdin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></a>
-              </li>
-              <li>
-                <a
-                  className="fab fa-github"
-                  // href={data.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ></a>
-              </li>
+              {
+                site.facebook &&
+                <li>
+                  <a
+                    className="fab fa-facebook-f"
+                    href={site.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  ></a>
+                </li>
+              }
+              {
+                site.twitter &&
+                <li>
+                  <a
+                    className="fab fa-twitter"
+                    href={site.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  ></a>
+                </li>
+              }
+              {
+                site.instagram &&
+                <li>
+                  <a
+                    className="fab fa-instagram"
+                    href={site.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  ></a>
+                </li>
+              }
+              {
+                site.linkdin &&
+                <li>
+                  <a
+                    className="fab fa-linkedin-in"
+                    href={site.linkdin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  ></a>
+                </li>
+              }
+              {
+                site.github &&
+                <li>
+                  <a
+                    className="fab fa-github"
+                    href={site.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  ></a>
+                </li>
+              }
+              {
+                site.email &&
+                <li>
+                  <a
+                    className="fab fa-envelope"
+                    href={"mailto:"+site.email}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  ></a>
+                </li>
+              }
             </ul>
           </div>
         </Container>

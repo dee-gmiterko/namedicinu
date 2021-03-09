@@ -1,30 +1,66 @@
 import React, { Component } from "react";
+import { Container, Row, Col } from 'react-bootstrap';
+import MessengerMessageUs from 'react-messenger-message-us';
 
 export default class service extends Component {
   render() {
-    const { data } = this.props;
+    const { site } = this.props;
     return (
-      <div className="service section" id="Service">
-        <div className="container">
-          <div className="section-head">
-            <h2>Contact</h2>
-          </div>
-          <div className="row">
-            {data.contacts.map((item, index) => {
-              return (
-                <div key={index} className="col-md-4 mb-3">
-                  <div className="service-main">
-                    <a href={item.link}>
-                      <i className={"fab fa-" + item.icon}></i>
-                      <span>{item.contact}</span>
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      <Container className="p-3">
+        <Row>
+          <Col md={12} className="p-3">
+            <h2 className="text-black" id="Contact">Contact</h2>
+          </Col>
+        </Row>
+        <dl>
+
+          {
+            site.email &&
+            <Row className="justify-content-center align-items-center">
+              <dt className="col-sm-2">Email</dt>
+              <dd className="col-sm-4">{site.email}</dd>
+            </Row>
+          }
+
+          {
+            site.fbPageId && site.fbAppId &&
+            <Row className="justify-content-center align-items-center">
+              <dt class="col-sm-2">Messenger</dt>
+              <dd class="col-sm-4">
+                <MessengerMessageUs pageId={site.fbPageId} appId={site.fbAppId} size="large" />
+              </dd>
+            </Row>
+          }
+
+          {
+            (site.facebook || site.instagram) &&
+            <Row className="justify-content-center align-items-center">
+              <dt class="col-sm-2">Socials</dt>
+              <dd class="col-sm-4">
+                <ul className="social">
+                  <li>
+                    <a
+                      className="fab fa-facebook-f"
+                      href={site.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      className="fab fa-instagram"
+                      href={site.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    ></a>
+                  </li>
+                </ul>
+              </dd>
+            </Row>
+          }
+
+        </dl>
+      </Container>
     );
   }
 }
