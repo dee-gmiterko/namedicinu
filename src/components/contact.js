@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import MessengerMessageUs from 'react-messenger-message-us';
+import { FormattedMessage } from 'react-intl';
 
 export default class service extends Component {
   render() {
@@ -9,7 +10,9 @@ export default class service extends Component {
       <Container className="p-3">
         <Row>
           <Col md={12} className="p-3">
-            <h2 id="Contact">Contact</h2>
+            <h2 id="Contact">
+              <FormattedMessage id="title.contact" defaultMessage="Contact" />
+            </h2>
           </Col>
         </Row>
         <dl>
@@ -17,7 +20,9 @@ export default class service extends Component {
           {
             site.email &&
             <Row className="justify-content-center align-items-center">
-              <dt className="col-sm-2">Email</dt>
+              <dt className="col-sm-2">
+                <FormattedMessage id="contact.email" defaultMessage="Email" />
+              </dt>
               <dd className="col-sm-4">{site.email}</dd>
             </Row>
           }
@@ -25,7 +30,9 @@ export default class service extends Component {
           {
             site.fbPageId && site.fbAppId &&
             <Row className="justify-content-center align-items-center">
-              <dt class="col-sm-2">Messenger</dt>
+              <dt class="col-sm-2">
+                <FormattedMessage id="contact.messenger" defaultMessage="Messenger" />
+              </dt>
               <dd class="col-sm-4">
                 <MessengerMessageUs pageId={site.fbPageId} appId={site.fbAppId} size="large" />
               </dd>
@@ -35,7 +42,9 @@ export default class service extends Component {
           {
             (site.facebook || site.instagram) &&
             <Row className="justify-content-center align-items-center">
-              <dt class="col-sm-2">Socials</dt>
+              <dt class="col-sm-2">
+                <FormattedMessage id="contact.socials" defaultMessage="Socials" />
+              </dt>
               <dd class="col-sm-4">
                 <ul className="social">
                   <li>

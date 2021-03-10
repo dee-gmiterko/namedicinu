@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import Img from "gatsby-image";
+import { FormattedMessage } from 'react-intl';
 
 import Markdown from "./markdown";
 
@@ -11,7 +12,9 @@ export default class Lecturers extends Component {
       <Container className="p-3">
         <Row>
           <Col md={12} className="p-3">
-            <h2 id="Lecturers">Lecturers</h2>
+            <h2 id="Lecturers">
+              <FormattedMessage id="title.lecturers" defaultMessage="Lecturers" />
+            </h2>
             <Markdown value={site.lecturersDescription} />
           </Col>
         </Row>

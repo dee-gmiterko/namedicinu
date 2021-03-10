@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { FormattedMessage } from 'react-intl';
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -9,12 +10,20 @@ import FacultiesQuiz from "../components/faculties_quiz";
 import FacultiesComparison from "../components/faculties_comparison";
 import Contact from "../components/contact";
 
-const IndexPage = ({ data }) => (
-  <Layout header="home">
-    <SEO
-      title={data.contentfulSiteInformation.siteName}
-      keywords={[`Rohit Gupta`, `Frontend Developer`, `Developer`]}
-    />
+
+const IndexPage = ({ data, pageContext }) => (
+  <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <FormattedMessage id="title.faculties" defaultMessage="Faculties">
+      {(title) => (
+        <SEO
+          lang={pageContext.locale}
+          title={title}
+          siteName={data.contentfulSiteInformation.siteName}
+          siteDescription={data.contentfulSiteInformation.siteDescription}
+          keywords={data.contentfulSiteInformation.siteKeywords}
+        />
+      )}
+    </FormattedMessage>
 
     <div className="banner-spacer"></div>
 
@@ -40,16 +49,21 @@ const IndexPage = ({ data }) => (
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query FacultiesQuery {
-    contentfulSiteInformation {
-      menus
+  query FacultiesQuery($locale: String!) {
+    contentfulSiteInformation(node_locale: { eq: $locale }) {
       siteName
       siteDescription
-      email
+      menus
+      logo {
+        file {
+          url
+        }
+      }
       fbPageId
       fbAppId
+      email
     }
-    allContentfulFaculties {
+    allContentfulFaculties(filter: { node_locale: { eq: $locale } }) {
       edges {
         node {
           title

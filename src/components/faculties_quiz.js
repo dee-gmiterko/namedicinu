@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-
+import { FormattedMessage } from 'react-intl';
 
 export default class FacultiesQuiz extends Component {
   render() {
@@ -31,7 +31,9 @@ export default class FacultiesQuiz extends Component {
       <Container className="p-3 faculties-quiz">
         <Row>
           <Col md={12}>
-            <h2 id="Quiz">Quiz</h2>
+            <h2 id="Quiz">
+              <FormattedMessage id="title.quiz" defaultMessage="Quiz" />
+            </h2>
           </Col>
         </Row>
         <Row className="p-1">

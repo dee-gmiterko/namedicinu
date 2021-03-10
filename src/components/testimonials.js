@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
@@ -24,7 +25,9 @@ export default class Testimonials extends Component {
       <Container className="p-3 testimonials">
         <Row className="justify-content-center align-items-center">
           <Col md={12} className="p-3">
-            <h2 id="Testimonials">Testimonials</h2>
+            <h2 id="Testimonials">
+              <FormattedMessage id="title.testimonials" defaultMessage="Testimonials" />
+            </h2>
             <Markdown value={site.testimonialsDescription} />
           </Col>
         </Row>

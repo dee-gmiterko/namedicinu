@@ -4,7 +4,9 @@ if (process.env.ENVIRONMENT !== "production") {
   dotenv.config();
 }
 
-const { spaceId, accessToken } = process.env;
+const { spaceId, accessToken, locale } = process.env;
+
+console.log("Using locale "+(locale || "sk"));
 
 module.exports = {
   siteMetadata: {
@@ -13,6 +15,14 @@ module.exports = {
     author: `Dominik Gmiterko <d.gmiterko@gmail.com>`
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-global-context',
+      options: {
+        context: {
+          locale: locale || "sk"
+        }
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

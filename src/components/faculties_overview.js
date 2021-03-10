@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import Img from "gatsby-image";
 import { Link } from "gatsby";
+import { FormattedMessage } from 'react-intl';
 
 import Markdown from "./markdown";
 
@@ -12,7 +13,9 @@ export default class FacultiesOverview extends Component {
       <Container className="p-3">
         <Row>
           <Col md={12}>
-            <h2>Faculties</h2>
+            <h2>
+              <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
+            </h2>
           </Col>
         </Row>
         <Row className="p-1">

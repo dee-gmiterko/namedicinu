@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "gatsby";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
 import Markdown from "./markdown";
 
@@ -11,7 +12,9 @@ export default class Register extends Component {
       <Container className="p-3">
         <Row className="justify-content-center align-items-center">
           <Col md={12} className="p-3">
-            <h2 id="Register">Register</h2>
+            <h2 id="Register">
+              <FormattedMessage id="title.register" defaultMessage="Register" />
+            </h2>
             <Markdown value={site.registerDescription} />
           </Col>
         </Row>
@@ -19,37 +22,69 @@ export default class Register extends Component {
           <Col md={12} className="p-3">
             <Form> {/* TODO add https://formspree.io/ */}
               <Form.Group controlId="registerEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Email" />
+                <FormattedMessage id="register.email" defaultMessage="Email">
+                  {(l_email) => (
+                    <>
+                      <Form.Label>
+                        {l_email}
+                      </Form.Label>
+                      <Form.Control type="email" placeholder={l_email} />
+                    </>
+                  )}
+                </FormattedMessage>
               </Form.Group>
 
               <Form.Group controlId="registerName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="input" placeholder="Name" />
+                <FormattedMessage id="register.name" defaultMessage="Name">
+                  {(l_name) => (
+                    <>
+                      <Form.Label>
+                        {l_name}
+                      </Form.Label>
+                      <Form.Control type="input" placeholder={l_name} />
+                    </>
+                  )}
+                </FormattedMessage>
               </Form.Group>
 
               <Form.Row>
-                <Form.Group as={Col} controlId="registerPreferenceTime">
-                  <Form.Label>Preferovany cas</Form.Label>
+                <Form.Group as={Col} controlId="registerPreferredTime">
+                  <Form.Label>
+                    <FormattedMessage id="register.preferred_time" defaultMessage="Preferred time" />
+                  </Form.Label>
                   <Form.Control as="select">
                     <option value=""></option>
-                    <option value="doobedu">doobedu</option>
-                    <option value="vecer">vecer</option>
+                    <FormattedMessage id="register.preferred_time.morning" defaultMessage="Morning">
+                      {(o) => <option value={o}>{o}</option>}
+                    </FormattedMessage>
+                    <FormattedMessage id="register.preferred_time.afternoon" defaultMessage="Afternoon">
+                      {(o) => <option value={o}>{o}</option>}
+                    </FormattedMessage>
                   </Form.Control>
                 </Form.Group>
-                <Form.Group as={Col} controlId="registerPreferenceDay">
-                  <Form.Label>Den</Form.Label>
+                <Form.Group as={Col} controlId="registerPreferredeDay">
+                  <Form.Label>
+                    <FormattedMessage id="register.preferred_day" defaultMessage="Preferred day" />
+                  </Form.Label>
                   <Form.Control as="select">
                     <option value=""></option>
-                    <option value="prac den">prac den</option>
-                    <option value="vikend">vikend</option>
+                    <FormattedMessage id="register.preferred_day.workday" defaultMessage="Workday">
+                      {(o) => <option value={o}>{o}</option>}
+                    </FormattedMessage>
+                    <FormattedMessage id="register.preferred_day.weekend" defaultMessage="Weekend">
+                      {(o) => <option value={o}>{o}</option>}
+                    </FormattedMessage>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
 
               <Form.Group controlId="registerFaculty">
-                <Form.Label>Chcem prípravu na fakltu</Form.Label>
-                <Link to={`/faculties/#Faculties`} class="float-right">Potrebuješ pomoc s výberom fakulty?</Link>
+                <Form.Label>
+                  <FormattedMessage id="register.faculty" defaultMessage="Faculty" />
+                </Form.Label>
+                <Link to={`/faculties/#Faculties`} class="float-right">
+                  <FormattedMessage id="register.faculty.help" defaultMessage="Do you need help with selection?" />
+                </Link>
                 <Form.Control as="select">
                   <option value=""></option>
                   {faculties.edges.map((item, index) => {
@@ -63,12 +98,12 @@ export default class Register extends Component {
               <Form.Row>
                 <Col md={12} className="text-justify">
                   <Form.Text>
-                    <Markdown value={site.registerConsent} />
+                    <FormattedMessage id="register.consent" />
                   </Form.Text>
                 </Col>
                 <Col md={12} className="text-center">
                   <Button variant="primary" type="submit" size="lg">
-                    Submit
+                    <FormattedMessage id="register.submit" defaultMessage="Submit" />
                   </Button>
                 </Col>
               </Form.Row>

@@ -1,21 +1,28 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
+
+import Markdown from "./markdown";
 
 export default class Course extends Component {
   render() {
-    // const { site } = this.props;
+    const { site } = this.props;
 
     return (
       <Container className="p-3">
         <Row className="justify-content-center align-items-center">
           <Col md={12} className="p-3">
-            <h2 id="Course">Course</h2>
+            <h2 id="Course">
+              <FormattedMessage id="title.course" defaultMessage="Course" />
+            </h2>
           </Col>
         </Row>
+        <Markdown value={site.courseDescription} />
+        {/*
         <Row>
           <Col md={6} className="p-3">
             <p className="text-justify">
-              Naše kurzy ťa pripravia priamo na mieru na tú lekársku fakultu, na ktorú sa tak veľmi chceš dostať, pretože každá lekárska fakulta má svoje špecifiká. Prijímačky na každú lekársku fakultu pozostávajú z testu z biológie a chémie, ale ak sa chceš dostať do Česka, pridá sa k tomu aj fyzika. Ale pozor! Nie každá LF vyžaduje z každého predmetu rovnaké znalosti. Prijímačky na každú LF majú svoje špecifiká nielen váhou a dôležitosťou jednotlivých oblastí daných predmetov, ale aj čo sa formy testu týka. Preto je veľmi dôležité vedieť, čo presne sa na danú LF treba naučiť, na čo sa zamerať a ako vyzerajú testy na prijímačkách. Veď sa isto nechceš učiť dlhé hodiny niečo, čo vlastne na prijímačky ani nevyužiješ ;)
+              Naše kurzy ťa pripravia priamo na mieru na tú lekársku fakultu, na ktorú sa tak veľmi chceš dostať, pretože každá lekárska fakulta má svoje špecifiká. Prijímačky na každú lekársku fakultu pozostávajú z testu z biológie a chémie, ale ak sa chceš dostať do Česka, pridá sa k tomu aj fyzika. Ale pozor! Nie každá LF vyžaduje z každého predmetu rovnaké znalosti. Prijímačky na každú LF majú svoje špecifiká nielen váhou a dôležitosťou jednotlivých oblastí daných predmetov, ale aj čo sa formy testu týka. Preto je veľmi dôležité vedieť, čo presne sa na danú LF treba naučiť, na čo sa zamerať a ako vyzerajú testy na prijímačkách. Veď sa isto nechceš učiť dlhé hodiny niečo, čo vlastne na prijímačky ani nevyužiješ 🙂
             </p>
           </Col>
           <Col md={6} className="p-3">
@@ -77,6 +84,7 @@ export default class Course extends Component {
             <p className="text-justify">lektori sú ti vždy k dispozícii a môžeš im akékoľvek otázky napísať cez Messenger (samozrejme, že aj mimo času lekcií)</p>
           </Col>
         </Row>
+        */}
       </Container>
     );
   }

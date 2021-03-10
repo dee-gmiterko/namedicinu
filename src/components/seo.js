@@ -1,88 +1,72 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { StaticQuery, graphql } from "gatsby";
 
-function SEO({ description, lang, meta, keywords, title, data }) {
+function SEO({ lang, title, siteName, siteDescription, keywords, meta }) {
   return (
-    <StaticQuery
-      query={detailsQuery}
-      render={data => {
-        return (
-          <Helmet
-            htmlAttributes={{
-              lang
-            }}
-            title={title}
-            titleTemplate={`%s | ${data.contentfulSiteInformation.siteName}`}
-            meta={[
-              {
-                nsame: `description`,
-                content: data.contentfulSiteInformation.siteDescription
-              },
-              {
-                property: `og:title`,
-                content: title
-              },
-              {
-                property: `og:description`,
-                content: data.contentfulSiteInformation.siteDescription
-              },
-              {
-                property: `og:type`,
-                content: `website`
-              },
-              {
-                name: `twitter:card`,
-                content: `summary`
-              },
-              {
-                name: `twitter:title`,
-                content: title
-              },
-              {
-                name: `twitter:description`,
-                content: data.contentfulSiteInformation.siteDescription
-              }
-            ]
-              .concat(
-                keywords.length > 0
-                  ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `)
-                    }
-                  : []
-              )
-              .concat(meta)}
-          >
-          </Helmet>
-        );
+    <Helmet
+      htmlAttributes={{
+        lang
       }}
-    />
+      title={title}
+      titleTemplate={`%s | ${siteName}`}
+      meta={[
+        {
+          nsame: `description`,
+          content: siteDescription
+        },
+        {
+          property: `og:title`,
+          content: title
+        },
+        {
+          property: `og:description`,
+          content: siteDescription
+        },
+        {
+          property: `og:type`,
+          content: `website`
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`
+        },
+        {
+          name: `twitter:title`,
+          content: title
+        },
+        {
+          name: `twitter:description`,
+          content: siteDescription
+        }
+      ]
+        .concat(
+          keywords.length > 0
+            ? {
+                name: `keywords`,
+                content: keywords.join(`, `)
+              }
+            : []
+        )
+        .concat(meta)}
+    >
+    </Helmet>
   );
 }
 
 SEO.defaultProps = {
   lang: `en`,
+  keywords: [],
   meta: [],
-  keywords: []
 };
 
 SEO.propTypes = {
-  description: PropTypes.string,
   lang: PropTypes.string,
-  meta: PropTypes.array,
+  title: PropTypes.string.isRequired,
+  siteName: PropTypes.string,
+  siteDescription: PropTypes.string,
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired
+  meta: PropTypes.array,
 };
 
 export default SEO;
-
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
-    contentfulSiteInformation {
-      siteName
-      siteDescription
-    }
-  }
-`;

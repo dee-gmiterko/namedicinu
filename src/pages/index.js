@@ -11,11 +11,14 @@ import Testimonials from "../components/testimonials";
 import Lecturers from "../components/lecturers";
 import Contact from "../components/contact";
 
-const IndexPage = ({ data }) => (
-  <Layout header="home">
+const IndexPage = ({ data, pageContext }) => (
+  <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
     <SEO
-      title={data.contentfulSiteInformation.siteName}
-      keywords={[`Rohit Gupta`, `Frontend Developer`, `Developer`]}
+      lang={pageContext.locale}
+      title="Na medicinu"
+      siteName={data.contentfulSiteInformation.siteName}
+      siteDescription={data.contentfulSiteInformation.siteDescription}
+      keywords={data.contentfulSiteInformation.siteKeywords}
     />
     <Banner site={data.contentfulSiteInformation}></Banner>
 
@@ -45,8 +48,8 @@ const IndexPage = ({ data }) => (
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    allContentfulTestimonials {
+  query IndexQuery($locale: String!) {
+    allContentfulTestimonials(filter: { node_locale: { eq: $locale } }) {
       edges {
         node {
           name
@@ -59,7 +62,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulLecturers {
+    allContentfulLecturers(filter: { node_locale: { eq: $locale } }) {
       edges {
         node {
           name
@@ -83,12 +86,17 @@ export const pageQuery = graphql`
         }
       }
     }
-    contentfulSiteInformation {
+    contentfulSiteInformation(node_locale: {eq: $locale}) {
       siteName
       siteDescription
       menus
       fbPageId
       fbAppId
+      logo {
+        file {
+          url
+        }
+      }
 
       facebook
       # twitter
@@ -114,12 +122,12 @@ export const pageQuery = graphql`
           sizes
         }
       }
-      registerDescription {
+      courseDescription {
         childMarkdownRemark {
           html
         }
       }
-      registerConsent {
+      registerDescription {
         childMarkdownRemark {
           html
         }
@@ -135,7 +143,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulFaculties {
+    allContentfulFaculties(filter: { node_locale: { eq: $locale } }) {
       edges {
         node {
           title
