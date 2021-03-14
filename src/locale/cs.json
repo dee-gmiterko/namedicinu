@@ -20,5 +20,7 @@
   "register.faculty.help": "Potrebuješ pomoc s výberom fakulty?",
   "register.consent": "Vyplnením formulára súhlasíš so spracovaním svojich osobných údajov v uvedenom rozsahu pre potreby prihlásenia do kurzu. Tvoje údaje nebudú poskytované tretím stranám a slúžia výhradne pre potreby registrácia do prípravného kurzu.",
   "register.submit": "Prihlasit",
-  "contact.email": "Email"
+  "contact.register": "Prihlasit sa na kurz",
+  "contact.email": "Email",
+  "not_found.message": "You just hit a route that doesn't exist."
 }

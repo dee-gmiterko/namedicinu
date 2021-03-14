@@ -89,12 +89,10 @@ $theme-colors: (
 
 .social{display:flex;margin:0 -10px;padding:0;list-style:none}
 .social li{margin:0 10px}
-.social li a{font-size: 0;text-decoration:none;width:40px;height:40px;display:flex;justify-content:center;align-items:center;border:2px solid theme-color("dark");color:theme-color("dark");position:relative;overflow:hidden}
-.social li a:after{content:"";background:theme-color("primary");position:absolute;top:-100%;left:0;-webkit-transition:0.3s all;transition:0.3s all;height:100%;width:100%}
+.social li a{font-size: 0;text-decoration:none;width:40px;height:40px;display:flex;justify-content:center;align-items:center;border:2px solid theme-color("dark");color:theme-color("dark");position:relative;overflow:hidden;border:2px solid theme-color("light");color:theme-color("light");}
+.social li a:after{content:"";background:theme-color("secondary");position:absolute;top:-100%;left:0;-webkit-transition:0.3s all;transition:0.3s all;height:100%;width:100%}
 .social li a:before{position:relative;z-index:1;font-size: 24px;}
 .social li a:hover:after{top:0}
-
-.banner .banner-details .social li a{border:2px solid theme-color("light");color:theme-color("light");}
 
 .banner .rotating-logo { position:absolute; width: 100%; height: 100%; left: 90%; top: 50%; }
 .rotating-logo .cw { animation: rotating-logo 90s infinite steps(3000); }
@@ -150,5 +148,12 @@ $theme-colors: (
         height: 100%;
       }
     }
+  }
+}
+
+.bg-primary {
+  color: theme-color("light");
+  form a {
+    color: theme-color("secondary");
   }
 }
