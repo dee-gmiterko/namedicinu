@@ -32,20 +32,6 @@ export default class Course extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={4} className="d-flex justify-content-center align-items-center">
-            <div className="p-3"><i className="fas fa-3x fa-bullseye"></i></div>
-            <div>Cielene na zvolenú LF</div>
-          </Col>
-          <Col md={4} className="d-flex justify-content-center align-items-center">
-            <div className="p-3"><i className="fas fa-3x fa-map-marker-alt"></i></div>
-            <div>Prebieha online</div>
-          </Col>
-          <Col md={4} className="d-flex justify-content-center align-items-center">
-            <div className="p-3"><i className="fas fa-3x fa-wallet"></i></div>
-            <div>3,3 €/hodina (60 minút)</div>
-          </Col>
-        </Row>
-        <Row>
           <Col md={6} className="p-3">
             <h3>Štruktura kurzu</h3>
             <ul className="text-justify">

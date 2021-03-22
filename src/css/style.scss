@@ -1,16 +1,69 @@
 $theme-colors: (
-  "primary": #2d4fc8,
-  "secondary": #f76f26,
+  "primary": #515bd4,
+  "secondary": #f58529,
   "light": #ffffff,
   "dark": #141414,
   "warning": #df2a39,
   "danger": #df2a39,
+  "i1-on-light": #dd2a7b,
+  "i2-on-light": #f76f26,
+  "i3-on-light": #8134af,
+  "trivial-on-light": #feda77,
+  "i1-on-primary": #dd2a7b,
+  "i2-on-primary": #ffffff,
+  "i3-on-primary": #feda77,
+  "trivial-on-primary": #8134af,
 );
 
+@import 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap';
+
+$font-size-base: 1.2rem;
+$font-family-sans-serif: 'Poppins', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$headings-font-family: 'Playfair Display', serif;
+$headings-margin-bottom: 0.75rem;
+$btn-border-radius-lg: 2rem;
+$btn-padding-x-lg: 2rem;
+
+@import 'functions.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 
+h2 {
+  color: theme-color("i1-on-light");
+}
+
+h3 {
+  color: theme-color("i2-on-light");
+}
+
+h4 {
+  color: theme-color("i3-on-light");
+}
+
+strong {
+  color: theme-color("i3-on-light");
+}
+
+.bg-primary {
+  h2 {
+    color: theme-color("i1-on-primary");
+  }
+
+  h3 {
+    color: theme-color("i2-on-primary");
+  }
+
+  h4 {
+    color: theme-color("i3-on-primary");
+  }
+
+  strong {
+    color: theme-color("i3-on-primary");
+  }
+}
+
 .navbar {
-  background: #333333b8;
+  background: rgba(theme-color("primary"), 0.8);
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 1rem;
   height: 180px;
 }
 
@@ -28,18 +81,20 @@ $theme-colors: (
 }
 
 .banner {
-  background: rgba(113,102,83,1);
-  background: linear-gradient(60deg, rgba(69,22,18,1) 0%, rgba(113,102,83,1) 61%, rgba(28,24,28,1) 100%);
+  background: #561d2c;
+  background: linear-gradient(60deg, rgba(#481a13, 0.5) 0%, rgba(#3f3a72, 0.5) 10%, rgba(#4e4462, 0.5) 15%, rgba(#3a3352, 0.5) 40%, rgba(#4e4462, 0.5) 45%, rgba(#3f3a72, 0.5) 50%, rgba(#481a13, 0.5) 55%, rgba(#6f1e52, 0.5) 60%, rgba(#632f57, 0.5) 85%, rgba(#632f57, 0.5) 90%, rgba(#6f1e52, 0.5) 100%),
+              linear-gradient(77deg, #632f57 0%, #6f1e52 10%, #481a13 15%, #3f3a72 40%, #4e4462 45%, #3a3352 50%, #4e4462 55%, #3f3a72 60%, #481a13 85%, #6f1e52 90%, #632f57 100%);
 }
 
 .banner-spacer {
-  background: rgba(113,102,83,1);
-  background: linear-gradient(60deg, rgba(69,22,18,1) 0%, rgba(113,102,83,1) 61%, rgba(28,24,28,1) 100%);
   height: 180px;
+  background: #561d2c;
+  background: linear-gradient(60deg, rgba(#481a13, 0.5) 0%, rgba(#3f3a72, 0.5) 10%, rgba(#4e4462, 0.5) 15%, rgba(#3a3352, 0.5) 40%, rgba(#4e4462, 0.5) 45%, rgba(#3f3a72, 0.5) 50%, rgba(#481a13, 0.5) 55%, rgba(#6f1e52, 0.5) 60%, rgba(#632f57, 0.5) 85%, rgba(#632f57, 0.5) 90%, rgba(#6f1e52, 0.5) 100%),
+              linear-gradient(77deg, #632f57 0%, #6f1e52 10%, #481a13 15%, #3f3a72 40%, #4e4462 45%, #3a3352 50%, #4e4462 55%, #3f3a72 60%, #481a13 85%, #6f1e52 90%, #632f57 100%);
 }
 
 .subTitle {
-  font-size: 200%;
+  font-size: 150%;
 }
 
 .square {
@@ -77,15 +132,18 @@ $theme-colors: (
 }
 
 .banner{position:relative;height:100vh;overflow: hidden;}
-.banner .banner-details{position:absolute;top:50%;left:50%;z-index:9;display:flex;justify-content:center;align-items:left;flex-direction:column;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);width:90%;color:#fff}
+.banner .container {padding: 180px 10% 0 10%; max-width: none; height: 100%}
+.banner .container .row {height: 100%}
+.banner .banner-details {display: flex; flex-direction: column; justify-content: center; color:theme-color("light")}
 .banner .gatsby-image-wrapper{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;left:50%}
 .banner .banner-details span{font-size:25px;margin-bottom:20px;text-shadow:1px 1px 4px #333}
-.banner .banner-details h1{font-size:400%;margin-top:0;margin-bottom:20px;text-shadow:1px 1px 4px #333}
-.banner:after{content:"";background:rgba(0,0,0,0.55);position:absolute;left:0;right:0;top:0;bottom:0}
+.banner .banner-details h1{font-size:400%;margin-top:0;margin-bottom:20px;text-shadow:1px 1px 4px #333; color: theme-color("secondary");}
+.banner .banner-details h2 {color: theme-color("light");}
 .banner .banner-details .sub-data{padding:0;display:flex;list-style:none;margin:0 0 30px 0}
 .banner .banner-details .sub-data li{padding:0 15px;position:relative;font-size:18px;text-shadow:1px 1px 4px #333}
 .banner .banner-details .sub-data li:after{content:"";width:6px;height:6px;display:inline-block;background:#fff;position:absolute;top:50%;margin-top:-3px;right:-3px;border-radius:50%}
 .banner .banner-details .sub-data li:last-child:after{display:none}
+.banner .banner-details strong {color: theme-color("secondary");}
 
 .social{display:flex;margin:0 -10px;padding:0;list-style:none}
 .social li{margin:0 10px}
@@ -94,7 +152,7 @@ $theme-colors: (
 .social li a:before{position:relative;z-index:1;font-size: 24px;}
 .social li a:hover:after{top:0}
 
-.banner .rotating-logo { position:absolute; width: 100%; height: 100%; left: 90%; top: 50%; }
+.banner .rotating-logo { position:absolute; width: 100%; height: 100%; left: 90%; top: 50%; opacity: 70%}
 .rotating-logo .cw { animation: rotating-logo 90s infinite steps(3000); }
 .rotating-logo .ccw { animation: rotating-logo 90s infinite steps(3000) reverse; position: absolute; }
 .rotating-logo .part-base { position:absolute; transform: translate(-500px, -500px); }
@@ -155,5 +213,29 @@ $theme-colors: (
   color: theme-color("light");
   form a {
     color: theme-color("secondary");
+  }
+
+  &.curved-top:before {
+    content: "";
+    display: block;
+    height: 3rem;
+    background: theme-color("primary") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("light") + "' /></svg>");
+    background-size: 100% 100%;
+  }
+
+  &.curved-bottom:after {
+    content: "";
+    display: block;
+    height: 3rem;
+    background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("primary") + "' /></svg>");
+    background-size: 100% 100%;
+  }
+
+  &.wave-top:before {
+    content: "";
+    display: block;
+    height: 7rem;
+    background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><path d='M0.00,83.38 C220.84,-152.45 421.28,304.44 500.00,32.06 L500.00,150.00 L0.00,150.00 Z' style='stroke: none; fill: " + theme-color("primary") + ";'></path></svg>");
+    background-size: 100% 100%;
   }
 }

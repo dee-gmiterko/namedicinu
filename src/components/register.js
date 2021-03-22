@@ -9,7 +9,7 @@ export default class Register extends Component {
   render() {
     const { site, faculties } = this.props;
     return (
-      <div className="bg-primary">
+      <div className="bg-primary curved-top curved-bottom">
         <Container className="p-3">
           <Row className="justify-content-center align-items-center">
             <Col md={12} className="p-3">
@@ -102,7 +102,7 @@ export default class Register extends Component {
                       <FormattedMessage id="register.consent" />
                     </Form.Text>
                   </Col>
-                  <Col md={12} className="text-center">
+                  <Col md={12} className="text-center p-3">
                     <Button variant="danger" type="submit" size="lg">
                       <FormattedMessage id="register.submit" defaultMessage="Submit" />
                     </Button>

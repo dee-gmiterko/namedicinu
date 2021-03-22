@@ -8,7 +8,7 @@ export default class service extends Component {
   render() {
     const { site } = this.props;
     return (
-      <div className="bg-primary">
+      <div className="bg-primary wave-top">
         <Container className="p-3">
           <Row>
             <Col md={12} className="p-3">

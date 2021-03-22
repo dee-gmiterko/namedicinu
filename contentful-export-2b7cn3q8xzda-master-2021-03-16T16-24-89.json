@@ -1,0 +1,2651 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "faculties",
+        "type": "ContentType",
+        "createdAt": "2021-02-26T16:48:48.806Z",
+        "updatedAt": "2021-02-26T17:02:41.261Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 7,
+        "publishedAt": "2021-02-26T17:02:41.261Z",
+        "firstPublishedAt": "2021-02-26T16:48:52.212Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 4,
+        "version": 8,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        }
+      },
+      "displayField": "title",
+      "name": "Faculties",
+      "description": "Factulty details",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+            {
+              "linkMimetypeGroup": [
+                "image"
+              ]
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "website",
+          "name": "Website",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "regexp": {
+                "pattern": "^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$",
+                "flags": null
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "siteInformation",
+        "type": "ContentType",
+        "createdAt": "2021-02-26T16:48:48.808Z",
+        "updatedAt": "2021-03-10T16:49:17.435Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 41,
+        "publishedAt": "2021-03-10T16:49:17.435Z",
+        "firstPublishedAt": "2021-02-26T16:48:53.334Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 21,
+        "version": 42,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        }
+      },
+      "displayField": "siteName",
+      "name": "Site Information",
+      "description": "Edit Site Inpormation like Logo, Site Name etc",
+      "fields": [
+        {
+          "id": "siteName",
+          "name": "Site Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "siteUrl",
+          "name": "Site URL",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "siteDescription",
+          "name": "Site Description",
+          "type": "Symbol",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "logo",
+          "name": "Logo",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "menus",
+          "name": "Menus",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Symbol",
+            "validations": [
+              {
+                "in": [
+                  "Course",
+                  "Contact",
+                  "Register",
+                  "Testimonials",
+                  "Lecturers",
+                  "Faculties",
+                  "FacultiesQuiz",
+                  "FacultiesComparison"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "fbPageId",
+          "name": "Facebook Page ID",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "fbAppId",
+          "name": "Facebook App ID",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "facebook",
+          "name": "Facebook",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "twitter",
+          "name": "Twitter",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "instagram",
+          "name": "Instagram",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "linkdin",
+          "name": "LinkdIn",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "github",
+          "name": "GitHub",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "email",
+          "name": "Email",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "bannerSubtitle",
+          "name": "Banner Subtitle",
+          "type": "Symbol",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "bannerDescription",
+          "name": "Banner Description",
+          "type": "Text",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "bannerImage",
+          "name": "Banner Image",
+          "type": "Link",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "courseDescription",
+          "name": "Course Description",
+          "type": "Text",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "registerDescription",
+          "name": "Register Description",
+          "type": "Text",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "testimonialsDescription",
+          "name": "Testimonials Description",
+          "type": "Text",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "lecturersDescription",
+          "name": "Lecturers Description",
+          "type": "Text",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "lecturers",
+        "type": "ContentType",
+        "createdAt": "2021-02-26T16:48:48.812Z",
+        "updatedAt": "2021-02-26T16:48:51.761Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2021-02-26T16:48:51.761Z",
+        "firstPublishedAt": "2021-02-26T16:48:51.761Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        }
+      },
+      "displayField": "name",
+      "name": "Lecturers",
+      "description": "Lecturers details",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "designation",
+          "name": "Designation",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "photo",
+          "name": "Photo",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "location",
+          "name": "Location",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "gmail",
+          "name": "Gmail",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "facebook",
+          "name": "Facebook",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "twitter",
+          "name": "Twitter",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "instagram",
+          "name": "Instagram",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "linkdin",
+          "name": "Linkdin",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "github",
+          "name": "Github",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "testimonials",
+        "type": "ContentType",
+        "createdAt": "2021-02-26T16:48:50.669Z",
+        "updatedAt": "2021-02-26T18:22:45.315Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2021-02-26T18:22:45.315Z",
+        "firstPublishedAt": "2021-02-26T16:48:51.276Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        }
+      },
+      "displayField": "name",
+      "name": "Testimonials",
+      "description": "Add Testimonials Here",
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "subTitle",
+          "name": "Sub Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "description",
+          "name": "Description",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    }
+  ],
+  "tags": [
+  ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "2b7cn3q8xzda",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 8,
+        "createdAt": "2021-02-26T16:48:52.357Z",
+        "createdBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2021-02-26T17:02:42.613Z",
+        "updatedBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "faculties",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "title",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "description",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "image",
+          "widgetId": "assetLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "website",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "2b7cn3q8xzda",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 42,
+        "createdAt": "2021-02-26T16:48:53.458Z",
+        "createdBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2021-03-10T16:49:18.253Z",
+        "updatedBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "siteInformation",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "siteName",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "siteUrl",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "siteDescription",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "logo",
+          "widgetId": "assetLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "menus",
+          "widgetId": "checkbox",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "fbPageId",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "fbAppId",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "facebook",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "twitter",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "instagram",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "linkdin",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "github",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "email",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "bannerSubtitle",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "bannerDescription",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "bannerImage",
+          "widgetId": "assetLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "courseDescription",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "registerDescription",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "testimonialsDescription",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "lecturersDescription",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "2b7cn3q8xzda",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 2,
+        "createdAt": "2021-02-26T16:48:51.896Z",
+        "createdBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2021-02-26T16:48:54.368Z",
+        "updatedBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "lecturers",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "designation",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "photo",
+          "widgetId": "assetLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "description",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "location",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "gmail",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "facebook",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "twitter",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "instagram",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "linkdin",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "github",
+          "widgetId": "urlEditor",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "2b7cn3q8xzda",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 6,
+        "createdAt": "2021-02-26T16:48:51.446Z",
+        "createdBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2021-02-26T18:22:46.044Z",
+        "updatedBy": {
+          "sys": {
+            "id": "6dy5xQPsfm6XOLbj1mGn4c",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "testimonials",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "name",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "subTitle",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "description",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "3AFGgSTMAKazbVPqvE1JGH",
+        "type": "Entry",
+        "createdAt": "2021-02-26T16:49:21.509Z",
+        "updatedAt": "2021-02-26T17:03:48.944Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2021-02-26T17:03:48.944Z",
+        "firstPublishedAt": "2021-02-26T16:49:26.566Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "faculties"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "sk": "Lékařská fakulta Masarykovy univerzity"
+        },
+        "description": {
+          "sk": "Masarykova univerzita byla zřízena v lednu 1919, tedy nedlouho po vzniku samostatného československého státu. Založení univerzity však nebylo plodem "
+        },
+        "image": {
+          "sk": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "3jZ2ne8tOyoN7s3Yem2Hqm"
+            }
+          }
+        },
+        "website": {
+          "sk": "https://www.med.muni.cz/"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "2JDlTai8Io52nkX6RjhDHj",
+        "type": "Entry",
+        "createdAt": "2021-02-26T16:49:21.515Z",
+        "updatedAt": "2021-02-26T17:03:29.636Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2021-02-26T17:03:29.636Z",
+        "firstPublishedAt": "2021-02-26T16:49:26.141Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "faculties"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "sk": "Dominikova fakulta"
+        },
+        "description": {
+          "sk": "Nestoji za to"
+        },
+        "image": {
+          "sk": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "5PPfAnJjlr9y5bBQCII2Hn"
+            }
+          }
+        },
+        "website": {
+          "sk": "https://ienze.me"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "1W8M8jt1BkkuibHsQOio13",
+        "type": "Entry",
+        "createdAt": "2021-02-26T16:49:21.545Z",
+        "updatedAt": "2021-03-10T20:16:23.297Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 59,
+        "publishedAt": "2021-03-10T20:16:23.297Z",
+        "firstPublishedAt": "2021-02-26T16:49:25.223Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 20,
+        "version": 60,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "siteInformation"
+          }
+        }
+      },
+      "fields": {
+        "siteName": {
+          "sk": "Na medicinu"
+        },
+        "siteUrl": {
+          "sk": "namedicinu.sk"
+        },
+        "siteDescription": {
+          "sk": "Suspicio? Bene ... tunc ibimus? Quis uh ... CONEXUS locus his diebus?"
+        },
+        "logo": {
+          "sk": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "4KvbwHjv5H3Y0YNn2TuB5T"
+            }
+          }
+        },
+        "menus": {
+          "sk": [
+            "Register",
+            "Testimonials",
+            "Lecturers",
+            "Contact",
+            "Faculties",
+            "FacultiesQuiz",
+            "FacultiesComparison",
+            "Course"
+          ]
+        },
+        "fbPageId": {
+          "sk": "545409705918672"
+        },
+        "fbAppId": {
+          "sk": "2180334865318655"
+        },
+        "facebook": {
+          "sk": "ienze.me"
+        },
+        "instagram": {
+          "sk": "ienze.me"
+        },
+        "email": {
+          "sk": "chem@namedicinu.sk"
+        },
+        "bannerSubtitle": {
+          "sk": "Dostaň sa na svoju vysnenú lekársku fakultu"
+        },
+        "bannerDescription": {
+          "sk": "Príde ti to ťažké alebo nevieš, kde začať? Prípravné kurzy __Na medicínu__ ťa prevedú celou cestou."
+        },
+        "bannerImage": {
+          "sk": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "4KvbwHjv5H3Y0YNn2TuB5T"
+            }
+          }
+        },
+        "courseDescription": {
+          "sk": "<div class=\"row\">\n   <div class=\"p-3 col-md-6\">\n      <p class=\"text-justify\">Naše kurzy ťa pripravia priamo na mieru na tú lekársku fakultu, na ktorú sa tak veľmi chceš dostať, pretože každá lekárska fakulta má svoje špecifiká. Prijímačky na každú lekársku fakultu pozostávajú z testu z biológie a chémie, ale ak sa chceš dostať do Česka, pridá sa k tomu aj fyzika. Ale pozor! Nie každá LF vyžaduje z každého predmetu rovnaké znalosti. Prijímačky na každú LF majú svoje špecifiká nielen váhou a dôležitosťou jednotlivých oblastí daných predmetov, ale aj čo sa formy testu týka. Preto je veľmi dôležité vedieť, čo presne sa na danú LF treba naučiť, na čo sa zamerať a ako vyzerajú testy na prijímačkách. Veď sa isto nechceš učiť dlhé hodiny niečo, čo vlastne na prijímačky ani nevyužiješ 🙂</p>\n   </div>\n   <div class=\"p-3 col-md-6\">\n      <p class=\"text-justify\">Prípravné kurzy NA MEDICÍNU sú zamerané práve cielene na danú LF podľa toho, ako tam vyzerajú prijímačky a čo presne sa na nich vyžaduje. Skúsení a zapálení lektori ťa od prvej lekcie vtiahnu do sveta biológie, chémie a prípadne aj fyziky a veľmi ochotne ťa prevedú celým kurzom. Priateľská a uvoľnená atmosféra sú základom každej lekcie. Zabudni na nudné hodiny v škole, kedy si sa bál čokoľvek spýtať, na týchto kurzoch ti to rozhodne nehrozí. Malé skupiny ti zaručia takmer individuálny prístup a priestor na všetky tvoje otázky. Nebaví ťa každý týždeň cestovať niekoľko hodín na iné kurzy, zabudni na to. Naše kurzy sú plne online a učiť sa môžeš bez toho, aby ste vstal z pohodlia svojej postele. Či si nočná sova alebo ranné vtáča, s nami si prídeš na svoje. Môžeš si vybrať z doobedňajších alebo večerných termínov. Chceš vedieť informácie priamo z prvej ruky? Počas kurzu máš možnosť získať skúsenosti a rady minuloročných absolventov.</p>\n   </div>\n</div>\n<div class=\"row\">\n   <div class=\"d-flex justify-content-center align-items-center col-md-4\">\n      <div class=\"p-3\"><i class=\"fas fa-3x fa-bullseye\"></i></div>\n      <div>Cielene na zvolenú LF</div>\n   </div>\n   <div class=\"d-flex justify-content-center align-items-center col-md-4\">\n      <div class=\"p-3\"><i class=\"fas fa-3x fa-map-marker-alt\"></i></div>\n      <div>Prebieha online</div>\n   </div>\n   <div class=\"d-flex justify-content-center align-items-center col-md-4\">\n      <div class=\"p-3\"><i class=\"fas fa-3x fa-wallet\"></i></div>\n      <div>3,3 €/hodina (60 minút)</div>\n   </div>\n</div>\n<div class=\"row\">\n   <div class=\"p-3 col-md-6\">\n      <h3>Štruktura kurzu</h3>\n      <ul class=\"text-justify\">\n         <li>každý týždeň ťa čaká jedna lekcia biológie a chémie (do Česka aj fyziky)</li>\n         <li>jedna lekcia trvá 3 hodiny = 180 minút (nič sa neboj, samozrejme budú aj prestávky 🙂)</li>\n         <li>spolu 33 lekcií z každého predmetu – 99 hodín biológie + 99 chémie (do Česka aj 99 fyziky)</li>\n         <li>na záver kurzy si vyskúšaš prijímačky nanečisto, aby ťa na tých skutočných nič neprekvapilo</li>\n      </ul>\n   </div>\n   <div class=\"p-3 col-md-6\">\n      <h3>Priebeh hodiny</h3>\n      <ul class=\"text-justify\">\n         <li>jeden deň v týždni sa pravidelne vyučuje len jeden predmet</li>\n         <li>vybrať si môžeš z doobedňajších alebo večerných kurzov (9:00&nbsp;–&nbsp;12:20 alebo 16:40&nbsp;–&nbsp;20:00)</li>\n         <li>za 99 hodín prejdeme každý predmet úplne od základov presne namieru pre tebou zvolenú LF</li>\n         <li>na každej lekcii Ti lektor zábavnou a zrozumiteľnou formou vysvetlí dané učivo</li>\n         <li>následne si rozoberiete k danej téme aj modelovky</li>\n         <li>súčasťou kurzu sú aj cvičné testy</li>\n      </ul>\n   </div>\n</div>\n<div class=\"row\">\n   <div class=\"col-md-12\">\n      <h3>Výhody online kurzu</h3>\n   </div>\n   <div class=\"d-flex flex-column align-items-stretch col-md-4\">\n      <h4 class=\"text-center\">Pohodlie domova</h4>\n      <p class=\"text-justify\">Všetky lekcie môžeš absolvovať z pohodia svojej izby (alebo aj postele, ak  chceš 🙂) a nemusíš strácať čas cestovaním</p>\n   </div>\n   <div class=\"d-flex flex-column align-items-stretch col-md-4\">\n      <h4 class=\"text-center\">Nahravky</h4>\n      <p class=\"text-justify\">Všetky lekcie sú nahrávané, takže sa k nim môžeš znova vrátiť</p>\n   </div>\n   <div class=\"d-flex flex-column align-items-stretch col-md-4\">\n      <h4 class=\"text-center\">Vždy k dispozícii</h4>\n      <p class=\"text-justify\">lektori sú ti vždy k dispozícii a môžeš im akékoľvek otázky napísať cez Messenger (samozrejme, že aj mimo času lekcií)</p>\n   </div>\n</div>"
+        },
+        "registerDescription": {
+          "sk": "Ak ťa prípravný kurz NAMEDICINU zaujal, do kurzu sa môžeš prihlásiť pomocou nasledujúceho formuláru. Po vyplnení formulára ti na uvedenú e-mailovú adresu prídu informácie ohľadom platby. Táto registrácia nie je neväzná, platnou sa stáva až po uhradení platby.\n"
+        },
+        "testimonialsDescription": {
+          "sk": "Ako prvý na Slovensku sa zaoberáme cielenou prípravou na prijímacie skúšku podľa aktuálnych požiadaviek jednotlivých lekárskych fakúlt na Slovensku a v Česku. Bez ohľadu na to, čo sa deje vo svete, celé naše kurzy NA MEDICINU sú plne online."
+        },
+        "lecturersDescription": {
+          "cs": "V našich kurzech dbáme především na kvalitu, čímž se odlišujeme od ostatních kurzů. Na prvním místě je pro nás přátelský a srdečný přístup lektorů ke studentům. Lektorů pečlivě vybíráme a můžete si být jistý, že i přes jejich mladému věku, jsou to jedni z nejlepších odborníků ve svém oboru. A samozřejmě danou problematiku nejen ovládají do nejmenších detailů, ale vědí ji vysvětlit a naučit zábavnou formou. ",
+          "sk": "V našich kurzoch dbáme v prvom rade na kvalitu, čím sa odlišujeme od ostatných kurzov. Na prvom mieste je pre nás priateľský a srdečný prístup lektorov k študentom. Lektorov starostlivo vyberáme a môžete si byť istý, že aj napriek ich mladému veku, sú to jedni z najlepších odborníkov vo svojom odbore. A samozrejme, danú problematiku nielen ovládajú do najmenších detailov, ale vedia ju aj vysvetliť a naučiť zábavnou formou."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "7zycgGnDv2W0ICZAppwMp9",
+        "type": "Entry",
+        "createdAt": "2021-02-26T16:51:25.430Z",
+        "updatedAt": "2021-03-10T16:31:53.131Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 13,
+        "publishedAt": "2021-03-10T16:31:53.131Z",
+        "firstPublishedAt": "2021-02-26T16:53:12.703Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 14,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "lecturers"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Jakub"
+        },
+        "designation": {
+          "sk": "Lektor chémie"
+        },
+        "photo": {
+          "sk": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "5PPfAnJjlr9y5bBQCII2Hn"
+            }
+          }
+        },
+        "description": {
+          "sk": "Ahoj, volám sa Jakub a som lektorom chémie. S lektorovaním chémie som začal už v poslednom ročníku na strednej škole a za 6 rokov som nazbieral bohaté skúsenosti. Do detailov poznám prijímačky na všetkých lekárskych fakultách na Slovensku a Česku a preto presne viem, na čo sa pri príprave zamerať. Učiť ma veľmi baví a študenti na mne oceňujú moju schopnosť vysvetliť dovtedy nepochopiteľné veci zaujímavým a jednoduchým spôsobom. Problém mi nerobí ani fyzika."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "2XIPPkihXT5vXwOOlfGUl9",
+        "type": "Entry",
+        "createdAt": "2021-02-26T16:53:29.415Z",
+        "updatedAt": "2021-02-26T17:55:19.163Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 10,
+        "publishedAt": "2021-02-26T17:55:19.163Z",
+        "firstPublishedAt": "2021-02-26T16:54:49.865Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 11,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Kika"
+        },
+        "subTitle": {
+          "sk": "LF Košice 2019"
+        },
+        "description": {
+          "sk": "Chcem sa poďakovať za to, že tieto doučovania boli presne zamerané na to čo potrebujem zlepšiť alebo sa naučiť v chémií čo je veľká výhoda oproti iným doučovaniam kde sa všetko preberá všeobecne. Za individuálny a profesionálny prístup. Za spoločný čas a ukázanie toho, že aj chémia vie byť zábavná. Ďakujem."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "11w7i1po0DE7c2FHRM3jNJ",
+        "type": "Entry",
+        "createdAt": "2021-02-26T17:57:18.468Z",
+        "updatedAt": "2021-02-26T18:22:13.911Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 8,
+        "publishedAt": "2021-02-26T18:22:13.911Z",
+        "firstPublishedAt": "2021-02-26T18:00:33.524Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 9,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Barbora"
+        },
+        "subTitle": {
+          "sk": "2. LF"
+        },
+        "description": {
+          "sk": "Ďakujem za všetko, a len by som ti rada povedala, že konečne po 4 rokoch na zdravke rozumiem chémii, a to vďaka tebe, veľmi sa mi tvoje hodiny páči a chémia ma baví, pritom som išla do toho s tým, že chémiu nemám rada, a teraz je to pravý opak, ďakujem Ti 😊"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "250Snk949wL1xV9XJz7vww",
+        "type": "Entry",
+        "createdAt": "2021-02-26T18:11:01.027Z",
+        "updatedAt": "2021-02-26T18:28:37.248Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2021-02-26T18:28:37.248Z",
+        "firstPublishedAt": "2021-02-26T18:28:37.248Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "faculties"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "sk": "Lékařská fakulta Masarykovy univerzity (1)"
+        },
+        "description": {
+          "sk": "Masarykova univerzita byla zřízena v lednu 1919, tedy nedlouho po vzniku samostatného československého státu. Založení univerzity však nebylo plodem "
+        },
+        "image": {
+          "sk": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "3jZ2ne8tOyoN7s3Yem2Hqm"
+            }
+          }
+        },
+        "website": {
+          "sk": "https://www.med.muni.cz/"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "6XdhKp0Om4s4xnH3yPcXKP",
+        "type": "Entry",
+        "createdAt": "2021-02-26T18:11:05.699Z",
+        "updatedAt": "2021-02-26T18:28:37.244Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2021-02-26T18:28:37.244Z",
+        "firstPublishedAt": "2021-02-26T18:28:37.244Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "faculties"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "sk": "Dominikova fakulta (1)"
+        },
+        "description": {
+          "sk": "Nestoji za to"
+        },
+        "image": {
+          "sk": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "5PPfAnJjlr9y5bBQCII2Hn"
+            }
+          }
+        },
+        "website": {
+          "sk": "https://ienze.me"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "4wnfGeJbZDv2Izu9wRzLsU",
+        "type": "Entry",
+        "createdAt": "2021-02-26T19:04:51.046Z",
+        "updatedAt": "2021-02-26T19:05:10.653Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2021-02-26T19:05:10.653Z",
+        "firstPublishedAt": "2021-02-26T19:05:10.653Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Katka"
+        },
+        "subTitle": {
+          "sk": "Ostrava, 2016"
+        },
+        "description": {
+          "sk": "Jakub má skutočnú vášeň pre chémiu (mimochodom problémy mu nerobia ani iné prírodné vedy 😉 ). Svojou komplexnosťou a jedinečným individuálnym prístupom dokáže sprostredkovať zložité témy veľmi jednoduchým, zrozumiteľným a hlavne zábavným spôsobom. Kto raz vyskúša neoľutuje. Odporúčam všetkými desiatimi."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "6m46DCrAce727kF5MUrXA9",
+        "type": "Entry",
+        "createdAt": "2021-03-10T11:37:28.746Z",
+        "updatedAt": "2021-03-10T11:37:57.747Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2021-03-10T11:37:57.747Z",
+        "firstPublishedAt": "2021-03-10T11:37:57.747Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Dominika"
+        },
+        "subTitle": {
+          "sk": "LF MU, Brno, 2018"
+        },
+        "description": {
+          "sk": "Moje doučovanie s Jakubom bolo zamerané na fyziku, ktorú som potrebovala zlepšiť na prijímacie skúšky na medicínu. Už pár ľudí pred tým mi odporučilo tieto kurzy. Moja skúsenosť s Jakubom bola super. Vyhovovala mi tiež onlinne forma a hlavne to, že okrem znalosti z fyziky mi Jakub pomohol si uvedomiť, aké dôležité je si dobre zorganizovať čas. Super na tom bolo tiež to, že Jakub už mal určitý prehľad o tom, čo všetko je potrebné prejsť na konkrétne univerzity. Fyzika ma nikdy moc nebavila, ale pri doučovani s Jakubom to bolo trochu menšie utrpenie. Som vďačná za to, že aj vďaka tomuto doučovaniu fyziky som nakoniec bola schopná úspešne spraviť prijímacie skúšky a venovať sa štúdiu medicíny."
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "1foTp5eQDO1tJqvM17JBPf",
+        "type": "Entry",
+        "createdAt": "2021-03-10T11:38:23.371Z",
+        "updatedAt": "2021-03-10T11:38:45.545Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2021-03-10T11:38:45.545Z",
+        "firstPublishedAt": "2021-03-10T11:38:45.545Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Mimi"
+        },
+        "subTitle": {
+          "sk": "1. LF, Praha, 2020"
+        },
+        "description": {
+          "sk": "Mala som primárne záujem o doučovanie fyziky, ale keď bola potreba, Jakub mi ochotne vysvetlil aj nezrovnalosti z chémie. Oceňujem Jakubov priateľský prístup a najmä schopnosť vysvetliť veci veľmi zrozumiteľne a logicky. Vďaka jeho pomoci som išla na prijímačky z fyziky so sebavedomím, že sa v okruhu otázok dobre orientujem. A to som mala z fyziky na začiatku najväčší stres.\n"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "4tkd2lBxUEU2AYnjpX65zZ",
+        "type": "Entry",
+        "createdAt": "2021-03-10T11:38:51.907Z",
+        "updatedAt": "2021-03-10T11:39:26.596Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2021-03-10T11:39:26.596Z",
+        "firstPublishedAt": "2021-03-10T11:39:26.596Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Barbora"
+        },
+        "subTitle": {
+          "sk": "LF HK, Hradec Králové, 2020"
+        },
+        "description": {
+          "sk": "Pre mňa bolo doučovanie dosť prínosné, či už k maturite alebo k prijímačkám, ďalšiemu štúdiu. Keďže nie každý pochopí všetko na prvýkrát, je to fajn mať vysvetlenie aj trošku jednoduchšie, ako sme zvyknutí v škole, kde často na podrobnejšie vysvetľovanie nie je úplne priestor. Online to bolo pre mňa šetrnejšie časovo a zvyšok času som už mohla vyžiť ako prípravu a opakovanie učiva. Jakub bol veľmi ochotný pomôcť aj mimo hodín a často som sa naňho mohla obrátiť aj s otázkami z iného predmetu, napr. z fyziky. 🙂"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "3uClyfIg4fhZ9WwaTVKQnu",
+        "type": "Entry",
+        "createdAt": "2021-03-10T11:39:35.000Z",
+        "updatedAt": "2021-03-10T11:40:28.560Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2021-03-10T11:40:28.560Z",
+        "firstPublishedAt": "2021-03-10T11:40:28.560Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Julka"
+        },
+        "subTitle": {
+          "sk": "LF UJPŠ, Košíce, 2016"
+        },
+        "description": {
+          "sk": "Doučovania z chémie v rámci prípravy na prijímacie skúšky na lekársku fakultu s Jakubom boli pre mňa veľkým prínosom. Pravidelnosť stretnutí a vopred nastavená študijná osnova mi pomohli s organizáciou času na prípravu a zefektívnili tak môj čas strávený učením. Jakub mi venoval čas aj mimo konzultačných hodín, keď som pri vypracovávaní úlohy natrafila na nejaký problém či nejasnosť. Jeho vysvetľovacie metódy mi vyhovovali viac ako v škole, pretože som mala pocit, že vie presne ako rozmýšľam a ako ma nasmerovať na správne používanie logiky. Nestretla som sa s ničím, čo by mi nedokázal vysvetliť. Počas doučovania som nabrala aj sebaistotu a učenie s viditeľnými výsledkami ma začalo dokonca baviť. Po každom doučovaní som dostala okruh otázok spojený s prebranou problematikou, ktoré som mala vypracovať samostatne doma. Takéto rozdelenie práce mi pomáhalo udržiavať disciplínu pri príprave a neprepadala som stresujúcej myšlienke, že si nestihnem všetko naštudovať. Určite odporúčam Jakuba všetkými desiatimi, lebo verím, že s ním budete rovnako spokojní a pomôže vám dostať sa na vysnívanú školu.\n"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "2Xean5cHMqi5o7DPVJl0C6",
+        "type": "Entry",
+        "createdAt": "2021-03-10T11:40:33.775Z",
+        "updatedAt": "2021-03-10T11:40:55.259Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2021-03-10T11:40:55.259Z",
+        "firstPublishedAt": "2021-03-10T11:40:55.259Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Ondrej"
+        },
+        "subTitle": {
+          "sk": "LF MU, Brno, 2017"
+        },
+        "description": {
+          "sk": "Mne kurzy veľmi pomohli, bez nich by som to nezvládol. Štýl vysvetľovania a preberania problematiky u mňa prejavil záujem o danú tému, aj keď sa jednalo o predmet alebo tému ktorú som nemal rád. Poznámky z kurzov a vedomosti z nich som dokázal využiť aj počas štúdia medicíny. Odporúčam všetkým, ktorí sa chcú dostať na medicínu, dosť sa oplatí.\n"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "4o8NmJTXK4VWxWliv56pfN",
+        "type": "Entry",
+        "createdAt": "2021-03-10T11:44:35.943Z",
+        "updatedAt": "2021-03-10T20:45:57.390Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 17,
+        "publishedAt": "2021-03-10T20:45:57.390Z",
+        "firstPublishedAt": "2021-03-10T11:46:57.106Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 18,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "testimonials"
+          }
+        }
+      },
+      "fields": {
+        "name": {
+          "sk": "Ema"
+        },
+        "subTitle": {
+          "sk": "2. LF, Praha, 2020"
+        },
+        "description": {
+          "sk": "Bohužiaľ vás v škole nemôžu naučiť všetko a najmä ak sa chystáte na českú medicínu. Preto sa stalo už takmer tradíciou, že každý kto sa chystá na medicínu, chodí na nejaký prípravný kurz. Zvyčajne si každá škola organizuje svoj. No chodiť pre mňa na kurzy do Brna bolo časovo nemožné a zároveň som o nich nepočula veľa chvály. Ďalšou alternatívou bol kurz v Košiciach.\n\nMyslím, že vtedy bola cena tých kurzov okolo 2000€. Hovorím si wow. 😲 Väčšina kurzov bola založená na tom, že sa žiaci učili z modelových otázok na košickú lekársku fakultu. Pýtala som sa samej seba, prečo by som mala zaplatiť niekomu toľko peňazí, aby ma pripravil na školu, na ktorú ani nechcem ísť a absolútne nijak mi to nepomôže pri príprave na akúkoľvek českú fakultu. Zároveň som nerozumela logike niekomu platiť za to, že si so mnou bude  robiť prijímačkove otázky. To predsa dokážem aj sama. 😂\n\nNašla som tieto doučovania, ktoré prebiehajú online. Bola som z toho trošku nervózna, nevedela som si to úplne predstaviť, ale kto neriskuje, nič nezíska 🤷‍♀️. A keď sa spustila séria doučovani, ani raz som nepochybovala o tom, že som urobila správne. Jedna lekcia (3 hodiny) ma stála 10€, no to naozaj ani zďaleka neodpovedá hodnote toho, čo všetko mi tento kurz dal. Častokrát sme hodiny preťahovali, rozumela som vďaka lektorom každej téme, mala som skvelé poznámky a odpovedalili mi na každú otázku. \n\nMôj odkaz pre vás teda je, bez ohľadu na akú fakultu sa chcete dostať, nečakajte, že vás tam Jakub zázrakom dostane, všetka tvrdá práca je na vás, no on vám dokáže dať maximum, či už vedomostí alebo podpory, je len na vás ako to zúročíte. Jakub síce nemá 4 doktoráty (možno ich raz mať bude), namiesto toho má obetavé srdce a takú vedomostnú kapacitu, že by mu ju mojom závidieť nejeden doktor!\n\nTak sa teda nebojte, sem tam zariskujte a veľa šťastia."
+        }
+      }
+    }
+  ],
+  "assets": [
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "4KvbwHjv5H3Y0YNn2TuB5T",
+        "type": "Asset",
+        "createdAt": "2021-02-26T16:48:55.420Z",
+        "updatedAt": "2021-02-28T13:32:28.010Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 10,
+        "publishedAt": "2021-02-28T13:32:28.010Z",
+        "firstPublishedAt": "2021-02-26T16:49:21.085Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 11,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "sk": "Logo"
+        },
+        "file": {
+          "sk": {
+            "url": "//images.ctfassets.net/2b7cn3q8xzda/4KvbwHjv5H3Y0YNn2TuB5T/2098919f90f7845208274e10d20f8679/logo.png",
+            "details": {
+              "size": 401619,
+              "image": {
+                "width": 1000,
+                "height": 1000
+              }
+            },
+            "fileName": "logo.png",
+            "contentType": "image/png"
+          }
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "3jZ2ne8tOyoN7s3Yem2Hqm",
+        "type": "Asset",
+        "createdAt": "2021-02-26T16:48:55.547Z",
+        "updatedAt": "2021-02-26T16:49:20.609Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "publishedAt": "2021-02-26T16:49:20.609Z",
+        "firstPublishedAt": "2021-02-26T16:49:20.609Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 3,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "sk": "simon-abrams-k T9Zj3SE8k-unsplash"
+        },
+        "file": {
+          "sk": {
+            "url": "//images.ctfassets.net/2b7cn3q8xzda/3jZ2ne8tOyoN7s3Yem2Hqm/596f432da3084c80ec5c0d25a582b82d/simon-abrams-k_T9Zj3SE8k-unsplash.jpg",
+            "details": {
+              "size": 1992206,
+              "image": {
+                "width": 4430,
+                "height": 2953
+              }
+            },
+            "fileName": "simon-abrams-k_T9Zj3SE8k-unsplash.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "id": "5PPfAnJjlr9y5bBQCII2Hn",
+        "type": "Asset",
+        "createdAt": "2021-02-26T16:50:04.182Z",
+        "updatedAt": "2021-02-26T16:51:11.057Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2021-02-26T16:51:11.057Z",
+        "firstPublishedAt": "2021-02-26T16:51:11.057Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "sk": "Dominik"
+        },
+        "file": {
+          "sk": {
+            "url": "//images.ctfassets.net/2b7cn3q8xzda/5PPfAnJjlr9y5bBQCII2Hn/3cc7263e95b2058a0ce11b261d232637/profile_19.caced7eb.png",
+            "details": {
+              "size": 462331,
+              "image": {
+                "width": 500,
+                "height": 500
+              }
+            },
+            "fileName": "profile_19.caced7eb.png",
+            "contentType": "image/png"
+          }
+        }
+      }
+    }
+  ],
+  "locales": [
+    {
+      "name": "Czech",
+      "code": "cs",
+      "fallbackCode": "sk",
+      "default": false,
+      "contentManagementApi": true,
+      "contentDeliveryApi": true,
+      "optional": true,
+      "sys": {
+        "type": "Locale",
+        "id": "2zyLwfGJiaVjUUAiuHGAqg",
+        "version": 1,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "environment": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Environment",
+            "id": "master",
+            "uuid": "7de0afac-b5bd-4976-a36a-98c73876847c"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "createdAt": "2021-03-03T18:29:36Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedAt": "2021-03-03T18:29:36Z"
+      }
+    },
+    {
+      "name": "Slovak",
+      "code": "sk",
+      "fallbackCode": null,
+      "default": true,
+      "contentManagementApi": true,
+      "contentDeliveryApi": true,
+      "optional": false,
+      "sys": {
+        "type": "Locale",
+        "id": "2X7DTQlSnGpJbEsgMq45W5",
+        "version": 2,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "environment": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Environment",
+            "id": "master",
+            "uuid": "7de0afac-b5bd-4976-a36a-98c73876847c"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "createdAt": "2021-02-26T16:41:20Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedAt": "2021-03-03T18:28:53Z"
+      }
+    }
+  ],
+  "webhooks": [
+    {
+      "name": "Netlify - Deploy a site",
+      "url": "https://api.netlify.com/build_hooks/5e4cb921f6529c16de2419c4",
+      "httpBasicUsername": null,
+      "topics": [
+        "Entry.publish",
+        "Asset.publish",
+        "Entry.unpublish",
+        "Asset.unpublish"
+      ],
+      "filters": [
+        {
+          "equals": [
+            {
+              "doc": "sys.environment.sys.id"
+            },
+            "master"
+          ]
+        }
+      ],
+      "transformation": {
+        "contentType": "application/json"
+      },
+      "sys": {
+        "type": "WebhookDefinition",
+        "id": "0rDzRMk7qqJVfuU08sqQFx",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "createdAt": "2021-02-26T16:49:28Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedAt": "2021-02-26T16:49:28Z"
+      },
+      "headers": [
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "name": "Editor",
+      "description": "Allows editing, publishing and archiving of content",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "2XaiBameAGNdQv4o9O8h2B",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "2b7cn3q8xzda"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "createdAt": "2021-02-26T16:41:20Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "6dy5xQPsfm6XOLbj1mGn4c"
+          }
+        },
+        "updatedAt": "2021-02-26T16:41:20Z"
+      }
+    }
+  ]
+}
