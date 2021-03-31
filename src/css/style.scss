@@ -1,117 +1,382 @@
+@use 'sass:math';
+
 $theme-colors: (
-  "primary": #515bd4,
-  "secondary": #f58529,
+  "primary": #ffc250,
+  "secondary": #3b7ed0,
   "light": #ffffff,
-  "dark": #141414,
+  "dark": #303030,
   "warning": #df2a39,
-  "danger": #df2a39,
-  "i1-on-light": #dd2a7b,
-  "i2-on-light": #f76f26,
-  "i3-on-light": #8134af,
-  "trivial-on-light": #feda77,
-  "i1-on-primary": #dd2a7b,
-  "i2-on-primary": #ffffff,
-  "i3-on-primary": #feda77,
-  "trivial-on-primary": #8134af,
+  "danger": #fb4444,
+  "bg-1": #fcf2e4,
+  "bg-2": #f2f6fe,
 );
 
-@import 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap';
+$font-size-base: 1.15rem;
+$font-family-sans-serif: 'Gibson', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-$font-size-base: 1.2rem;
-$font-family-sans-serif: 'Poppins', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$headings-font-family: 'Playfair Display', serif;
-$headings-margin-bottom: 0.75rem;
-$btn-border-radius-lg: 2rem;
+$headings-font-weight: normal;
+$headings-margin-bottom: 1rem;
+$h1-font-size: $font-size-base * 3.5;
+$h2-font-size: $font-size-base * 3;
+$h3-font-size: $font-size-base * 2;
+$h4-font-size: $font-size-base * 1.5;
+
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+
 $btn-padding-x-lg: 2rem;
+$navbar-nav-link-padding-x: 1rem;
 
 @import 'functions.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 
-h2 {
-  color: theme-color("i1-on-light");
-}
-
-h3 {
-  color: theme-color("i2-on-light");
-}
-
-h4 {
-  color: theme-color("i3-on-light");
-}
-
-strong {
-  color: theme-color("i3-on-light");
-}
-
-.bg-primary {
-  h2 {
-    color: theme-color("i1-on-primary");
-  }
-
-  h3 {
-    color: theme-color("i2-on-primary");
-  }
-
-  h4 {
-    color: theme-color("i3-on-primary");
-  }
-
-  strong {
-    color: theme-color("i3-on-primary");
-  }
-}
-
-.navbar {
-  background: rgba(theme-color("primary"), 0.8);
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0 1rem;
-  height: 180px;
-}
-
-.navbar .navbar-brand img {
-  max-width: 150px;
-  max-height: 150px;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: theme-color("light");
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: rgba(theme-color("light"), 0.5);
-}
-
-.banner {
-  background: #561d2c;
-  background: linear-gradient(60deg, rgba(#481a13, 0.5) 0%, rgba(#3f3a72, 0.5) 10%, rgba(#4e4462, 0.5) 15%, rgba(#3a3352, 0.5) 40%, rgba(#4e4462, 0.5) 45%, rgba(#3f3a72, 0.5) 50%, rgba(#481a13, 0.5) 55%, rgba(#6f1e52, 0.5) 60%, rgba(#632f57, 0.5) 85%, rgba(#632f57, 0.5) 90%, rgba(#6f1e52, 0.5) 100%),
-              linear-gradient(77deg, #632f57 0%, #6f1e52 10%, #481a13 15%, #3f3a72 40%, #4e4462 45%, #3a3352 50%, #4e4462 55%, #3f3a72 60%, #481a13 85%, #6f1e52 90%, #632f57 100%);
-}
-
-.banner-spacer {
-  height: 180px;
-  background: #561d2c;
-  background: linear-gradient(60deg, rgba(#481a13, 0.5) 0%, rgba(#3f3a72, 0.5) 10%, rgba(#4e4462, 0.5) 15%, rgba(#3a3352, 0.5) 40%, rgba(#4e4462, 0.5) 45%, rgba(#3f3a72, 0.5) 50%, rgba(#481a13, 0.5) 55%, rgba(#6f1e52, 0.5) 60%, rgba(#632f57, 0.5) 85%, rgba(#632f57, 0.5) 90%, rgba(#6f1e52, 0.5) 100%),
-              linear-gradient(77deg, #632f57 0%, #6f1e52 10%, #481a13 15%, #3f3a72 40%, #4e4462 45%, #3a3352 50%, #4e4462 55%, #3f3a72 60%, #481a13 85%, #6f1e52 90%, #632f57 100%);
-}
-
-.subTitle {
-  font-size: 150%;
-}
+/*
+ * Utils
+ */
 
 .square {
   position: relative;
   padding-bottom: 100%;
 }
 
-.square .gatsby-image-wrapper, .square img {
+.square * {
   position: absolute !important;
   width: 100%;
   height: 100%;
 }
 
+$social-size: 50px;
+
+.social{
+  display: flex;
+  padding: 0;
+  list-style: none;
+  margin: 0 -10px;
+
+  li {
+    margin: 0 10px;
+
+    a {
+      font-size: 0;
+      text-decoration: none;
+      width: $social-size;
+      height: $social-size;
+      border-radius: $social-size/2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: theme-color("light");
+
+      &::after{
+        content: "";
+        background: theme-color("primary");
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        transition: 0.3s transform;
+        transform: scale(0.0);
+      }
+      &::before{
+        position: relative;
+        z-index: 1;
+        font-size: 24px;
+      }
+      &:hover::after{
+        transform: scale(1.05); // 5% overshoot to hide all darker pixels on borders of the circle
+      }
+    }
+  }
+}
+
+.circle-half-border {
+  position: relative;
+  border: 10px solid theme-color("light");
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    bottom: -16px;
+    left: -16px;
+    background: linear-gradient(theme-color("primary") 50%, theme-color("light") 50%);
+    transform: rotate(45deg);
+    border-radius: 50%;
+    z-index: -1;
+  }
+}
+
+.circle-img-half-border {
+  @extend .circle-half-border;
+  border-radius: 50%;
+
+  img, .gatsby-image-wrapper {
+    border-radius: 50%;
+  }
+}
+
+$ul-circular-radius: 30%;
+$ul-circular-radius-size: 180px;
+$ul-circular-radius-basic-deg: -20deg;
+ul.circular {
+  position: relative;
+  li {
+    @extend .circle-half-border;
+    position: absolute;
+    list-style: none;
+    height: $ul-circular-radius-size;
+    width: $ul-circular-radius-size;
+    margin-top: $ul-circular-radius-size / -2.0;
+    margin-left: $ul-circular-radius-size / -2.0;
+    background: theme-color("bg-2");
+    border-radius: 50%;
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &:nth-child(1) {
+      top: 50% + math.cos(0deg + $ul-circular-radius-basic-deg) * $ul-circular-radius * -1.0;
+      left: 50% + math.sin(0deg + $ul-circular-radius-basic-deg) * $ul-circular-radius;
+      &::before {
+        transform: rotate(45deg);
+      }
+    }
+    &:nth-child(2) {
+      top: 50% + math.cos(120deg + $ul-circular-radius-basic-deg) * $ul-circular-radius * -1.0;
+      left: 50% + math.sin(120deg + $ul-circular-radius-basic-deg) * $ul-circular-radius;
+      &::before {
+        transform: rotate(45deg + 120deg);
+      }
+    }
+    &:nth-child(3) {
+      top: 50% + math.cos(240deg + $ul-circular-radius-basic-deg) * $ul-circular-radius * -1.0;
+      left: 50% + math.sin(240deg + $ul-circular-radius-basic-deg) * $ul-circular-radius;
+      &::before {
+        transform: rotate(45deg + 240deg);
+      }
+    }
+  }
+}
+
+ul.checkmark {
+  padding: 0;
+
+  li {
+    padding: 0 0 2rem 1.5rem;
+    margin-left: 3rem;
+
+    &::marker {
+      font-family: "Font Awesome 5 Free";
+      content: "\f058";
+      right: 1rem;
+      color: #3a8808;
+      font-size: 1.5rem;
+      vertical-align: middle;
+    }
+  }
+}
+
+/*
+ * Page specific styles
+ */
+
+#gatsby-focus-wrapper {
+  overflow: hidden;
+}
+
+.bg-1 {
+  background: theme-color("bg-1");
+}
+
+.bg-2 {
+  background: theme-color("bg-2");
+}
+
+h1 {
+  color: theme-color("dark");
+  text-transform: uppercase;
+}
+
+h2, h3 {
+  color: theme-color("secondary");
+}
+
+h4 {
+  color: #7661af;
+}
+
+strong {
+  color: theme-color("danger");
+  font-weight: inherit;
+}
+
+.btn-primary {
+  text-transform: uppercase;
+  color: theme-color("light");
+}
+
+.navbar {
+  .navbar-brand img {
+    max-width: 8rem;
+    max-height: 8rem;
+    margin: 1rem;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+  }
+
+  .btn {
+    margin-left: 4rem;
+  }
+}
+
+.navbar-bg-1 {
+  background: theme-color("bg-1");
+
+  .navbar-nav .nav-link {
+    color: theme-color("dark");
+
+    &.btn-primary {
+      color: theme-color("light");
+    }
+  }
+
+  .navbar-toggler-icon {
+    color: theme-color("dark");
+  }
+}
+
+.banner {
+  position: relative;
+  background: theme-color("bg-1");
+  background: linear-gradient(172deg, theme-color("bg-1") 70%, theme-color("light") 70%);
+
+  h1 {
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    margin-bottom: 1.7rem;
+    font-size: 2.1rem;
+    color: theme-color("dark");
+  }
+
+  p {
+    font-size: 1.35rem;
+    margin-bottom: 1.7rem;
+  }
+
+  .bg-circle-container {
+    position: absolute;
+    width: 118%;
+    right: -35%;
+
+    .bg-circle {
+      @extend .square;
+      border-radius: 50%;
+    }
+  }
+
+  .banner-image {
+    margin: 5rem 5rem 10rem 0;
+  }
+}
+
+.course {
+  .bordered {
+    border: 2px solid #e0e0e0;
+    margin-bottom: 3rem;
+    padding: 3rem;
+
+    hr {
+      border-top-width: 2px;
+    }
+
+    ul {
+      columns: 2;
+      column-gap: 3rem;
+    }
+  }
+
+  .bg-circle-container {
+    position: absolute;
+    width: 130px;
+    top: -2px;
+    left: -10px;
+    z-index: -1;
+
+    .bg-circle {
+      @extend .square;
+      border-radius: 50%;
+    }
+  }
+}
+
+.register {
+  form {
+    a {
+      color: theme-color("danger");
+    }
+  }
+}
+
+.testimonials {
+  .bg-2 {
+    padding: 5rem 0;
+  }
+
+  .fa-quote-left, .fa-quote-right {
+    color: #9db7e6;
+  }
+
+  .slick-dots {
+    li {
+      button::before {
+        font-size: 12px;
+        color: theme-color("secondary");
+      }
+      &.slick-active {
+        button::before {
+          color: theme-color("secondary");
+        }
+      }
+    }
+  }
+}
+
+.lecturers {
+  .designation {
+    font-size: 1.5rem;
+  }
+}
+
+.contact {
+  background: theme-color("secondary");
+  background: linear-gradient(-3deg, theme-color("secondary") 60%, theme-color("light") 60.5%);
+  color: theme-color("light");
+  font-size: 1.5rem;
+
+  dl {
+    margin-bottom: 0;
+
+    dt {
+      font-weight: normal;
+    }
+  }
+}
+
 .site-footer{
   padding: 15px;
-  background: #333;
   color: #fff;
+
   p {
     margin: 0
   }
@@ -120,38 +385,7 @@ strong {
   }
 }
 
-.testimonials {
-  .fa-quote-left, .fa-quote-right {
-    color: rgba(0, 0, 0, 0.2);
-  }
-  .slick-dots {
-    li button::before {
-      font-size: 12px;
-    }
-  }
-}
-
-.banner{position:relative;height:100vh;overflow: hidden;}
-.banner .container {padding: 180px 10% 0 10%; max-width: none; height: 100%}
-.banner .container .row {height: 100%}
-.banner .banner-details {display: flex; flex-direction: column; justify-content: center; color:theme-color("light")}
-.banner .gatsby-image-wrapper{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;left:50%}
-.banner .banner-details span{font-size:25px;margin-bottom:20px;text-shadow:1px 1px 4px #333}
-.banner .banner-details h1{font-size:400%;margin-top:0;margin-bottom:20px;text-shadow:1px 1px 4px #333; color: theme-color("secondary");}
-.banner .banner-details h2 {color: theme-color("light");}
-.banner .banner-details .sub-data{padding:0;display:flex;list-style:none;margin:0 0 30px 0}
-.banner .banner-details .sub-data li{padding:0 15px;position:relative;font-size:18px;text-shadow:1px 1px 4px #333}
-.banner .banner-details .sub-data li:after{content:"";width:6px;height:6px;display:inline-block;background:#fff;position:absolute;top:50%;margin-top:-3px;right:-3px;border-radius:50%}
-.banner .banner-details .sub-data li:last-child:after{display:none}
-.banner .banner-details strong {color: theme-color("secondary");}
-
-.social{display:flex;margin:0 -10px;padding:0;list-style:none}
-.social li{margin:0 10px}
-.social li a{font-size: 0;text-decoration:none;width:40px;height:40px;display:flex;justify-content:center;align-items:center;border:2px solid theme-color("dark");color:theme-color("dark");position:relative;overflow:hidden;border:2px solid theme-color("light");color:theme-color("light");}
-.social li a:after{content:"";background:theme-color("secondary");position:absolute;top:-100%;left:0;-webkit-transition:0.3s all;transition:0.3s all;height:100%;width:100%}
-.social li a:before{position:relative;z-index:1;font-size: 24px;}
-.social li a:hover:after{top:0}
-
+/*
 .banner .rotating-logo { position:absolute; width: 100%; height: 100%; left: 90%; top: 50%; opacity: 70%}
 .rotating-logo .cw { animation: rotating-logo 90s infinite steps(3000); }
 .rotating-logo .ccw { animation: rotating-logo 90s infinite steps(3000) reverse; position: absolute; }
@@ -160,6 +394,7 @@ strong {
 .rotating-logo .part-1 { position: absolute; transform: translate(64px, -469px); }
 .rotating-logo .part-2 { position: absolute; transform: translate(193px, 239px); }
 .rotating-logo .part-3 { position: absolute; transform: translate(-487px, -10px); }
+
 
 @-webkit-keyframes rotating-logo {
   0% {
@@ -208,34 +443,32 @@ strong {
     }
   }
 }
+*/
 
-.bg-primary {
-  color: theme-color("light");
-  form a {
-    color: theme-color("secondary");
-  }
+/*
 
-  &.curved-top:before {
-    content: "";
-    display: block;
-    height: 3rem;
-    background: theme-color("primary") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("light") + "' /></svg>");
-    background-size: 100% 100%;
-  }
-
-  &.curved-bottom:after {
-    content: "";
-    display: block;
-    height: 3rem;
-    background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("primary") + "' /></svg>");
-    background-size: 100% 100%;
-  }
-
-  &.wave-top:before {
-    content: "";
-    display: block;
-    height: 7rem;
-    background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><path d='M0.00,83.38 C220.84,-152.45 421.28,304.44 500.00,32.06 L500.00,150.00 L0.00,150.00 Z' style='stroke: none; fill: " + theme-color("primary") + ";'></path></svg>");
-    background-size: 100% 100%;
-  }
+.curved-top:before {
+  content: "";
+  display: block;
+  height: 3rem;
+  background: theme-color("primary") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("light") + "' /></svg>");
+  background-size: 100% 100%;
 }
+
+.curved-bottom:after {
+  content: "";
+  display: block;
+  height: 3rem;
+  background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("primary") + "' /></svg>");
+  background-size: 100% 100%;
+}
+
+.wave-top:before {
+  content: "";
+  display: block;
+  height: 7rem;
+  background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><path d='M0.00,83.38 C220.84,-152.45 421.28,304.44 500.00,32.06 L500.00,150.00 L0.00,150.00 Z' style='stroke: none; fill: " + theme-color("primary") + ";'></path></svg>");
+  background-size: 100% 100%;
+}
+
+*/

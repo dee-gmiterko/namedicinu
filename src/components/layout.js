@@ -9,6 +9,7 @@ import messages_sk from "../locale/sk.json"
 import messages_cs from "../locale/cs.json"
 
 import "../css/style.scss";
+import "../css/gibson.css";
 import "../css/font-awesome.css";
 
 if (typeof window !== "undefined") {
@@ -29,9 +30,9 @@ const Layout = ({ site, header, locale, children }) => {
         header={header}
       />
       <div>
-        <main id="home">{children}</main>
+        <main>{children}</main>
       </div>
-      <Footer siteName={site.siteName} />
+      <Footer site={site} />
     </IntlProvider>
   );
 };

@@ -22,7 +22,7 @@ const NotFoundPage = ({ data, pageContext }) => (
     <div className="banner-spacer"></div>
 
     <Container className="p-3">
-      <Row className="justify-content-center align-items-center">
+      <Row>
         <Col md={12} className="p-3">
           <h1>
             <FormattedMessage id="title.not_found" defaultMessage="Not found" />

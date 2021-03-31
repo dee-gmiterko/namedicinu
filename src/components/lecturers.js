@@ -9,9 +9,9 @@ export default class Lecturers extends Component {
   render() {
     const { site, lecturers } = this.props;
     return (
-      <Container className="p-3">
+      <Container className="lecturers">
         <Row>
-          <Col md={12} className="p-3">
+          <Col md={7} className="p-3">
             <h2 id="Lecturers">
               <FormattedMessage id="title.lecturers" defaultMessage="Lecturers" />
             </h2>
@@ -22,16 +22,11 @@ export default class Lecturers extends Component {
           const photo_col = (
             <Col md={4} style={{padding: "0 6%"}}>
               <div className="square">
-                <Img
-                  fluid={item.node.photo.fluid}
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  style={{
-                    borderRadius: "50%",
-                    border: "15px solid white",
-                    boxShadow: "0 0 15px rgba(0, 0, 0, 0.06)",
-                  }}
-                />
+                <div className="circle-img-half-border">
+                  <Img
+                    fluid={item.node.photo.fluid}
+                  />
+                </div>
               </div>
             </Col>
           )
@@ -44,9 +39,11 @@ export default class Lecturers extends Component {
                 </h3>
                 {
                   item.node.designation &&
-                  <p>{item.node.designation}</p>
+                  <p className="designation">{item.node.designation}</p>
                 }
-                <Markdown value={item.node.description} />
+                <div className="text-justify">
+                  <Markdown value={item.node.description} className="text-justify" />
+                </div>
               </Col>
               {index % 2 === 1 && photo_col}
             </Row>

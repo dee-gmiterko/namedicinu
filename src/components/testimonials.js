@@ -10,28 +10,29 @@ import Markdown from "./markdown";
 
 var settings = {
   dots: true,
+  arrows: false,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
   pauseOnHover: true,
-  autoplaySpeed: 6000
+  autoplaySpeed: 6000,
 };
 
 export default class Testimonials extends Component {
   render() {
     const { site, testimonials } = this.props;
     return (
-      <Container className="p-3 testimonials">
-        <Row className="justify-content-center align-items-center">
-          <Col md={12} className="p-3">
+      <Container className="testimonials">
+        <Row>
+          <Col md={7} className="p-3">
             <h2 id="Testimonials">
               <FormattedMessage id="title.testimonials" defaultMessage="Testimonials" />
             </h2>
             <Markdown value={site.testimonialsDescription} />
           </Col>
         </Row>
-        <Row>
+        <Row className="bg-2">
           <Col>
             <Slider {...settings}>
               {testimonials.edges.map((item, index) => {

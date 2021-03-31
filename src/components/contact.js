@@ -8,74 +8,49 @@ export default class service extends Component {
   render() {
     const { site } = this.props;
     return (
-      <div className="bg-primary wave-top">
-        <Container className="p-3">
+      <div className="contact">
+        <Container>
           <Row>
             <Col md={12} className="p-3">
-              <h2 id="Contact">
+              <h2 id="Contact" className="mb-3">
                 <FormattedMessage id="title.contact" defaultMessage="Contact" />
               </h2>
-              <div className="text-center">
-                <Button as={Link} to="/#Register" variant="danger" type="submit" size="lg">
-                  <FormattedMessage id="contact.register" defaultMessage="Submit" />
-                </Button>
-              </div>
             </Col>
           </Row>
-          <dl>
-
-            {
-              site.email &&
-              <Row className="justify-content-center align-items-center">
-                <dt className="col-sm-2">
-                  <FormattedMessage id="contact.email" defaultMessage="Email" />
-                </dt>
-                <dd className="col-sm-4">{site.email}</dd>
-              </Row>
-            }
-
-            {
-              site.fbPageId && site.fbAppId &&
-              <Row className="justify-content-center align-items-center">
-                <dt class="col-sm-2">
-                  <FormattedMessage id="contact.messenger" defaultMessage="Messenger" />
-                </dt>
-                <dd class="col-sm-4">
-                  <MessengerMessageUs pageId={site.fbPageId} appId={site.fbAppId} size="large" />
-                </dd>
-              </Row>
-            }
-
-            {
-              (site.facebook || site.instagram) &&
-              <Row className="justify-content-center align-items-center">
-                <dt class="col-sm-2">
-                  <FormattedMessage id="contact.socials" defaultMessage="Socials" />
-                </dt>
-                <dd class="col-sm-4">
-                  <ul className="social">
-                    <li>
-                      <a
-                        className="fab fa-facebook-f"
-                        href={site.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Facebook</a>
-                    </li>
-                    <li>
-                      <a
-                        className="fab fa-instagram"
-                        href={site.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Instagram</a>
-                    </li>
-                  </ul>
-                </dd>
-              </Row>
-            }
-
-          </dl>
+          <Row>
+            <Col md={6}>
+              <dl>
+                {
+                  site.email &&
+                  <Row>
+                    <dt className="col-sm-4">
+                      <FormattedMessage id="contact.email" defaultMessage="Email" />
+                    </dt>
+                    <dd className="col-sm-8">{site.email}</dd>
+                  </Row>
+                }
+                {
+                  site.fbPageId && site.fbAppId &&
+                  <Row>
+                    <dt class="col-sm-4">
+                      <FormattedMessage id="contact.messenger" defaultMessage="Messenger" />
+                    </dt>
+                    <dd class="col-sm-8">
+                      <MessengerMessageUs pageId={site.fbPageId} appId={site.fbAppId} size="large" />
+                    </dd>
+                  </Row>
+                }
+              </dl>
+            </Col>
+            <Col md={6} className="text-right d-none d-md-block" style={{top: "-40px"}}>
+              <p>
+                <FormattedMessage id="contact.register_prompt" defaultMessage="What are you waiting for?" />
+              </p>
+              <Button as={Link} to="/#Register" variant="primary">
+                <FormattedMessage id="contact.register" defaultMessage="Submit" />
+              </Button>
+            </Col>
+          </Row>
         </Container>
       </div>
     );

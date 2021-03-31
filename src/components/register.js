@@ -9,44 +9,45 @@ export default class Register extends Component {
   render() {
     const { site, faculties } = this.props;
     return (
-      <div className="bg-primary curved-top curved-bottom">
-        <Container className="p-3">
-          <Row className="justify-content-center align-items-center">
-            <Col md={12} className="p-3">
-              <h2 id="Register">
+      <div className="d-flex flex-row register">
+        <div className="flex-grow-1" />
+        <Container id="Register">
+          <Row>
+            <Col md={5} className="pt-5 pr-5 text-justify">
+              <h2>
                 <FormattedMessage id="title.register" defaultMessage="Register" />
               </h2>
               <Markdown value={site.registerDescription} />
             </Col>
-          </Row>
-          <Row>
-            <Col md={12} className="p-3">
+            <Col md={7} className="p-5 bg-1">
               <Form> {/* TODO add https://formspree.io/ */}
-                <Form.Group controlId="registerEmail">
-                  <FormattedMessage id="register.email" defaultMessage="Email">
-                    {(l_email) => (
-                      <>
-                        <Form.Label>
-                          {l_email}
-                        </Form.Label>
-                        <Form.Control type="email" placeholder={l_email} />
-                      </>
-                    )}
-                  </FormattedMessage>
-                </Form.Group>
 
-                <Form.Group controlId="registerName">
-                  <FormattedMessage id="register.name" defaultMessage="Name">
-                    {(l_name) => (
-                      <>
-                        <Form.Label>
-                          {l_name}
-                        </Form.Label>
-                        <Form.Control type="input" placeholder={l_name} />
-                      </>
-                    )}
-                  </FormattedMessage>
-                </Form.Group>
+                <Form.Row>
+                  <Form.Group as={Col} controlId="registerEmail">
+                    <FormattedMessage id="register.email" defaultMessage="Email">
+                      {(l_email) => (
+                        <>
+                          <Form.Label>
+                            {l_email}
+                          </Form.Label>
+                          <Form.Control type="email" />
+                        </>
+                      )}
+                    </FormattedMessage>
+                  </Form.Group>
+                  <Form.Group as={Col} controlId="registerName">
+                    <FormattedMessage id="register.name" defaultMessage="Name">
+                      {(l_name) => (
+                        <>
+                          <Form.Label>
+                            {l_name}
+                          </Form.Label>
+                          <Form.Control type="input" />
+                        </>
+                      )}
+                    </FormattedMessage>
+                  </Form.Group>
+                </Form.Row>
 
                 <Form.Row>
                   <Form.Group as={Col} controlId="registerPreferredTime">
@@ -102,8 +103,8 @@ export default class Register extends Component {
                       <FormattedMessage id="register.consent" />
                     </Form.Text>
                   </Col>
-                  <Col md={12} className="text-center p-3">
-                    <Button variant="danger" type="submit" size="lg">
+                  <Col md={12} className="text-right p-3">
+                    <Button variant="primary" type="submit" size="lg">
                       <FormattedMessage id="register.submit" defaultMessage="Submit" />
                     </Button>
                   </Col>
@@ -112,6 +113,7 @@ export default class Register extends Component {
             </Col>
           </Row>
         </Container>
+        <div className="bg-1 flex-grow-1" />
       </div>
     );
   }

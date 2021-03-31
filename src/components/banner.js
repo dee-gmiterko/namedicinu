@@ -1,124 +1,40 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-// import Img from "gatsby-image";
+import Img from "gatsby-image";
 
 import Markdown from "./markdown";
-import RotatingLogo from "./rotating_logo"
+import Socials from "./socials"
 
 export default class Banner extends Component {
   render() {
     const { site } = this.props;
     return (
-      <>
-        <div className="banner">
-          {/*
-          <Img
-            fluid={site.bannerImage.fluid}
-          />
-          */}
-          <RotatingLogo />
-          <Container>
-            <Row>
-              <Col md={6} className="banner-details p-3">
-                <h1>{site.siteName}</h1>
+      <div className="banner">
+        <Container>
+          <Row className="justify-content-between">
+            <Col md={5} className="p-3 d-flex flex-column align-items-stretch justify-content-center">
+              <h1>{site.siteName}</h1>
 
-                <h2>
-                  {site.bannerSubtitle}
-                </h2>
+              <h2>
+                {site.bannerSubtitle}
+              </h2>
 
-                <Markdown value={site.bannerDescription} />
+              <Markdown value={site.bannerDescription} />
 
-                <ul className="social">
-                  {
-                    site.facebook &&
-                    <li>
-                      <a
-                        className="fab fa-facebook-f"
-                        href={site.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Facebook</a>
-                    </li>
-                  }
-                  {
-                    site.twitter &&
-                    <li>
-                      <a
-                        className="fab fa-twitter"
-                        href={site.twitter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Twitter</a>
-                    </li>
-                  }
-                  {
-                    site.instagram &&
-                    <li>
-                      <a
-                        className="fab fa-instagram"
-                        href={site.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Instagram</a>
-                    </li>
-                  }
-                  {
-                    site.linkdin &&
-                    <li>
-                      <a
-                        className="fab fa-linkedin-in"
-                        href={site.linkdin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >LinkedIn</a>
-                    </li>
-                  }
-                  {
-                    site.github &&
-                    <li>
-                      <a
-                        className="fab fa-github"
-                        href={site.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Github</a>
-                    </li>
-                  }
-                  {
-                    site.email &&
-                    <li>
-                      <a
-                        className="far fa-envelope"
-                        href={"mailto:"+site.email}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Email</a>
-                    </li>
-                  }
-                </ul>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <div className="bg-primary curved-bottom">
-          <Container className="p-3">
-            <Row>
-              <Col md={4} className="d-flex justify-content-center align-items-center">
-                <div className="p-3"><i className="fas fa-3x fa-bullseye"></i></div>
-                <div>Cielene na zvolenú LF</div>
-              </Col>
-              <Col md={4} className="d-flex justify-content-center align-items-center">
-                <div className="p-3"><i className="fas fa-3x fa-map-marker-alt"></i></div>
-                <div>Prebieha online</div>
-              </Col>
-              <Col md={4} className="d-flex justify-content-center align-items-center">
-                <div className="p-3"><i className="fas fa-3x fa-wallet"></i></div>
-                <div>3,3 €/hodina (60 minút)</div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </>
+              <Socials facebook={site.facebook} instagram={site.instagram} email={site.email} />
+            </Col>
+            <Col md={6} className="p-3 d-flex flex-column align-items-stretch justify-content-center">
+              <div className="bg-circle-container">
+                <div className="bg-circle bg-2" />
+              </div>
+              <Img
+                fluid={site.bannerImage.fluid}
+                className="banner-image"
+              />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
