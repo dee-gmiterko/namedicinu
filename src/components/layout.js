@@ -9,8 +9,8 @@ import messages_sk from "../locale/sk.json"
 import messages_cs from "../locale/cs.json"
 
 import "../css/style.scss";
-import "../css/gibson.css";
-import "../css/font-awesome.css";
+import "../css/gibson.scss";
+import "../css/font-awesome.scss";
 
 if (typeof window !== "undefined") {
   require("smooth-scroll")('a[href*="#"]');

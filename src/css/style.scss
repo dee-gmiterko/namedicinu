@@ -12,13 +12,14 @@ $theme-colors: (
 );
 
 $font-size-base: 1.15rem;
+$font-weight-base: 300;
 $font-family-sans-serif: 'Gibson', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 $headings-font-weight: normal;
 $headings-margin-bottom: 1rem;
 $h1-font-size: $font-size-base * 3.5;
 $h2-font-size: $font-size-base * 3;
-$h3-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.8;
 $h4-font-size: $font-size-base * 1.5;
 
 $border-radius: 0;
@@ -176,10 +177,18 @@ ul.checkmark {
       content: "\f058";
       right: 1rem;
       color: #3a8808;
-      font-size: 1.5rem;
-      vertical-align: middle;
+      font-size: 1.2rem;
     }
   }
+}
+
+.animation-blink {
+  animation: blink 800ms;
+}
+
+@keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
 }
 
 /*
@@ -194,6 +203,12 @@ ul.checkmark {
   background: theme-color("bg-1");
 }
 
+@include media-breakpoint-up(md) {
+  .bg-md-1 {
+    background: theme-color("bg-1");
+  }
+}
+
 .bg-2 {
   background: theme-color("bg-2");
 }
@@ -205,6 +220,10 @@ h1 {
 
 h2, h3 {
   color: theme-color("secondary");
+}
+
+h2 {
+  font-weight: 300;
 }
 
 h4 {
@@ -222,18 +241,14 @@ strong {
 }
 
 .navbar {
-  .navbar-brand img {
-    max-width: 8rem;
-    max-height: 8rem;
+  .navbar-brand > img, .navbar-brand .gatsby-image-wrapper {
+    width: 8rem;
+    height: 8rem;
     margin: 1rem;
   }
 
   .nav-link {
     text-transform: uppercase;
-  }
-
-  .btn {
-    margin-left: 4rem;
   }
 }
 
@@ -285,24 +300,28 @@ strong {
     }
   }
 
-  .banner-image {
-    margin: 5rem 5rem 10rem 0;
+  @include media-breakpoint-up(md) {
+    .banner-image {
+      margin: 5rem 5rem 10rem 0;
+    }
   }
 }
 
 .course {
   .bordered {
-    border: 2px solid #e0e0e0;
-    margin-bottom: 3rem;
-    padding: 3rem;
+    @include media-breakpoint-up(md) {
+      border: 2px solid #e0e0e0;
+      margin-bottom: 3rem;
+      padding: 3rem;
 
-    hr {
-      border-top-width: 2px;
-    }
+      hr {
+        border-top-width: 2px;
+      }
 
-    ul {
-      columns: 2;
-      column-gap: 3rem;
+      ul {
+        columns: 2;
+        column-gap: 3rem;
+      }
     }
   }
 
@@ -325,16 +344,28 @@ strong {
     a {
       color: theme-color("danger");
     }
+    .form-text {
+      font-weight: 300;
+    }
   }
 }
 
 .testimonials {
   .bg-2 {
-    padding: 5rem 0;
+    padding: 4rem 0;
   }
 
   .fa-quote-left, .fa-quote-right {
     color: #9db7e6;
+  }
+
+  .testimonial-text {
+    max-height: 13rem;
+    overflow-y: auto;
+  }
+
+  h3 {
+    margin-bottom: 0;
   }
 
   .slick-dots {
@@ -353,6 +384,10 @@ strong {
 }
 
 .lecturers {
+  .col-photo {
+    max-width: 24rem;
+    padding: 0 6%;
+  }
   .designation {
     font-size: 1.5rem;
   }
@@ -384,91 +419,3 @@ strong {
     color: theme-color("light");
   }
 }
-
-/*
-.banner .rotating-logo { position:absolute; width: 100%; height: 100%; left: 90%; top: 50%; opacity: 70%}
-.rotating-logo .cw { animation: rotating-logo 90s infinite steps(3000); }
-.rotating-logo .ccw { animation: rotating-logo 90s infinite steps(3000) reverse; position: absolute; }
-.rotating-logo .part-base { position:absolute; transform: translate(-500px, -500px); }
-.rotating-logo .part-center { position:absolute; transform: translate(-196px, -196px); }
-.rotating-logo .part-1 { position: absolute; transform: translate(64px, -469px); }
-.rotating-logo .part-2 { position: absolute; transform: translate(193px, 239px); }
-.rotating-logo .part-3 { position: absolute; transform: translate(-487px, -10px); }
-
-
-@-webkit-keyframes rotating-logo {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
-  }
-  33% {
-    -webkit-transform: rotate(120deg);
-    transform: rotate(120deg);
-    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
-  }
-  66% {
-    -webkit-transform: rotate(240deg);
-    transform: rotate(240deg);
-    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
-  }
-}
-
-.faculties-quiz {
-  .question {
-    font-size: 150%;
-  }
-  .answers {
-    min-height: 200px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: stretch;
-    margin: -10px;
-
-    div {
-      min-width: 50%;
-      flex-grow: 1;
-      padding: 10px;
-
-      button {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-}
-*/
-
-/*
-
-.curved-top:before {
-  content: "";
-  display: block;
-  height: 3rem;
-  background: theme-color("primary") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("light") + "' /></svg>");
-  background-size: 100% 100%;
-}
-
-.curved-bottom:after {
-  content: "";
-  display: block;
-  height: 3rem;
-  background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><circle cx='250' cy='-432' r='500' fill='" + theme-color("primary") + "' /></svg>");
-  background-size: 100% 100%;
-}
-
-.wave-top:before {
-  content: "";
-  display: block;
-  height: 7rem;
-  background: theme-color("light") inline-svg("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150' preserveAspectRatio='none'><path d='M0.00,83.38 C220.84,-152.45 421.28,304.44 500.00,32.06 L500.00,150.00 L0.00,150.00 Z' style='stroke: none; fill: " + theme-color("primary") + ";'></path></svg>");
-  background-size: 100% 100%;
-}
-
-*/

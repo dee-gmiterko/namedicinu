@@ -20,6 +20,7 @@ const IndexPage = ({ data, pageContext }) => (
           title={title}
           siteName={data.contentfulSiteInformation.siteName}
           siteDescription={data.contentfulSiteInformation.siteDescription}
+          image={data.contentfulSiteInformation.logo.file.url}
           keywords={data.contentfulSiteInformation.siteKeywords}
         />
       )}
@@ -57,6 +58,15 @@ export const pageQuery = graphql`
       logo {
         file {
           url
+        }
+        fluid(maxWidth: 300) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
         }
       }
       fbPageId

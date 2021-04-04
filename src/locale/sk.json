@@ -1,7 +1,7 @@
 {
   "title.home": "Domov",
   "title.course": "Kurz",
-  "title.register": "Prihlasit",
+  "title.register": "Prihlásiť sa na kurz",
   "title.testimonials": "Recenzie",
   "title.lecturers": "Lektori",
   "title.contact": "Kontakt",
@@ -18,10 +18,14 @@
   "register.preferred_day.weekend": "Vikend",
   "register.faculty": "Chcem prípravu na fakltu",
   "register.faculty.help": "Potrebuješ pomoc s výberom fakulty?",
+  "register.price": "Celkova cena za kurz je",
+  "register.price.sk": "653€",
+  "register.price.cz": "980€",
   "register.consent": "Vyplnením formulára súhlasíš so spracovaním svojich osobných údajov v uvedenom rozsahu pre potreby prihlásenia do kurzu. Tvoje údaje nebudú poskytované tretím stranám a slúžia výhradne pre potreby registrácia do prípravného kurzu.",
   "register.submit": "Prihlasit",
   "contact.register_prompt": "Tak načo ešte čakáš?",
-  "contact.register": "Prihlasit sa na kurz",
+  "contact.register": "Prihlásiť sa na kurz",
   "contact.email": "Email",
+  "contact.messenger": "Messenger",
   "not_found.message": "You just hit a route that doesn't exist."
 }

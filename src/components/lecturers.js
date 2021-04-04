@@ -11,7 +11,7 @@ export default class Lecturers extends Component {
     return (
       <Container className="lecturers">
         <Row>
-          <Col md={7} className="p-3">
+          <Col md={8} className="p-3 text-justify">
             <h2 id="Lecturers">
               <FormattedMessage id="title.lecturers" defaultMessage="Lecturers" />
             </h2>
@@ -20,7 +20,7 @@ export default class Lecturers extends Component {
         </Row>
         {lecturers.edges.map((item, index) => {
           const photo_col = (
-            <Col md={4} style={{padding: "0 6%"}}>
+            <Col md={4} className="col-photo">
               <div className="square">
                 <div className="circle-img-half-border">
                   <Img
@@ -31,7 +31,7 @@ export default class Lecturers extends Component {
             </Col>
           )
           return (
-            <Row className="p-3">
+            <Row className="p-3 justify-content-center">
               {index % 2 === 0 && photo_col}
               <Col md={8}>
                 <h3>

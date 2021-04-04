@@ -25,7 +25,7 @@ export default class Testimonials extends Component {
     return (
       <Container className="testimonials">
         <Row>
-          <Col md={7} className="p-3">
+          <Col md={8} className="p-3 text-justify">
             <h2 id="Testimonials">
               <FormattedMessage id="title.testimonials" defaultMessage="Testimonials" />
             </h2>
@@ -38,25 +38,29 @@ export default class Testimonials extends Component {
               {testimonials.edges.map((item, index) => {
                 return (
                   <div key={index}>
-                    <Row>
-                      <Col md={2}>
+                    <Row className="pb-3">
+                      <Col lg={1} className="d-none d-lg-block">
                         <i className="fas fa-3x fa-quote-left" style={{position: "absolute", top: 0, right: 0}}></i>
                       </Col>
-                      <Col md={8} className="text-justify">
-                        <Markdown value={item.node.description} />
+                      <Col xs={12} lg={10}>
+                        <div className="text-justify testimonial-text pr-3 pl-3">
+                          <Markdown value={item.node.description} />
+                        </div>
                       </Col>
-                      <Col md={2}>
+                      <Col lg={1} className="d-none d-lg-block">
                         <i className="fas fa-3x fa-quote-right" style={{position: "absolute", bottom: 0, left: 0}}></i>
                       </Col>
                     </Row>
                     <Row>
-                      <Col md={2}>
+                      <Col lg={1} className="d-none d-lg-block">
                       </Col>
-                      <Col md={8} className="d-flex flex-column align-items-end">
-                        <h3 className="name">{item.node.name}</h3>
-                        <span className="sub-name">{item.node.subTitle}</span>
+                      <Col xs={12} lg={10} className="d-flex flex-column align-items-end">
+                        <div className="pr-3 pl-3">
+                          <h3 className="name">{item.node.name}</h3>
+                          <span className="sub-name">{item.node.subTitle}</span>
+                        </div>
                       </Col>
-                      <Col md={2}>
+                      <Col lg={1} className="d-none d-lg-block">
                       </Col>
                     </Row>
                   </div>

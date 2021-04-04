@@ -18,7 +18,7 @@ export default class service extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={6}>
+            <Col md={6} className="text-center text-sm-left">
               <dl>
                 {
                   site.email &&
@@ -32,10 +32,10 @@ export default class service extends Component {
                 {
                   site.fbPageId && site.fbAppId &&
                   <Row>
-                    <dt class="col-sm-4">
+                    <dt className="col-sm-4">
                       <FormattedMessage id="contact.messenger" defaultMessage="Messenger" />
                     </dt>
-                    <dd class="col-sm-8">
+                    <dd className="col-sm-8">
                       <MessengerMessageUs pageId={site.fbPageId} appId={site.fbAppId} size="large" />
                     </dd>
                   </Row>

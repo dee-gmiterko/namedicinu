@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 
-function SEO({ lang, title, siteName, siteDescription, keywords, meta }) {
+function SEO({ lang, title, siteName, siteDescription, image, keywords, meta }) {
   return (
     <Helmet
       htmlAttributes={{
@@ -28,6 +28,10 @@ function SEO({ lang, title, siteName, siteDescription, keywords, meta }) {
           content: `website`
         },
         {
+          property: `og:image`,
+          content: image
+        },
+        {
           name: `twitter:card`,
           content: `summary`
         },
@@ -38,7 +42,11 @@ function SEO({ lang, title, siteName, siteDescription, keywords, meta }) {
         {
           name: `twitter:description`,
           content: siteDescription
-        }
+        },
+        {
+          property: `twitter:image`,
+          content: image
+        },
       ]
         .concat(
           keywords.length > 0
@@ -65,6 +73,7 @@ SEO.propTypes = {
   title: PropTypes.string.isRequired,
   siteName: PropTypes.string,
   siteDescription: PropTypes.string,
+  image: PropTypes.string,
   keywords: PropTypes.arrayOf(PropTypes.string),
   meta: PropTypes.array,
 };

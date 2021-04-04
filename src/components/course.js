@@ -10,17 +10,13 @@ export default class Course extends Component {
 
     return (
       <Container className="p-3 course">
-        <Row>
-          <Col md={12} className="p-3">
-            <h2 id="Course">
-              <FormattedMessage id="title.course" defaultMessage="Course" />
-            </h2>
-          </Col>
-        </Row>
         <Markdown value={site.courseDescription} />
         {/*
         <Row>
           <Col md={3} className="p-3">
+            <h2 id="Course">
+              <FormattedMessage id="title.course" defaultMessage="Course" />
+            </h2>
           </Col>
           <Col md={9} className="p-3">
             <p className="text-justify">

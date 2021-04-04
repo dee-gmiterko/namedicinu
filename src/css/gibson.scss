@@ -1,0 +1,57 @@
+/* commented-out variants are currently not used on the site */
+
+@font-face {
+  font-family: 'Gibson';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Gibson Regular'), url('webfonts/GibsonRegular.woff') format('woff');
+}
+
+/* @font-face {
+  font-family: 'Gibson';
+  font-style: italic;
+  font-weight: normal;
+  src: local('Gibson Italic'), url('webfonts/GibsonItalic.woff') format('woff');
+} */
+
+@font-face {
+  font-family: 'Gibson';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Gibson Light'), url('webfonts/GibsonLight.woff') format('woff');
+}
+
+/* @font-face {
+  font-family: 'Gibson';
+  font-style: italic;
+  font-weight: lighter;
+  src: local('Gibson Light Italic'), url('webfonts/GibsonLightIt.woff') format('woff');
+} */
+
+@font-face {
+  font-family: 'Gibson';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Gibson SemiBold'), url('webfonts/GibsonSemiBd.woff') format('woff');
+}
+
+/* @font-face {
+  font-family: 'Gibson';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Gibson Semibold Italic'), url('webfonts/GibsonSemiBdIt.woff') format('woff');
+} */
+
+/* @font-face {
+  font-family: 'Gibson';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Gibson Bold'), url('webfonts/GibsonBold.woff') format('woff');
+} */
+
+/* @font-face {
+  font-family: 'Gibson';
+  font-style: italic;
+  font-weight: bold;
+  src: local('Gibson Bold Italic'), url('webfonts/GibsonBoldIt.woff') format('woff');
+} */

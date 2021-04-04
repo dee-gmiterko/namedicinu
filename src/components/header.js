@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React, { Component } from "react";
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import Img from "gatsby-image";
 
 export default class Header extends Component {
   render() {
@@ -10,14 +11,16 @@ export default class Header extends Component {
       <Navbar collapseOnSelect expand="lg" variant="bg-1" id="home">
         <Container>
           <Navbar.Brand href="/#home">
-            {site.logo.file.url ? (
-              <img src={site.logo.file.url} alt="logo" />
+            {site.logo ? (
+              <Img
+                fluid={site.logo.fluid}
+              />
             ) : (
               <span>{site.siteName}</span>
             )}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav">
-            <i class="fa fa-lg fa-bars" aria-hidden="true"></i>
+            <i className="fa fa-lg fa-bars" aria-hidden="true"></i>
           </Navbar.Toggle>
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
             <Nav>
@@ -56,7 +59,7 @@ export default class Header extends Component {
               }
               {
                 site.menus.includes("Register") &&
-                <Nav.Link as={Link} key="Register" to={`/#Register`} className="btn btn-primary" >
+                <Nav.Link as={Link} key="Register" to={`/#Register`} className="btn btn-primary ml-lg-5" >
                   <FormattedMessage id="title.register" defaultMessage="Register" />
                 </Nav.Link>
               }
