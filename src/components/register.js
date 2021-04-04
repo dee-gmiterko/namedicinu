@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "gatsby";
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import AnimateOnChange from 'react-animate-on-change';
 
@@ -124,6 +124,24 @@ export default class Register extends Component {
                       );
                     })}
                   </Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="registerReference">
+                  <Form.Label>
+                    <FormattedMessage id="register.reference" defaultMessage="Reference" />
+                    &nbsp;
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={
+                        <Tooltip id="tooltip-reference">
+                          <FormattedMessage id="register.reference.help" defaultMessage="E.g., Facebook" />
+                        </Tooltip>
+                      }
+                    >
+                      <i className="fa fa-question-circle help" />
+                    </OverlayTrigger>
+                  </Form.Label>
+                  <Form.Control type="input" />
                 </Form.Group>
 
                 <Form.Row>

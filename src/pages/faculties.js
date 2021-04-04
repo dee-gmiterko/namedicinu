@@ -20,7 +20,7 @@ const IndexPage = ({ data, pageContext }) => (
           title={title}
           siteName={data.contentfulSiteInformation.siteName}
           siteDescription={data.contentfulSiteInformation.siteDescription}
-          image={data.contentfulSiteInformation.logo.file.url}
+          image={"https:"+data.contentfulSiteInformation.logo.file.url}
           keywords={data.contentfulSiteInformation.siteKeywords}
         />
       )}
@@ -34,7 +34,7 @@ const IndexPage = ({ data, pageContext }) => (
     }
     {
       data.contentfulSiteInformation.menus.includes("FacultiesQuiz") &&
-      <FacultiesQuiz key="FacultiesQuiz" />
+      <FacultiesQuiz key="FacultiesQuiz" quizQuestions={data.allContentfulQuizQuestion} faculties={data.allContentfulFaculties} />
     }
     {
       data.contentfulSiteInformation.menus.includes("FacultiesComparison") &&
@@ -77,6 +77,8 @@ export const pageQuery = graphql`
       edges {
         node {
           title
+          shortDescription
+          overview
           description {
             childMarkdownRemark {
               html
@@ -86,6 +88,21 @@ export const pageQuery = graphql`
             fluid(maxWidth: 500) {
               src
             }
+          }
+        }
+      }
+    }
+    allContentfulQuizQuestion(filter: { node_locale: { eq: $locale } }) {
+      edges {
+        node {
+          question
+          answerA
+          resultA {
+            title
+          }
+          answerB
+          resultB {
+            title
           }
         }
       }

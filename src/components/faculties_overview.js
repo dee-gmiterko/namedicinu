@@ -34,16 +34,19 @@ export default class FacultiesOverview extends Component {
                   <Card.Body>
                     <Card.Title><Link to={"/faculties#"+item.node.title}>{item.node.title}</Link></Card.Title>
                     <Card.Text>
-                      <Markdown value={item.node.description} />
+                      {item.node.shortDescription}
                     </Card.Text>
                   </Card.Body>
                   <ListGroup className="list-group-flush">
-                    <ListGroupItem>Cras justo odio</ListGroupItem>
-                    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                    <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                    {item.node.overview && item.node.overview.map((item, index) => {
+                      return (
+                        <ListGroupItem key={index}>{item}</ListGroupItem>
+                      );
+                    })}
                   </ListGroup>
                   <Card.Body>
-                    <Button variant="primary">Website</Button>
+                    <Button as={Link} to={"/faculties#"+item.node.title}>More info</Button>
+                    <Button href={item.node.website} variant="primary">Website</Button>
                   </Card.Body>
                 </Card>
               </Col>

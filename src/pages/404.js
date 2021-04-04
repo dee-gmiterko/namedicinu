@@ -14,7 +14,7 @@ const NotFoundPage = ({ data, pageContext }) => (
           title={title}
           siteName={data.contentfulSiteInformation.siteName}
           siteDescription={data.contentfulSiteInformation.siteDescription}
-          image={data.contentfulSiteInformation.logo.file.url}
+          image={"https:"+data.contentfulSiteInformation.logo.file.url}
           keywords={data.contentfulSiteInformation.siteKeywords}
         />
       )}

@@ -21,6 +21,8 @@
   "register.price": "Celkova cena za kurz je",
   "register.price.sk": "653€",
   "register.price.cz": "980€",
+  "register.reference": "Ako si sa o nas dozvedel?",
+  "register.reference.help": "Napríklad: Google, Facebook, meno kamaráta",
   "register.consent": "Vyplněním formuláře souhlasíš se zpracováním svých osobních údajů v uvedeném rozsahu pro potřeby přihlášení do kurzu. Tvoje údaje nebudou poskytovány třetím stranám a slouží výhradně pro potřeby registrace do přípravného kurzu.",
   "register.submit": "Prihlasit",
   "contact.register_prompt": "Tak nač ještě čekáš?",

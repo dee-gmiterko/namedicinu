@@ -1,31 +1,73 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, ProgressBar } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
-export default class FacultiesQuiz extends Component {
-  render() {
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.scss";
+import "slick-carousel/slick/slick-theme.scss";
 
-    const quiz = (
-      <Form>
-        <p className="question p-5 text-center">
-          ¿De quién son estos libros?
-        </p>
-        <div className="answers">
-          <div>
-            <Button type="submit">Option 1</Button>
-          </div>
-          <div >
-            <Button type="submit">Option 2</Button>
-          </div>
-          <div >
-            <Button type="submit">Option 3</Button>
-          </div>
-          <div >
-            <Button type="submit">Option 4</Button>
-          </div>
-        </div>
-      </Form>
-    );
+var sliderSettings = {
+  arrows: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: false,
+  infinite: false,
+};
+
+export default class FacultiesQuiz extends Component {
+
+  constructor(props) {
+    super(props);
+    this.sliderRef = null;
+    this.state = {
+      answers: {}
+    }
+  }
+
+  answer(index, option) {
+    this.setState({
+      answers: Object.assign(this.state.answers, {
+        [index]: option
+      })
+    });
+    this.sliderRef.slickNext()
+  }
+
+  render() {
+    const { quizQuestions, faculties } = this.props;
+    const { answers } = this.state;
+
+    // count points
+    let facultiesPoints = {};
+    faculties.edges.forEach((edge, index) => {
+      facultiesPoints[edge.node.title] = 0;
+    });
+    quizQuestions.edges.forEach((item, index) => {
+      if(answers.hasOwnProperty(index)) {
+        const answer = answers[index];
+        item.node["result"+answer].forEach((item) => {
+          facultiesPoints[item.title] += 1;
+        });
+      }
+    });
+
+    // calculate and sort results
+    const maxPoints = Object.keys(facultiesPoints)
+      .map(item => facultiesPoints[item])
+      .reduce((a, b) => {
+      return Math.max(a, b);
+    }, 1);
+    let facultiesResults = Object.keys(facultiesPoints).map((title) => {
+      return {
+        "title": title,
+        "points": facultiesPoints[title],
+        "result": (facultiesPoints[title] / maxPoints) * 100,
+      }
+    });
+    facultiesResults.sort((a, b) => {
+      var x = a.points; var y = b.points;
+      return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+    });
 
     return (
       <Container className="p-3 faculties-quiz">
@@ -38,7 +80,47 @@ export default class FacultiesQuiz extends Component {
         </Row>
         <Row className="p-1">
           <Col md={12}>
-            {quiz}
+            <Slider ref={slider => (this.sliderRef = slider)} {...sliderSettings}>
+              {quizQuestions.edges.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <div className="question">{item.node.question}</div>
+                    <ul>
+                      <li>
+                        <Button onClick={this.answer.bind(this, index, "A")}>
+                          {item.node.answerA}
+                        </Button>
+                      </li>
+                      <li>
+                        <Button onClick={this.answer.bind(this, index, "B")}>
+                          {item.node.answerB}
+                        </Button>
+                      </li>
+                    </ul>
+                  </div>
+                );
+              })}
+              <div key="results">
+                <h3 className="results">Results</h3>
+                <Container as="dl">
+                  {facultiesResults.map((item, index) => {
+                    return (
+                      <Row key={index}>
+                        <Col as="dt" xs={5}>
+                          {item.title}
+                        </Col>
+                        <Col as="dd" xs={1}>
+                          {item.points}
+                        </Col>
+                        <Col xs={6}>
+                          <ProgressBar now={item.result} />
+                        </Col>
+                      </Row>
+                    );
+                  })}
+                </Container>
+              </div>
+            </Slider>
           </Col>
         </Row>
       </Container>

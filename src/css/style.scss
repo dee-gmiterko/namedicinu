@@ -344,8 +344,13 @@ strong {
     a {
       color: theme-color("danger");
     }
+
     .form-text {
       font-weight: 300;
+    }
+
+    .help {
+      color: #ccc;
     }
   }
 }

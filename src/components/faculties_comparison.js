@@ -10,7 +10,7 @@ export default class FacultiesComparison extends Component {
       <Container className="p-3">
         {faculties.edges.map((item, index) => {
           return (
-            <>
+            <div key={index}>
               <Row>
                 <Col md={12}>
                   <h2 id={item.node.title}>{item.node.title}</h2>
@@ -21,7 +21,7 @@ export default class FacultiesComparison extends Component {
                   <Markdown value={item.node.description} />
                 </Col>
               </Row>
-            </>
+            </div>
           );
         })}
       </Container>

@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.scss";
 
 import Markdown from "./markdown";
 
-var settings = {
+var sliderSettings = {
   dots: true,
   arrows: false,
   speed: 500,
@@ -34,7 +34,7 @@ export default class Testimonials extends Component {
         </Row>
         <Row className="bg-2">
           <Col>
-            <Slider {...settings}>
+            <Slider {...sliderSettings}>
               {testimonials.edges.map((item, index) => {
                 return (
                   <div key={index}>

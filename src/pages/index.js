@@ -18,7 +18,7 @@ const IndexPage = ({ data, pageContext }) => (
       title="Na medicinu"
       siteName={data.contentfulSiteInformation.siteName}
       siteDescription={data.contentfulSiteInformation.siteDescription}
-      image={data.contentfulSiteInformation.logo.file.url}
+      image={"https:"+data.contentfulSiteInformation.logo.file.url}
       keywords={data.contentfulSiteInformation.siteKeywords}
     />
     <Banner site={data.contentfulSiteInformation}></Banner>
