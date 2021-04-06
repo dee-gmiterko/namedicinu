@@ -46,6 +46,7 @@ export default class Register extends Component {
                     )}
                   </FormattedMessage>
                 </p>
+                <Markdown value={site.registerDiscount} />
               </div>
             </Col>
             <Col md={7} className="p-5 bg-1">
@@ -80,7 +81,7 @@ export default class Register extends Component {
 
                 <Form.Row>
                   <Form.Group as={Col} controlId="registerPreferredTime">
-                    <Form.Label>
+                    <Form.Label for="registerPreferredTime">
                       <FormattedMessage id="register.preferred_time" defaultMessage="Preferred time" />
                     </Form.Label>
                     <Form.Control as="select">

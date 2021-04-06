@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
@@ -44,6 +45,7 @@ export const pageQuery = graphql`
     contentfulSiteInformation(node_locale: {eq: $locale}) {
       siteName
       siteDescription
+      siteKeywords
       menus
       logo {
         file {

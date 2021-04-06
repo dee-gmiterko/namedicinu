@@ -10,7 +10,7 @@ export default class footer extends Component {
         <Container>
           <Row>
             <Col md={12}>
-              <div class="float-right">
+              <div className="float-right">
                 <Socials facebook={this.props.site.facebook} instagram={this.props.site.instagram} email={this.props.site.email}/>
               </div>
               <p className="pt-3 pb-3">© {new Date().getFullYear()} {this.props.site.siteName}</p>

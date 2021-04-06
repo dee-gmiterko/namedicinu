@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Form, Button, ProgressBar } from 'react-bootstrap';
+import { Container, Row, Col, Button, ProgressBar } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import { Link } from "gatsby";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
@@ -45,9 +46,12 @@ export default class FacultiesQuiz extends Component {
     quizQuestions.edges.forEach((item, index) => {
       if(answers.hasOwnProperty(index)) {
         const answer = answers[index];
-        item.node["result"+answer].forEach((item) => {
-          facultiesPoints[item.title] += 1;
-        });
+        const result = item.node["result"+answer];
+        if(result) {
+          result.forEach((item) => {
+            facultiesPoints[item.title] += 1;
+          });
+        }
       }
     });
 
@@ -64,66 +68,70 @@ export default class FacultiesQuiz extends Component {
         "result": (facultiesPoints[title] / maxPoints) * 100,
       }
     });
-    facultiesResults.sort((a, b) => {
+    facultiesResults = facultiesResults.sort((a, b) => {
       var x = a.points; var y = b.points;
       return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-    });
+    }).slice(0, 6);
 
     return (
-      <Container className="p-3 faculties-quiz">
-        <Row>
-          <Col md={12}>
-            <h2 id="Quiz">
-              <FormattedMessage id="title.quiz" defaultMessage="Quiz" />
-            </h2>
-          </Col>
-        </Row>
-        <Row className="p-1">
-          <Col md={12}>
-            <Slider ref={slider => (this.sliderRef = slider)} {...sliderSettings}>
-              {quizQuestions.edges.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <div className="question">{item.node.question}</div>
-                    <ul>
-                      <li>
-                        <Button onClick={this.answer.bind(this, index, "A")}>
-                          {item.node.answerA}
-                        </Button>
-                      </li>
-                      <li>
-                        <Button onClick={this.answer.bind(this, index, "B")}>
-                          {item.node.answerB}
-                        </Button>
-                      </li>
-                    </ul>
-                  </div>
-                );
-              })}
-              <div key="results">
-                <h3 className="results">Results</h3>
-                <Container as="dl">
-                  {facultiesResults.map((item, index) => {
-                    return (
-                      <Row key={index}>
-                        <Col as="dt" xs={5}>
-                          {item.title}
-                        </Col>
-                        <Col as="dd" xs={1}>
-                          {item.points}
-                        </Col>
-                        <Col xs={6}>
-                          <ProgressBar now={item.result} />
-                        </Col>
-                      </Row>
-                    );
-                  })}
-                </Container>
-              </div>
-            </Slider>
-          </Col>
-        </Row>
-      </Container>
+      <div className="bg-1 mb-5">
+        <Container className="p-3 faculties-quiz">
+          <Row>
+            <Col md={12}>
+              <h2 id="Quiz">
+                <FormattedMessage id="title.quiz" defaultMessage="Quiz" />
+              </h2>
+            </Col>
+          </Row>
+          <Row className="p-1">
+            <Col md={12}>
+              <Slider ref={slider => (this.sliderRef = slider)} {...sliderSettings}>
+                {quizQuestions.edges.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <div className="question">{index+1}. {item.node.question}</div>
+                      <ul>
+                        <li>
+                          <Button onClick={this.answer.bind(this, index, "A")}>
+                            {item.node.answerA}
+                          </Button>
+                        </li>
+                        <li>
+                          <Button onClick={this.answer.bind(this, index, "B")}>
+                            {item.node.answerB}
+                          </Button>
+                        </li>
+                      </ul>
+                    </div>
+                  );
+                })}
+                <div key="results">
+                  <h3 className="results">
+                    <FormattedMessage id="faculties_quiz.results" defaultMessage="Results" />
+                  </h3>
+                  <Container as="dl">
+                    {facultiesResults.map((item, index) => {
+                      return (
+                        <Row key={index}>
+                          <Col as="dt" xs={5}>
+                            <Link to={"/faculties#"+item.title}>{item.title}</Link>
+                          </Col>
+                          <Col as="dd" xs={1}>
+                            {item.points}
+                          </Col>
+                          <Col xs={6}>
+                            <ProgressBar now={item.result} />
+                          </Col>
+                        </Row>
+                      );
+                    })}
+                  </Container>
+                </div>
+              </Slider>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

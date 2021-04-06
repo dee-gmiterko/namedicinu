@@ -4,24 +4,62 @@ import Img from "gatsby-image";
 import { Link } from "gatsby";
 import { FormattedMessage } from 'react-intl';
 
-import Markdown from "./markdown";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.scss";
+import "slick-carousel/slick/slick-theme.scss";
+
+var sliderSettings = {
+  dots: true,
+  arrows: false,
+  speed: 500,
+  slidesToShow: 5,
+  slidesToScroll: 2,
+  autoplay: true,
+  pauseOnHover: true,
+  autoplaySpeed: 4000,
+  responsive: [
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+ ]
+};
 
 export default class FacultiesOverview extends Component {
   render() {
     const { faculties } = this.props;
     return (
-      <Container className="p-3">
-        <Row>
-          <Col md={12}>
-            <h2>
-              <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
-            </h2>
-          </Col>
-        </Row>
-        <Row className="p-1">
+      <div className="faculties-overview">
+        <Container>
+          <Row>
+            <Col md={12}>
+              <h2>
+                <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
+              </h2>
+            </Col>
+          </Row>
+        </Container>
+        <Slider {...sliderSettings}>
           {faculties.edges.map((item, index) => {
             return (
-              <Col md={4}>
+              <div key={index} className="p-3">
                 <Card>
                   <Card.Img as={Img}
                     fluid={item.node.image.fluid}
@@ -46,14 +84,14 @@ export default class FacultiesOverview extends Component {
                   </ListGroup>
                   <Card.Body>
                     <Button as={Link} to={"/faculties#"+item.node.title}>More info</Button>
-                    <Button href={item.node.website} variant="primary">Website</Button>
+                    <a href={item.node.website} target="_blank" className="btn btn-primary">Website</a>
                   </Card.Body>
                 </Card>
-              </Col>
+              </div>
             );
           })}
-        </Row>
-      </Container>
+        </Slider>
+      </div>
     );
   }
 }

@@ -54,6 +54,7 @@ export const pageQuery = graphql`
     contentfulSiteInformation(node_locale: { eq: $locale }) {
       siteName
       siteDescription
+      siteKeywords
       menus
       logo {
         file {
@@ -71,28 +72,56 @@ export const pageQuery = graphql`
       }
       fbPageId
       fbAppId
+      facebook
+      instagram
       email
     }
-    allContentfulFaculties(filter: { node_locale: { eq: $locale } }) {
+    allContentfulFaculties(
+      filter: { node_locale: { eq: $locale } },
+      sort: { fields: title }
+    ) {
       edges {
         node {
           title
           shortDescription
+          image {
+            fluid(maxWidth: 500) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
+          dentistry
           overview
           description {
             childMarkdownRemark {
               html
             }
           }
-          image {
-            fluid(maxWidth: 500) {
-              src
-            }
+          descriptionPanel {
+            category
+            key
+            value
           }
+          faculties_students {
+            year
+            dentistryAccepted
+            dentistrySigned
+            generalAccepted
+            generalSigned
+          }
+          updatedAt
         }
       }
     }
-    allContentfulQuizQuestion(filter: { node_locale: { eq: $locale } }) {
+    allContentfulQuizQuestion(
+      filter: { node_locale: { eq: $locale } }
+      sort: { fields: createdAt }
+    ) {
       edges {
         node {
           question

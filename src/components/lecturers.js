@@ -31,7 +31,7 @@ export default class Lecturers extends Component {
             </Col>
           )
           return (
-            <Row className="p-3 justify-content-center">
+            <Row key={index} className="p-3 justify-content-center">
               {index % 2 === 0 && photo_col}
               <Col md={8}>
                 <h3>

@@ -15,7 +15,6 @@ const IndexPage = ({ data, pageContext }) => (
   <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
     <SEO
       lang={pageContext.locale}
-      title="Na medicinu"
       siteName={data.contentfulSiteInformation.siteName}
       siteDescription={data.contentfulSiteInformation.siteDescription}
       image={"https:"+data.contentfulSiteInformation.logo.file.url}
@@ -50,46 +49,10 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexQuery($locale: String!) {
-    allContentfulTestimonials(filter: { node_locale: { eq: $locale } }) {
-      edges {
-        node {
-          name
-          subTitle
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
-        }
-      }
-    }
-    allContentfulLecturers(filter: { node_locale: { eq: $locale } }) {
-      edges {
-        node {
-          name
-          designation
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
-          photo {
-            fluid(maxWidth: 600) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
-          }
-        }
-      }
-    }
     contentfulSiteInformation(node_locale: {eq: $locale}) {
       siteName
       siteDescription
+      siteKeywords
       menus
       fbPageId
       fbAppId
@@ -142,6 +105,11 @@ export const pageQuery = graphql`
           html
         }
       }
+      registerDiscount {
+        childMarkdownRemark {
+          html
+        }
+      }
       testimonialsDescription {
         childMarkdownRemark {
           html
@@ -153,7 +121,57 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulFaculties(filter: { node_locale: { eq: $locale } }) {
+    allContentfulTestimonials(
+      filter: { node_locale: { eq: $locale } }
+      sort: { fields: [year, name], order: [DESC, ASC] }
+      limit: 8
+    ) {
+      edges {
+        node {
+          name
+          faculty {
+            shortTitle
+          }
+          year
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+      }
+    }
+    allContentfulLecturers(
+        filter: { node_locale: { eq: $locale } }
+        sort: { fields: name }
+    ) {
+      edges {
+        node {
+          name
+          designation
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+          photo {
+            fluid(maxWidth: 600) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
+        }
+      }
+    }
+    allContentfulFaculties(
+      filter: { node_locale: { eq: $locale } }
+      sort: { fields: title }
+    ) {
       edges {
         node {
           title

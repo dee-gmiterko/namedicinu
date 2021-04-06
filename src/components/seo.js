@@ -8,8 +8,7 @@ function SEO({ lang, title, siteName, siteDescription, image, keywords, meta }) 
       htmlAttributes={{
         lang
       }}
-      title={title}
-      titleTemplate={`%s | ${siteName}`}
+      title={title ? `${title} | ${siteName}` : siteName}
       meta={[
         {
           nsame: `description`,
@@ -17,7 +16,7 @@ function SEO({ lang, title, siteName, siteDescription, image, keywords, meta }) 
         },
         {
           property: `og:title`,
-          content: title
+          content: siteName
         },
         {
           property: `og:description`,
@@ -70,7 +69,7 @@ SEO.defaultProps = {
 
 SEO.propTypes = {
   lang: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   siteName: PropTypes.string,
   siteDescription: PropTypes.string,
   image: PropTypes.string,

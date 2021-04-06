@@ -57,7 +57,14 @@ export default class Testimonials extends Component {
                       <Col xs={12} lg={10} className="d-flex flex-column align-items-end">
                         <div className="pr-3 pl-3">
                           <h3 className="name">{item.node.name}</h3>
-                          <span className="sub-name">{item.node.subTitle}</span>
+                          <span className="sub-name">
+                            {
+                              item.node.faculty ? <>{item.node.faculty.shortTitle},&nbsp;</> : null
+                            }
+                            {
+                              item.node.year
+                            }
+                          </span>
                         </div>
                       </Col>
                       <Col lg={1} className="d-none d-lg-block">
