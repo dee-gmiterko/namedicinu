@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import { FormattedMessage } from 'react-intl';
 
 import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Seo from "../components/seo";
 
 import FacultiesOverview from "../components/faculties_overview";
 import FacultiesQuiz from "../components/faculties_quiz";
@@ -15,7 +15,7 @@ const IndexPage = ({ data, pageContext }) => (
   <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
     <FormattedMessage id="title.faculties" defaultMessage="Faculties">
       {(title) => (
-        <SEO
+        <Seo
           lang={pageContext.locale}
           title={title}
           siteName={data.contentfulSiteInformation.siteName}
@@ -30,7 +30,7 @@ const IndexPage = ({ data, pageContext }) => (
 
     {
       data.contentfulSiteInformation.menus.includes("Faculties") &&
-      <FacultiesOverview key="Faculties" faculties={data.allContentfulFaculties} />
+      <FacultiesOverview key="Faculties" faculties={data.allContentfulFaculties} site={data.contentfulSiteInformation} />
     }
     {
       data.contentfulSiteInformation.menus.includes("FacultiesQuiz") &&
@@ -75,6 +75,11 @@ export const pageQuery = graphql`
       facebook
       instagram
       email
+      facultiesDescription {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
     allContentfulFaculties(
       filter: { node_locale: { eq: $locale } },
@@ -85,6 +90,7 @@ export const pageQuery = graphql`
           title
           shortTitle
           shortDescription
+          website
           image {
             fluid(maxWidth: 500) {
               base64

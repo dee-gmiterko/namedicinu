@@ -1,8 +1,8 @@
-import { Link } from "gatsby";
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import MessengerMessageUs from 'react-messenger-message-us';
 import { FormattedMessage } from 'react-intl';
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 export default class service extends Component {
   render() {
@@ -46,7 +46,7 @@ export default class service extends Component {
               <p>
                 <FormattedMessage id="contact.register_prompt" defaultMessage="What are you waiting for?" />
               </p>
-              <Button as={Link} to="/#Register" variant="primary">
+              <Button as={AnchorLink} to="/#Register" variant="primary">
                 <FormattedMessage id="contact.register" defaultMessage="Submit" />
               </Button>
             </Col>

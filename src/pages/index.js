@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Seo from "../components/seo";
 
 import Banner from "../components/banner";
 import Course from "../components/course";
@@ -13,7 +13,7 @@ import Contact from "../components/contact";
 
 const IndexPage = ({ data, pageContext }) => (
   <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
-    <SEO
+    <Seo
       lang={pageContext.locale}
       siteName={data.contentfulSiteInformation.siteName}
       siteDescription={data.contentfulSiteInformation.siteDescription}

@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import Img from "gatsby-image";
-import { Link } from "gatsby";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { FormattedMessage } from 'react-intl';
+import { slugify_faculty } from '../common';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
 import "slick-carousel/slick/slick-theme.scss";
+
+import Markdown from "./markdown";
 
 var sliderSettings = {
   dots: true,
@@ -14,9 +17,9 @@ var sliderSettings = {
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 2,
-  // autoplay: true,
+  autoplay: true,
   pauseOnHover: true,
-  // autoplaySpeed: 4000,
+  autoplaySpeed: 4000,
   responsive: [
     {
       breakpoint: 1200,
@@ -44,7 +47,7 @@ var sliderSettings = {
 
 export default class FacultiesOverview extends Component {
   render() {
-    const { faculties } = this.props;
+    const { site, faculties } = this.props;
     return (
       <div className="faculties-overview">
         <Container>
@@ -53,6 +56,9 @@ export default class FacultiesOverview extends Component {
               <h2>
                 <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
               </h2>
+              <div className="text-justify font-italic">
+                <Markdown value={site.facultiesDescription} />
+              </div>
             </Col>
           </Row>
         </Container>
@@ -67,7 +73,11 @@ export default class FacultiesOverview extends Component {
                     objectPosition="50% 50%"
                   />
                   <Card.Body>
-                    <Card.Title><Link to={"/faculties#"+item.node.title}>{item.node.title}</Link></Card.Title>
+                    <Card.Title>
+                      <AnchorLink to={"/faculties#"+slugify_faculty(item.node)}>
+                        {item.node.title}
+                      </AnchorLink>
+                    </Card.Title>
                     <Card.Text>
                       {item.node.shortDescription}
                     </Card.Text>
@@ -80,11 +90,11 @@ export default class FacultiesOverview extends Component {
                     })}
                   </ListGroup>
                   <Card.Body className="flex-grow-0 d-flex justify-content-between">
-                    <Button as={Link} to={"/faculties#"+item.node.title}>
+                    <Button as={AnchorLink} to={"/faculties#"+slugify_faculty(item.node)}>
                       <i class="fas fa-info-circle"></i>&nbsp;
                       <FormattedMessage id="faculties_overview.more_info" defaultMessage="More info" />
                     </Button>
-                    <a href={item.node.website} target="_blank" className="btn btn-primary">
+                    <a href={item.node.website} target="_blank" rel="noreferrer" className="btn btn-primary">
                       <i class="fas fa-globe-africa"></i>&nbsp;
                       <FormattedMessage id="faculties_overview.website" defaultMessage="Website" />
                     </a>

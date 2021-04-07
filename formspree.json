@@ -1,0 +1,18 @@
+{
+  "forms": {
+    "register": {
+      "name": "Register",
+      "fields": {
+        "email": { "type": "email", "required": true },
+        "name": { "type": "text", "required": true },
+        "preferred_time": { "type": "text", "required": false },
+        "preferred_day": { "type": "text", "required": false },
+        "faculty": { "type": "text", "required": false },
+        "reference": { "type": "text", "required": false }
+      },
+      "actions": [
+        { "type": "email", "to": "d.gmiterko@gmail.com" }
+      ]
+    }
+  }
+}

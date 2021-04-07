@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 
-function SEO({ lang, title, siteName, siteDescription, image, keywords, meta }) {
+function Seo({ lang, title, siteName, siteDescription, image, keywords, meta }) {
   return (
     <Helmet
       htmlAttributes={{
@@ -61,13 +61,13 @@ function SEO({ lang, title, siteName, siteDescription, image, keywords, meta }) 
   );
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   lang: `en`,
   keywords: [],
   meta: [],
 };
 
-SEO.propTypes = {
+Seo.propTypes = {
   lang: PropTypes.string,
   title: PropTypes.string,
   siteName: PropTypes.string,
@@ -77,4 +77,4 @@ SEO.propTypes = {
   meta: PropTypes.array,
 };
 
-export default SEO;
+export default Seo;

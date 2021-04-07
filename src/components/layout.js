@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { IntlProvider } from 'react-intl';
+import { FormspreeProvider } from '@formspree/react';
 
 import Header from "./header";
 import Footer from "./footer";
@@ -12,9 +13,9 @@ import "../css/style.scss";
 import "../css/gibson.scss";
 import "../css/font-awesome.scss";
 
-if (typeof window !== "undefined") {
-  require("smooth-scroll")('a[href*="#"]');
-}
+// if (typeof window !== "undefined") {
+//   require("smooth-scroll")('a[href*="#"]');
+// }
 
 const Layout = ({ site, header, locale, children }) => {
 
@@ -25,14 +26,16 @@ const Layout = ({ site, header, locale, children }) => {
 
   return (
     <IntlProvider locale={locale} messages={messages}>
-      <Header
-        site={site}
-        header={header}
-      />
-      <div>
-        <main>{children}</main>
-      </div>
-      <Footer site={site} />
+      <FormspreeProvider project="1651131023250947820">
+        <Header
+          site={site}
+          header={header}
+        />
+        <div>
+          <main>{children}</main>
+        </div>
+        <Footer site={site} />
+      </FormspreeProvider>
     </IntlProvider>
   );
 };

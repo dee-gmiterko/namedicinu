@@ -4,13 +4,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
 import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Seo from "../components/seo";
 
 const NotFoundPage = ({ data, pageContext }) => (
   <Layout site={data.contentfulSiteInformation}>
     <FormattedMessage id="title.not_found" defaultMessage="Not found">
       {(title) => (
-        <SEO
+        <Seo
           lang={pageContext.locale}
           title={title}
           siteName={data.contentfulSiteInformation.siteName}

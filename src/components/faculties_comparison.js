@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Table } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate } from 'react-intl';
+import { slugify_faculty } from '../common';
 
 import Markdown from "./markdown";
 
@@ -130,7 +131,7 @@ export default class FacultiesComparison extends Component {
             <div key={index}>
               <Row>
                 <Col md={12}>
-                  <h2 id={item.node.title}>{item.node.title}</h2>
+                  <h2 id={slugify_faculty(item.node)}>{item.node.title}</h2>
                 </Col>
               </Row>
               <Row className="mb-4">

@@ -357,6 +357,29 @@ strong {
       color: #ccc;
     }
   }
+
+  .form-sent {
+    height: 100%;
+    padding-left: 20%;
+
+    .bg-circle-container {
+      position: absolute;
+      width: 300px;
+      top: 20%;
+      left: 20%;
+      z-index: 0;
+
+      .bg-circle {
+        @extend .square;
+        border-radius: 50%;
+        background: theme-color("light");
+      }
+    }
+
+    h3, p {
+      z-index: 1;
+    }
+  }
 }
 
 .testimonials {

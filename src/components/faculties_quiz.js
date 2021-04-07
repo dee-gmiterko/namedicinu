@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, ProgressBar } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { Link } from "gatsby";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { slugify_faculty } from '../common';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
@@ -61,11 +62,11 @@ export default class FacultiesQuiz extends Component {
       .reduce((a, b) => {
       return Math.max(a, b);
     }, 1);
-    let facultiesResults = Object.keys(facultiesPoints).map((title) => {
+    let facultiesResults = Object.keys(facultiesPoints).map((shortTitle) => {
       return {
-        "title": title,
-        "points": facultiesPoints[title],
-        "result": (facultiesPoints[title] / maxPoints) * 100,
+        shortTitle,
+        points: facultiesPoints[shortTitle],
+        result: (facultiesPoints[shortTitle] / maxPoints) * 100,
       }
     });
     facultiesResults = facultiesResults.sort((a, b) => {
@@ -111,7 +112,7 @@ export default class FacultiesQuiz extends Component {
                       return (
                         <Row key={index}>
                           <Col as="dt" xs={4} className="text-right">
-                            <Link to={"/faculties#"+item.title}>{item.title}</Link>
+                            <AnchorLink to={"/faculties#"+slugify_faculty(item)}>{item.shortTitle}</AnchorLink>
                           </Col>
                           <Col as="dd" xs={1}>
                             {item.points}
