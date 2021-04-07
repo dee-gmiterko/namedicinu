@@ -416,9 +416,65 @@ strong {
 }
 
 .faculties-overview {
-  .list-group-item {
-    padding: 0.3rem 1.5rem;
-    font-size: 1.1rem;
+  background: theme-color("bg-1");
+  background: linear-gradient(170deg, theme-color("bg-1") 50%, theme-color("light") 50%);
+
+  .slick-slider {
+    margin-bottom: 3rem;
+
+    .slick-track {
+      display: flex;
+
+      .slick-slide {
+        height: auto;
+
+        & > div, & > div > div {
+          height: 100%;
+        }
+      }
+
+      .card {
+        height: 100%;
+
+        .gatsby-image-wrapper {
+          max-height: 200px;
+        }
+
+        .list-group-item {
+          padding: 0.3rem 1.5rem;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+.faculties-quiz {
+  .slick-arrow{
+    width: 40px;
+    height: 40px;
+
+    &::before {
+      color: theme-color("secondary");
+      font-size: 2rem;
+    }
+
+    &.slick-prev {
+      left: -40px;
+    }
+
+    &.slick-next {
+      right: -40px;
+    }
+  }
+
+  .question {
+    font-size: 1.65rem;
+  }
+
+  .options {
+    list-style: none;
+    padding-left: 0;
   }
 }
 

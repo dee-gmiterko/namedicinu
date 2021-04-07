@@ -29,12 +29,14 @@
   "contact.register": "Prihlásiť sa na kurz",
   "contact.email": "Email",
   "contact.messenger": "Messenger",
+  "faculties_overview.more_info": "Podrobnosti",
+  "faculties_overview.website": "Website",
+  "faculties_quiz.results": "Vysledok",
   "faculties_comparison.students.year": "Rok",
   "faculties_comparison.students.general": "Všeobecné lekárstvo",
   "faculties_comparison.students.dentistry": "Zubné lekárstvo",
   "faculties_comparison.students.signed": "Prihlásení",
   "faculties_comparison.students.accepted": "Prijatí",
   "faculties_comparison.updated_at": "Naposledy aktualizované",
-  "faculties_quiz.results": "Vysledok",
   "not_found.message": "You just hit a route that doesn't exist."
 }

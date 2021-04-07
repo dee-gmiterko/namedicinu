@@ -41,7 +41,7 @@ export default class FacultiesQuiz extends Component {
     // count points
     let facultiesPoints = {};
     faculties.edges.forEach((edge, index) => {
-      facultiesPoints[edge.node.title] = 0;
+      facultiesPoints[edge.node.shortTitle] = 0;
     });
     quizQuestions.edges.forEach((item, index) => {
       if(answers.hasOwnProperty(index)) {
@@ -49,7 +49,7 @@ export default class FacultiesQuiz extends Component {
         const result = item.node["result"+answer];
         if(result) {
           result.forEach((item) => {
-            facultiesPoints[item.title] += 1;
+            facultiesPoints[item.shortTitle] += 1;
           });
         }
       }
@@ -74,34 +74,31 @@ export default class FacultiesQuiz extends Component {
     }).slice(0, 6);
 
     return (
-      <div className="bg-1 mb-5">
-        <Container className="p-3 faculties-quiz">
-          <Row>
-            <Col md={12}>
+      <div className="d-flex flex-row faculties-quiz mb-5">
+        <div className="flex-grow-1" />
+        <Container>
+          <Row className="justify-content-center">
+            <Col md={7} className="bg-2 text-center pr-5 pl-5">
               <h2 id="Quiz">
                 <FormattedMessage id="title.quiz" defaultMessage="Quiz" />
               </h2>
-            </Col>
-          </Row>
-          <Row className="p-1">
-            <Col md={12}>
               <Slider ref={slider => (this.sliderRef = slider)} {...sliderSettings}>
                 {quizQuestions.edges.map((item, index) => {
                   return (
                     <div key={index}>
                       <div className="question">{index+1}. {item.node.question}</div>
-                      <ul>
-                        <li>
+                      <Row as="ul" className="options">
+                        <Col xs={6} as="li" className="p-5">
                           <Button onClick={this.answer.bind(this, index, "A")}>
                             {item.node.answerA}
                           </Button>
-                        </li>
-                        <li>
+                        </Col>
+                        <Col xs={6} as="li" className="p-5">
                           <Button onClick={this.answer.bind(this, index, "B")}>
                             {item.node.answerB}
                           </Button>
-                        </li>
-                      </ul>
+                        </Col>
+                      </Row>
                     </div>
                   );
                 })}
@@ -113,13 +110,13 @@ export default class FacultiesQuiz extends Component {
                     {facultiesResults.map((item, index) => {
                       return (
                         <Row key={index}>
-                          <Col as="dt" xs={5}>
+                          <Col as="dt" xs={4} className="text-right">
                             <Link to={"/faculties#"+item.title}>{item.title}</Link>
                           </Col>
                           <Col as="dd" xs={1}>
                             {item.points}
                           </Col>
-                          <Col xs={6}>
+                          <Col xs={7}>
                             <ProgressBar now={item.result} />
                           </Col>
                         </Row>
@@ -131,6 +128,7 @@ export default class FacultiesQuiz extends Component {
             </Col>
           </Row>
         </Container>
+        <div className="flex-grow-1" />
       </div>
     );
   }

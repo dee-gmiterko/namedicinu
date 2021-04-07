@@ -14,9 +14,9 @@ var sliderSettings = {
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 2,
-  autoplay: true,
+  // autoplay: true,
   pauseOnHover: true,
-  autoplaySpeed: 4000,
+  // autoplaySpeed: 4000,
   responsive: [
     {
       breakpoint: 1200,
@@ -65,9 +65,6 @@ export default class FacultiesOverview extends Component {
                     fluid={item.node.image.fluid}
                     objectFit="cover"
                     objectPosition="50% 50%"
-                    style={{
-                      height: "200px"
-                    }}
                   />
                   <Card.Body>
                     <Card.Title><Link to={"/faculties#"+item.node.title}>{item.node.title}</Link></Card.Title>
@@ -82,9 +79,15 @@ export default class FacultiesOverview extends Component {
                       );
                     })}
                   </ListGroup>
-                  <Card.Body>
-                    <Button as={Link} to={"/faculties#"+item.node.title}>More info</Button>
-                    <a href={item.node.website} target="_blank" className="btn btn-primary">Website</a>
+                  <Card.Body className="flex-grow-0 d-flex justify-content-between">
+                    <Button as={Link} to={"/faculties#"+item.node.title}>
+                      <i class="fas fa-info-circle"></i>&nbsp;
+                      <FormattedMessage id="faculties_overview.more_info" defaultMessage="More info" />
+                    </Button>
+                    <a href={item.node.website} target="_blank" className="btn btn-primary">
+                      <i class="fas fa-globe-africa"></i>&nbsp;
+                      <FormattedMessage id="faculties_overview.website" defaultMessage="Website" />
+                    </a>
                   </Card.Body>
                 </Card>
               </div>

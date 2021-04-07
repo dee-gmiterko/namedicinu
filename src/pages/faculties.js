@@ -83,6 +83,7 @@ export const pageQuery = graphql`
       edges {
         node {
           title
+          shortTitle
           shortDescription
           image {
             fluid(maxWidth: 500) {
@@ -127,11 +128,11 @@ export const pageQuery = graphql`
           question
           answerA
           resultA {
-            title
+            shortTitle
           }
           answerB
           resultB {
-            title
+            shortTitle
           }
         }
       }
