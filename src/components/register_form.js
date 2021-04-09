@@ -4,7 +4,7 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
-function RegisterForm({ faculties }) {
+function RegisterForm({ faculties, onSelectFaculty }) {
 
   const [state, handleSubmit] = useForm("register");
 
@@ -114,7 +114,7 @@ function RegisterForm({ faculties }) {
                 <AnchorLink to={`/faculties/#Faculties`} className="float-right">
                   <FormattedMessage id="register.faculty.help" defaultMessage="Do you need help with selection?" />
                 </AnchorLink>
-                <Form.Control name="faculty" as="select" onChange={event => this.onSelectFaculty(event.target)}>
+                <Form.Control name="faculty" as="select" onChange={event => onSelectFaculty(event.target)}>
                   <option value=""></option>
                   {faculties.edges.map((item, index) => {
                     return (

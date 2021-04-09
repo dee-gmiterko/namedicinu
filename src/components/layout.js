@@ -13,10 +13,6 @@ import "../css/style.scss";
 import "../css/gibson.scss";
 import "../css/font-awesome.scss";
 
-// if (typeof window !== "undefined") {
-//   require("smooth-scroll")('a[href*="#"]');
-// }
-
 const Layout = ({ site, header, locale, children }) => {
 
   var messages = messages_sk;
