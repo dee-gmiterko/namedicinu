@@ -29,7 +29,19 @@ export default class FacultiesComparison extends Component {
             } else {
               descriptionPanelCategories[item.category].titleValue = item.value;
             }
-          })
+          });
+
+          const simpleWebsiteRegex = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/g;
+
+          descriptionPanelCategories["Web"] = {
+            titleValue: (
+              <a href={item.node.website} target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-globe-africa"></i>&nbsp;
+                {simpleWebsiteRegex.exec(item.node.website)[1]}
+              </a>
+            ),
+            items: [],
+          };
 
           const descriptionPanelItems = Object.keys(descriptionPanelCategories).map((categoryTitle, index) => {
             let category = descriptionPanelCategories[categoryTitle]

@@ -49,7 +49,8 @@ module.exports = {
       resolve: 'gatsby-plugin-global-context',
       options: {
         context: {
-          locale: locale
+          locale: locale,
+          faculty_country: locale === "cs" ? ["cz"] : ["sk", "cz"] 
         }
       }
     },

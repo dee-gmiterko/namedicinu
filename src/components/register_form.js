@@ -4,7 +4,7 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
-function RegisterForm({ faculties, onSelectFaculty }) {
+function RegisterForm({ faculties, onSelectFaculty, locale }) {
 
   const [state, handleSubmit] = useForm("register");
 
@@ -27,6 +27,9 @@ function RegisterForm({ faculties, onSelectFaculty }) {
   } else {
     return (
       <Form onSubmit={handleSubmit}>
+        <input type="hidden" name="_language" value={locale} />
+        <input type="text" name="_gotcha" style={{display: "none"}} />
+
         {state.errors.map((error, index) => {
           return (
             <Alert key={index} variant="danger">
@@ -40,9 +43,9 @@ function RegisterForm({ faculties, onSelectFaculty }) {
               {(l_email) => (
                 <>
                   <Form.Label>
-                    {l_email}
+                    {l_email} *
                   </Form.Label>
-                  <Form.Control name="email" type="email" />
+                  <Form.Control require name="email" type="email" />
                 </>
               )}
             </FormattedMessage>
@@ -52,9 +55,9 @@ function RegisterForm({ faculties, onSelectFaculty }) {
               {(l_name) => (
                 <>
                   <Form.Label>
-                    {l_name}
+                    {l_name} *
                   </Form.Label>
-                  <Form.Control name="name" type="input" />
+                  <Form.Control require name="name" type="input" />
                 </>
               )}
             </FormattedMessage>
@@ -111,7 +114,7 @@ function RegisterForm({ faculties, onSelectFaculty }) {
                 <Form.Label>
                   {l_faculty}
                 </Form.Label>
-                <AnchorLink to={`/faculties/#Faculties`} className="float-right">
+                <AnchorLink to={`/faculties/#Quiz`} className="float-right">
                   <FormattedMessage id="register.faculty.help" defaultMessage="Do you need help with selection?" />
                 </AnchorLink>
                 <Form.Control name="faculty" as="select" onChange={event => onSelectFaculty(event.target)}>

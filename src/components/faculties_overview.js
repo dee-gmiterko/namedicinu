@@ -22,6 +22,13 @@ var sliderSettings = {
   autoplaySpeed: 4000,
   responsive: [
     {
+      breakpoint: 1500,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 2
+      }
+    },
+    {
       breakpoint: 1200,
       settings: {
         slidesToShow: 3,
@@ -53,7 +60,7 @@ export default class FacultiesOverview extends Component {
         <Container>
           <Row>
             <Col md={12}>
-              <h2>
+              <h2 id="Faculties">
                 <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
               </h2>
               <div className="text-justify font-italic">
@@ -94,7 +101,7 @@ export default class FacultiesOverview extends Component {
                       <i class="fas fa-info-circle"></i>&nbsp;
                       <FormattedMessage id="faculties_overview.more_info" defaultMessage="More info" />
                     </Button>
-                    <a href={item.node.website} target="_blank" rel="noreferrer" className="btn btn-primary">
+                    <a href={item.node.website} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                       <i class="fas fa-globe-africa"></i>&nbsp;
                       <FormattedMessage id="faculties_overview.website" defaultMessage="Website" />
                     </a>

@@ -22,7 +22,7 @@ export default class Register extends Component {
   }
 
   render() {
-    const { site, faculties } = this.props;
+    const { site, faculties, locale } = this.props;
     const { country } = this.state;
     return (
       <div className="d-flex flex-row register">
@@ -50,7 +50,7 @@ export default class Register extends Component {
               </div>
             </Col>
             <Col md={7} className="p-5 bg-1">
-              <RegisterForm faculties={faculties} onSelectFaculty={this.onSelectFaculty.bind(this)} />
+              <RegisterForm faculties={faculties} onSelectFaculty={this.onSelectFaculty.bind(this)} locale={locale} />
             </Col>
           </Row>
         </Container>

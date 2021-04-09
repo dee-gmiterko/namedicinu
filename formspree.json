@@ -11,7 +11,7 @@
         "reference": { "type": "text", "required": false }
       },
       "actions": [
-        { "type": "email", "to": "d.gmiterko@gmail.com" }
+        { "type": "email", "to": "jakub.copak@gmail.com" }
       ]
     }
   }

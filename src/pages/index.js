@@ -28,7 +28,7 @@ const IndexPage = ({ data, pageContext }) => (
     }
     {
       data.contentfulSiteInformation.menus.includes("Register") &&
-      <Register key="Register" site={data.contentfulSiteInformation} faculties={data.allContentfulFaculties}></Register>
+      <Register key="Register" site={data.contentfulSiteInformation} faculties={data.allContentfulFaculties} locale={pageContext.locale}></Register>
     }
     {
       data.contentfulSiteInformation.menus.includes("Testimonials") &&
@@ -48,7 +48,7 @@ const IndexPage = ({ data, pageContext }) => (
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query IndexQuery($locale: String!) {
+  query IndexQuery($locale: String!, $faculty_country: [String!]!) {
     contentfulSiteInformation(node_locale: {eq: $locale}) {
       siteName
       siteDescription
@@ -169,7 +169,10 @@ export const pageQuery = graphql`
       }
     }
     allContentfulFaculties(
-      filter: { node_locale: { eq: $locale } }
+      filter: {
+        node_locale: { eq: $locale }
+        country: { in: $faculty_country }
+      }
       sort: { fields: title }
     ) {
       edges {
