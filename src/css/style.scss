@@ -90,6 +90,10 @@ $social-size: 50px;
       }
     }
   }
+
+  .email-text {
+    color: theme-color("dark");
+  }
 }
 
 .circle-half-border {
@@ -402,6 +406,25 @@ strong {
 }
 
 .testimonials, .faculties-overview {
+  .slick-arrow {
+    width: 40px;
+    height: 40px;
+
+    &::before {
+      color: theme-color("secondary");
+      font-size: 2rem;
+    }
+
+    &.slick-prev {
+      left: 0px;
+      z-index: 1;
+    }
+
+    &.slick-next {
+      right: 0px;
+    }
+  }
+
   .slick-dots {
     li {
       button::before {
@@ -413,6 +436,12 @@ strong {
           color: theme-color("secondary");
         }
       }
+    }
+  }
+
+  .card {
+    .flags {
+      font-size: 0.9rem;
     }
   }
 }

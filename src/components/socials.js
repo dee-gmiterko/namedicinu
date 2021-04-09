@@ -1,4 +1,5 @@
 import React from "react";
+import { Dropdown } from 'react-bootstrap';
 import PropTypes from "prop-types";
 
 const Socials = ({ facebook, twitter, instagram, linkdin, github, email }) => {
@@ -67,13 +68,22 @@ const Socials = ({ facebook, twitter, instagram, linkdin, github, email }) => {
       {
         email &&
         <li>
-          <a
-            className="far fa-envelope"
-            href={"mailto:"+email}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{background: '#303030'}}
-          >Email</a>
+          {/* Dropdown is a fallback for users without email client */}
+          <Dropdown>
+            <Dropdown.Toggle
+              className="far fa-envelope"
+              href={"mailto:"+email}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{background: '#303030', border: 'none'}}
+            >
+              Email
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu className="p-3">
+              <span className="email-text">{email}</span>
+            </Dropdown.Menu>
+          </Dropdown>
         </li>
       }
     </ul>

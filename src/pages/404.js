@@ -12,7 +12,7 @@ const NotFoundPage = ({ data, pageContext }) => (
       {(title) => (
         <Seo
           lang={pageContext.locale}
-          title={title}
+          title={title[0]}
           siteName={data.contentfulSiteInformation.siteName}
           siteDescription={data.contentfulSiteInformation.siteDescription}
           image={"https:"+data.contentfulSiteInformation.logo.file.url}

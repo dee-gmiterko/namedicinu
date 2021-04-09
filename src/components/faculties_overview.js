@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Img from "gatsby-image";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { FormattedMessage } from 'react-intl';
@@ -13,7 +13,7 @@ import Markdown from "./markdown";
 
 var sliderSettings = {
   dots: true,
-  arrows: false,
+  arrows: true,
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 2,
@@ -85,6 +85,21 @@ export default class FacultiesOverview extends Component {
                         {item.node.title}
                       </AnchorLink>
                     </Card.Title>
+                    <div className="flags">
+                      {
+                        item.node.dentistry &&
+                        <OverlayTrigger
+                          placement="bottom"
+                          overlay={
+                            <Tooltip id="tooltip-reference">
+                              <FormattedMessage id="faculties_overview.flag.dentistry" defaultMessage="This faculty offers also dentistry" />
+                            </Tooltip>
+                          }
+                        >
+                          <i className="fa fa-tooth" />
+                        </OverlayTrigger>
+                      }
+                    </div>
                     <Card.Text>
                       {item.node.shortDescription}
                     </Card.Text>
@@ -98,11 +113,11 @@ export default class FacultiesOverview extends Component {
                   </ListGroup>
                   <Card.Body className="flex-grow-0 d-flex justify-content-between">
                     <Button as={AnchorLink} to={"/faculties#"+slugify_faculty(item.node)}>
-                      <i class="fas fa-info-circle"></i>&nbsp;
+                      <i className="fas fa-info-circle"></i>&nbsp;
                       <FormattedMessage id="faculties_overview.more_info" defaultMessage="More info" />
                     </Button>
                     <a href={item.node.website} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                      <i class="fas fa-globe-africa"></i>&nbsp;
+                      <i className="fas fa-globe-africa"></i>&nbsp;
                       <FormattedMessage id="faculties_overview.website" defaultMessage="Website" />
                     </a>
                   </Card.Body>

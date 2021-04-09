@@ -99,6 +99,14 @@ export default class FacultiesQuiz extends Component {
                             {item.node.answerB}
                           </Button>
                         </Col>
+                        {
+                          item.node.answerC &&
+                          <Col xs={6} as="li" className="p-5">
+                            <Button onClick={this.answer.bind(this, index, "C")}>
+                              {item.node.answerC}
+                            </Button>
+                          </Col>
+                        }
                       </Row>
                     </div>
                   );

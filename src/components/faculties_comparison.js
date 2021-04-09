@@ -36,7 +36,7 @@ export default class FacultiesComparison extends Component {
           descriptionPanelCategories["Web"] = {
             titleValue: (
               <a href={item.node.website} target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-globe-africa"></i>&nbsp;
+                <i className="fas fa-globe-africa"></i>&nbsp;
                 {simpleWebsiteRegex.exec(item.node.website)[1]}
               </a>
             ),
@@ -117,7 +117,13 @@ export default class FacultiesComparison extends Component {
                   }
                 </thead>
                 <tbody>
-                  {item.node.faculties_students.map((students, index) => {
+                  {item.node.faculties_students
+                    .sort((a, b) => {
+                      var x = a.year; var y = b.year;
+                      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                    })
+                    .slice(-3)
+                    .map((students, index) => {
                     const fourColumns = (students.dentistrySigned || students.dentistryAccepted)
                     return (
                       <tr key={index}>
