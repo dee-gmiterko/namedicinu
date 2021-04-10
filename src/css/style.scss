@@ -554,6 +554,11 @@ strong {
         width: 20%;
       }
     }
+
+    .percent-accepted {
+      color: theme-color("danger");
+      margin-left: 3%;
+    }
   }
 
   .description-panel {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Table } from 'react-bootstrap';
-import { FormattedMessage, FormattedDate } from 'react-intl';
+import { FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl';
 import { slugify_faculty } from '../common';
 
 import Markdown from "./markdown";
@@ -120,21 +120,31 @@ export default class FacultiesComparison extends Component {
                   {item.node.faculties_students
                     .sort((a, b) => {
                       var x = a.year; var y = b.year;
-                      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                      return ((x < y) ? 1 : ((x > y) ? -1 : 0));
                     })
-                    .slice(-3)
+                    .slice(0, 3)
                     .map((students, index) => {
                     const fourColumns = (students.dentistrySigned || students.dentistryAccepted)
                     return (
                       <tr key={index}>
                         <th>{students.year}</th>
-                        <td colSpan={fourColumns ? 1 : 2}>{students.generalSigned}</td>
-                        <td colSpan={fourColumns ? 1 : 2}>{students.generalAccepted}</td>
+                        <td colSpan={fourColumns ? 1 : 2}>
+                          <FormattedNumber value={students.generalSigned} />
+                        </td>
+                        <td colSpan={fourColumns ? 1 : 2}>
+                          <span><FormattedNumber value={students.generalAccepted} /></span>
+                          <span className="percent-accepted"> ({Math.round(students.generalAccepted*100/students.generalSigned)} %)</span>
+                        </td>
                         {
                           fourColumns &&
                           <>
-                            <td>{students.dentistrySigned}</td>
-                            <td>{students.dentistryAccepted}</td>
+                            <td>
+                              <FormattedNumber value={students.dentistrySigned} />
+                            </td>
+                            <td>
+                              <span><FormattedNumber value={students.dentistryAccepted} /></span>
+                              <span className="percent-accepted"> ({Math.round(students.dentistryAccepted*100/students.dentistrySigned)} %)</span>
+                            </td>
                           </>
                         }
                       </tr>
