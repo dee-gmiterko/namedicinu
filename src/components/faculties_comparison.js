@@ -129,23 +129,42 @@ export default class FacultiesComparison extends Component {
                       <tr key={index}>
                         <th>{students.year}</th>
                         <td colSpan={fourColumns ? 1 : 2}>
-                          <FormattedNumber value={students.generalSigned} />
-                        </td>
-                        <td colSpan={fourColumns ? 1 : 2}>
-                          <span><FormattedNumber value={students.generalAccepted} /></span>
-                          <span className="percent-accepted"> ({Math.round(students.generalAccepted*100/students.generalSigned)} %)</span>
+                          {
+                            students.generalSigned &&
+                            <FormattedNumber value={students.generalSigned} />
+                          }
                         </td>
                         {
                           fourColumns &&
-                          <>
-                            <td>
+                          <td>
+                            {
+                              students.dentistrySigned &&
                               <FormattedNumber value={students.dentistrySigned} />
-                            </td>
-                            <td>
+                            }
+                          </td>
+                        }
+                        <td colSpan={fourColumns ? 1 : 2}>
+                          {
+                            students.generalAccepted &&
+                            <span><FormattedNumber value={students.generalAccepted} /></span>
+                          }
+                          {
+                            students.generalAccepted && students.generalSigned &&
+                            <span className="percent-accepted"> ({Math.round(students.generalAccepted*100/students.generalSigned)} %)</span>
+                          }
+                        </td>
+                        {
+                          fourColumns &&
+                          <td>
+                            {
+                              students.dentistryAccepted &&
                               <span><FormattedNumber value={students.dentistryAccepted} /></span>
+                            }
+                            {
+                              students.dentistryAccepted && students.dentistrySigned &&
                               <span className="percent-accepted"> ({Math.round(students.dentistryAccepted*100/students.dentistrySigned)} %)</span>
-                            </td>
-                          </>
+                            }
+                          </td>
                         }
                       </tr>
                     );
