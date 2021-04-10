@@ -13,7 +13,6 @@ if (!locale) {
 console.log(`Using locale ${locale}`);
 
 module.exports = {
-  flags: { PRESERVE_WEBPACK_CACHE: true },
   siteMetadata: {
     title: `Na medicinu`,
     description: `Course site`,
@@ -50,7 +49,7 @@ module.exports = {
       options: {
         context: {
           locale: locale,
-          faculty_country: locale === "cs" ? ["cz"] : ["sk", "cz"] 
+          faculty_country: locale === "cs" ? ["cz"] : ["sk", "cz"]
         }
       }
     },
