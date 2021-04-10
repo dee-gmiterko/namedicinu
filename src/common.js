@@ -5,3 +5,7 @@ export const slugify_faculty = (node) => {
     remove: '.'
   })
 };
+
+export const fix_nbsp = (title) => {
+  return title.replace('&nbsp;', "\u00A0");
+}

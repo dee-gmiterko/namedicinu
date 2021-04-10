@@ -72,42 +72,35 @@ export default class FacultiesQuiz extends Component {
     facultiesResults = facultiesResults.sort((a, b) => {
       var x = a.points; var y = b.points;
       return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-    }).slice(0, 6);
+    }).slice(0, 9);
 
     return (
-      <div className="d-flex flex-row faculties-quiz mb-5">
-        <div className="flex-grow-1" />
+      <div className="faculties-quiz mb-5">
         <Container>
           <Row className="justify-content-center">
-            <Col md={7} className="bg-2 text-center pr-5 pl-5">
-              <h2 id="Quiz">
+            <Col md={9} className="bg-2 text-center pr-5 pl-5">
+              <h2 id="Quiz" className="pt-3 pb-0">
                 <FormattedMessage id="title.quiz" defaultMessage="Quiz" />
               </h2>
               <Slider ref={slider => (this.sliderRef = slider)} {...sliderSettings}>
                 {quizQuestions.edges.map((item, index) => {
                   return (
-                    <div key={index}>
+                    <div key={index} className="d-flex flex-column justify-content-around">
                       <div className="question">{index+1}. {item.node.question}</div>
-                      <Row as="ul" className="options">
-                        <Col xs={6} as="li" className="p-5">
-                          <Button onClick={this.answer.bind(this, index, "A")}>
-                            {item.node.answerA}
-                          </Button>
-                        </Col>
-                        <Col xs={6} as="li" className="p-5">
-                          <Button onClick={this.answer.bind(this, index, "B")}>
-                            {item.node.answerB}
-                          </Button>
-                        </Col>
-                        {
-                          item.node.answerC &&
-                          <Col xs={6} as="li" className="p-5">
-                            <Button onClick={this.answer.bind(this, index, "C")}>
-                              {item.node.answerC}
-                            </Button>
-                          </Col>
-                        }
-                      </Row>
+                      <ul className="options">
+                        {["A", "B", "C"].map((char) => {
+                          if (item.node["answer"+char]) {
+                            return (
+                              <li className="p-3">
+                                <Button className="btn-block d-flex align-items-center" onClick={this.answer.bind(this, index, char)}>
+                                  <span className="letter flex-shrink-0">{char}</span>
+                                  <span className="flex-grow-1">{item.node["answer"+char]}</span>
+                                </Button>
+                              </li>
+                            )
+                          }
+                        })}
+                      </ul>
                     </div>
                   );
                 })}
@@ -137,7 +130,6 @@ export default class FacultiesQuiz extends Component {
             </Col>
           </Row>
         </Container>
-        <div className="flex-grow-1" />
       </div>
     );
   }

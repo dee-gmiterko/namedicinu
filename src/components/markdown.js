@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // czech and slovak languages use those instead..
-const fix_quotes = (html) => {
+export const fix_quotes = (html) => {
   return html.replace('“', '„').replace('”', '“');
 }
 
