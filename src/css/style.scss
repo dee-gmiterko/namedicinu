@@ -561,11 +561,41 @@ strong {
       }
     }
   }
+
+  .results {
+    a {
+      color: theme-color("secondary");
+    }
+
+    dl > div {
+      &:nth-child(1) {
+        font-size: 1.6rem;
+      }
+      &:nth-child(2) {
+        font-size: 1.3rem;
+      }
+      &:nth-child(3) {
+        font-size: 1.15rem;
+      }
+      &:nth-child(4) {
+        font-size: 1.07rem;
+      }
+      &:nth-child(5) {
+        font-size: 1.02rem;
+      }
+    }
+  }
 }
 
 .faculties-comparison {
   .updated-at {
     color: #aaa;
+  }
+
+  @include media-breakpoint-down(lg) {
+    h2 {
+      font-size: 2rem;
+    }
   }
 
   .students {

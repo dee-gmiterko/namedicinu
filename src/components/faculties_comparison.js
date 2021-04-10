@@ -74,7 +74,7 @@ export default class FacultiesComparison extends Component {
           let facultyStudents = null;
           if(item.node.faculties_students) {
             facultyStudents = (
-              <Table bordered size="sm" className="text-center students">
+              <Table responsive bordered size="sm" className="text-center students">
                 <thead>
                   <tr>
                     <th>

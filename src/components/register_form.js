@@ -3,9 +3,9 @@ import { useForm } from '@formspree/react';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import { fix_nbsp } from '../common';
 
 function RegisterForm({ faculties, onSelectFaculty, locale }) {
-
   const [state, handleSubmit] = useForm("register");
 
   if (state.succeeded) {
@@ -121,7 +121,9 @@ function RegisterForm({ faculties, onSelectFaculty, locale }) {
                   <option value=""></option>
                   {faculties.edges.map((item, index) => {
                     return (
-                      <option value={item.node.title} data-country={item.node.country}>{item.node.title}</option>
+                      <option key={index} value={fix_nbsp(item.node.title)} data-country={item.node.country}>
+                        {fix_nbsp(item.node.title)}
+                      </option>
                     );
                   })}
                 </Form.Control>

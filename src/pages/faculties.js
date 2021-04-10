@@ -137,15 +137,15 @@ export const pageQuery = graphql`
           question
           answerA
           resultA {
-            shortTitle
+            title
           }
           answerB
           resultB {
-            shortTitle
+            title
           }
           answerC
           resultC {
-            shortTitle
+            title
           }
         }
       }
