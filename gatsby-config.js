@@ -17,6 +17,7 @@ module.exports = {
     title: `Na medicinu`,
     description: `Course site`,
     author: `Dominik Gmiterko <d.gmiterko@gmail.com>`,
+    siteUrl: locale == "sk" ? `https://namedicinu.sk/` : `https://namedicinu.cz/`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -55,6 +56,20 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
-    `gatsby-plugin-anchor-links`
+    `gatsby-plugin-anchor-links`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        serialize: ({ site, allSitePage }) => {
+          return allSitePage.edges.map(edge => {
+            return {
+              url: `${site.siteMetadata.siteUrl}${edge.node.path}`,
+              changefreq: `monthly`,
+              priority: 0.5,
+            }
+          })
+        },
+      }
+    }
   ],
 }
