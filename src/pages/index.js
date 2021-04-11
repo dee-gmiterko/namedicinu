@@ -48,7 +48,7 @@ const IndexPage = ({ data, pageContext }) => (
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query IndexQuery($locale: String!, $faculty_country: [String!]!) {
+  query IndexQuery($locale: String!) {
     contentfulSiteInformation(node_locale: {eq: $locale}) {
       siteName
       siteDescription
@@ -122,7 +122,10 @@ export const pageQuery = graphql`
       }
     }
     allContentfulTestimonials(
-      filter: { node_locale: { eq: $locale } }
+      filter: {
+        node_locale: { eq: $locale }
+        showOn: { eq: $locale }
+      }
       sort: { fields: [year, name], order: [DESC, ASC] }
       limit: 8
     ) {
@@ -171,7 +174,7 @@ export const pageQuery = graphql`
     allContentfulFaculties(
       filter: {
         node_locale: { eq: $locale }
-        country: { in: $faculty_country }
+        showOn: { eq: $locale }
       }
       sort: { fields: title }
     ) {
