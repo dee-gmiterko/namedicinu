@@ -80,8 +80,6 @@ export default class FacultiesQuiz extends Component {
       return ((x < y) ? 1 : ((x > y) ? -1 : 0));
     }).slice(0, 5);
 
-    console.log(facultiesPoints, facultiesResults);
-
     return (
       <div className="faculties-quiz mb-5">
         <Container>
