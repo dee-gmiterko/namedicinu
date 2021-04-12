@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
 import AnimateOnChange from 'react-animate-on-change';
 
 import Markdown from "./markdown";
@@ -10,20 +10,19 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      country: 'cz',
+      courses: 3,
     };
   }
 
-  onSelectFaculty(target) {
-    const country = target.querySelector("[value='"+target.value+"']").getAttribute("data-country");
+  onChangeNumCourses(courses) {
     this.setState({
-      country,
+      courses,
     })
   }
 
   render() {
     const { site, faculties, locale } = this.props;
-    const { country } = this.state;
+    const { courses } = this.state;
     return (
       <div className="d-flex flex-row register">
         <div className="flex-grow-1" />
@@ -35,22 +34,49 @@ export default class Register extends Component {
               </h2>
               <Markdown value={site.registerDescription} />
               <div className="bg-2 p-4 mb-3">
-                <p>
-                  <FormattedMessage id="register.price" defaultMessage="" />
-                  &nbsp;
-                  <FormattedMessage id={"register.price."+country} defaultMessage="653€">
-                    {(price) => (
-                      <AnimateOnChange animationClassName="animation-blink" animate={true}>
-                        <strong>{price}</strong>
-                      </AnimateOnChange>
-                    )}
-                  </FormattedMessage>
-                </p>
+                {
+                  courses > 0 &&
+                  <p>
+                    <FormattedMessage id="register.price" defaultMessage="" />
+                    &nbsp;
+                    <FormattedNumber
+                      value={site.price[courses-1].price}
+                      style="currency"
+                      currency={locale === "sk" ? "EUR" : "CZK"}
+                      maximumFractionDigits={0}
+                    >
+                      {(price) => (
+                        <AnimateOnChange animationClassName="animation-blink" animate={true}>
+                          <strong>{price}</strong>
+                          {
+                            site.price[courses-1].discount > 0 &&
+                            <>
+                              <> (</>
+                              <FormattedMessage id="register.discount" defaultMessage="discount" />
+                              <> </>
+                              <FormattedNumber
+                                value={site.price[courses-1].discount}
+                                style="currency"
+                                currency={locale === "sk" ? "EUR" : "CZK"}
+                                maximumFractionDigits={0}
+                              >
+                                {(price) => (
+                                  <strong>{price}</strong>
+                                )}
+                              </FormattedNumber>
+                              <>)</>
+                            </>
+                          }
+                        </AnimateOnChange>
+                      )}
+                    </FormattedNumber>
+                  </p>
+                }
                 <Markdown value={site.registerDiscount} />
               </div>
             </Col>
             <Col md={7} className="p-5 bg-1">
-              <RegisterForm faculties={faculties} onSelectFaculty={this.onSelectFaculty.bind(this)} locale={locale} />
+              <RegisterForm faculties={faculties} onChangeNumCourses={this.onChangeNumCourses.bind(this)} locale={locale} />
             </Col>
           </Row>
         </Container>

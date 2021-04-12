@@ -120,6 +120,10 @@ export const pageQuery = graphql`
           html
         }
       }
+      price {
+        price
+        discount
+      }
     }
     allContentfulTestimonials(
       filter: {

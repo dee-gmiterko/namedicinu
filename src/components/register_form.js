@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from '@formspree/react';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
+import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { fix_nbsp } from '../common';
 
-function RegisterForm({ faculties, onSelectFaculty, locale }) {
-  const [state, handleSubmit] = useForm("register");
+function RegisterForm({ faculties, onChangeNumCourses, locale }) {
+  const [formState, handleSubmit] = useForm("register");
+  const [state, setState] = useState(
+    {
+      country: "cz",
+      biology: true,
+      chemistry: true,
+      physics: true,
+    }
+  );
+  const update = (key, value) => {
+    let newState = Object.assign({}, state);
+    newState[key] = value;
+    if(key == "country" && value == "sk") {
+      newState.physics = 0;
+    }
+    setState(newState);
+    onChangeNumCourses(newState.biology + newState.chemistry + newState.physics);
+  };
 
-  if (state.succeeded) {
+  if (formState.succeeded) {
     return (
       <div className="form-sent d-flex flex-column justify-content-center">
         <div className="bg-circle-container">
@@ -25,12 +42,14 @@ function RegisterForm({ faculties, onSelectFaculty, locale }) {
     );
 
   } else {
+    const submitDisabled = formState.submitting || !(state.biology || state.chemistry || state.physics);
+
     return (
       <Form onSubmit={handleSubmit}>
         <input type="hidden" name="_language" value={locale} />
         <input type="text" name="_gotcha" style={{display: "none"}} />
 
-        {state.errors.map((error, index) => {
+        {formState.errors.map((error, index) => {
           return (
             <Alert key={index} variant="danger">
               {error.field} {error.message}
@@ -45,7 +64,7 @@ function RegisterForm({ faculties, onSelectFaculty, locale }) {
                   <Form.Label>
                     {l_email} *
                   </Form.Label>
-                  <Form.Control require name="email" type="email" />
+                  <Form.Control require="true" name="email" type="email" />
                 </>
               )}
             </FormattedMessage>
@@ -57,7 +76,7 @@ function RegisterForm({ faculties, onSelectFaculty, locale }) {
                   <Form.Label>
                     {l_name} *
                   </Form.Label>
-                  <Form.Control require name="name" type="input" />
+                  <Form.Control require="true" name="name" type="input" />
                 </>
               )}
             </FormattedMessage>
@@ -117,7 +136,13 @@ function RegisterForm({ faculties, onSelectFaculty, locale }) {
                 <AnchorLink to={`/faculties/#Quiz`} className="float-right">
                   <FormattedMessage id="register.faculty.help" defaultMessage="Do you need help with selection?" />
                 </AnchorLink>
-                <Form.Control name="faculty" as="select" onChange={event => onSelectFaculty(event.target)}>
+                <Form.Control
+                  name="faculty"
+                  as="select"
+                  onChange={event => {
+                    update("country", event.target.querySelector("[value='"+event.target.value+"']").getAttribute("data-country"))
+                  }}
+                >
                   <option value=""></option>
                   {faculties.edges.map((item, index) => {
                     return (
@@ -127,6 +152,60 @@ function RegisterForm({ faculties, onSelectFaculty, locale }) {
                     );
                   })}
                 </Form.Control>
+              </>
+            )}
+          </FormattedMessage>
+        </Form.Group>
+
+        <Form.Group controlId="registerCourses">
+          <FormattedMessage id="register.courses" defaultMessage="Courses">
+            {(l_courses) => (
+              <>
+                <Form.Label>
+                  {l_courses}
+                </Form.Label>
+                <Row>
+                  <Col xs={4}>
+                    <FormattedMessage id="register.course.biology" defaultMessage="Biology">
+                      {(label) => (
+                        <Form.Check inline
+                          label={label}
+                          type="checkbox"
+                          id="biology"
+                          checked={state.biology}
+                          onChange={event => update("biology", event.target.checked)}
+                        />
+                      )}
+                    </FormattedMessage>
+                  </Col>
+                  <Col xs={4}>
+                    <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry">
+                      {(label) => (
+                        <Form.Check inline
+                          label={label}
+                          type="checkbox"
+                          id="chemistry"
+                          checked={state.chemistry}
+                          onChange={event => update("chemistry", event.target.checked)}
+                        />
+                      )}
+                    </FormattedMessage>
+                  </Col>
+                  <Col xs={4}>
+                    <FormattedMessage id="register.course.physics" defaultMessage="Physics">
+                      {(label) => (
+                        <Form.Check inline
+                          label={label}
+                          type="checkbox"
+                          id="physics"
+                          disabled={state.country === "sk"}
+                          checked={state.physics}
+                          onChange={event => update("physics", event.target.checked)}
+                        />
+                      )}
+                    </FormattedMessage>
+                  </Col>
+                </Row>
               </>
             )}
           </FormattedMessage>
@@ -162,7 +241,7 @@ function RegisterForm({ faculties, onSelectFaculty, locale }) {
             </Form.Text>
           </Col>
           <Col md={12} className="text-right p-3">
-            <Button variant="primary" type="submit" size="lg" disabled={state.submitting}>
+            <Button variant="primary" type="submit" size="lg" disabled={submitDisabled}>
               <FormattedMessage id="register.submit" defaultMessage="Submit" />
             </Button>
           </Col>
