@@ -70,6 +70,7 @@ export default class Register extends Component {
                         </AnimateOnChange>
                       )}
                     </FormattedNumber>
+                    <>.</>
                   </p>
                 }
                 <Markdown value={site.registerDiscount} />
