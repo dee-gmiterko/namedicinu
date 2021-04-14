@@ -104,10 +104,13 @@ export default class FacultiesOverview extends Component {
                       {item.node.shortDescription}
                     </Card.Text>
                   </Card.Body>
-                  <ListGroup className="list-group-flush">
+                  <ListGroup className="list-group-flush checkmark">
                     {item.node.overview && item.node.overview.map((item, index) => {
                       return (
-                        <ListGroupItem key={index}>{item}</ListGroupItem>
+                        <ListGroupItem key={index} className="d-flex align-items-center">
+                          <i className="far fa-check-circle" />
+                          <span>{item}</span>
+                        </ListGroupItem>
                       );
                     })}
                   </ListGroup>

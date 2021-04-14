@@ -177,7 +177,10 @@ export default class FacultiesComparison extends Component {
           return (
             <div key={index}>
               <Row>
-                <Col md={12}>
+                <Col md={12} className="mt-1 mb-1">
+                  <div className="bg-circle-container">
+                    <div className="bg-circle bg-1" />
+                  </div>
                   <h2 id={slugify_faculty(item.node)}>
                     {fix_nbsp(item.node.title)}
                   </h2>

@@ -495,6 +495,11 @@ strong {
         .list-group-item {
           padding: 0.3rem 1.5rem;
           font-size: 1.1rem;
+
+          i {
+            color: #3a8808;
+            margin-right: 0.6rem;
+          }
         }
       }
     }
@@ -588,8 +593,17 @@ strong {
 }
 
 .faculties-comparison {
-  .updated-at {
-    color: #aaa;
+  .bg-circle-container {
+    position: absolute;
+    width: 150px;
+    top: -10px;
+    left: -20px;
+    z-index: -1;
+
+    .bg-circle {
+      @extend .square;
+      border-radius: 50%;
+    }
   }
 
   @include media-breakpoint-down(lg) {
@@ -622,6 +636,10 @@ strong {
       color: theme-color("danger");
       margin-left: 3%;
     }
+  }
+
+  .updated-at {
+    color: #aaa;
   }
 
   .description-panel {
