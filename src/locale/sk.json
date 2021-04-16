@@ -20,6 +20,7 @@
   "register.faculty.help": "Chceš poradiť s výberom fakulty?",
   "register.price": "Celková cena za celý kurz je",
   "register.discount": "zľava",
+  "register.discount.hint": "čím viac kurzov si vyberieš, tým viac ušetríš",
   "register.courses": "Z kurzov",
   "register.course.biology": "Biológia",
   "register.course.chemistry": "Chémia",

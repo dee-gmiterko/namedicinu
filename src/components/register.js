@@ -38,7 +38,24 @@ export default class Register extends Component {
                   courses > 0 &&
                   <p>
                     <FormattedMessage id="register.price" defaultMessage="" />
-                    &nbsp;
+                    <> </>
+                    {site.price[courses-1].discount > 0 &&
+                      <>
+                        <FormattedNumber
+                          value={site.price[courses-1].price + site.price[courses-1].discount}
+                          style="currency"
+                          currency={locale === "sk" ? "EUR" : "CZK"}
+                          maximumFractionDigits={0}
+                        >
+                          {(price) => (
+                            <AnimateOnChange animationClassName="animation-blink" animate={true}>
+                              <span style={{ textDecoration: "line-through"}}>{price}</span>
+                            </AnimateOnChange>
+                          )}
+                        </FormattedNumber>
+                        <> </>
+                      </>
+                    }
                     <FormattedNumber
                       value={site.price[courses-1].price}
                       style="currency"
@@ -48,29 +65,31 @@ export default class Register extends Component {
                       {(price) => (
                         <AnimateOnChange animationClassName="animation-blink" animate={true}>
                           <strong>{price}</strong>
-                          {
-                            site.price[courses-1].discount > 0 &&
-                            <>
-                              <> (</>
-                              <FormattedMessage id="register.discount" defaultMessage="discount" />
-                              <> </>
-                              <FormattedNumber
-                                value={site.price[courses-1].discount}
-                                style="currency"
-                                currency={locale === "sk" ? "EUR" : "CZK"}
-                                maximumFractionDigits={0}
-                              >
-                                {(price) => (
-                                  <strong>{price}</strong>
-                                )}
-                              </FormattedNumber>
-                              <>)</>
-                            </>
-                          }
                         </AnimateOnChange>
                       )}
                     </FormattedNumber>
-                    <>.</>
+                    <> (</>
+                    <FormattedMessage id="register.discount.hint" defaultMessage="" />
+                    {site.price[courses-1].discount > 0 &&
+                      <>
+                        <> - </>
+                        <FormattedMessage id="register.discount" defaultMessage="discount" />
+                        <> </>
+                        <FormattedNumber
+                          value={site.price[courses-1].discount}
+                          style="currency"
+                          currency={locale === "sk" ? "EUR" : "CZK"}
+                          maximumFractionDigits={0}
+                        >
+                          {(price) => (
+                            <AnimateOnChange animationClassName="animation-blink" animate={true}>
+                              <strong>{price}</strong>
+                            </AnimateOnChange>
+                          )}
+                        </FormattedNumber>
+                      </>
+                    }
+                    <>).</>
                   </p>
                 }
                 <Markdown value={site.registerDiscount} />
