@@ -24,10 +24,14 @@ export default class FacultiesComparison extends Component {
             if(item.key) {
               descriptionPanelCategories[item.category].items.push({
                 key: item.key,
-                value: item.value,
+                value: (
+                  item.value ? fix_nbsp(item.value) : null
+                ),
               });
             } else {
-              descriptionPanelCategories[item.category].titleValue = item.value;
+              descriptionPanelCategories[item.category].titleValue = (
+                item.value ? fix_nbsp(item.value) : null
+              );
             }
           });
 
@@ -52,7 +56,7 @@ export default class FacultiesComparison extends Component {
                     <strong>{categoryTitle}</strong>
                   </Col>
                   <Col as="dd" xs={8}>
-                    {fix_nbsp(category.titleValue)}
+                    {category.titleValue}
                   </Col>
                 </Row>
                 {category.items.map((item, index) => {
@@ -62,7 +66,7 @@ export default class FacultiesComparison extends Component {
                         <i className="fas fa-circle" />&nbsp;&nbsp;{item.key}
                       </Col>
                       <Col as="dd" xs={8}>
-                        {fix_nbsp(item.value)}
+                        {item.value}
                       </Col>
                     </Row>
                   )
