@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // czech and slovak languages use those instead..
 export const fix_quotes = (html) => {
-  return html.replaceAll('“', '„').replaceAll('”', '“');
+  return html ? html.replaceAll('“', '„').replaceAll('”', '“') : html;
 }
 
 const Markdown = ({ value }) => {
