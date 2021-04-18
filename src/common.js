@@ -7,5 +7,5 @@ export const slugify_faculty = (node) => {
 };
 
 export const fix_nbsp = (title) => {
-  return title ? title.replaceAll('&nbsp;', "\u00A0") : title;
+  return title.replace(/&nbsp;/g, "\u00A0");
 }
