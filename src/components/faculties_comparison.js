@@ -52,7 +52,7 @@ export default class FacultiesComparison extends Component {
                     <strong>{categoryTitle}</strong>
                   </Col>
                   <Col as="dd" xs={8}>
-                    {category.titleValue}
+                    {fix_nbsp(category.titleValue)}
                   </Col>
                 </Row>
                 {category.items.map((item, index) => {
@@ -62,7 +62,7 @@ export default class FacultiesComparison extends Component {
                         <i className="fas fa-circle" />&nbsp;&nbsp;{item.key}
                       </Col>
                       <Col as="dd" xs={8}>
-                        {item.value}
+                        {fix_nbsp(item.value)}
                       </Col>
                     </Row>
                   )

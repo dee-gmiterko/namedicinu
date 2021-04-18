@@ -101,7 +101,7 @@ export default class FacultiesOverview extends Component {
                       }
                     </div>
                     <Card.Text>
-                      {item.node.shortDescription}
+                      {fix_nbsp(item.node.shortDescription)}
                     </Card.Text>
                   </Card.Body>
                   <ListGroup className="list-group-flush checkmark">
