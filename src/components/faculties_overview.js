@@ -109,7 +109,7 @@ export default class FacultiesOverview extends Component {
                             </Tooltip>
                           }
                         >
-                          <i className="far fa-grin-beam-sweat" />
+                          <i className="far fa-comment-dots" />
                         </OverlayTrigger>
                       }
                     </div>
