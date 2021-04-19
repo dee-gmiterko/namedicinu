@@ -106,6 +106,7 @@ export const pageQuery = graphql`
             }
           }
           dentistry
+          oralInterview
           overview
           description {
             childMarkdownRemark {

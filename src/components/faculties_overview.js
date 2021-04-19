@@ -99,6 +99,19 @@ export default class FacultiesOverview extends Component {
                           <i className="fa fa-tooth" />
                         </OverlayTrigger>
                       }
+                      {
+                        item.node.oralInterview &&
+                        <OverlayTrigger
+                          placement="bottom"
+                          overlay={
+                            <Tooltip id="tooltip-reference">
+                              <FormattedMessage id="faculties_overview.flag.oral_interview" defaultMessage="This faculty has oral interview" />
+                            </Tooltip>
+                          }
+                        >
+                          <i className="far fa-grin-beam-sweat" />
+                        </OverlayTrigger>
+                      }
                     </div>
                     <Card.Text>
                       {fix_nbsp(item.node.shortDescription)}
