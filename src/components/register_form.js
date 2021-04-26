@@ -3,8 +3,9 @@ import { useForm } from '@formspree/react';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import { pixelTrackRegister } from '../fb-pixel';
 
-import { fix_nbsp } from '../common';
+import { fixNbsp } from '../common';
 
 function RegisterForm({ faculties, onChangeNumCourses, locale }) {
   const [formState, handleSubmit] = useForm("register");
@@ -27,11 +28,7 @@ function RegisterForm({ faculties, onChangeNumCourses, locale }) {
   };
 
   const onSubmit = (event) => {
-    const ReactPixel =  require('react-facebook-pixel');
-    ReactPixel.track("CompleteRegistration", {
-      content_name: "Course (" + state.country + ")",
-      value: state.biology + state.chemistry + state.physics
-    });
+    pixelTrackRegister();
     handleSubmit(event);
   }
 
@@ -156,8 +153,8 @@ function RegisterForm({ faculties, onChangeNumCourses, locale }) {
                   <option value=""></option>
                   {faculties.edges.map((item, index) => {
                     return (
-                      <option key={index} value={fix_nbsp(item.node.title)} data-country={item.node.country}>
-                        {fix_nbsp(item.node.title)}
+                      <option key={index} value={fixNbsp(item.node.title)} data-country={item.node.country}>
+                        {fixNbsp(item.node.title)}
                       </option>
                     );
                   })}

@@ -4,6 +4,7 @@ import { IntlProvider, FormattedMessage } from 'react-intl';
 import { FormspreeProvider } from '@formspree/react';
 import CookieConsent from "react-cookie-consent";
 
+import { pixelGrantConsent } from '../fb-pixel';
 import Header from "./header";
 import Footer from "./footer";
 
@@ -19,11 +20,6 @@ const Layout = ({ site, header, locale, children }) => {
   var messages = messages_sk;
   if (locale === "cs") {
     messages = messages_cs;
-  }
-
-  const grantConsent = () => {
-    const ReactPixel =  require('react-facebook-pixel');
-    ReactPixel.grantConsent();
   }
 
   return (
@@ -44,7 +40,7 @@ const Layout = ({ site, header, locale, children }) => {
               buttonText={gdpr_button}
               disableStyles={true}
               buttonClasses="btn btn-primary btn-sm"
-              onAccept={grantConsent}
+              onAccept={pixelGrantConsent}
             >
               <FormattedMessage id="gdpr.message" defaultMessage="This website uses cookies to enhance the user experience." />
               {/* TODO

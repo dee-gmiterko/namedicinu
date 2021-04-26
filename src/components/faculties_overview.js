@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button, OverlayTri
 import Img from "gatsby-image";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { FormattedMessage } from 'react-intl';
-import { slugify_faculty, fix_nbsp } from '../common';
+import { slugify_faculty, fixNbsp } from '../common';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
@@ -82,7 +82,7 @@ export default class FacultiesOverview extends Component {
                   <Card.Body>
                     <Card.Title>
                       <AnchorLink to={"/faculties#"+slugify_faculty(item.node)}>
-                        {fix_nbsp(item.node.title)}
+                        {fixNbsp(item.node.title)}
                       </AnchorLink>
                     </Card.Title>
                     <div className="flags">
@@ -114,7 +114,7 @@ export default class FacultiesOverview extends Component {
                       }
                     </div>
                     <Card.Text>
-                      {fix_nbsp(item.node.shortDescription)}
+                      {fixNbsp(item.node.shortDescription)}
                     </Card.Text>
                   </Card.Body>
                   <ListGroup className="list-group-flush checkmark">

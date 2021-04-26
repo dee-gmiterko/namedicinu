@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button, ProgressBar } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { slugify_faculty, fix_nbsp } from '../common';
+import { slugify_faculty, fixNbsp } from '../common';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
@@ -122,7 +122,7 @@ export default class FacultiesQuiz extends Component {
                             <Col xs={12} className="text-left">
                               {index+1}.&nbsp;
                               <AnchorLink to={"/faculties#"+slugify_faculty(item)}>
-                              {fix_nbsp(item.title)}
+                              {fixNbsp(item.title)}
                               </AnchorLink>
                             </Col>
                           </Row>

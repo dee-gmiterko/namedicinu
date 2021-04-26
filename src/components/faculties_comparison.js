@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Table } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl';
-import { slugify_faculty, fix_nbsp } from '../common';
+import { slugify_faculty, fixNbsp } from '../common';
 
 import Markdown from "./markdown";
 
@@ -25,12 +25,12 @@ export default class FacultiesComparison extends Component {
               descriptionPanelCategories[item.category].items.push({
                 key: item.key,
                 value: (
-                  item.value ? fix_nbsp(item.value) : null
+                  item.value ? fixNbsp(item.value) : null
                 ),
               });
             } else {
               descriptionPanelCategories[item.category].titleValue = (
-                item.value ? fix_nbsp(item.value) : null
+                item.value ? fixNbsp(item.value) : null
               );
             }
           });
@@ -186,7 +186,7 @@ export default class FacultiesComparison extends Component {
                     <div className="bg-circle bg-1" />
                   </div>
                   <h2 id={slugify_faculty(item.node)}>
-                    {fix_nbsp(item.node.title)}
+                    {fixNbsp(item.node.title)}
                   </h2>
                 </Col>
               </Row>

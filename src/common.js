@@ -6,6 +6,6 @@ export const slugify_faculty = (node) => {
   })
 };
 
-export const fix_nbsp = (title) => {
+export const fixNbsp = (title) => {
   return title.replace(/&nbsp;/g, "\u00A0");
 }
