@@ -679,3 +679,24 @@ strong {
     color: theme-color("light");
   }
 }
+
+.CookieConsent {
+  background: theme-color("dark");
+  color: theme-color("light");
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+
+  & > div {
+    flex: 1 0 200px;
+    margin: 15px;
+  }
+  & > div:nth-child(2) {
+    flex-grow: 0;
+  }
+}

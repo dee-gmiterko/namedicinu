@@ -46,5 +46,8 @@
   "faculties_comparison.students.signed": "Prihlásení",
   "faculties_comparison.students.accepted": "Prijatí",
   "faculties_comparison.updated_at": "Naposledy aktualizované",
-  "not_found.message": "Narazili ste na cestu, ktorá neexistuje."
+  "not_found.message": "Narazili ste na cestu, ktorá neexistuje.",
+  "gdpr.message": "Tieto stránky používajú súbory cookies. Tým, že na stránkach zotrváte, súhlasíte s tým, že ich môžeme používať.",
+  "gdpr.more": "Viac informácií.",
+  "gdpr.button": "Akceptovať a zatvoriť"
 }

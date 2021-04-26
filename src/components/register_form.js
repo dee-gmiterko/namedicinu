@@ -3,6 +3,7 @@ import { useForm } from '@formspree/react';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+
 import { fix_nbsp } from '../common';
 
 function RegisterForm({ faculties, onChangeNumCourses, locale }) {
@@ -18,12 +19,21 @@ function RegisterForm({ faculties, onChangeNumCourses, locale }) {
   const update = (key, value) => {
     let newState = Object.assign({}, state);
     newState[key] = value;
-    if(key == "country" && value == "sk") {
+    if(key === "country" && value === "sk") {
       newState.physics = 0;
     }
     setState(newState);
     onChangeNumCourses(newState.biology + newState.chemistry + newState.physics);
   };
+
+  const onSubmit = (event) => {
+    const ReactPixel =  require('react-facebook-pixel');
+    ReactPixel.track("CompleteRegistration", {
+      content_name: "Course (" + state.country + ")",
+      value: state.biology + state.chemistry + state.physics
+    });
+    handleSubmit(event);
+  }
 
   if (formState.succeeded) {
     return (
@@ -45,7 +55,7 @@ function RegisterForm({ faculties, onChangeNumCourses, locale }) {
     const submitDisabled = formState.submitting || !(state.biology || state.chemistry || state.physics);
 
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={onSubmit}>
         <input type="hidden" name="_language" value={locale} />
         <input type="text" name="_gotcha" style={{display: "none"}} />
 

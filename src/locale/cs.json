@@ -46,5 +46,8 @@
   "faculties_comparison.students.signed": "Přihlášení",
   "faculties_comparison.students.accepted": "Přijatí",
   "faculties_comparison.updated_at": "Naposled aktualizované",
-  "not_found.message": "Narazili jste na stránku, která neexistuje."
+  "not_found.message": "Narazili jste na stránku, která neexistuje.",
+  "gdpr.message": "Tyto stránky používají cookies. Tím, že na stránkách setrváte, souhlasíte s tím, že je můžeme používat.",
+  "gdpr.more": "Více informací.",
+  "gdpr.button": "Akceptovat a zavřít"
 }
