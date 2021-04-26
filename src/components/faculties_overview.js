@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button, OverlayTri
 import Img from "gatsby-image";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { FormattedMessage } from 'react-intl';
-import { slugify_faculty, fixNbsp } from '../common';
+import { slugifyFaculty, fixNbsp } from '../common';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
@@ -81,7 +81,7 @@ export default class FacultiesOverview extends Component {
                   />
                   <Card.Body>
                     <Card.Title>
-                      <AnchorLink to={"/faculties#"+slugify_faculty(item.node)}>
+                      <AnchorLink to={"/faculties#"+slugifyFaculty(item.node)}>
                         {fixNbsp(item.node.title)}
                       </AnchorLink>
                     </Card.Title>
@@ -128,7 +128,7 @@ export default class FacultiesOverview extends Component {
                     })}
                   </ListGroup>
                   <Card.Body className="flex-grow-0 d-flex justify-content-between">
-                    <Button as={AnchorLink} to={"/faculties#"+slugify_faculty(item.node)}>
+                    <Button as={AnchorLink} to={"/faculties#"+slugifyFaculty(item.node)}>
                       <i className="fas fa-info-circle"></i>&nbsp;
                       <FormattedMessage id="faculties_overview.more_info" defaultMessage="More info" />
                     </Button>

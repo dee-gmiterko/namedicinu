@@ -1,6 +1,6 @@
 import slugify from 'slugify';
 
-export const slugify_faculty = (node) => {
+export const slugifyFaculty = (node) => {
   return "f-" + slugify(node.shortTitle||"", {
     remove: '.'
   })

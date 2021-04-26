@@ -19,20 +19,17 @@ export default class Lecturers extends Component {
           </Col>
         </Row>
         {lecturers.edges.map((item, index) => {
-          const photo_col = (
-            <Col md={4} className="col-photo">
-              <div className="square">
-                <div className="circle-img-half-border">
-                  <Img
-                    fluid={item.node.photo.fluid}
-                  />
-                </div>
-              </div>
-            </Col>
-          )
           return (
-            <Row key={index} className="p-3 justify-content-center">
-              {index % 2 === 0 && photo_col}
+            <Row key={index} className={"p-3 justify-content-center" + (index % 2 === 0 ? "" : " flex-row-reverse")}>
+              <Col md={4} className="col-photo">
+                <div className="square">
+                  <div className="circle-img-half-border">
+                    <Img
+                      fluid={item.node.photo.fluid}
+                    />
+                  </div>
+                </div>
+              </Col>
               <Col md={8}>
                 <h3>
                   {item.node.name}
@@ -45,7 +42,6 @@ export default class Lecturers extends Component {
                   <Markdown value={item.node.description} className="text-justify" />
                 </div>
               </Col>
-              {index % 2 === 1 && photo_col}
             </Row>
           );
         })}

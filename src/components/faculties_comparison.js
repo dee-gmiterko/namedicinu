@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Table } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl';
-import { slugify_faculty, fixNbsp } from '../common';
+import { slugifyFaculty, fixNbsp } from '../common';
 
 import Markdown from "./markdown";
 
@@ -185,7 +185,7 @@ export default class FacultiesComparison extends Component {
                   <div className="bg-circle-container">
                     <div className="bg-circle bg-1" />
                   </div>
-                  <h2 id={slugify_faculty(item.node)}>
+                  <h2 id={slugifyFaculty(item.node)}>
                     {fixNbsp(item.node.title)}
                   </h2>
                 </Col>

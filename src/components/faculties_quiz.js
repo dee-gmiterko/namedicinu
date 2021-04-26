@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button, ProgressBar } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { slugify_faculty, fixNbsp } from '../common';
+import { slugifyFaculty, fixNbsp } from '../common';
+import { pixelTrackQuiz } from '../fb-pixel';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.scss";
@@ -32,7 +33,12 @@ export default class FacultiesQuiz extends Component {
         [index]: option
       })
     });
-    this.sliderRef.slickNext()
+    this.sliderRef.slickNext();
+    try {
+      pixelTrackQuiz(index, option)
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   render() {
@@ -121,7 +127,7 @@ export default class FacultiesQuiz extends Component {
                           <Row as="dt">
                             <Col xs={12} className="text-left">
                               {index+1}.&nbsp;
-                              <AnchorLink to={"/faculties#"+slugify_faculty(item)}>
+                              <AnchorLink to={"/faculties#"+slugifyFaculty(item)}>
                               {fixNbsp(item.title)}
                               </AnchorLink>
                             </Col>
