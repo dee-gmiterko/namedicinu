@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useForm } from '@formspree/react';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp } from '../common';
 
 function RegisterForm({ faculties, onChangeNumCourses, locale }) {
+  const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
     {
@@ -212,6 +213,11 @@ function RegisterForm({ faculties, onChangeNumCourses, locale }) {
                       )}
                     </FormattedMessage>
                   </Col>
+                  <input type="hidden" name="courses" value={[
+                    (state.biology ? intl.formatMessage({id: "register.course.biology"}) : ""),
+                    (state.chemistry ? intl.formatMessage({id: "register.course.chemistry"}) : ""),
+                    (state.physics ? intl.formatMessage({id: "register.course.physics"}) : ""),
+                  ].filter(Boolean).join(", ")} />
                 </Row>
               </>
             )}
