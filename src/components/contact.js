@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import MessengerMessageUs from 'react-messenger-message-us';
 import { FormattedMessage } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { pixelTrackContact } from '../fb-pixel';
 
 export default class service extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
   render() {
     const { site } = this.props;
     return (
@@ -36,7 +40,16 @@ export default class service extends Component {
                       <FormattedMessage id="contact.messenger" defaultMessage="Messenger" />
                     </dt>
                     <dd className="col-sm-8">
-                      <MessengerMessageUs pageId={site.fbPageId} appId={site.fbAppId} size="large" />
+                      <Button
+                        href={"https://m.me/" + site.fbPageId}
+                        onClick={pixelTrackContact}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        variant="primary"
+                        size="sm"
+                      >
+                        <i className="fab fa-facebook-messenger" /> <FormattedMessage id="contact.message_us" defaultMessage="Message Us" />
+                      </Button>
                     </dd>
                   </Row>
                 }

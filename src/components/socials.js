@@ -1,6 +1,7 @@
 import React from "react";
 import { Dropdown } from 'react-bootstrap';
 import PropTypes from "prop-types";
+import { pixelTrackContact } from '../fb-pixel';
 
 const Socials = ({ facebook, twitter, instagram, linkdin, github, email }) => {
   return (
@@ -73,6 +74,7 @@ const Socials = ({ facebook, twitter, instagram, linkdin, github, email }) => {
             <Dropdown.Toggle
               className="far fa-envelope"
               href={"mailto:"+email}
+              onClick={pixelTrackContact}
               target="_blank"
               rel="noopener noreferrer"
               style={{background: '#303030', border: 'none'}}

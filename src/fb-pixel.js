@@ -37,6 +37,10 @@ export const pixelTrackQuiz = (question, answer) => {
   ReactPixel.trackCustom("Quiz", {question, answer});
 }
 
+export const pixelTrackContact = () => {
+  ReactPixel.trackCustom("Contact");
+}
+
 export const pixelGrantConsent = () => {
   if (ReactPixel) {
     ReactPixel.grantConsent();
