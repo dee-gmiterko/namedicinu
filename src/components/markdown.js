@@ -1,16 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// czech and slovak languages use those instead..
-export const fix_quotes = (html) => {
-  return html.replace(/"(.*?)”/g, '„$1“');
-}
+import { fixQuotes } from "../common";
 
 const Markdown = ({ value }) => {
   return (
     <div
       dangerouslySetInnerHTML={{
-        __html: fix_quotes(value.childMarkdownRemark.html)
+        __html: fixQuotes(value.childMarkdownRemark.html)
       }}
     />
   );

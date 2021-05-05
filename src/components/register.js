@@ -72,7 +72,7 @@ export default class Register extends Component {
                     <FormattedMessage id="register.discount.hint" defaultMessage="" />
                     {site.price[courses-1].discount > 0 &&
                       <>
-                        <> - </>
+                        <> – </>
                         <FormattedMessage id="register.discount" defaultMessage="discount" />
                         <> </>
                         <FormattedNumber

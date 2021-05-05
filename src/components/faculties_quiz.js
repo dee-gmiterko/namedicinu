@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button, ProgressBar } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { slugifyFaculty, fixNbsp } from '../common';
+import { slugifyFaculty, fixAll } from '../common';
 import { pixelTrackQuiz } from '../fb-pixel';
 
 import Slider from "react-slick";
@@ -98,7 +98,7 @@ export default class FacultiesQuiz extends Component {
                 {quizQuestions.edges.map((item, index) => {
                   return (
                     <div key={index} className="d-flex flex-column justify-content-around">
-                      <div className="question">{index+1}. {item.node.question}</div>
+                      <div className="question">{index+1}. {fixAll(item.node.question)}</div>
                       <ul className="options">
                         {["A", "B", "C"].map((char) => {
                           if (item.node["answer"+char]) {
@@ -128,7 +128,7 @@ export default class FacultiesQuiz extends Component {
                             <Col xs={12} className="text-left">
                               {index+1}.&nbsp;
                               <AnchorLink to={"/faculties#"+slugifyFaculty(item)}>
-                              {fixNbsp(item.title)}
+                              {fixAll(item.title)}
                               </AnchorLink>
                             </Col>
                           </Row>
