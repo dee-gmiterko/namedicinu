@@ -12,6 +12,13 @@ const Products = ({ site, products, faculties, locale }) => {
   const handleClose = () => setShow(null);
   const handleShow = (action) => setShow(action);
 
+  const sizing = {
+    3: 4,
+    4: 3,
+    5: 4,
+    6: 4,
+  }[products.length];
+
   return (
     <Container className="products">
       <Row>
@@ -27,7 +34,7 @@ const Products = ({ site, products, faculties, locale }) => {
           const priceMax = Math.max( ...item.node.price.map(price => price.price) );
 
           return (
-            <Col md={3} key={index}>
+            <Col md={sizing} key={index}>
               <Card>
                 <Card.Body>
                   <Card.Title className="text-center">
@@ -38,7 +45,7 @@ const Products = ({ site, products, faculties, locale }) => {
                       Array(item.node.iconCount).fill(<i className={item.node.icon} />)
                     }
                   </Card.Text>
-                  <Card.Text className="product-description">
+                  <Card.Text className="product-description text-justify">
                     <Markdown value={item.node.description} />
                   </Card.Text>
                   <Card.Text className="product-price text-center">

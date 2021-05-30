@@ -22,13 +22,12 @@ export default class FAQ extends Component {
               {faq.edges.map((item, index) => {
                 return (
                   <>
-                    <Accordion.Toggle as={Card.Header} eventKey={String(index)}>
+                    <Accordion.Toggle as="h3" eventKey={String(index)}>
                       {item.node.question}
+                      <i class="fas fa-chevron-down float-right" />
                     </Accordion.Toggle>
-                    <Accordion.Collapse eventKey={String(index)}>
-                      <Card.Body>
-                        <Markdown value={item.node.answer} />
-                      </Card.Body>
+                    <Accordion.Collapse eventKey={String(index)} className="text-justify">
+                      <Markdown value={item.node.answer} />
                     </Accordion.Collapse>
                   </>
                 );

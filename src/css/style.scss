@@ -30,6 +30,8 @@ $btn-padding-x-lg: 2rem;
 $navbar-nav-link-padding-x: 1rem;
 $custom-control-indicator-size: 1.6rem;
 
+$modal-content-border-width: 0;
+
 @import 'functions.scss';
 @import '~bootstrap/scss/bootstrap.scss';
 
@@ -293,12 +295,13 @@ p {
       color: theme-color("secondary");
 
       div {
-        transition: transform 300ms;
+        transition: transform 300ms, color 300ms;
       }
 
       &.active, &:hover {
         div {
           transform: translateX(1rem);
+          color: darken(theme-color("secondary"), 20%);
         }
       }
     }
@@ -395,6 +398,12 @@ p {
 }
 
 .product-modal {
+  .modal-title {
+    color: theme-color("secondary");
+    font-weight: 300;
+    font-size: $h2-font-size;
+  }
+
   form {
     a {
       color: theme-color("danger");
@@ -545,9 +554,14 @@ p {
 }
 
 .faq {
-  .card-header {
-    font-weight: normal;
+  h3 {
     cursor: pointer;
+
+    i {
+      color: theme-color("dark");
+      font-size: 1rem;
+      line-height: 2rem;
+    }
   }
 }
 

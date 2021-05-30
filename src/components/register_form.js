@@ -50,7 +50,8 @@ function RegisterForm({ faculties, showCourseSelector, onChangeNumCourses, local
     );
 
   } else {
-    const submitDisabled = formState.submitting || !(state.biology || state.chemistry || state.physics);
+    const submitDisabled = formState.submitting
+      || (showCourseSelector && !(state.biology || state.chemistry || state.physics));
 
     return (
       <Form onSubmit={onSubmit}>
@@ -263,7 +264,7 @@ function RegisterForm({ faculties, showCourseSelector, onChangeNumCourses, local
               <FormattedMessage id="register.consent" />
             </Form.Text>
           </Col>
-          <Col md={12} className="text-right p-3">
+          <Col md={12} className="text-right">
             <Button variant="primary" type="submit" size="lg" disabled={submitDisabled}>
               <FormattedMessage id="register.submit" defaultMessage="Submit" />
             </Button>
