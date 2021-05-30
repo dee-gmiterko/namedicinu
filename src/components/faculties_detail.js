@@ -53,7 +53,7 @@ export default class FacultiesDetail extends Component {
         <ListGroupItem key={index}>
           <Row noGutters={true}>
             <Col as="dt" xs={4}>
-              <strong>{categoryTitle}</strong>
+              <em>{categoryTitle}</em>
             </Col>
             <Col as="dd" xs={8}>
               {category.titleValue}

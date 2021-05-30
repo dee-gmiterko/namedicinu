@@ -10,7 +10,7 @@ export default class Header extends Component {
     return (
       <Navbar collapseOnSelect expand="lg" variant="bg-1" id="home">
         <Container>
-          <Navbar.Brand href="/#home">
+          <Navbar.Brand as={AnchorLink} to={`/`}>
             {site.logo ? (
               <Img
                 fluid={site.logo.fluid}
@@ -29,11 +29,11 @@ export default class Header extends Component {
                 <FormattedMessage id="title.course" defaultMessage="Course" />
               </Nav.Link>
 
-              <Nav.Link as={AnchorLink} key="Faculties" to={`/faculties`} >
+              <Nav.Link as={AnchorLink} key="Faculties" to={`/faculties`} className="ml-lg-3" >
                 <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
               </Nav.Link>
 
-              <Nav.Link as={AnchorLink} key="Register" to={`/#Register`} className="btn btn-primary ml-lg-5" >
+              <Nav.Link as={AnchorLink} key="Register" to={`/#Products`} className="btn btn-primary ml-lg-4" >
                 <FormattedMessage id="title.register" defaultMessage="Register" />
               </Nav.Link>
 

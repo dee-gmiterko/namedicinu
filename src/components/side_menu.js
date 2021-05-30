@@ -5,7 +5,7 @@ import { slugifyFaculty, fixNbsp } from '../common';
 
 export const SideMenu = ({ items }) => {
   return (
-    <ul className="side-menu pt-5">
+    <ul className="side-menu pt-3">
       {items.map((item, index) => {
         return (
           <li key={index}>
@@ -53,14 +53,14 @@ export const CourseSideMenu = ({ visible }) => {
       },
       {
         link: "/#Products",
-        name: <FormattedMessage id="title.register" defaultMessage="Register" />,
+        name: <FormattedMessage id="title.products" defaultMessage="Products" />,
         active: lastVisible === 4,
       },
-      {
-        link: "/#FAQ",
-        name: <FormattedMessage id="title.faq" defaultMessage="FAQ" />,
-        active: lastVisible === 5,
-      },
+      // {
+      //   link: "/#FAQ",
+      //   name: <FormattedMessage id="title.faq" defaultMessage="FAQ" />,
+      //   active: lastVisible === 5,
+      // },
       {
         link: "/#Contact",
         name: <FormattedMessage id="title.contact" defaultMessage="Contact" />,

@@ -9,7 +9,7 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
   const intl = useIntl();
   const [courses, setCourses] = useState(0);
 
-  const formatStyle = {style: 'currency', currency: (locale === "sk" ? "EUR" : "CZK")};
+  const formatStyle = {style: 'currency', currency: (locale === "sk" ? "EUR" : "CZK"), maximumFractionDigits: 0};
   const hasCourses = product.action === "BuyCourse";
   const priceIndex = courses ? courses-1 : 0;
 

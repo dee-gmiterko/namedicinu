@@ -6,6 +6,10 @@ export const slugifyFaculty = (node) => {
   })
 };
 
+export const fixPrepositions = (html) => {
+  return html.replace(/((^|\W)(s|z|v|k|so|zo|vo)) (\w+)/gi, "$1&nbsp;$4");
+}
+
 export const fixNbsp = (html) => {
   return html.replace(/&nbsp;/g, "\u00A0");
 }
@@ -15,7 +19,7 @@ export const fixQuotes = (html) => {
   return html.replace(/\s"(.*?)[”"]/g, '„$1“');
 }
 
-export const fixAll = (html) => fixQuotes(fixNbsp(html))
+export const fixAll = (html) => fixQuotes(fixNbsp(fixPrepositions(html)))
 
 export const replaceParams = (html, params) => {
   if (params) {

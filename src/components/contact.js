@@ -59,7 +59,7 @@ export default class service extends Component {
               <p>
                 <FormattedMessage id="contact.register_prompt" defaultMessage="What are you waiting for?" />
               </p>
-              <Button as={AnchorLink} to="/#Register" variant="primary">
+              <Button as={AnchorLink} to="/#Products" variant="primary">
                 <FormattedMessage id="contact.register" defaultMessage="Submit" />
               </Button>
             </Col>

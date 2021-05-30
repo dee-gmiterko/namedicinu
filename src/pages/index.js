@@ -18,7 +18,7 @@ import Contact from "../components/contact";
 import { CourseSideMenu } from "../components/side_menu";
 
 const IndexPage = ({ data, pageContext }) => {
-  const [visible, setVisible] = useState(Array(5).fill(false));
+  const [visible, setVisible] = useState(Array(7).fill(false));
 
   const setVisibleIndex = (index, isVisible) => {
     let newVisible = visible.slice();
@@ -68,9 +68,11 @@ const IndexPage = ({ data, pageContext }) => {
           <VisibilitySensor onChange={setVisibleIndex.bind(null, 4)} partialVisibility={true} minTopValue={400}>
             <Products key="Products" site={data.contentfulSiteInformation} products={data.allContentfulProducts} faculties={data.allContentfulFaculties} locale={pageContext.locale} />
           </VisibilitySensor>
+          {/*
           <VisibilitySensor onChange={setVisibleIndex.bind(null, 5)} partialVisibility={true} minTopValue={400}>
             <FAQ key="FAQ" faq={data.allContentfulFaq} />
           </VisibilitySensor>
+          */}
         </Col>
       </Row>
 

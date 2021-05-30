@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { fixQuotes, replaceParams } from "../common";
+import { fixAll, replaceParams } from "../common";
 
 const Markdown = ({ value, params }) => {
   return (
     <div
       dangerouslySetInnerHTML={{
-        __html: replaceParams(fixQuotes(value.childMarkdownRemark.html), params)
+        __html: replaceParams(fixAll(value.childMarkdownRemark.html), params)
       }}
     />
   );

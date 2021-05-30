@@ -17,7 +17,7 @@ const Products = ({ site, products, faculties, locale }) => {
     4: 3,
     5: 4,
     6: 4,
-  }[products.length];
+  }[products.edges.length];
 
   return (
     <Container className="products">
@@ -34,7 +34,7 @@ const Products = ({ site, products, faculties, locale }) => {
           const priceMax = Math.max( ...item.node.price.map(price => price.price) );
 
           return (
-            <Col md={sizing} key={index}>
+            <Col xs={12} md={sizing} className="mb-3" key={index}>
               <Card>
                 <Card.Body>
                   <Card.Title className="text-center">
