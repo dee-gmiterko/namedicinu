@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
@@ -42,10 +42,12 @@ const Products = ({ site, products, faculties, locale }) => {
                   </Card.Title>
                   <Card.Text className="product-icon text-center">
                     {
-                      Array(item.node.iconCount).fill(<i className={item.node.icon} />)
+                      Array(item.node.iconCount).fill(0).map((_, index) => {
+                        return <i className={item.node.icon} key={index} />
+                      })
                     }
                   </Card.Text>
-                  <Card.Text className="product-description text-justify">
+                  <Card.Text as="div" className="product-description text-justify">
                     <Markdown value={item.node.description} />
                   </Card.Text>
                   <Card.Text className="product-price text-center">

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card, Modal, Button } from 'react-bootstrap';
-import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl';
-import AnimateOnChange from 'react-animate-on-change';
+import { Row, Col, Modal } from 'react-bootstrap';
+import { useIntl } from 'react-intl';
 
-import Products from "../components/products";
 import Markdown from "./markdown";
 import RegisterForm from "./register_form";
 
@@ -39,7 +37,7 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
             <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
           </Col>
           <Col md={7} className="p-5 mb-5 bg-1">
-            <RegisterForm faculties={faculties} showCourseSelector={product.action == "BuyCourse"} onChangeNumCourses={setCourses} locale={locale} />
+            <RegisterForm faculties={faculties} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} locale={locale} />
           </Col>
         </Row>
       </Modal.Body>
