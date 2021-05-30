@@ -6,6 +6,10 @@ import Markdown from "./markdown";
 import Socials from "./socials"
 
 export default class Banner extends Component {
+  shouldComponentUpdate() {
+    return false; // static component
+  }
+  
   render() {
     const { site } = this.props;
     return (

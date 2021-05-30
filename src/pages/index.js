@@ -1,49 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
+import { Row, Col } from 'react-bootstrap';
+import { StickyContainer, Sticky } from 'react-sticky';
+import VisibilitySensor from 'react-visibility-sensor';
 
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 
 import Banner from "../components/banner";
 import Course from "../components/course";
-import Register from "../components/register";
+import Lecture from "../components/lecture";
 import Testimonials from "../components/testimonials";
 import Lecturers from "../components/lecturers";
+import Products from "../components/products";
+import FAQ from "../components/faq";
 import Contact from "../components/contact";
+import { CourseSideMenu } from "../components/side_menu";
 
-const IndexPage = ({ data, pageContext }) => (
-  <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
-    <Seo
-      lang={pageContext.locale}
-      siteName={data.contentfulSiteInformation.siteName}
-      siteDescription={data.contentfulSiteInformation.siteDescription}
-      image={"https:"+data.contentfulSiteInformation.logo.file.url}
-      keywords={data.contentfulSiteInformation.siteKeywords}
-    />
-    <Banner site={data.contentfulSiteInformation}></Banner>
+const IndexPage = ({ data, pageContext }) => {
+  const [visible, setVisible] = useState(Array(5).fill(false));
 
-    {
-      data.contentfulSiteInformation.menus.includes("Course") &&
-      <Course key="Course" site={data.contentfulSiteInformation}></Course>
-    }
-    {
-      data.contentfulSiteInformation.menus.includes("Register") &&
-      <Register key="Register" site={data.contentfulSiteInformation} faculties={data.allContentfulFaculties} locale={pageContext.locale}></Register>
-    }
-    {
-      data.contentfulSiteInformation.menus.includes("Testimonials") &&
-      <Testimonials key="Testimonials" site={data.contentfulSiteInformation} testimonials={data.allContentfulTestimonials}></Testimonials>
-    }
-    {
-      data.contentfulSiteInformation.menus.includes("Lecturers") &&
-      <Lecturers key="Lecturers" site={data.contentfulSiteInformation} lecturers={data.allContentfulLecturers}></Lecturers>
-    }
-    {
-      data.contentfulSiteInformation.menus.includes("Contact") &&
-      <Contact key="Contact" site={data.contentfulSiteInformation}></Contact>
-    }
-  </Layout>
-);
+  const setVisibleIndex = (index, isVisible) => {
+    let newVisible = visible.slice();
+    newVisible[index] = isVisible;
+    setVisible(newVisible);
+  }
+
+  return (
+    <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
+      <Seo
+        lang={pageContext.locale}
+        siteName={data.contentfulSiteInformation.siteName}
+        siteDescription={data.contentfulSiteInformation.siteDescription}
+        image={"https:"+data.contentfulSiteInformation.logo.file.url}
+        keywords={data.contentfulSiteInformation.siteKeywords}
+      />
+
+      <Banner site={data.contentfulSiteInformation}></Banner>
+
+      <Row>
+        <Col xl={2} className="d-none d-xl-block">
+          <StickyContainer style={{height: "100%"}}>
+            <Sticky>
+              {({ style }) => {
+                return (
+                  <div style={style}>
+                    <CourseSideMenu visible={visible} />
+                  </div>
+                );
+              }}
+            </Sticky>
+          </StickyContainer>
+        </Col>
+        <Col xl={10}>
+          <VisibilitySensor onChange={setVisibleIndex.bind(null, 0)} partialVisibility={true} minTopValue={400}>
+            <Course key="Course" site={data.contentfulSiteInformation} />
+          </VisibilitySensor>
+          <VisibilitySensor onChange={setVisibleIndex.bind(null, 1)} partialVisibility={true} minTopValue={400}>
+            <Lecture key="Lecture" site={data.contentfulSiteInformation} />
+          </VisibilitySensor>
+          <VisibilitySensor onChange={setVisibleIndex.bind(null, 2)} partialVisibility={true} minTopValue={400}>
+            <Testimonials key="Testimonials" site={data.contentfulSiteInformation} testimonials={data.allContentfulTestimonials} />
+          </VisibilitySensor>
+          <VisibilitySensor onChange={setVisibleIndex.bind(null, 3)} partialVisibility={true} minTopValue={400}>
+            <Lecturers key="Lecturers" site={data.contentfulSiteInformation} lecturers={data.allContentfulLecturers} />
+          </VisibilitySensor>
+          <VisibilitySensor onChange={setVisibleIndex.bind(null, 4)} partialVisibility={true} minTopValue={400}>
+            <Products key="Products" site={data.contentfulSiteInformation} products={data.allContentfulProducts} faculties={data.allContentfulFaculties} locale={pageContext.locale} />
+          </VisibilitySensor>
+          <VisibilitySensor onChange={setVisibleIndex.bind(null, 5)} partialVisibility={true} minTopValue={400}>
+            <FAQ key="FAQ" faq={data.allContentfulFaq} />
+          </VisibilitySensor>
+        </Col>
+      </Row>
+
+      <VisibilitySensor onChange={setVisibleIndex.bind(null, 6)}>
+        <Contact key="Contact" site={data.contentfulSiteInformation}></Contact>
+      </VisibilitySensor>
+
+    </Layout>
+  )
+};
 
 export default IndexPage;
 
@@ -53,7 +90,6 @@ export const pageQuery = graphql`
       siteName
       siteDescription
       siteKeywords
-      menus
       fbPageId
       fbAppId
       logo {
@@ -100,12 +136,7 @@ export const pageQuery = graphql`
           html
         }
       }
-      registerDescription {
-        childMarkdownRemark {
-          html
-        }
-      }
-      registerDiscount {
+      lectureDescription {
         childMarkdownRemark {
           html
         }
@@ -119,10 +150,6 @@ export const pageQuery = graphql`
         childMarkdownRemark {
           html
         }
-      }
-      price {
-        price
-        discount
       }
     }
     allContentfulTestimonials(
@@ -170,6 +197,54 @@ export const pageQuery = graphql`
               srcWebp
               srcSetWebp
               sizes
+            }
+          }
+        }
+      }
+    }
+    allContentfulProducts(
+      filter: {
+        node_locale: { eq: $locale }
+      }
+      sort: { fields: order }
+    ) {
+      edges {
+        node {
+          title
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+          action
+          actionName
+          price {
+            price
+            discount
+          }
+          registerTitle
+          registerDescription {
+            childMarkdownRemark {
+              html
+            }
+          }
+          icon
+          iconCount
+        }
+      }
+    }
+    allContentfulFaq(
+      filter: {
+        node_locale: { eq: $locale }
+      }
+      sort: { fields: order }
+    ) {
+      edges {
+        node {
+          question
+          answer {
+            childMarkdownRemark {
+              html
             }
           }
         }

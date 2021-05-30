@@ -9,10 +9,10 @@ if (typeof window === "undefined") {
 
 export const pixelInit = () => {
   if (ReactPixel) {
-    ReactPixel.init('460630345218830', null, {
-      autoConfig: true,
-      debug: true,
-    });
+    // ReactPixel.init('460630345218830', null, {
+    //   autoConfig: true,
+    //   debug: false,
+    // });
     if(!getCookieConsentValue()) {
       ReactPixel.revokeConsent();
     }
@@ -31,6 +31,10 @@ export const pixelTrackPage = () => {
   if (ReactPixel) {
     ReactPixel.pageView();
   }
+}
+
+export const pixelTrackPlayLecuture = () => {
+  ReactPixel.trackCustom("PlayLecuture");
 }
 
 export const pixelTrackQuiz = (question, answer) => {

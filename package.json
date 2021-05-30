@@ -36,6 +36,9 @@
     "react-helmet": "^6.1.0",
     "react-intl": "^5.13.2",
     "react-slick": "^0.28.1",
+    "react-sticky": "^6.0.3",
+    "react-visibility-sensor": "^5.1.1",
+    "react-youtube": "^7.13.1",
     "sass": "^1.32.8",
     "slick-carousel": "^1.8.1",
     "slugify": "^1.5.0"

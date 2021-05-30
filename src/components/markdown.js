@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { fixQuotes } from "../common";
+import { fixQuotes, replaceParams } from "../common";
 
-const Markdown = ({ value }) => {
+const Markdown = ({ value, params }) => {
   return (
     <div
       dangerouslySetInnerHTML={{
-        __html: fixQuotes(value.childMarkdownRemark.html)
+        __html: replaceParams(fixQuotes(value.childMarkdownRemark.html), params)
       }}
     />
   );
@@ -18,7 +18,8 @@ Markdown.propTypes = {
     childMarkdownRemark: PropTypes.shape({
       html: PropTypes.string.isRequired
     }).isRequired
-  }).isRequired
+  }).isRequired,
+  params: PropTypes.object,
 };
 Markdown.defaultProps = {
   value: {

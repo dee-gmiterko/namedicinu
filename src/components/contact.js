@@ -5,8 +5,8 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { pixelTrackContact } from '../fb-pixel';
 
 export default class service extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
+  shouldComponentUpdate() {
+    return false; // static component
   }
 
   render() {

@@ -28,6 +28,7 @@ $border-radius-sm: 0;
 
 $btn-padding-x-lg: 2rem;
 $navbar-nav-link-padding-x: 1rem;
+$custom-control-indicator-size: 1.6rem;
 
 @import 'functions.scss';
 @import '~bootstrap/scss/bootstrap.scss';
@@ -238,9 +239,15 @@ dt {
   font-weight: normal;
 }
 
-strong {
+em {
   color: theme-color("danger");
-  font-weight: inherit;
+  font-style: normal;
+}
+
+p {
+  strong {
+    font-weight: normal;
+  }
 }
 
 .btn-primary {
@@ -273,6 +280,46 @@ strong {
 
   .navbar-toggler-icon {
     color: theme-color("dark");
+  }
+}
+
+.side-menu {
+  li {
+    margin-bottom: 0.75rem;
+    list-style: none;
+
+    a {
+      display: block;
+      color: theme-color("secondary");
+
+      div {
+        transition: transform 300ms;
+      }
+
+      &.active, &:hover {
+        div {
+          transform: translateX(1rem);
+        }
+      }
+    }
+  }
+
+  .on-small {
+    display: none;
+  }
+
+  .on-large {
+    display: inline;
+  }
+
+  @media (max-width: 1800px) {
+    .on-small {
+      display: inline;
+    }
+
+    .on-large {
+      display: none;
+    }
   }
 }
 
@@ -347,7 +394,7 @@ strong {
   }
 }
 
-.register {
+.product-modal {
   form {
     a {
       color: theme-color("danger");
@@ -359,6 +406,15 @@ strong {
 
     .help {
       color: #ccc;
+    }
+
+    .switch-bg {
+      background: theme-color("light");
+      padding: 1rem 1.5rem;
+
+      label {
+        display: block;
+      }
     }
   }
 
@@ -458,6 +514,40 @@ strong {
   }
   .designation {
     font-size: 1.5rem;
+  }
+}
+
+.products {
+  .card {
+    height: 100%;
+
+    .product-icon {
+      font-size: 1.2rem;
+      color: rgba(0, 0, 0, 0.2);
+      i {
+        margin: 0 3px;
+      }
+    }
+
+    .product-description {
+      min-height: 100px;
+    }
+
+    .product-price {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+.product-modal {
+  width: 100%;
+  max-width: 90%;
+}
+
+.faq {
+  .card-header {
+    font-weight: normal;
+    cursor: pointer;
   }
 }
 

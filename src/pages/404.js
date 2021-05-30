@@ -46,7 +46,6 @@ export const pageQuery = graphql`
       siteName
       siteDescription
       siteKeywords
-      menus
       logo {
         file {
           url

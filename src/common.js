@@ -16,3 +16,13 @@ export const fixQuotes = (html) => {
 }
 
 export const fixAll = (html) => fixQuotes(fixNbsp(html))
+
+export const replaceParams = (html, params) => {
+  if (params) {
+    Object.keys(params).forEach(key => {
+      var regexp = new RegExp('\\{'+key+'\\}', 'gi');
+      html = html.replace(regexp, params[key]);
+    });
+  }
+  return html;
+}

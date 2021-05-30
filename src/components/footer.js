@@ -4,6 +4,10 @@ import { Container, Row, Col} from 'react-bootstrap';
 import Socials from "./socials";
 
 export default class footer extends Component {
+  shouldComponentUpdate() {
+    return false; // static component
+  }
+
   render() {
     return (
       <div className="site-footer bg-secondary" id="footer">

@@ -6,6 +6,10 @@ import { Container } from 'react-bootstrap';
 import Markdown from "./markdown";
 
 export default class Course extends Component {
+  shouldComponentUpdate() {
+    return false; // static component
+  }
+  
   render() {
     const { site } = this.props;
 

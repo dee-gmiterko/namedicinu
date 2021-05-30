@@ -6,6 +6,10 @@ import { FormattedMessage } from 'react-intl';
 import Markdown from "./markdown";
 
 export default class Lecturers extends Component {
+  shouldComponentUpdate() {
+    return false; // static component
+  }
+  
   render() {
     const { site, lecturers } = this.props;
     return (

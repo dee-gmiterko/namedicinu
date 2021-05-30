@@ -24,45 +24,19 @@ export default class Header extends Component {
           </Navbar.Toggle>
           <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
             <Nav>
-              <Nav.Link as={AnchorLink} key="home" to="/#home" >
-                <FormattedMessage id="title.home" defaultMessage="Home" />
+
+              <Nav.Link as={AnchorLink} key="Course" to={`/`} >
+                <FormattedMessage id="title.course" defaultMessage="Course" />
               </Nav.Link>
-              {
-                site.menus.includes("Faculties") &&
-                <Nav.Link as={AnchorLink} key="Faculties" to={`/faculties/#Faculties`} >
-                  <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
-                </Nav.Link>
-              }
-              {
-                site.menus.includes("Course") &&
-                <Nav.Link as={AnchorLink} key="Course" to={`/#Course`} >
-                  <FormattedMessage id="title.course" defaultMessage="Course" />
-                </Nav.Link>
-              }
-              {
-                site.menus.includes("Testimonials") &&
-                <Nav.Link as={AnchorLink} key="Testimonials" to={`/#Testimonials`} >
-                  <FormattedMessage id="title.testimonials" defaultMessage="Testimonials" />
-                </Nav.Link>
-              }
-              {
-                site.menus.includes("Lecturers") &&
-                <Nav.Link as={AnchorLink} key="Lecturers" to={`/#Lecturers`} >
-                  <FormattedMessage id="title.lecturers" defaultMessage="Lecturers" />
-                </Nav.Link>
-              }
-              {
-                site.menus.includes("Contact") &&
-                <Nav.Link as={AnchorLink} key="Contact" to={`/#Contact`} >
-                  <FormattedMessage id="title.contact" defaultMessage="Contact" />
-                </Nav.Link>
-              }
-              {
-                site.menus.includes("Register") &&
-                <Nav.Link as={AnchorLink} key="Register" to={`/#Register`} className="btn btn-primary ml-lg-5" >
-                  <FormattedMessage id="title.register" defaultMessage="Register" />
-                </Nav.Link>
-              }
+
+              <Nav.Link as={AnchorLink} key="Faculties" to={`/faculties`} >
+                <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
+              </Nav.Link>
+
+              <Nav.Link as={AnchorLink} key="Register" to={`/#Register`} className="btn btn-primary ml-lg-5" >
+                <FormattedMessage id="title.register" defaultMessage="Register" />
+              </Nav.Link>
+
             </Nav>
           </Navbar.Collapse>
         </Container>

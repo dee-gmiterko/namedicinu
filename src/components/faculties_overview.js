@@ -53,6 +53,10 @@ var sliderSettings = {
 };
 
 export default class FacultiesOverview extends Component {
+  shouldComponentUpdate() {
+    return false; // static component
+  }
+
   render() {
     const { site, faculties } = this.props;
     return (

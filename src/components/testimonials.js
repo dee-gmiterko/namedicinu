@@ -20,6 +20,10 @@ var sliderSettings = {
 };
 
 export default class Testimonials extends Component {
+  shouldComponentUpdate() {
+    return false; // static component
+  }
+  
   render() {
     const { site, testimonials } = this.props;
     return (

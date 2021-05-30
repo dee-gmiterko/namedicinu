@@ -7,15 +7,15 @@ import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp } from '../common';
 
-function RegisterForm({ faculties, onChangeNumCourses, locale }) {
+function RegisterForm({ faculties, showCourseSelector, onChangeNumCourses, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
     {
       country: "cz",
-      biology: true,
-      chemistry: true,
-      physics: true,
+      biology: false,
+      chemistry: false,
+      physics: false,
     }
   );
   const update = (key, value) => {
@@ -165,64 +165,74 @@ function RegisterForm({ faculties, onChangeNumCourses, locale }) {
           </FormattedMessage>
         </Form.Group>
 
-        <Form.Group controlId="registerCourses">
-          <FormattedMessage id="register.courses" defaultMessage="Courses">
-            {(l_courses) => (
-              <>
-                <Form.Label>
-                  {l_courses}
-                </Form.Label>
-                <Row>
-                  <Col xs={4}>
-                    <FormattedMessage id="register.course.biology" defaultMessage="Biology">
-                      {(label) => (
-                        <Form.Check inline
-                          label={label}
-                          type="checkbox"
-                          id="biology"
-                          checked={state.biology}
-                          onChange={event => update("biology", event.target.checked)}
-                        />
-                      )}
-                    </FormattedMessage>
-                  </Col>
-                  <Col xs={4}>
-                    <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry">
-                      {(label) => (
-                        <Form.Check inline
-                          label={label}
-                          type="checkbox"
-                          id="chemistry"
-                          checked={state.chemistry}
-                          onChange={event => update("chemistry", event.target.checked)}
-                        />
-                      )}
-                    </FormattedMessage>
-                  </Col>
-                  <Col xs={4}>
-                    <FormattedMessage id="register.course.physics" defaultMessage="Physics">
-                      {(label) => (
-                        <Form.Check inline
-                          label={label}
-                          type="checkbox"
-                          id="physics"
-                          disabled={state.country === "sk"}
-                          checked={state.physics}
-                          onChange={event => update("physics", event.target.checked)}
-                        />
-                      )}
-                    </FormattedMessage>
-                  </Col>
-                  <input type="hidden" name="courses" value={[
-                    (state.biology ? intl.formatMessage({id: "register.course.biology"}) : ""),
-                    (state.chemistry ? intl.formatMessage({id: "register.course.chemistry"}) : ""),
-                    (state.physics ? intl.formatMessage({id: "register.course.physics"}) : ""),
-                  ].filter(Boolean).join(", ")} />
-                </Row>
-              </>
-            )}
-          </FormattedMessage>
-        </Form.Group>
+        {
+          showCourseSelector && (
+            <Form.Group controlId="registerCourses">
+              <FormattedMessage id="register.courses" defaultMessage="Courses">
+                {(l_courses) => (
+                  <>
+                    <Form.Label>
+                      {l_courses}
+                    </Form.Label>
+                    <Row>
+                      <Col xs={4}>
+                        <FormattedMessage id="register.course.biology" defaultMessage="Biology">
+                          {(label) => (
+                            <div className="switch-bg">
+                              <Form.Check
+                                label={label}
+                                type="switch"
+                                id="biology"
+                                checked={state.biology}
+                                onChange={event => update("biology", event.target.checked)}
+                              />
+                            </div>
+                          )}
+                        </FormattedMessage>
+                      </Col>
+                      <Col xs={4}>
+                        <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry">
+                          {(label) => (
+                            <div className="switch-bg">
+                              <Form.Check
+                                label={label}
+                                type="switch"
+                                id="chemistry"
+                                checked={state.chemistry}
+                                onChange={event => update("chemistry", event.target.checked)}
+                              />
+                            </div>
+                          )}
+                        </FormattedMessage>
+                      </Col>
+                      <Col xs={4}>
+                        <FormattedMessage id="register.course.physics" defaultMessage="Physics">
+                          {(label) => (
+                            <div className="switch-bg">
+                              <Form.Check
+                                label={label}
+                                type="switch"
+                                id="physics"
+                                disabled={state.country === "sk"}
+                                checked={state.physics}
+                                onChange={event => update("physics", event.target.checked)}
+                              />
+                            </div>
+                          )}
+                        </FormattedMessage>
+                      </Col>
+                      <input type="hidden" name="courses" value={[
+                        (state.biology ? intl.formatMessage({id: "register.course.biology"}) : ""),
+                        (state.chemistry ? intl.formatMessage({id: "register.course.chemistry"}) : ""),
+                        (state.physics ? intl.formatMessage({id: "register.course.physics"}) : ""),
+                      ].filter(Boolean).join(", ")} />
+                    </Row>
+                  </>
+                )}
+              </FormattedMessage>
+            </Form.Group>
+          )
+        }
 
         <Form.Group controlId="registerReference">
           <FormattedMessage id="register.reference" defaultMessage="Reference">
