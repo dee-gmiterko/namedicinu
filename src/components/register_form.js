@@ -7,7 +7,7 @@ import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp } from '../common';
 
-function RegisterForm({ faculties, showCourseSelector, onChangeNumCourses, locale }) {
+function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, faculties, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
@@ -57,6 +57,8 @@ function RegisterForm({ faculties, showCourseSelector, onChangeNumCourses, local
       <Form onSubmit={onSubmit}>
         <input type="hidden" name="_language" value={locale} />
         <input type="text" name="_gotcha" style={{display: "none"}} />
+
+        <input type="hidden" name="product" value={productTitle} />
 
         {formState.errors.map((error, index) => {
           return (

@@ -37,7 +37,7 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
             <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
           </Col>
           <Col md={7} className="p-5 mb-5 bg-1">
-            <RegisterForm faculties={faculties} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} locale={locale} />
+            <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} faculties={faculties} locale={locale} />
           </Col>
         </Row>
       </Modal.Body>

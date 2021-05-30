@@ -9,7 +9,8 @@
         "preferred_day": { "type": "text", "required": false },
         "faculty": { "type": "text", "required": false },
         "reference": { "type": "text", "required": false },
-        "courses": { "type": "text", "required": false }
+        "courses": { "type": "text", "required": false },
+        "product": { "type": "text", "required": false }
       },
       "actions": [
         { "type": "email", "to": "jakub.copak@gmail.com" }
