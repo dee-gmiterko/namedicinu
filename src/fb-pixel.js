@@ -9,10 +9,10 @@ if (typeof window === "undefined") {
 
 export const pixelInit = () => {
   if (ReactPixel) {
-    // ReactPixel.init('460630345218830', null, {
-    //   autoConfig: true,
-    //   debug: false,
-    // });
+    ReactPixel.init('460630345218830', null, {
+      autoConfig: true,
+      debug: false,
+    });
     if(!getCookieConsentValue()) {
       ReactPixel.revokeConsent();
     }
