@@ -88,7 +88,7 @@ const Products = ({ site, products, faculties, locale }) => {
                       ) ||
                       (
                         (item.node.action === "BuyCourse" || item.node.action === "BuyPreviewCourse") &&
-                        <Button variant="primary" onClick={() => handleShow(item.node.action)}>
+                        <Button variant="primary" onClick={() => handleShow(item.node.title)}>
                           {item.node.actionName}
                         </Button>
                       )
@@ -98,7 +98,7 @@ const Products = ({ site, products, faculties, locale }) => {
               </Card>
               {
                 (item.node.action === "BuyCourse" || item.node.action === "BuyPreviewCourse") &&
-                <RegisterModal show={show === item.node.action} onHide={handleClose} product={item.node} faculties={faculties} locale={locale} />
+                <RegisterModal show={show === item.node.title} onHide={handleClose} product={item.node} faculties={faculties} locale={locale} />
               }
             </Col>
           );
