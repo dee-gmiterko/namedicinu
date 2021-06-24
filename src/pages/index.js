@@ -153,6 +153,12 @@ export const pageQuery = graphql`
           html
         }
       }
+      legalDocuments {
+        title
+        file {
+          url
+        }
+      }
     }
     allContentfulTestimonials(
       filter: {

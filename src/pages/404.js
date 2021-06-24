@@ -60,6 +60,12 @@ export const pageQuery = graphql`
           sizes
         }
       }
+      legalDocuments {
+        title
+        file {
+          url
+        }
+      }
     }
   }
 `;

@@ -17,7 +17,18 @@ export default class footer extends Component {
               <div className="float-right">
                 <Socials facebook={this.props.site.facebook} instagram={this.props.site.instagram} email={this.props.site.email}/>
               </div>
-              <p className="pt-3 pb-3">© {new Date().getFullYear()} {this.props.site.siteName}</p>
+              <p className="pt-3 pb-3">
+                © {new Date().getFullYear()} {this.props.site.siteName}
+                <ul className="inline-list">
+                  {this.props.site.legalDocuments.map((item) => {
+                    return (
+                      <li>
+                        <a href={item.file.url}>{item.title}</a>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </p>
             </Col>
           </Row>
         </Container>

@@ -398,10 +398,18 @@ p {
 }
 
 .product-modal {
+  width: 100%;
+  max-width: 90%;
+
   .modal-title {
     color: theme-color("secondary");
     font-weight: 300;
     font-size: $h2-font-size;
+  }
+
+  img {
+    max-width: 100%;
+    width: auto;
   }
 
   form {
@@ -530,6 +538,11 @@ p {
   .card {
     height: 100%;
 
+    .card-body {
+      display: flex;
+      flex-direction: column;
+    }
+
     .product-icon {
       font-size: 1.2rem;
       color: rgba(0, 0, 0, 0.2);
@@ -544,13 +557,13 @@ p {
 
     .product-price {
       font-size: 1.75rem;
+      flex-grow: 1;
+    }
+
+    .btn {
+      width: 100%;
     }
   }
-}
-
-.product-modal {
-  width: 100%;
-  max-width: 90%;
 }
 
 .faq {
@@ -781,6 +794,19 @@ p {
   }
   a {
     color: theme-color("light");
+  }
+  ul.inline-list {
+    list-style: none;
+    padding: 0;
+    display: inline;
+    li {
+      display: inline;
+      &::before {
+        content: " | ";
+        display: inline-block;
+        margin: 0 0.5rem;
+      }
+    }
   }
 }
 

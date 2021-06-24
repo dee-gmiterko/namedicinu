@@ -105,6 +105,12 @@ export const pageQuery = graphql`
           html
         }
       }
+      legalDocuments {
+        title
+        file {
+          url
+        }
+      }
     }
     allContentfulFaculties(
       filter: {

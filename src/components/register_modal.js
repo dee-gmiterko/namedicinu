@@ -14,12 +14,16 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
   const priceIndex = courses ? courses-1 : 0;
 
   let price, discount;
-  if (hasCourses) {
-    price = courses > 0 ? product.price[priceIndex].price : 0;
-    discount = courses > 0 ? product.price[priceIndex].discount : 0;
+  if (product.price.length > 0) {
+    if (hasCourses) {
+      price = courses > 0 ? product.price[priceIndex].price : 0;
+      discount = courses > 0 ? product.price[priceIndex].discount : 0;
+    } else {
+      price = product.price[0].price
+      discount = product.price[0].discount
+    }
   } else {
-    price = product.price[0].price
-    discount = product.price[0].discount
+    price = discount = 0;
   }
 
   const formattedPrice = intl.formatNumber(price, formatStyle);
@@ -33,12 +37,22 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
       </Modal.Header>
       <Modal.Body>
         <Row>
-          <Col md={5} className="pl-5 pr-5 text-justify">
-            <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
-          </Col>
-          <Col md={7} className="p-5 mb-5 bg-1">
-            <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} faculties={faculties} locale={locale} />
-          </Col>
+          {
+            product.action === "BuyStudentStatus" ? (
+              <Col className="pl-5 pr-5 text-justify">
+                <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
+              </Col>
+            ) : (
+              <>
+                <Col md={5} className="pl-5 pr-5 text-justify">
+                  <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
+                </Col>
+                <Col md={7} className="p-5 mb-5 bg-1">
+                  <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} faculties={faculties} locale={locale} />
+                </Col>
+              </>
+            )
+          }
         </Row>
       </Modal.Body>
     </Modal>

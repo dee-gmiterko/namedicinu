@@ -52,42 +52,42 @@ const Products = ({ site, products, faculties, locale }) => {
                   </Card.Text>
                   <Card.Text className="product-price text-center">
                     {
-                      priceMin === priceMax ? (
-                        <FormattedNumber
-                          value={priceMin}
-                          style="currency"
-                          currency={locale === "sk" ? "EUR" : "CZK"}
-                          maximumFractionDigits={0}
-                        />
-                      ) : (
-                        <>
+                      isFinite(priceMin) && (
+                        priceMin === priceMax ? (
                           <FormattedNumber
                             value={priceMin}
                             style="currency"
                             currency={locale === "sk" ? "EUR" : "CZK"}
                             maximumFractionDigits={0}
                           />
-                          <> - </>
-                          <FormattedNumber
-                            value={priceMax}
-                            style="currency"
-                            currency={locale === "sk" ? "EUR" : "CZK"}
-                            maximumFractionDigits={0}
-                          />
-                        </>
+                        ) : (
+                          <>
+                            <FormattedNumber
+                              value={priceMin}
+                              style="currency"
+                              currency={locale === "sk" ? "EUR" : "CZK"}
+                              maximumFractionDigits={0}
+                            />
+                            <> - </>
+                            <FormattedNumber
+                              value={priceMax}
+                              style="currency"
+                              currency={locale === "sk" ? "EUR" : "CZK"}
+                              maximumFractionDigits={0}
+                            />
+                          </>
+                        )
                       )
                     }
                   </Card.Text>
                   <Card.Text className="text-center">
                     {
+                      item.node.action === "ShowLecture" ?
                       (
-                        item.node.action === "ShowLecture" &&
                         <Button as={AnchorLink} to={"/#Lecture"}>
                           {item.node.actionName}
                         </Button>
-                      ) ||
-                      (
-                        (item.node.action === "BuyCourse" || item.node.action === "BuyPreviewCourse") &&
+                      ) : (
                         <Button variant="primary" onClick={() => handleShow(item.node.title)}>
                           {item.node.actionName}
                         </Button>
@@ -97,7 +97,7 @@ const Products = ({ site, products, faculties, locale }) => {
                 </Card.Body>
               </Card>
               {
-                (item.node.action === "BuyCourse" || item.node.action === "BuyPreviewCourse") &&
+                item.node.action !== "ShowLecture" &&
                 <RegisterModal show={show === item.node.title} onHide={handleClose} product={item.node} faculties={faculties} locale={locale} />
               }
             </Col>
