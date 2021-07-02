@@ -5,9 +5,9 @@ import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bo
 import { useIntl, FormattedMessage } from 'react-intl';
 import { pixelTrackRegister } from '../fb-pixel';
 
-import { fixNbsp } from '../common';
+import { fixNbsp, isCode } from '../common';
 
-function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, faculties, locale }) {
+function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
@@ -237,7 +237,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, fa
           )
         }
 
-        <Form.Group controlId="registerReference">
+        <Form.Group controlId="registerReference" className="position-relative">
           <FormattedMessage id="register.reference" defaultMessage="Reference">
             {(l_reference) => (
               <>
@@ -254,7 +254,11 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, fa
                     <i className="fa fa-question-circle help" />
                   </OverlayTrigger>
                 </Form.Label>
-                <Form.Control name="reference" type="input" />
+                <Form.Control onChange={(e) => onChangeCodeDiscount(isCode(e.target.value))} name="reference" type="input" />
+                {
+                  codeDiscount &&
+                  <div className="code-discount"><em>-10%</em></div>
+                }
               </>
             )}
           </FormattedMessage>

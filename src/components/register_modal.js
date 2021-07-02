@@ -8,6 +8,7 @@ import RegisterForm from "./register_form";
 const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
   const intl = useIntl();
   const [courses, setCourses] = useState(0);
+  const [codeDiscount, setCodeDiscount] = useState(false);
 
   const formatStyle = {style: 'currency', currency: (locale === "sk" ? "EUR" : "CZK"), maximumFractionDigits: 0};
   const hasCourses = product.action === "BuyCourse";
@@ -21,6 +22,12 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
     } else {
       price = product.price[0].price
       discount = product.price[0].discount
+    }
+
+    if (codeDiscount) {
+      const cd = Math.round(0.1 * price);
+      price = price - cd;
+      discount = discount + cd;
     }
   } else {
     price = discount = 0;
@@ -48,7 +55,7 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
                   <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
                 </Col>
                 <Col md={7} className="p-5 mb-5 bg-1">
-                  <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} faculties={faculties} locale={locale} />
+                  <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={faculties} locale={locale} />
                 </Col>
               </>
             )

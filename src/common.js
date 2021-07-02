@@ -30,3 +30,7 @@ export const replaceParams = (html, params) => {
   }
   return html;
 }
+
+export const isCode = (value) => {
+  return value.match(/^[A-Z0-9]{8,}$/g)
+}
