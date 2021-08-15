@@ -20,9 +20,16 @@ export default class Products extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={{ span: 8, offset: 2 }}>
+          <Col md={{ span: 5, offset: 1 }}>
             <YouTube
               videoId="OfpZI-Qm-CI"
+              containerClassName="embed-responsive embed-responsive-16by9"
+              onPlay={pixelTrackPlayLecuture}
+            />
+          </Col>
+          <Col md={{ span: 5 }}>
+            <YouTube
+              videoId="rO2j0JCYLUE"
               containerClassName="embed-responsive embed-responsive-16by9"
               onPlay={pixelTrackPlayLecuture}
             />
