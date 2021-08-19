@@ -12,7 +12,7 @@ export default class Products extends Component {
     return (
       <Container className="lecture">
         <Row>
-          <Col md={8} className="p-3 text-justify">
+          <Col className="p-3 text-justify">
             <h2 id="Lecture">
               <FormattedMessage id="title.lecture" defaultMessage="Lecture" />
             </h2>
@@ -20,16 +20,32 @@ export default class Products extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={{ span: 5, offset: 1 }}>
+          <Col lg={4}>
+            <h3>
+              <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
+            </h3>
             <YouTube
               videoId="OfpZI-Qm-CI"
               containerClassName="embed-responsive embed-responsive-16by9"
               onPlay={pixelTrackPlayLecuture}
             />
           </Col>
-          <Col md={{ span: 5 }}>
+          <Col lg={4}>
+            <h3>
+              <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
+            </h3>
             <YouTube
               videoId="rO2j0JCYLUE"
+              containerClassName="embed-responsive embed-responsive-16by9"
+              onPlay={pixelTrackPlayLecuture}
+            />
+          </Col>
+          <Col lg={4}>
+            <h3>
+              <FormattedMessage id="lecture.biology" defaultMessage="Biology" />
+            </h3>
+            <YouTube
+              videoId="tqyiuTLe15A"
               containerClassName="embed-responsive embed-responsive-16by9"
               onPlay={pixelTrackPlayLecuture}
             />
