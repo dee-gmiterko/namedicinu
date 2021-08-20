@@ -184,7 +184,10 @@ export const pageQuery = graphql`
       }
     }
     allContentfulLecturers(
-        filter: { node_locale: { eq: $locale } }
+        filter: {
+          node_locale: { eq: $locale }
+          showOn: { eq: $locale }
+        }
         sort: { fields: name }
     ) {
       edges {
