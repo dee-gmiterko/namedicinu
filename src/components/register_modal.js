@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Row, Col, Modal } from 'react-bootstrap';
 import { useIntl } from 'react-intl';
+import moment from 'moment';
 
 import Markdown from "./markdown";
 import RegisterForm from "./register_form";
+import Countdown from "./countdown";
 
 const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
   const intl = useIntl();
@@ -52,7 +54,11 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
             ) : (
               <>
                 <Col md={5} className="pl-5 pr-5 text-justify">
-                  <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
+                  <Countdown to={moment("09-11", "MM-DD")}>
+                    {(countdown) => (
+                      <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice, countdown: countdown}} />
+                    )}
+                  </Countdown>
                 </Col>
                 <Col md={7} className="p-5 mb-5 bg-1">
                   <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={faculties} locale={locale} />
