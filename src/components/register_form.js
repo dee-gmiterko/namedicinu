@@ -7,6 +7,8 @@ import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp, isCode } from '../common';
 
+var formDisabled = true;
+
 function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
@@ -50,7 +52,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
     );
 
   } else {
-    const submitDisabled = formState.submitting
+    const submitDisabled = formDisabled || formState.submitting
       || (showCourseSelector && !(state.biology || state.chemistry || state.physics));
 
     return (
@@ -75,7 +77,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                   <Form.Label>
                     {l_email} *
                   </Form.Label>
-                  <Form.Control require="true" name="email" type="email" />
+                  <Form.Control require="true" name="email" type="email" disabled={formDisabled} />
                 </>
               )}
             </FormattedMessage>
@@ -87,7 +89,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                   <Form.Label>
                     {l_name} *
                   </Form.Label>
-                  <Form.Control require="true" name="name" type="input" />
+                  <Form.Control require="true" name="name" type="input" disabled={formDisabled} />
                 </>
               )}
             </FormattedMessage>
@@ -102,7 +104,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                   <Form.Label>
                     {l_preferred_time}
                   </Form.Label>
-                  <Form.Control name="preferred_time" as="select">
+                  <Form.Control name="preferred_time" as="select" disabled={formDisabled}>
                     <option value=""></option>
                     <FormattedMessage id="register.preferred_time.morning" defaultMessage="Morning">
                       {(o) => <option value={o}>{o}</option>}
@@ -122,7 +124,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                   <Form.Label>
                     {l_preferred_day}
                   </Form.Label>
-                  <Form.Control name="preferred_day" as="select">
+                  <Form.Control name="preferred_day" as="select" disabled={formDisabled}>
                     <option value=""></option>
                     <FormattedMessage id="register.preferred_day.workday" defaultMessage="Workday">
                       {(o) => <option value={o}>{o}</option>}
@@ -153,6 +155,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                   onChange={event => {
                     update("country", event.target.querySelector("[value='"+event.target.value+"']").getAttribute("data-country"))
                   }}
+                  disabled={formDisabled}
                 >
                   <option value=""></option>
                   {faculties.edges.map((item, index) => {
@@ -186,6 +189,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                                 label={label}
                                 type="switch"
                                 id="biology"
+                                disabled={formDisabled}
                                 checked={state.biology}
                                 onChange={event => update("biology", event.target.checked)}
                               />
@@ -201,6 +205,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                                 label={label}
                                 type="switch"
                                 id="chemistry"
+                                disabled={formDisabled}
                                 checked={state.chemistry}
                                 onChange={event => update("chemistry", event.target.checked)}
                               />
@@ -216,7 +221,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                                 label={label}
                                 type="switch"
                                 id="physics"
-                                disabled={state.country === "sk"}
+                                disabled={formDisabled || state.country === "sk"}
                                 checked={state.physics}
                                 onChange={event => update("physics", event.target.checked)}
                               />
@@ -254,7 +259,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                     <i className="fa fa-question-circle help" />
                   </OverlayTrigger>
                 </Form.Label>
-                <Form.Control onChange={(e) => onChangeCodeDiscount(isCode(e.target.value))} name="reference" type="input" />
+                <Form.Control onChange={(e) => onChangeCodeDiscount(isCode(e.target.value))} name="reference" type="input" disabled={formDisabled} />
                 {
                   codeDiscount &&
                   <div className="code-discount"><em>-10%</em></div>
