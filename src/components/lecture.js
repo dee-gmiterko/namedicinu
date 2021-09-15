@@ -35,7 +35,7 @@ export default class Products extends Component {
               <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
             </h3>
             <YouTube
-              videoId="rO2j0JCYLUE"
+              videoId="X-gsQEkCVvM"
               containerClassName="embed-responsive embed-responsive-16by9"
               onPlay={pixelTrackPlayLecuture}
             />
