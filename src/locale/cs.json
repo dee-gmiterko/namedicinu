@@ -28,7 +28,7 @@
   "register.course.physics": "Fyzika",
   "register.reference": "Jak ses o nás dozvěděl?",
   "register.reference.help": "Například: Google, Facebook, jméno a příjmení kamaráda",
-  "register.consent": "Vyplněním formuláře souhlasíš se zpracováním svých osobních údajů v uvedeném rozsahu pro potřeby přihlášení do kurzu. Tvoje údaje nebudou poskytovány třetím stranám a slouží výhradně pro potřeby registrace do přípravného kurzu.",
+  "register.consent": "Potvrzuji, že jsem se seznámil a souhlasím se <a>zásadami ochrany osobních údajů</a>.",
   "register.submit": "Přihlásit",
   "register.sent.title": "Děkujeme za přihlášení!",
   "register.sent.message": "Brzy vás budeme kontaktovat.",

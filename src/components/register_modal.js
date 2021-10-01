@@ -7,7 +7,7 @@ import Markdown from "./markdown";
 import RegisterForm from "./register_form";
 import Countdown from "./countdown";
 
-const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
+const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocument, locale }) => {
   const intl = useIntl();
   const [courses, setCourses] = useState(0);
   const [codeDiscount, setCodeDiscount] = useState(false);
@@ -61,7 +61,7 @@ const RegisterModal = ({ show, onHide, product, faculties, locale }) => {
                   </Countdown>
                 </Col>
                 <Col md={7} className="p-5 mb-5 bg-1">
-                  <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={faculties} locale={locale} />
+                  <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={faculties} registerRulesDocument={registerRulesDocument} locale={locale} />
                 </Col>
               </>
             )

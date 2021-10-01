@@ -8,6 +8,7 @@ import RegisterModal from "./register_modal";
 
 const Products = ({ site, products, faculties, locale }) => {
   const [show, setShow] = useState(null);
+  const registerRulesDocument = site.registerRules.file.url;
 
   const handleClose = () => setShow(null);
   const handleShow = (action) => setShow(action);
@@ -98,7 +99,7 @@ const Products = ({ site, products, faculties, locale }) => {
               </Card>
               {
                 item.node.action !== "ShowLecture" &&
-                <RegisterModal show={show === item.node.title} onHide={handleClose} product={item.node} faculties={faculties} locale={locale} />
+                <RegisterModal show={show === item.node.title} onHide={handleClose} product={item.node} faculties={faculties} registerRulesDocument={registerRulesDocument} locale={locale} />
               }
             </Col>
           );

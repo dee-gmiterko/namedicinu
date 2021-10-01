@@ -7,9 +7,9 @@ import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp, isCode } from '../common';
 
-var formDisabled = true;
+var formDisabled = undefined;
 
-function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, locale }) {
+function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocument, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
@@ -18,6 +18,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
       biology: false,
       chemistry: false,
       physics: false,
+      consent: false,
     }
   );
   const update = (key, value) => {
@@ -52,7 +53,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
     );
 
   } else {
-    const submitDisabled = formDisabled || formState.submitting
+    const submitDisabled = formDisabled || !state.consent || formState.submitting
       || (showCourseSelector && !(state.biology || state.chemistry || state.physics));
 
     return (
@@ -271,9 +272,23 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
 
         <Form.Row>
           <Col md={12} className="text-justify">
-            <Form.Text>
-              <FormattedMessage id="register.consent" />
-            </Form.Text>
+            <FormattedMessage id="register.consent" values={{
+              a: chunks => <a href={registerRulesDocument} target="_blank">{chunks}</a>
+            }}>
+              {(label) => (
+                <div>
+                  <Form.Check
+                    size="lg"
+                    label={label}
+                    type="checkbox"
+                    id="consent"
+                    disabled={formDisabled}
+                    checked={state.consent}
+                    onChange={event => update("consent", event.target.checked)}
+                  />
+                </div>
+              )}
+            </FormattedMessage>
           </Col>
           <Col md={12} className="text-right">
             <Button variant="primary" type="submit" size="lg" disabled={submitDisabled}>

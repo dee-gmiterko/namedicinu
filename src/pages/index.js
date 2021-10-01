@@ -159,6 +159,11 @@ export const pageQuery = graphql`
           url
         }
       }
+      registerRules {
+        file {
+          url
+        }
+      }
     }
     allContentfulTestimonials(
       filter: {
