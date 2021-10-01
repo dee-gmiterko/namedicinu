@@ -9,7 +9,7 @@ import { fixNbsp, isCode } from '../common';
 
 var formDisabled = undefined;
 
-function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocument, locale }) {
+function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
@@ -273,7 +273,8 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
         <Form.Row>
           <Col md={12} className="text-justify">
             <FormattedMessage id="register.consent" values={{
-              a: chunks => <a href={registerRulesDocument} target="_blank">{chunks}</a>
+              a1: chunks => <a href={registerRulesDocuments[0]} target="_blank">{chunks}</a>,
+              a2: chunks => <a href={registerRulesDocuments[1]} target="_blank">{chunks}</a>,
             }}>
               {(label) => (
                 <div>

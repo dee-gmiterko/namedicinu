@@ -159,7 +159,7 @@ export const pageQuery = graphql`
           url
         }
       }
-      registerRules {
+      registerDocuments {
         file {
           url
         }
