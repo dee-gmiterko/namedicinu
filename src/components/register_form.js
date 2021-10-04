@@ -7,7 +7,7 @@ import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp, isCode } from '../common';
 
-var formDisabled = undefined;
+var formDisabled = true;
 
 function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, locale }) {
   const intl = useIntl();
