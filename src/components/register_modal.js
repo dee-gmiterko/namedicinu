@@ -39,6 +39,10 @@ const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocument
   const formattedDiscount = discount > 0 ? (intl.formatMessage({'id': 'register.discount'}) + "<em>" + intl.formatNumber(discount, formatStyle) + "</em>") : '';
   const formattedOldPrice = discount > 0 ? intl.formatNumber(discount + price, formatStyle) : '';
 
+  product.registerEnd = "2021-12-01T00:00:10"
+
+  const formDisabled = product.registerStart && product.registerEnd && (moment.now() < moment(product.registerStart) || moment.now() > moment(product.registerEnd));
+
   return (
     <Modal show={show} onHide={onHide} dialogClassName="product-modal">
       <Modal.Header className="pl-5 pt-5 pr-5" closeButton>
@@ -54,14 +58,14 @@ const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocument
             ) : (
               <>
                 <Col md={5} className="pl-5 pr-5 text-justify">
-                  <Countdown to={moment("09-11", "MM-DD")}>
+                  <Countdown to={product.registerEnd ? moment(product.registerEnd) : moment.now()}>
                     {(countdown) => (
                       <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice, countdown: countdown}} />
                     )}
                   </Countdown>
                 </Col>
-                <Col md={7} className="p-5 mb-5 bg-1">
-                  <RegisterForm productTitle={product.title} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={faculties} registerRulesDocuments={registerRulesDocuments} locale={locale} />
+                <Col md={7} className="p-5 mb-md-5 bg-1">
+                  <RegisterForm productTitle={product.title} formDisabled={formDisabled} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={faculties} registerRulesDocuments={registerRulesDocuments} price={formattedPrice} locale={locale} />
                 </Col>
               </>
             )

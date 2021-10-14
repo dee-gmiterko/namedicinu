@@ -246,6 +246,8 @@ export const pageQuery = graphql`
           }
           icon
           iconCount
+          registerStart
+          registerEnd
         }
       }
     }

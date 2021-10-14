@@ -7,9 +7,7 @@ import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp, isCode } from '../common';
 
-var formDisabled = true;
-
-function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, locale }) {
+function RegisterForm({ productTitle, formDisabled, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, price, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
@@ -71,7 +69,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
           )
         })}
         <Form.Row>
-          <Form.Group as={Col} controlId="registerEmail">
+          <Form.Group as={Col} md={6} controlId="registerEmail">
             <FormattedMessage id="register.email" defaultMessage="Email">
               {(l_email) => (
                 <>
@@ -83,7 +81,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
               )}
             </FormattedMessage>
           </Form.Group>
-          <Form.Group as={Col} controlId="registerName">
+          <Form.Group as={Col} md={6} controlId="registerName">
             <FormattedMessage id="register.name" defaultMessage="Name">
               {(l_name) => (
                 <>
@@ -98,7 +96,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
         </Form.Row>
 
         <Form.Row>
-          <Form.Group as={Col} controlId="registerPreferredTime">
+          <Form.Group as={Col} md={6} controlId="registerPreferredTime">
             <FormattedMessage id="register.preferred_time" defaultMessage="Preferred time">
               {(l_preferred_time) => (
                 <>
@@ -118,7 +116,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
               )}
             </FormattedMessage>
           </Form.Group>
-          <Form.Group as={Col} controlId="registerPreferredeDay">
+          <Form.Group as={Col} md={6} controlId="registerPreferredeDay">
             <FormattedMessage id="register.preferred_day" defaultMessage="Preferred day">
               {(l_preferred_day) => (
                 <>
@@ -182,7 +180,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                       {l_courses}
                     </Form.Label>
                     <Row>
-                      <Col xs={4}>
+                      <Col sm={4}>
                         <FormattedMessage id="register.course.biology" defaultMessage="Biology">
                           {(label) => (
                             <div className="switch-bg">
@@ -198,7 +196,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                           )}
                         </FormattedMessage>
                       </Col>
-                      <Col xs={4}>
+                      <Col sm={4}>
                         <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry">
                           {(label) => (
                             <div className="switch-bg">
@@ -214,7 +212,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
                           )}
                         </FormattedMessage>
                       </Col>
-                      <Col xs={4}>
+                      <Col sm={4}>
                         <FormattedMessage id="register.course.physics" defaultMessage="Physics">
                           {(label) => (
                             <div className="switch-bg">
@@ -271,7 +269,7 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
         </Form.Group>
 
         <Form.Row>
-          <Col md={12} className="text-justify">
+          <Col className="text-justify">
             <FormattedMessage id="register.consent" values={{
               a1: chunks => <a href={registerRulesDocuments[0]} target="_blank">{chunks}</a>,
               a2: chunks => <a href={registerRulesDocuments[1]} target="_blank">{chunks}</a>,
@@ -291,7 +289,15 @@ function RegisterForm({ productTitle, showCourseSelector, onChangeNumCourses, co
               )}
             </FormattedMessage>
           </Col>
-          <Col md={12} className="text-right">
+        </Form.Row>
+
+        <Form.Row>
+          <Col className="submit-container pt-3">
+            <div className="price-container">
+              <span className="label"><FormattedMessage id="register.price" defaultMessage="Price for course" /></span>
+              <span className="price">{price}</span>
+            </div>
+            <span></span>
             <Button variant="primary" type="submit" size="lg" disabled={submitDisabled}>
               <FormattedMessage id="register.submit" defaultMessage="Submit" />
             </Button>
