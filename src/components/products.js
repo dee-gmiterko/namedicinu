@@ -8,11 +8,6 @@ import RegisterModal from "./register_modal";
 
 const Products = ({ site, products, faculties, locale }) => {
 
-  if(products.edges.length == 4) {
-    products.edges.push(products.edges[2]);
-    products.edges.push(products.edges[0]);
-  }
-
   const [show, setShow] = useState(null);
   const registerRulesDocuments = site.registerDocuments.map((document) => document.file.url);
 
