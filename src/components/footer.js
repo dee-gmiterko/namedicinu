@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col} from 'react-bootstrap';
+import { slugifyDocumentTitle } from '../common';
 
 import Socials from "./socials";
 
@@ -23,7 +24,7 @@ export default class footer extends Component {
                   {this.props.site.legalDocuments.map((item) => {
                     return (
                       <li>
-                        <a href={item.file.url}>{item.title}</a>
+                        <a href={"document/"+slugifyDocumentTitle(item.title)}>{item.title}</a>
                       </li>
                     )
                   })}

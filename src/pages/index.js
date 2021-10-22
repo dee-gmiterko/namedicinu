@@ -160,6 +160,7 @@ export const pageQuery = graphql`
         }
       }
       registerDocuments {
+        title
         file {
           url
         }

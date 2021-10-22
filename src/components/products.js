@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { slugifyDocumentTitle } from '../common';
 
 import Markdown from "./markdown";
 import RegisterModal from "./register_modal";
@@ -9,7 +10,7 @@ import RegisterModal from "./register_modal";
 const Products = ({ site, products, faculties, locale }) => {
 
   const [show, setShow] = useState(null);
-  const registerRulesDocuments = site.registerDocuments.map((document) => document.file.url);
+  const registerRulesDocuments = site.registerDocuments.map((document) => "document/"+slugifyDocumentTitle(document.title));
 
   const handleClose = () => setShow(null);
   const handleShow = (action) => setShow(action);

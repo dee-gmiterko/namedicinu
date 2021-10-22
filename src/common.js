@@ -6,6 +6,12 @@ export const slugifyFaculty = (node) => {
   })
 };
 
+export const slugifyDocumentTitle = (title) => {
+  return slugify(title||"", {
+    remove: '.'
+  }).toLowerCase();
+}
+
 export const fixPrepositions = (html) => {
   return html.replace(/((^|\W)(s|z|v|k|so|zo|vo)) (\w+)/gi, "$1&nbsp;$4");
 }
