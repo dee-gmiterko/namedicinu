@@ -41,9 +41,9 @@ const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocument
   const formattedOldPrice = discount > 0 ? intl.formatNumber(discount + price, formatStyle) : '';
 
   const formDisabled = product.registerStart && product.registerEnd && (moment.now() < moment(product.registerStart) || moment.now() > moment(product.registerEnd));
-  
+
   const displayFaculties = product.product_variation ? (
-    product.product_variation.map(pv => pv.faculty)
+    product.product_variation.map(pv => pv.faculty).sort((a, b) => a.title.localeCompare(b.title))
   ) : (
     faculties.edges.map(item => ({
       title: item.node.title,
