@@ -7,15 +7,12 @@ import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp, isCode } from '../common';
 
-function RegisterForm({ productTitle, formDisabled, showCourseSelector, onChangeNumCourses, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, price, locale }) {
+function RegisterFormVariation({ productTitle, formDisabled, variations, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, price, locale }) {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
     {
       faculty: "",
-      biology: false,
-      chemistry: false,
-      physics: false,
       consent: false,
     }
   );
@@ -32,13 +29,16 @@ function RegisterForm({ productTitle, formDisabled, showCourseSelector, onChange
       newState.physics = false;
     }
     setState(newState);
-    onChangeNumCourses(newState.biology + newState.chemistry + newState.physics);
   };
 
   const onSubmit = (event) => {
     pixelTrackRegister();
     handleSubmit(event);
   }
+
+  const filteredVariations = variations ? (
+    variations.find(item => item.faculty.title == state.faculty) || {variations:[]}
+  ).variations : null;
 
   if (formState.succeeded) {
     return (
@@ -57,8 +57,7 @@ function RegisterForm({ productTitle, formDisabled, showCourseSelector, onChange
     );
 
   } else {
-    const submitDisabled = formDisabled || !state.consent || formState.submitting
-      || (showCourseSelector && !(state.biology || state.chemistry || state.physics));
+    const submitDisabled = formDisabled || !state.consent || formState.submitting;
 
     return (
       <Form onSubmit={onSubmit}>
@@ -101,59 +100,60 @@ function RegisterForm({ productTitle, formDisabled, showCourseSelector, onChange
           </Form.Group>
         </Form.Row>
 
-        <Form.Row>
-          <Form.Group as={Col} md={6} controlId="registerPreferredTime">
-            <FormattedMessage id="register.preferred_time" defaultMessage="Preferred time">
-              {(l_preferred_time) => (
-                <>
-                  <Form.Label>
-                    {l_preferred_time}
-                  </Form.Label>
-                  <Form.Control name="preferred_time" as="select" disabled={formDisabled}>
-                    <option value=""></option>
-                    <FormattedMessage id="register.preferred_time.morning" defaultMessage="Morning">
-                      {(o) => <option value={o}>{o}</option>}
-                    </FormattedMessage>
-                    <FormattedMessage id="register.preferred_time.afternoon" defaultMessage="Afternoon">
-                      {(o) => <option value={o}>{o}</option>}
-                    </FormattedMessage>
-                  </Form.Control>
-                </>
-              )}
-            </FormattedMessage>
-          </Form.Group>
-          <Form.Group as={Col} md={6} controlId="registerPreferredeDay">
-            <FormattedMessage id="register.preferred_day" defaultMessage="Preferred day">
-              {(l_preferred_day) => (
-                <>
-                  <Form.Label>
-                    {l_preferred_day}
-                  </Form.Label>
-                  <Form.Control name="preferred_day" as="select" disabled={formDisabled}>
-                    <option value=""></option>
-                    <FormattedMessage id="register.preferred_day.workday" defaultMessage="Workday">
-                      {(o) => <option value={o}>{o}</option>}
-                    </FormattedMessage>
-                    <FormattedMessage id="register.preferred_day.weekend" defaultMessage="Weekend">
-                      {(o) => <option value={o}>{o}</option>}
-                    </FormattedMessage>
-                  </Form.Control>
-                </>
-              )}
-            </FormattedMessage>
-          </Form.Group>
-        </Form.Row>
+        {
+          !variations && (
+            <Form.Row>
+              <Form.Group as={Col} md={6} controlId="registerPreferredTime">
+                <FormattedMessage id="register.preferred_time" defaultMessage="Preferred time">
+                  {(l_preferred_time) => (
+                    <>
+                      <Form.Label>
+                        {l_preferred_time}
+                      </Form.Label>
+                      <Form.Control name="preferred_time" as="select" disabled={formDisabled}>
+                        <option value=""></option>
+                        <FormattedMessage id="register.preferred_time.morning" defaultMessage="Morning">
+                          {(o) => <option value={o}>{o}</option>}
+                        </FormattedMessage>
+                        <FormattedMessage id="register.preferred_time.afternoon" defaultMessage="Afternoon">
+                          {(o) => <option value={o}>{o}</option>}
+                        </FormattedMessage>
+                      </Form.Control>
+                    </>
+                  )}
+                </FormattedMessage>
+              </Form.Group>
+              <Form.Group as={Col} md={6} controlId="registerPreferredeDay">
+                <FormattedMessage id="register.preferred_day" defaultMessage="Preferred day">
+                  {(l_preferred_day) => (
+                    <>
+                      <Form.Label>
+                        {l_preferred_day}
+                      </Form.Label>
+                      <Form.Control name="preferred_day" as="select" disabled={formDisabled}>
+                        <option value=""></option>
+                        <FormattedMessage id="register.preferred_day.workday" defaultMessage="Workday">
+                          {(o) => <option value={o}>{o}</option>}
+                        </FormattedMessage>
+                        <FormattedMessage id="register.preferred_day.weekend" defaultMessage="Weekend">
+                          {(o) => <option value={o}>{o}</option>}
+                        </FormattedMessage>
+                      </Form.Control>
+                    </>
+                  )}
+                </FormattedMessage>
+              </Form.Group>
+            </Form.Row>
+          )
+        }
 
         <Form.Group controlId="registerFaculty">
-          <FormattedMessage id="register.faculty" defaultMessage="Faculty">
+          <FormattedMessage id="register.faculty.with_variation" defaultMessage="Faculty">
             {(l_faculty) => (
               <>
                 <Form.Label>
                   {l_faculty}
                 </Form.Label>
-                <AnchorLink to={`/faculties/#Quiz`} className="float-right">
-                  <FormattedMessage id="register.faculty.help" defaultMessage="Do you need help with selection?" />
-                </AnchorLink>
                 <Form.Control
                   name="faculty"
                   as="select"
@@ -176,76 +176,34 @@ function RegisterForm({ productTitle, formDisabled, showCourseSelector, onChange
           </FormattedMessage>
         </Form.Group>
 
-        {
-          showCourseSelector && (
-            <Form.Group controlId="registerCourses">
-              <FormattedMessage id="register.courses" defaultMessage="Courses">
-                {(l_courses) => (
-                  <>
-                    <Form.Label>
-                      {l_courses}
-                    </Form.Label>
-                    <Row>
-                      <Col sm={4}>
-                        <FormattedMessage id="register.course.biology" defaultMessage="Biology">
-                          {(label) => (
-                            <div className="switch-bg">
-                              <Form.Check
-                                label={label}
-                                type="switch"
-                                id="biology"
-                                disabled={formDisabled}
-                                checked={state.biology}
-                                onChange={event => update("biology", event.target.checked)}
-                              />
-                            </div>
-                          )}
-                        </FormattedMessage>
-                      </Col>
-                      <Col sm={4}>
-                        <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry">
-                          {(label) => (
-                            <div className="switch-bg">
-                              <Form.Check
-                                label={label}
-                                type="switch"
-                                id="chemistry"
-                                disabled={formDisabled}
-                                checked={state.chemistry}
-                                onChange={event => update("chemistry", event.target.checked)}
-                              />
-                            </div>
-                          )}
-                        </FormattedMessage>
-                      </Col>
-                      <Col sm={4}>
-                        <FormattedMessage id="register.course.physics" defaultMessage="Physics">
-                          {(label) => (
-                            <div className="switch-bg">
-                              <Form.Check
-                                label={label}
-                                type="switch"
-                                id="physics"
-                                disabled={formDisabled || state.country === "sk"}
-                                checked={state.physics}
-                                onChange={event => update("physics", event.target.checked)}
-                              />
-                            </div>
-                          )}
-                        </FormattedMessage>
-                      </Col>
-                      <input type="hidden" name="courses" value={[
-                        (state.biology ? intl.formatMessage({id: "register.course.biology"}) : ""),
-                        (state.chemistry ? intl.formatMessage({id: "register.course.chemistry"}) : ""),
-                        (state.physics ? intl.formatMessage({id: "register.course.physics"}) : ""),
-                      ].filter(Boolean).join(", ")} />
-                    </Row>
-                  </>
-                )}
-              </FormattedMessage>
-            </Form.Group>
-          )
-        }
+        <Form.Group controlId="registerVariation">
+          <FormattedMessage id="register.variation" defaultMessage="Variation">
+            {(l_variation) => (
+              <>
+                <Form.Label>
+                  {l_variation}
+                </Form.Label>
+                <Form.Control
+                  name="variation"
+                  as="select"
+                  onChange={event => {
+                    update("country", event.target.querySelector("[value='"+event.target.value+"']").getAttribute("data-country"))
+                  }}
+                  disabled={formDisabled}
+                >
+                  <option value=""></option>
+                  {filteredVariations.map((variation, index) => {
+                    return (
+                      <option key={index} value={fixNbsp(variation)} >
+                        {fixNbsp(variation)}
+                      </option>
+                    );
+                  })}
+                </Form.Control>
+              </>
+            )}
+          </FormattedMessage>
+        </Form.Group>
 
         <Form.Group controlId="registerReference" className="position-relative">
           <FormattedMessage id="register.reference" defaultMessage="Reference">
@@ -315,4 +273,4 @@ function RegisterForm({ productTitle, formDisabled, showCourseSelector, onChange
   }
 }
 
-export default RegisterForm;
+export default RegisterFormVariation;

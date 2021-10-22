@@ -248,6 +248,13 @@ export const pageQuery = graphql`
           iconCount
           registerStart
           registerEnd
+          product_variation {
+            faculty {
+              title
+              country
+            }
+            variations
+          }
         }
       }
     }

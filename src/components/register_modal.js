@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import Markdown from "./markdown";
 import RegisterForm from "./register_form";
+import RegisterFormVariation from "./register_form_variation";
 import Countdown from "./countdown";
 
 const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocuments, locale }) => {
@@ -39,9 +40,18 @@ const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocument
   const formattedDiscount = discount > 0 ? (intl.formatMessage({'id': 'register.discount'}) + "<em>" + intl.formatNumber(discount, formatStyle) + "</em>") : '';
   const formattedOldPrice = discount > 0 ? intl.formatNumber(discount + price, formatStyle) : '';
 
-  product.registerEnd = "2021-12-01T00:00:10"
-
   const formDisabled = product.registerStart && product.registerEnd && (moment.now() < moment(product.registerStart) || moment.now() > moment(product.registerEnd));
+  
+  const displayFaculties = product.product_variation ? (
+    product.product_variation.map(pv => pv.faculty)
+  ) : (
+    faculties.edges.map(item => ({
+      title: item.node.title,
+      country: item.node.country,
+    })) || []
+  );
+
+  const showCourseSelector = product.action === "BuyCourse";
 
   return (
     <Modal show={show} onHide={onHide} dialogClassName="product-modal">
@@ -51,11 +61,14 @@ const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocument
       <Modal.Body>
         <Row>
           {
-            product.action === "BuyStudentStatus" ? (
+            (product.action === "BuyStudentStatus") && (
               <Col className="pl-5 pr-5 text-justify">
                 <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice}} />
               </Col>
-            ) : (
+            )
+          }
+          {
+            (product.action === "BuyCourse" || product.action === "BuyPreviewCourse") && (
               <>
                 <Col md={5} className="pl-5 pr-5 text-justify">
                   <Countdown to={product.registerEnd ? moment(product.registerEnd) : moment.now()}>
@@ -65,7 +78,23 @@ const RegisterModal = ({ show, onHide, product, faculties, registerRulesDocument
                   </Countdown>
                 </Col>
                 <Col md={7} className="p-5 mb-md-5 bg-1">
-                  <RegisterForm productTitle={product.title} formDisabled={formDisabled} showCourseSelector={product.action === "BuyCourse"} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={faculties} registerRulesDocuments={registerRulesDocuments} price={formattedPrice} locale={locale} />
+                  <RegisterForm productTitle={product.title} formDisabled={formDisabled} showCourseSelector={showCourseSelector} onChangeNumCourses={setCourses} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={displayFaculties} registerRulesDocuments={registerRulesDocuments} price={formattedPrice} locale={locale} />
+                </Col>
+              </>
+            )
+          }
+          {
+            (product.action === "BuyCourseVariation") && (
+              <>
+                <Col md={5} className="pl-5 pr-5 text-justify">
+                  <Countdown to={product.registerEnd ? moment(product.registerEnd) : moment.now()}>
+                    {(countdown) => (
+                      <Markdown value={product.registerDescription} params={{price: formattedPrice, discount: formattedDiscount, old_price: formattedOldPrice, countdown: countdown}} />
+                    )}
+                  </Countdown>
+                </Col>
+                <Col md={7} className="p-5 mb-md-5 bg-1">
+                  <RegisterFormVariation productTitle={product.title} formDisabled={formDisabled} variations={product.product_variation} codeDiscount={codeDiscount} onChangeCodeDiscount={setCodeDiscount} faculties={displayFaculties} registerRulesDocuments={registerRulesDocuments} price={formattedPrice} locale={locale} />
                 </Col>
               </>
             )
