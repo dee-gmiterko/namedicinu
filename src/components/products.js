@@ -10,7 +10,7 @@ import RegisterModal from "./register_modal";
 const Products = ({ site, products, faculties, locale }) => {
 
   const [show, setShow] = useState(null);
-  const registerRulesDocuments = site.registerDocuments.map((document) => "document/"+slugifyDocumentTitle(document.title));
+  const registerRulesDocuments = site.registerDocuments.map((document) => "/document/"+slugifyDocumentTitle(document.title));
 
   const handleClose = () => setShow(null);
   const handleShow = (action) => setShow(action);

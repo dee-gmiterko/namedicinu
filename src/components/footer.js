@@ -24,7 +24,7 @@ export default class footer extends Component {
                   {this.props.site.legalDocuments.map((item) => {
                     return (
                       <li>
-                        <a href={"document/"+slugifyDocumentTitle(item.title)}>{item.title}</a>
+                        <a href={"/document/"+slugifyDocumentTitle(item.title)}>{item.title}</a>
                       </li>
                     )
                   })}

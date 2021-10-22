@@ -39,7 +39,7 @@ const DocumentListPage = ({ data, pageContext }) => {
             <ul className="checkmark">
               {data.allContentfulAsset.edges.map((item, index) => (
                 <li key={index}>
-                  <a href={"document/"+slugifyDocumentTitle(item.node.title)}>
+                  <a href={"/document/"+slugifyDocumentTitle(item.node.title)}>
                     {item.node.title}
                   </a>
                 </li>
