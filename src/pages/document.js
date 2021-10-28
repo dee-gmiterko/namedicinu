@@ -10,8 +10,6 @@ import Seo from "../components/seo";
 
 const DocumentListPage = ({ data, pageContext }) => {
 
-  console.log(data);
-
   return (
     <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
       <FormattedMessage id="title.document_list" defaultMessage="Documents">

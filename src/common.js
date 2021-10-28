@@ -1,13 +1,13 @@
 import slugify from 'slugify';
 
 export const slugifyFaculty = (node) => {
-  return "f-" + slugify(node.shortTitle||"", {
+  return "f-" + slugify(fixNbsp(node.shortTitle||""), {
     remove: '.'
-  })
+  });
 };
 
 export const slugifyDocumentTitle = (title) => {
-  return slugify(title||"", {
+  return slugify(fixNbsp(title||""), {
     remove: '.'
   }).toLowerCase();
 }

@@ -5,7 +5,7 @@ import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bo
 import { useIntl, FormattedMessage } from 'react-intl';
 import { pixelTrackRegister } from '../fb-pixel';
 
-import { fixNbsp, isCode } from '../common';
+import { fixNbsp, isCode, slugifyDocumentTitle } from '../common';
 
 function RegisterFormVariation({ productTitle, formDisabled, variations, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, price, locale }) {
   const intl = useIntl();
@@ -37,7 +37,7 @@ function RegisterFormVariation({ productTitle, formDisabled, variations, codeDis
   }
 
   const filteredVariations = variations ? (
-    variations.find(item => item.faculty.title == state.faculty) || {variations:[]}
+    variations.find(item => slugifyDocumentTitle(item.faculty.title) == state.faculty) || {variations:[]}
   ).variations : null;
 
   if (formState.succeeded) {
@@ -165,7 +165,7 @@ function RegisterFormVariation({ productTitle, formDisabled, variations, codeDis
                   <option value=""></option>
                   {faculties.map((faculty, index) => {
                     return (
-                      <option key={index} value={fixNbsp(faculty.title)} data-country={faculty.country}>
+                      <option key={index} value={slugifyDocumentTitle(faculty.title)} data-country={faculty.country}>
                         {fixNbsp(faculty.title)}
                       </option>
                     );
