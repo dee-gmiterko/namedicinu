@@ -254,6 +254,7 @@ export const pageQuery = graphql`
               title
               country
             }
+            showOn
             variations
           }
         }
