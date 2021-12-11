@@ -51,6 +51,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: locale == "sk" ? `G-3JM3E0KK8S` : `G-061BLGVHEV`,
+        enableWebVitalsTracking: true,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-global-context',
       options: {
         context: {
