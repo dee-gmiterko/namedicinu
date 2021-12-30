@@ -7,6 +7,7 @@ import CookieConsent from "react-cookie-consent";
 import { pixelGrantConsent } from '../fb-pixel';
 import Header from "./header";
 import Footer from "./footer";
+import SuggestLanguageChange from "./suggest_language_change";
 
 import messages_sk from "../locale/sk.json"
 import messages_cs from "../locale/cs.json"
@@ -30,6 +31,7 @@ const Layout = ({ site, header, locale, children }) => {
           header={header}
         />
         <div>
+          <SuggestLanguageChange />
           <main>{children}</main>
         </div>
         <Footer site={site} />

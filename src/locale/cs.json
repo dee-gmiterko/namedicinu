@@ -12,6 +12,7 @@
   "title.quiz": "Kvíz",
   "title.document_list": "Dokumenty",
   "title.not_found": "Stránka nenalezena",
+  "title.language_change": "Zmeniť jazyk",
   "register.email": "Email",
   "register.name": "Jméno a příjmení",
   "register.preferred_time": "Preferovaný čas",
@@ -56,6 +57,9 @@
   "faculties_comparison.students.accepted": "Přijatí",
   "faculties_comparison.updated_at": "Naposled aktualizované",
   "not_found.message": "Narazili jste na stránku, která neexistuje.",
+  "language_change.description": "Preferujete slovenčinu alebo hľadáte aj slovenské lekárske fakulty?",
+  "language_change.yes": "Prejsť na namedicinu.sk",
+  "language_change.no": "Ne, děkuji",
   "gdpr.message": "Tyto stránky používají cookies. Tím, že na stránkách setrváte, souhlasíte s tím, že je můžeme používat.",
   "gdpr.more": "Více informací.",
   "gdpr.button": "Akceptovat a zavřít"

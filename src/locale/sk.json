@@ -12,6 +12,7 @@
   "title.quiz": "Kvíz",
   "title.document_list": "Dokumenty",
   "title.not_found": "Stránka nenájdená",
+  "title.language_change": "Zmeniť jazyk",
   "register.email": "Email",
   "register.name": "Meno a priezvisko",
   "register.preferred_time": "Preferovaný čas",
@@ -56,6 +57,9 @@
   "faculties_comparison.students.accepted": "Prijatí",
   "faculties_comparison.updated_at": "Naposledy aktualizované",
   "not_found.message": "Narazili ste na cestu, ktorá neexistuje.",
+  "language_change.description": "Pokud preferujete češtinu, můžete navštívit naše české stránky.",
+  "language_change.yes": "Přejít na namedicinu.cz",
+  "language_change.no": "Nie, ďakujem",
   "gdpr.message": "Tieto stránky používajú súbory cookies. Tým, že na stránkach zotrváte, súhlasíte s tým, že ich môžeme používať.",
   "gdpr.more": "Viac informácií.",
   "gdpr.button": "Akceptovať a zatvoriť"
