@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from '@formspree/react';
-import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { pixelTrackRegister } from '../fb-pixel';
 
 import { fixNbsp, isCode, slugifyDocumentTitle } from '../common';
 
 function RegisterFormVariation({ productTitle, formDisabled, variations, codeDiscount, onChangeCodeDiscount, faculties, registerRulesDocuments, price, locale }) {
-  const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [state, setState] = useState(
     {
@@ -37,7 +35,7 @@ function RegisterFormVariation({ productTitle, formDisabled, variations, codeDis
   }
 
   const filteredVariations = variations ? (
-    variations.find(item => slugifyDocumentTitle(item.faculty.title) == state.faculty) || {variations:[]}
+    variations.find(item => slugifyDocumentTitle(item.faculty.title) === state.faculty) || {variations:[]}
   ).variations : null;
 
   if (formState.succeeded) {

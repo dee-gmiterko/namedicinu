@@ -101,16 +101,14 @@ export default class FacultiesQuiz extends Component {
                       <div className="question">{index+1}. {fixAll(item.node.question)}</div>
                       <ul className="options">
                         {["A", "B", "C"].map((char) => {
-                          if (item.node["answer"+char]) {
-                            return (
-                              <li className="p-3" key={char}>
-                                <Button className="btn-block d-flex align-items-center" onClick={this.answer.bind(this, index, char)}>
-                                  <span className="letter flex-shrink-0">{char}</span>
-                                  <span className="flex-grow-1">{item.node["answer"+char]}</span>
-                                </Button>
-                              </li>
-                            )
-                          }
+                          return (item.node["answer"+char]) && (
+                            <li className="p-3" key={char}>
+                              <Button className="btn-block d-flex align-items-center" onClick={this.answer.bind(this, index, char)}>
+                                <span className="letter flex-shrink-0">{char}</span>
+                                <span className="flex-grow-1">{item.node["answer"+char]}</span>
+                              </Button>
+                            </li>
+                          )
                         })}
                       </ul>
                     </div>

@@ -13,7 +13,7 @@ const RedirectPage = ({ pageContext }) => {
         }}
         title={pageContext.title}
       />
-      <iframe id="included-document-frame" src={pageContext.url} />
+      <iframe id="included-document-frame" src={pageContext.url} title={pageContext.title} />
     </>
   );
 };

@@ -12,17 +12,17 @@ const SuggestLanguageChange = ({ locale }) => {
   };
 
   useEffect(() => {
-    let expected = locale == "sk" ? 'sk-sk' : 'cs-cz';
+    let expected = locale === "sk" ? 'sk-sk' : 'cs-cz';
     let preferred = preferredLocale(['sk-sk', 'cs-cz'], expected, { lowerCaseRegion: true });
-    if (preferred != expected) {
+    if (preferred !== expected) {
       let itsOk = localStorage.getItem('locale-is-ok');
       if(!itsOk) {
         setShow(true);
       }
     }
-  }, []);
+  }, [locale]);
 
-  const otherWebsite = locale == "sk" ? `https://namedicinu.cz/` : `https://namedicinu.sk/`;
+  const otherWebsite = locale === "sk" ? `https://namedicinu.cz/` : `https://namedicinu.sk/`;
 
   return (
     <Modal show={show} onHide={handleClose} dialogClassName="language-modal">

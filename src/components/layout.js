@@ -31,7 +31,7 @@ const Layout = ({ site, header, locale, children }) => {
           header={header}
         />
         <div>
-          <SuggestLanguageChange />
+          <SuggestLanguageChange locale={locale} />
           <main>{children}</main>
         </div>
         <Footer site={site} />
