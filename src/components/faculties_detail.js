@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Row, Col, Card, ListGroup, ListGroupItem, Table } from 'react-bootstrap';
+import { Row, Col, Card, ListGroup, ListGroupItem, Table, Button } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate, FormattedNumber } from 'react-intl';
+import { AnchorLink } from "gatsby-plugin-anchor-links";
+
 import { slugifyFaculty, fixNbsp } from '../common';
 
 import Markdown from "./markdown";
@@ -213,6 +215,11 @@ export default class FacultiesDetail extends Component {
                 {descriptionPanelItems}
               </ListGroup>
             </Card>
+            <div>
+              <Button className="btn-find-course" as={AnchorLink} to="/#Course">
+                <FormattedMessage id="faculties_comparison.courses" defaultMessage="Find a course" />
+              </Button>
+            </div>
           </Col>
         </Row>
       </>

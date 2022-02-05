@@ -816,6 +816,19 @@ p {
       color: theme-color("dark");
     }
   }
+
+  .btn-find-course {
+    background: none;
+    color: theme-color("dark");
+    width: 100%;
+    font-weight: normal;
+    margin-top: 2rem;
+    padding: 1rem;
+
+    &:hover {
+      background: scale-color(theme-color("primary"), $alpha: -50%);
+    }
+  }
 }
 
 .site-footer{
