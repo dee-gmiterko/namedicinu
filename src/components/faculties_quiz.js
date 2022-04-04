@@ -15,6 +15,7 @@ var sliderSettings = {
   slidesToScroll: 1,
   autoplay: false,
   infinite: false,
+  accessibility: false,
 };
 
 export default class FacultiesQuiz extends Component {

@@ -21,9 +21,9 @@ export default class footer extends Component {
               <p className="pt-3 pb-3">
                 © {new Date().getFullYear()} {this.props.site.siteName}
                 <ul className="inline-list">
-                  {this.props.site.legalDocuments.map((item) => {
+                  {this.props.site.legalDocuments.map((item, i) => {
                     return (
-                      <li>
+                      <li key={i}>
                         <a href={"/document/"+slugifyDocumentTitle(item.title)}>{item.title}</a>
                       </li>
                     )

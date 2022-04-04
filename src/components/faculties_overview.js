@@ -15,6 +15,7 @@ var sliderSettings = {
   dots: true,
   arrows: true,
   speed: 500,
+  accessibility: false,
   slidesToShow: 5,
   slidesToScroll: 2,
   autoplay: true,
@@ -57,6 +58,27 @@ export default class FacultiesOverview extends Component {
     return false; // static component
   }
 
+  keyHandler({key}) {
+    if (key === "ArrowLeft") {
+      this.slider.slickPrev();
+    }
+    if (key === "ArrowRight") {
+      this.slider.slickNext();
+    }
+  }
+
+  componentDidMount() {
+    if(typeof window !== "undefined") {
+      window.addEventListener("keydown", this.keyHandler.bind(this));
+    }
+  }
+
+  componentWillUnmount() {
+    if(typeof window !== "undefined") {
+      window.removeEventListener("keydown", this.keyHandler.bind(this));
+    }
+  }
+
   render() {
     const { site, faculties } = this.props;
     return (
@@ -73,7 +95,7 @@ export default class FacultiesOverview extends Component {
             </Col>
           </Row>
         </Container>
-        <Slider {...sliderSettings}>
+        <Slider ref={c => {this.slider = c}} {...sliderSettings}>
           {faculties.edges.map((item, index) => {
             return (
               <div key={index} className="p-3">
