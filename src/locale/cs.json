@@ -63,5 +63,6 @@
   "language_change.no": "Ne, děkuji",
   "gdpr.message": "Tyto stránky používají cookies. Tím, že na stránkách setrváte, souhlasíte s tím, že je můžeme používat.",
   "gdpr.more": "Více informací.",
-  "gdpr.button": "Akceptovat a zavřít"
+  "gdpr.button": "Akceptovat a zavřít",
+  "gdpr.button_decline": "Neakceptovat"
 }

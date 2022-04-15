@@ -838,15 +838,19 @@ p {
   p {
     margin: 0
   }
+
   a {
     color: theme-color("light");
   }
+
   ul.inline-list {
     list-style: none;
     padding: 0;
     display: inline;
+
     li {
       display: inline;
+
       &::before {
         content: " | ";
         display: inline-block;
@@ -880,7 +884,27 @@ p {
     flex: 1 0 200px;
     margin: 15px;
   }
+
   & > div:nth-child(2) {
     flex-grow: 0;
+  }
+
+  .cookie-buttons {
+    display: flex;
+
+    button {
+      margin-left: 16px;
+      min-width: 210px;
+      color: theme-color("dark");
+    }
+
+    .btn-decline {
+      background: theme-color("dark");
+      color: #aaa;
+
+      &:hover {
+        color: white;
+      }
+    }
   }
 }

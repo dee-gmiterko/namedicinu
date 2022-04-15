@@ -37,19 +37,23 @@ const Layout = ({ site, header, locale, children }) => {
         <Footer site={site} />
         <FormattedMessage id="gdpr.button" defaultMessage="Accept">
           {(gdpr_button) => (
-            <CookieConsent
-              location="bottom"
-              buttonText={gdpr_button}
-              disableStyles={true}
-              buttonClasses="btn btn-primary btn-sm"
-              onAccept={pixelGrantConsent}
-            >
-              <FormattedMessage id="gdpr.message" defaultMessage="This website uses cookies to enhance the user experience." />
-              {/* TODO
-                <> </>
-                <FormattedMessage id="gdpr.more" defaultMessage="More information." />
-              */}
-            </CookieConsent>
+            <FormattedMessage id="gdpr.button_decline" defaultMessage="Decline">
+              {(gdpr_button_decline) => (
+                <CookieConsent
+                  location="bottom"
+                  buttonText={gdpr_button}
+                  declineButtonText={gdpr_button_decline}
+                  disableStyles={true}
+                  buttonWrapperClasses="cookie-buttons"
+                  buttonClasses="btn btn-primary btn-sm"
+                  declineButtonClasses="btn btn-primary btn-sm btn-decline"
+                  enableDeclineButton
+                  onAccept={pixelGrantConsent}
+                >
+                  <FormattedMessage id="gdpr.message" defaultMessage="This website uses cookies to enhance the user experience." />
+                </CookieConsent>
+              )}
+            </FormattedMessage>
           )}
         </FormattedMessage>
       </FormspreeProvider>

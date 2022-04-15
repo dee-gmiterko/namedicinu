@@ -63,5 +63,6 @@
   "language_change.no": "Nie, ďakujem",
   "gdpr.message": "Tieto stránky používajú súbory cookies. Tým, že na stránkach zotrváte, súhlasíte s tým, že ich môžeme používať.",
   "gdpr.more": "Viac informácií.",
-  "gdpr.button": "Akceptovať a zatvoriť"
+  "gdpr.button": "Akceptovať a zatvoriť",
+  "gdpr.button_decline": "Neakceptovať"
 }
