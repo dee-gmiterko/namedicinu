@@ -6,9 +6,9 @@ import { pixelTrackPlayLecuture } from '../fb-pixel';
 
 import Markdown from "./markdown";
 
-export default class Products extends Component {
+export default class Lecture extends Component {
   render() {
-    const { site } = this.props;
+    const { site, locale } = this.props;
     return (
       <Container className="lecture">
         <Row>
@@ -24,31 +24,64 @@ export default class Products extends Component {
             <h3>
               <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
             </h3>
-            <YouTube
-              videoId="OfpZI-Qm-CI"
-              containerClassName="embed-responsive embed-responsive-16by9"
-              onPlay={pixelTrackPlayLecuture}
-            />
+            <div className="position-relative mb-3">
+              {locale === "sk" && (
+                <div className="lang">
+                  CZ
+                </div>
+              )}
+              <YouTube
+                videoId="OfpZI-Qm-CI"
+                containerClassName="embed-responsive embed-responsive-16by9"
+                onPlay={pixelTrackPlayLecuture}
+              />
+            </div>
           </Col>
           <Col lg={4}>
             <h3>
               <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
             </h3>
-            <YouTube
-              videoId="X-gsQEkCVvM"
-              containerClassName="embed-responsive embed-responsive-16by9"
-              onPlay={pixelTrackPlayLecuture}
-            />
+            <div className="position-relative mb-3">
+              {locale === "sk" && (
+                <div className="lang">
+                  CZ
+                </div>
+              )}
+              <YouTube
+                videoId="X-gsQEkCVvM"
+                containerClassName="embed-responsive embed-responsive-16by9"
+                onPlay={pixelTrackPlayLecuture}
+              />
+            </div>
           </Col>
           <Col lg={4}>
             <h3>
               <FormattedMessage id="lecture.biology" defaultMessage="Biology" />
             </h3>
-            <YouTube
-              videoId="tqyiuTLe15A"
-              containerClassName="embed-responsive embed-responsive-16by9"
-              onPlay={pixelTrackPlayLecuture}
-            />
+            {locale === "sk" && (
+              <div className="position-relative mb-3">
+                <div className="lang">
+                  SK
+                </div>
+                <YouTube
+                  videoId="X-gsQEkCVvM"
+                  containerClassName="embed-responsive embed-responsive-16by9 "
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            )}
+            <div className="position-relative mb-3">
+              {locale === "sk" && (
+                <div className="lang">
+                  CZ
+                </div>
+              )}
+              <YouTube
+                videoId="tqyiuTLe15A"
+                containerClassName="embed-responsive embed-responsive-16by9"
+                onPlay={pixelTrackPlayLecuture}
+              />
+            </div>
           </Col>
         </Row>
       </Container>

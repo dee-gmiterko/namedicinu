@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container } from 'react-bootstrap';
-// import { Container, Row, Col } from 'react-bootstrap';
+// import { Row, Col } from 'react-bootstrap';
 // import { FormattedMessage } from 'react-intl';
 
 import Markdown from "./markdown";
@@ -9,7 +9,7 @@ export default class Course extends Component {
   shouldComponentUpdate() {
     return false; // static component
   }
-  
+
   render() {
     const { site } = this.props;
 
@@ -22,6 +22,11 @@ export default class Course extends Component {
             <h2 id="Course">
               <FormattedMessage id="title.course" defaultMessage="Course" />
             </h2>
+            <div style={{paddingTop: '90px', paddingBottom: '70px'}}>
+              <ul className="circular one">
+                <li>Výuka v češtine pre české LF</li>
+              </ul>
+            </div>
           </Col>
           <Col md={9} className="p-3">
             <p className="text-justify">
