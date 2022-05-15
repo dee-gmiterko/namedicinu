@@ -24,6 +24,18 @@ export default class Lecture extends Component {
             <h3>
               <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
             </h3>
+            {locale === "sk" && (
+              <div className="position-relative mb-3">
+                <div className="lang">
+                  SK
+                </div>
+                <YouTube
+                  videoId="60_7SE6LHm8"
+                  containerClassName="embed-responsive embed-responsive-16by9 "
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            )}
             <div className="position-relative mb-3">
               {locale === "sk" && (
                 <div className="lang">
@@ -64,7 +76,7 @@ export default class Lecture extends Component {
                   SK
                 </div>
                 <YouTube
-                  videoId="X-gsQEkCVvM"
+                  videoId="7uLn29JX8DM"
                   containerClassName="embed-responsive embed-responsive-16by9 "
                   onPlay={pixelTrackPlayLecuture}
                 />
