@@ -166,7 +166,6 @@ export const pageQuery = graphql`
         showOn: { eq: $locale }
       }
       sort: { fields: [year, name], order: [DESC, ASC] }
-      limit: 8
     ) {
       edges {
         node {

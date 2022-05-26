@@ -22,6 +22,8 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return new Promise((resolve, reject) => {
     const documentTemplate = path.resolve("src/templates/document.js");
+    const articleTemplate = path.resolve("src/templates/blog-article.js");
+
     resolve(
       graphql(`
         query DocumentsQuery($locale: String!) {
@@ -40,11 +42,24 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          allContentfulBlog(
+            filter: {
+              node_locale: { eq: $locale }
+            }
+          ) {
+            edges {
+              node {
+                title
+                tags
+              }
+            }
+          }
         }
       `, { locale }).then(result => {
         if (result.errors) {
           reject(result.errors);
         }
+
         result.data.allContentfulAsset.edges.forEach(edge => {
           const slug = slugify(edge.node.title||"", {
             remove: '.'
@@ -60,6 +75,23 @@ exports.createPages = ({ graphql, actions }) => {
             }
           });
         });
+
+        result.data.allContentfulBlog.edges.forEach(edge => {
+          const slug = slugify(edge.node.title||"", {
+            remove: '.'
+          }).toLowerCase();
+
+          createPage({
+            path: "blog/"+slug,
+            component: articleTemplate,
+            context: {
+              slug: slug,
+              title: edge.node.title,
+              tags: edge.node.tags,
+            }
+          });
+        });
+
         return;
       })
     );

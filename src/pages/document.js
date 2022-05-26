@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 import { slugifyDocumentTitle } from '../common';
@@ -37,9 +37,9 @@ const DocumentListPage = ({ data, pageContext }) => {
             <ul className="checkmark">
               {data.allContentfulAsset.edges.map((item, index) => (
                 <li key={index}>
-                  <a href={"/document/"+slugifyDocumentTitle(item.node.title)}>
+                  <Link to={"/document/"+slugifyDocumentTitle(item.node.title)}>
                     {item.node.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
