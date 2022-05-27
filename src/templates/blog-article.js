@@ -60,37 +60,41 @@ const BlogArticlePage = ({ data, pageContext }) => {
             </Col>
           </Row>
         </div>
-        <Row>
-          <Col md={6} className="mt-5">
-            <h2>
-              <FormattedMessage id="blog.related_articles" defaultMessage="Related articles" />
-            </h2>
-          </Col>
-        </Row>
-        <Row>
-          {data.allContentfulBlog.edges.map((item, index) => (
-            <Col md={4} className="related-article p-3">
-              <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
-                <h3>{item.node.title}</h3>
-              </Link>
-              {item.node.image && (
-                <p className="article-image">
-                  <Img fluid={item.node.image.fluid} />
-                </p>
-              )}
-              <p>
-                {item.node.abstract.abstract}
-              </p>
-              <div className="text-right">
-                <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
-                  <span className="btn btn-primary">
-                    <FormattedMessage id="blog.read-more" defaultMessage="Read more" />
-                  </span>
-                </Link>
-              </div>
-            </Col>
-          ))}
-        </Row>
+        {data.allContentfulBlog.edges.length > 0 && (
+          <>
+            <Row>
+              <Col md={6} className="mt-5">
+                <h2>
+                  <FormattedMessage id="blog.related_articles" defaultMessage="Related articles" />
+                </h2>
+              </Col>
+            </Row>
+            <Row>
+              {data.allContentfulBlog.edges.map((item, index) => (
+                <Col md={4} className="related-article p-3">
+                  <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
+                    <h3>{item.node.title}</h3>
+                  </Link>
+                  {item.node.image && (
+                    <p className="article-image">
+                      <Img fluid={item.node.image.fluid} />
+                    </p>
+                  )}
+                  <p>
+                    {item.node.abstract.abstract}
+                  </p>
+                  <div className="text-right">
+                    <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
+                      <span className="btn btn-primary">
+                        <FormattedMessage id="blog.read-more" defaultMessage="Read more" />
+                      </span>
+                    </Link>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+          </>
+        )}
       </Container>
     </Layout>
   )

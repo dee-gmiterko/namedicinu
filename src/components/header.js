@@ -33,6 +33,10 @@ export default class Header extends Component {
                 <FormattedMessage id="title.faculties" defaultMessage="Faculties" />
               </Nav.Link>
 
+              <Nav.Link as={AnchorLink} key="Blog" to={`/blog`} className="ml-lg-3" >
+                <FormattedMessage id="title.blog" defaultMessage="Blog" />
+              </Nav.Link>
+
               <Nav.Link as={AnchorLink} key="Register" to={`/#Products`} className="btn btn-primary ml-lg-4" >
                 <FormattedMessage id="title.register" defaultMessage="Register" />
               </Nav.Link>
