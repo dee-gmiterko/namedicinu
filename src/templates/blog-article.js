@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate } from 'react-intl';
 import { slugifyDocumentTitle } from '../common';
+import Img from "gatsby-image";
 
 import Layout from "../components/layout";
 import Seo from "../components/seo";
@@ -22,6 +23,11 @@ const BlogArticlePage = ({ data, pageContext }) => {
         image={"https:"+data.contentfulSiteInformation.logo.file.url}
         keywords={data.contentfulSiteInformation.siteKeywords}
       />
+      {article.image && (
+        <p className="article-background-image">
+          <Img fluid={article.image.fluid} />
+        </p>
+      )}
       <Container>
         <div className="blog-article">
           <Row>
@@ -45,9 +51,11 @@ const BlogArticlePage = ({ data, pageContext }) => {
           <Row>
             <Col className="p-3">
               {article.tags.map(tag => (
-                <span className="tag">
-                  {tag}
-                </span>
+                <Link to={"/blog/tag/"+slugifyDocumentTitle(tag)}>
+                  <span className="tag">
+                    {tag}
+                  </span>
+                </Link>
               ))}
             </Col>
           </Row>
@@ -65,6 +73,11 @@ const BlogArticlePage = ({ data, pageContext }) => {
               <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
                 <h3>{item.node.title}</h3>
               </Link>
+              {item.node.image && (
+                <p className="article-image">
+                  <Img fluid={item.node.image.fluid} />
+                </p>
+              )}
               <p>
                 {item.node.abstract.abstract}
               </p>
@@ -137,6 +150,17 @@ export const pageQuery = graphql`
       }
       createdAt
       tags
+      image {
+        fluid(maxWidth: 1600) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+        }
+      }
     }
     allContentfulBlog(
       filter: {
@@ -159,6 +183,17 @@ export const pageQuery = graphql`
             }
           }
           createdAt
+          image {
+            fluid(maxWidth: 500) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
         }
       }
     }

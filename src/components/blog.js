@@ -2,6 +2,8 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate } from 'react-intl';
+import Img from "gatsby-image";
+
 import { slugifyDocumentTitle } from '../common';
 
 const Blog = ({ articles }) => {
@@ -10,7 +12,12 @@ const Blog = ({ articles }) => {
     <div>
       {articles.edges.map((item, index) => (
         <Row className="blog-article">
-          <Col className="p-3">
+          {item.node.image && (
+            <Col md={4} className="article-image">
+              <Img fluid={item.node.image.fluid}/>
+            </Col>
+          )}
+          <Col md={item.node.image ? 8 : undefined} className="p-3">
             <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
               <div class="bg-circle-container">
                  <div class="bg-circle bg-1"></div>

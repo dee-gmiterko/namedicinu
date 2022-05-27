@@ -24,16 +24,18 @@ const BlogPage = ({ data, pageContext }) => {
           />
         )}
       </FormattedMessage>
-      <Container className="p-3 blog">
-        <Row>
-          <Col md={3} className="p-3">
-            <h2 id="Blog">
-              <FormattedMessage id="title.blog" defaultMessage="Blog" />
-            </h2>
-          </Col>
-        </Row>
-        <Blog articles={data.allContentfulBlog} />
-      </Container>
+      <div className="blog">
+        <Container className="p-3">
+          <Row>
+            <Col md={3} className="p-3">
+              <h2 id="Blog">
+                <FormattedMessage id="title.blog" defaultMessage="Blog" />
+              </h2>
+            </Col>
+          </Row>
+          <Blog articles={data.allContentfulBlog} />
+        </Container>
+      </div>
     </Layout>
   )
 };
@@ -90,6 +92,17 @@ export const pageQuery = graphql`
             abstract
           }
           createdAt
+          image {
+            fluid(maxWidth: 500) {
+              base64
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+            }
+          }
         }
       }
     }
