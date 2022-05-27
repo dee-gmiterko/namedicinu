@@ -26,9 +26,7 @@ const BlogArticlePage = ({ data, pageContext }) => {
         <div className="blog-article">
           <Row>
             <Col className="p-3">
-              <Link to={"/blog/"+slugifyDocumentTitle(article.title)}>
-                <h2>{article.title}</h2>
-              </Link>
+              <h2>{article.title}</h2>
             </Col>
           </Row>
           <Row>
@@ -144,6 +142,7 @@ export const pageQuery = graphql`
       filter: {
         node_locale: { eq: $locale }
         tags: { in: $tags }
+        title: { ne: $title }
       }
       sort: {fields: [createdAt], order: [DESC]}
       limit: 8

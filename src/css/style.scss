@@ -879,10 +879,9 @@ p {
   }
 }
 
-.blog {
+.blog, .blog-tag {
   .blog-article {
     margin-bottom: 1rem;
-    padding: 0 2rem;
 
     h3 {
       color: #7661af;
@@ -906,7 +905,11 @@ p {
         margin: 0;
       }
     }
+  }
+}
 
+.blog {
+  .blog-article {
     &:nth-child(1), &:nth-child(2), &:nth-child(3) {
       z-index: 0;
       position: relative;
@@ -916,20 +919,26 @@ p {
 
     @include media-breakpoint-up(md) {
       &:nth-child(1) {
-        padding: 4rem 8rem;
-        margin: 0 -4rem 4rem -4rem;
+        padding: 4rem 6rem;
+        margin: 0 -6rem 4rem -6rem;
       }
 
       &:nth-child(2) {
-        padding: 3rem 6rem;
-        margin: 0 -3rem 3rem -3rem;
+        padding: 3rem 4rem;
+        margin: 0 -4rem 3rem -4rem;
       }
 
       &:nth-child(3) {
-        padding: 2rem 4rem;
+        padding: 2rem 2rem;
         margin: 0 -2rem 2rem -2rem;
       }
     }
+  }
+}
+
+.blog-tag {
+  .blog-article {
+    padding: 0;
   }
 }
 

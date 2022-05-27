@@ -22,7 +22,8 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   return new Promise((resolve, reject) => {
     const documentTemplate = path.resolve("src/templates/document.js");
-    const articleTemplate = path.resolve("src/templates/blog-article.js");
+    const blogArticleTemplate = path.resolve("src/templates/blog-article.js");
+    const blogTagTemplate =  path.resolve("src/templates/blog-tag.js");
 
     resolve(
       graphql(`
@@ -76,6 +77,8 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
+        const allTags = [];
+
         result.data.allContentfulBlog.edges.forEach(edge => {
           const slug = slugify(edge.node.title||"", {
             remove: '.'
@@ -83,11 +86,32 @@ exports.createPages = ({ graphql, actions }) => {
 
           createPage({
             path: "blog/"+slug,
-            component: articleTemplate,
+            component: blogArticleTemplate,
             context: {
               slug: slug,
               title: edge.node.title,
               tags: edge.node.tags,
+            }
+          });
+
+          edge.node.tags.forEach(tag => {
+            if (!allTags.includes(tag)) {
+              allTags.push(tag);
+            }
+          });
+        });
+
+        allTags.forEach(tag => {
+          const slug = slugify(tag, {
+            remove: '.'
+          }).toLowerCase();
+
+          createPage({
+            path: "blog/tag/"+slug,
+            component: blogTagTemplate,
+            context: {
+              slug: slug,
+              tag: tag,
             }
           });
         });

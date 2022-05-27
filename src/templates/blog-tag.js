@@ -16,7 +16,7 @@ const BlogPage = ({ data, pageContext }) => {
         {(title) => (
           <Seo
             lang={pageContext.locale}
-            title={title[0]}
+            title={pageContext.tag}
             siteName={data.contentfulSiteInformation.siteName}
             siteDescription={data.contentfulSiteInformation.siteDescription}
             image={"https:"+data.contentfulSiteInformation.logo.file.url}
@@ -24,12 +24,10 @@ const BlogPage = ({ data, pageContext }) => {
           />
         )}
       </FormattedMessage>
-      <Container className="p-3 blog">
+      <Container className="p-3 blog-tag">
         <Row>
           <Col md={3} className="p-3">
-            <h2 id="Blog">
-              <FormattedMessage id="title.blog" defaultMessage="Blog" />
-            </h2>
+            <h2>{pageContext.tag}</h2>
           </Col>
         </Row>
         <Blog articles={data.allContentfulBlog} />
@@ -41,7 +39,7 @@ const BlogPage = ({ data, pageContext }) => {
 export default BlogPage;
 
 export const pageQuery = graphql`
-  query BlogQuery($locale: String!) {
+  query BlogTagQuery($locale: String!, $tag: String!) {
     contentfulSiteInformation(node_locale: { eq: $locale }) {
       siteName
       siteDescription
@@ -80,6 +78,7 @@ export const pageQuery = graphql`
     allContentfulBlog(
       filter: {
         node_locale: { eq: $locale }
+        tags: { eq: $tag }
       }
       sort: {fields: [createdAt], order: [DESC]}
     ) {
