@@ -23,7 +23,7 @@ export default class Testimonials extends Component {
   shouldComponentUpdate() {
     return false; // static component
   }
-  
+
   render() {
     const { site, testimonials } = this.props;
     return (
@@ -60,7 +60,33 @@ export default class Testimonials extends Component {
                       </Col>
                       <Col xs={12} lg={10} className="d-flex flex-column align-items-end">
                         <div className="pr-3 pl-3">
-                          <h3 className="name">{item.node.name}</h3>
+                          <h3 className="name">
+                            {item.node.name}
+                            <ul className="social social-tiny">
+                              {item.node.instagram && (
+                                <li>
+                                  <a
+                                    className="fab fa-instagram"
+                                    href={`https://www.instagram.com/${item.node.instagram}/`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{background: '#f24747'}}
+                                  >Instagram</a>
+                                </li>
+                              )}
+                              {item.node.facebook && (
+                                <li>
+                                  <a
+                                    className="fab fa-facebook"
+                                    href={`https://www.facebook.com/${item.node.facebook}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{background: '#00a2f8'}}
+                                  >Facebook</a>
+                                </li>
+                              )}
+                            </ul>
+                          </h3>
                           <span className="sub-name">
                             {
                               item.node.faculty ? <>{item.node.faculty.shortTitle},&nbsp;</> : null

@@ -97,6 +97,28 @@ $social-size: 50px;
   .email-text {
     color: theme-color("dark");
   }
+
+  &.social-tiny {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0.8;
+
+    li {
+      margin: 0 5px;
+
+      a {
+        width: math.div($social-size, 2);
+        height: math.div($social-size, 2);
+
+        &::before{
+          position: relative;
+          z-index: 1;
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }
 
 .circle-half-border {

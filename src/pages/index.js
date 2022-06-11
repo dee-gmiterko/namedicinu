@@ -179,6 +179,7 @@ export const pageQuery = graphql`
               html
             }
           }
+          instagram
         }
       }
     }
