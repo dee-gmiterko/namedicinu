@@ -437,7 +437,7 @@ p {
   }
 }
 
-.product-modal {
+.order {
   width: 100%;
   max-width: 90%;
 
@@ -484,21 +484,7 @@ p {
   .submit-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    .price-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .label {
-        font-size: 0.96rem;
-      }
-      .price {
-        font-size: 1.5rem;
-      }
-    }
+    justify-content: flex-end;
   }
 
   .form-sent {

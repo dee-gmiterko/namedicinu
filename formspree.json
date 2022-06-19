@@ -5,6 +5,10 @@
       "fields": {
         "email": { "type": "email", "required": true },
         "name": { "type": "text", "required": true },
+        "address_street": { "type": "text", "required": true },
+        "address_town": { "type": "text", "required": true },
+        "address_zip": { "type": "text", "required": true },
+        "address_country": { "type": "text", "required": true },
         "preferred_time": { "type": "text", "required": false },
         "preferred_day": { "type": "text", "required": false },
         "faculty": { "type": "text", "required": false },

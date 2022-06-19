@@ -1,25 +1,18 @@
 import React, { useState } from "react";
+import { Link } from "gatsby";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { slugifyDocumentTitle } from '../common';
 
 import Markdown from "./markdown";
-import RegisterModal from "./register_modal";
 
 const Products = ({ site, products, faculties, locale }) => {
 
-  const [show, setShow] = useState(null);
-  const registerRulesDocuments = site.registerDocuments.map((document) => "/document/"+slugifyDocumentTitle(document.title));
-
-  const handleClose = () => setShow(null);
-  const handleShow = (action) => setShow(action);
-
   const sizing = {
-    3: 4,
-    4: 3,
+    3: 6,
+    4: 4,
     5: 4,
-    6: 4,
+    6: 3,
   }[products.edges.length];
 
   return (
@@ -37,7 +30,7 @@ const Products = ({ site, products, faculties, locale }) => {
           const priceMax = Math.max( ...item.node.price.map(price => price.price) );
 
           return (
-            <Col xs={12} md={sizing} className="mb-3" key={index}>
+            <Col xs={12} md={index == 1 ? 9 : sizing} className="mb-3" key={index}>
               <Card>
                 <Card.Body>
                   <Card.Title className="text-center">
@@ -91,7 +84,7 @@ const Products = ({ site, products, faculties, locale }) => {
                           {item.node.actionName}
                         </Button>
                       ) : (
-                        <Button variant="primary" onClick={() => handleShow(item.node.title)}>
+                        <Button as={Link} variant="primary" to={"/order"} state={{ product: item.node.title }}>
                           {item.node.actionName}
                         </Button>
                       )
@@ -99,10 +92,6 @@ const Products = ({ site, products, faculties, locale }) => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              {
-                item.node.action !== "ShowLecture" &&
-                <RegisterModal show={show === item.node.title} onHide={handleClose} product={item.node} faculties={faculties} registerRulesDocuments={registerRulesDocuments} locale={locale} />
-              }
             </Col>
           );
         })}
