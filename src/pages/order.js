@@ -10,7 +10,7 @@ import Seo from "../components/seo";
 
 import { slugifyDocumentTitle } from '../common';
 import { OrderProvider } from "../components/order/order_context"
-import OrderDetails from "../components/order/order_details";
+import OrderLayout from "../components/order/order_layout";
 import Contact from "../components/contact";
 
 const OrderPage = ({ data, pageContext, location }) => {
@@ -34,13 +34,15 @@ const OrderPage = ({ data, pageContext, location }) => {
         )}
       </FormattedMessage>
 
-      <div className="banner-spacer"></div>
+      <div className="banner-spacer-order"></div>
 
       <Container>
         {product ? (
-          <OrderProvider product={product} faculties={data.allContentfulFaculties} locale={pageContext.locale}>
-            <OrderDetails registerRulesDocuments={registerRulesDocuments} logo={data.contentfulSiteInformation.logo} />
-          </OrderProvider>
+          <div className="order">
+            <OrderProvider product={product} faculties={data.allContentfulFaculties} locale={pageContext.locale} paymentFrequencies={data.allContentfulPaymentFrequency}>
+              <OrderLayout site={data.contentfulSiteInformation} registerRulesDocuments={registerRulesDocuments} />
+            </OrderProvider>
+          </div>
         ) : (
           <Row>
             <Col>
@@ -119,9 +121,15 @@ export const pageQuery = graphql`
           price {
             price
             discount
+            deposit
           }
           registerTitle
           registerDescription {
+            childMarkdownRemark {
+              html
+            }
+          }
+          priceDescription {
             childMarkdownRemark {
               html
             }
@@ -152,6 +160,24 @@ export const pageQuery = graphql`
         node {
           title
           country
+        }
+      }
+    }
+    allContentfulPaymentFrequency(
+      filter: {
+        node_locale: { eq: $locale }
+      }
+      sort: { fields: order }
+    ) {
+      edges {
+        node {
+          title
+          message {
+            childMarkdownRemark {
+              html
+            }
+          }
+          portions
         }
       }
     }

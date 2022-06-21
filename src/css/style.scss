@@ -437,9 +437,17 @@ p {
   }
 }
 
+.banner-spacer-order {
+  height: 5rem;
+  background: theme-color("bg-1");
+  background: linear-gradient(182deg, theme-color("bg-1") 50%, theme-color("light") 50%);
+  margin-bottom: 3rem;
+}
+
 .order {
   width: 100%;
   max-width: 90%;
+  margin-bottom: 8rem;
 
   .modal-title {
     color: theme-color("secondary");
@@ -489,24 +497,42 @@ p {
 
   .form-sent {
     height: 100%;
-    padding-left: 20%;
+    padding: 10% 20%;
 
     .bg-circle-container {
       position: absolute;
       width: 300px;
-      top: 20%;
-      left: 20%;
-      z-index: 0;
+      top: 30%;
+      left: 23%;
+      z-index: -1;
 
       .bg-circle {
         @extend .square;
         border-radius: 50%;
-        background: theme-color("light");
+        background: theme-color("bg-2");
       }
     }
 
     h3, p {
       z-index: 1;
+    }
+
+    .social {
+      a {
+        color: theme-color("light");
+      }
+    }
+  }
+
+  .payment-frequency {
+    input.form-check-input {
+      margin-top: 12px;
+    }
+    label {
+      .label-title {
+        color: #7661af;
+        font-size: 1.6rem;
+      }
     }
   }
 }

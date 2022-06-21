@@ -8,13 +8,13 @@ import { pixelTrackRegister } from '../../fb-pixel';
 
 const OrderContext = createContext({});
 
-export const OrderProvider = ({ product, faculties, locale, children }) => {
+export const OrderProvider = ({ product, faculties, paymentFrequencies, locale, children }) => {
   const intl = useIntl();
   const [formState, handleSubmit] = useForm("register");
   const [faculty, setFaculty] = useState("");
 
-  const [biology, setBiology] = useState(false);
-  const [chemistry, setChemistry] = useState(false);
+  const [biology, setBiology] = useState(true);
+  const [chemistry, setChemistry] = useState(true);
   const [physics, setPhysics] = useState(false);
   const [consent, setConsent] = useState(false);
   const [paymentFrequency, setPaymentFrequency] = useState(false);
@@ -23,12 +23,12 @@ export const OrderProvider = ({ product, faculties, locale, children }) => {
   const courses = biology + chemistry + physics;
 
   const priceStyle = {style: 'currency', currency: (locale === "sk" ? "EUR" : "CZK"), maximumFractionDigits: 0};
-  const hasCourses = product.action === "BuyCourse";
+  const isFullCourse = product.action === "BuyCourse";
   const priceIndex = courses ? courses-1 : 0;
 
-  let price, discount;
+  let price, discount, deposit;
   if (product.price.length > 0) {
-    if (hasCourses) {
+    if (isFullCourse) {
       price = courses > 0 ? product.price[priceIndex].price : 0;
       discount = courses > 0 ? product.price[priceIndex].discount : 0;
     } else {
@@ -50,7 +50,7 @@ export const OrderProvider = ({ product, faculties, locale, children }) => {
   const formattedDiscount = discount > 0 ? (intl.formatMessage({'id': 'register.discount'}) + "<em>" + formattedDiscountAmount + "</em>") : '';
   const formattedOldPrice = discount > 0 ? intl.formatNumber(discount + price, priceStyle) : '';
 
-  const formDisabled = false;// TODO product.registerStart && product.registerEnd && (moment.now() < moment(product.registerStart) || moment.now() > moment(product.registerEnd));
+  const formDisabled = product.registerStart && product.registerEnd && (moment.now() < moment(product.registerStart) || moment.now() > moment(product.registerEnd));
 
   const displayFaculties = product.product_variation ? (
     product.product_variation
@@ -64,7 +64,6 @@ export const OrderProvider = ({ product, faculties, locale, children }) => {
     })) || []
   );
 
-  const isFullCourse = product.action === "BuyCourse";
 
   const onSubmit = (event) => {
     pixelTrackRegister();
@@ -77,7 +76,9 @@ export const OrderProvider = ({ product, faculties, locale, children }) => {
               intl,
               product,
               displayFaculties,
+              paymentFrequencies,
               locale,
+              courses,
 
               formState,
               formDisabled,
@@ -98,6 +99,7 @@ export const OrderProvider = ({ product, faculties, locale, children }) => {
               codeDiscount,
               setCodeDiscount,
 
+              price,
               priceStyle,
               formattedPrice,
               formattedDiscountAmount,

@@ -6,47 +6,15 @@ import { FormattedMessage } from 'react-intl';
 import { useOrder } from "./order_context";
 import { fixNbsp, isCode, slugifyDocumentTitle } from '../../common';
 
-function RegisterFormVariation() {
-  const {
-    product, formState, formDisabled, codeDiscount, setCodeDiscount, displayFaculties, price, locale,
-    faculty, setFaculty, consent, setConsent
-  } = useOrder();
+function FormCustomizeVariation() {
+  const { product, formDisabled, displayFaculties, faculty, setFaculty } = useOrder();
 
   const filteredVariations = product.product_variation ? (
     product.product_variation.find(item => slugifyDocumentTitle(item.faculty.title) === faculty) || {variations:[]}
   ).variations : null;
 
-  const submitDisabled = formDisabled || !consent || formState.submitting;
-
   return (
     <>
-      <Form.Row>
-        <Form.Group as={Col} md={6} controlId="registerEmail">
-          <FormattedMessage id="register.email" defaultMessage="Email">
-            {(l_email) => (
-              <>
-                <Form.Label>
-                  {l_email} *
-                </Form.Label>
-                <Form.Control require="true" name="email" type="email" disabled={formDisabled} />
-              </>
-            )}
-          </FormattedMessage>
-        </Form.Group>
-        <Form.Group as={Col} md={6} controlId="registerName">
-          <FormattedMessage id="register.name" defaultMessage="Name">
-            {(l_name) => (
-              <>
-                <Form.Label>
-                  {l_name} *
-                </Form.Label>
-                <Form.Control require="true" name="name" type="input" disabled={formDisabled} />
-              </>
-            )}
-          </FormattedMessage>
-        </Form.Group>
-      </Form.Row>
-
       {
         !product.product_variation && (
           <Form.Row>
@@ -148,35 +116,8 @@ function RegisterFormVariation() {
           )}
         </FormattedMessage>
       </Form.Group>
-
-      <Form.Group controlId="registerReference" className="position-relative">
-        <FormattedMessage id="register.reference" defaultMessage="Reference">
-          {(l_reference) => (
-            <>
-              <Form.Label>
-                {l_reference}&nbsp;
-                <OverlayTrigger
-                  placement="bottom"
-                  overlay={
-                    <Tooltip id="tooltip-reference">
-                      <FormattedMessage id="register.reference.help" defaultMessage="E.g., Facebook" />
-                    </Tooltip>
-                  }
-                >
-                  <i className="fa fa-question-circle help" />
-                </OverlayTrigger>
-              </Form.Label>
-              <Form.Control onChange={(e) => setCodeDiscount(isCode(e.target.value))} name="reference" type="input" disabled={formDisabled} />
-              {
-                codeDiscount &&
-                <div className="code-discount"><em>-10%</em></div>
-              }
-            </>
-          )}
-        </FormattedMessage>
-      </Form.Group>
     </>
   );
 }
 
-export default RegisterFormVariation;
+export default FormCustomizeVariation;

@@ -6,7 +6,7 @@ import { useIntl, FormattedMessage } from 'react-intl';
 import { fixNbsp, isCode } from '../../common';
 import { useOrder } from "./order_context";
 
-function ConsentForm({registerRulesDocuments}) {
+function FormConsent({registerRulesDocuments}) {
   const {
     intl, formState, productTitle, formDisabled, isFullCourse, onChangeNumCourses, codeDiscount, setCodeDiscount, displayFaculties, price, locale,
     faculty, setFaculty, biology, setBiology, chemistry, setChemistry, physics, setPhysics, consent, setConsent
@@ -51,4 +51,4 @@ function ConsentForm({registerRulesDocuments}) {
   );
 }
 
-export default ConsentForm;
+export default FormConsent;

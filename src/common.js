@@ -17,7 +17,7 @@ export const fixPrepositions = (html) => {
 }
 
 export const fixNbsp = (html) => {
-  return html.replace(/&nbsp;/g, "\u00A0");
+  return html && html.replace(/&nbsp;/g, "\u00A0");
 }
 
 // czech and slovak languages use those instead..

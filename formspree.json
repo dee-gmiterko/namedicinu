@@ -11,6 +11,7 @@
         "address_country": { "type": "text", "required": true },
         "preferred_time": { "type": "text", "required": false },
         "preferred_day": { "type": "text", "required": false },
+        "payment_frequency": { "type": "text", "required": false },
         "faculty": { "type": "text", "required": false },
         "reference": { "type": "text", "required": false },
         "courses": { "type": "text", "required": false },
