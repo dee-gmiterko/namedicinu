@@ -63,7 +63,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         result.data.allContentfulAsset.edges.forEach(edge => {
           const slug = slugify(edge.node.title||"", {
-            remove: '.'
+            remove: /[.\?]/g
           }).toLowerCase();
 
           createPage({
@@ -81,7 +81,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         result.data.allContentfulBlog.edges.forEach(edge => {
           const slug = slugify(edge.node.title||"", {
-            remove: '.'
+            remove: /[.\?]/g
           }).toLowerCase();
 
           createPage({
@@ -103,7 +103,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         allTags.forEach(tag => {
           const slug = slugify(tag, {
-            remove: '.'
+            remove: /[.\?]/g
           }).toLowerCase();
 
           createPage({
