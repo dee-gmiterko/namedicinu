@@ -17,7 +17,7 @@ const Blog = ({ articles }) => {
               <Img fluid={item.node.image.fluid}/>
             </Col>
           )}
-          <Col md={item.node.image ? 8 : undefined} className="p-3">
+          <Col md={item.node.image ? 8 : undefined}>
             <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
               <div class="bg-circle-container">
                  <div class="bg-circle bg-1"></div>

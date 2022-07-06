@@ -916,6 +916,10 @@ p {
 .blog, .blog-tag {
   .blog-article {
     margin-bottom: 1rem;
+    border: 2px solid #e0e0e0;
+    background: theme-color("bg-2");
+    padding: 1rem 2rem 1rem 2rem;
+    margin: 0 -2rem 1rem -2rem;
 
     h3 {
       color: #7661af;
@@ -949,8 +953,6 @@ p {
     &:nth-child(1), &:nth-child(2), &:nth-child(3) {
       z-index: 0;
       position: relative;
-      border: 2px solid #e0e0e0;
-      background: theme-color("bg-2");
     }
 
     @include media-breakpoint-up(md) {
