@@ -9,7 +9,7 @@ export default class Banner extends Component {
   shouldComponentUpdate() {
     return false; // static component
   }
-  
+
   render() {
     const { site } = this.props;
     return (
@@ -25,7 +25,7 @@ export default class Banner extends Component {
 
               <Markdown value={site.bannerDescription} />
 
-              <Socials facebook={site.facebook} instagram={site.instagram} email={site.email} />
+              <Socials facebook={site.facebook} instagram={site.instagram} tiktok={site.tiktok} email={site.email} />
             </Col>
             <Col md={6} className="p-3 d-flex flex-column align-items-stretch justify-content-center">
               <div className="bg-circle-container">

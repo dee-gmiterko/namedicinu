@@ -34,7 +34,7 @@ const FormPaymentMethod = () => {
             checked={true}
           />
         </div>
-        {isFullCourse && (
+        {isFullCourse ? (
           <div className="pl-5 mt-3 pr-3 payment-frequency">
             {paymentFrequencies.edges.map(({node: pf}) => (
               <>
@@ -67,6 +67,25 @@ const FormPaymentMethod = () => {
                 </Row>
               </>
             ))}
+          </div>
+        ) : (
+          <div className="pl-5 mt-3 pr-3 payment-frequency">
+            <Row className="pt-3 mb-2 bg-2">
+              <Col>
+                <p>
+                  <FormattedMessage
+                    id="order.payment.bank_transfer.description"
+                    defaultMessage="Due to {depositDueDate}!"
+                    values={{
+                      depositDueDate: intl.formatDate(
+                        depositDueDate,
+                        {year:"numeric", month:"long", day:"numeric"}
+                      ),
+                    }}
+                  />
+                </p>
+              </Col>
+            </Row>
           </div>
         )}
       </Form.Group>

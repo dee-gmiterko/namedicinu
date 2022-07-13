@@ -72,6 +72,7 @@
   "order.price_discount": "Zľava",
   "order.price_total": "Celková suma",
   "order.payment.bank_transfer": "Prevodom na účet",
+  "order.payment.bank_transfer.description": "Splatné do {depositDueDate}",
   "blog.read-more": "Čítať viac",
   "blog.related_articles": "Súvisiace články",
   "not_found.message": "Narazili ste na cestu, ktorá neexistuje.",

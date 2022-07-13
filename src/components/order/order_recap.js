@@ -11,7 +11,7 @@ import { useOrder } from "./order_context";
 import { fixNbsp, isCode } from '../../common';
 
 function OrderRecap({ logo }) {
-  const { intl, product, biology, chemistry, physics, priceStyle, formattedPrice, formattedDiscountAmount, formattedOldPrice } = useOrder();
+  const { intl, product, biology, chemistry, physics, isFullCourse, priceStyle, formattedPrice, formattedDiscountAmount, formattedOldPrice } = useOrder();
 
   return (
     <>
@@ -21,42 +21,44 @@ function OrderRecap({ logo }) {
           <Markdown value={product.description} />
         </Col>
       </Row>
-      {biology && (
-        <Row>
-          <Col xs={8}>
-            <span className="item">
-              <FormattedMessage id="register.course.biology" defaultMessage="Biology" />
-            </span>
-          </Col>
-          <Col xs={4} className="text-right">
-            {intl.formatNumber(product.price[0].price, priceStyle)}
-          </Col>
-        </Row>
-      )}
-      {chemistry && (
-        <Row>
-          <Col xs={8}>
-            <span className="item">
-              <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry" />
-            </span>
-          </Col>
-          <Col xs={4} className="text-right">
-            {intl.formatNumber(product.price[0].price, priceStyle)}
-          </Col>
-        </Row>
-      )}
-      {physics && (
-        <Row>
-          <Col xs={8}>
-            <span className="item">
-              <FormattedMessage id="register.course.physics" defaultMessage="Physics" />
-            </span>
-          </Col>
-          <Col xs={4} className="text-right">
-            {intl.formatNumber(product.price[0].price, priceStyle)}
-          </Col>
-        </Row>
-      )}
+      {isFullCourse && [
+        (biology && (
+          <Row>
+            <Col xs={8}>
+              <span className="item">
+                <FormattedMessage id="register.course.biology" defaultMessage="Biology" />
+              </span>
+            </Col>
+            <Col xs={4} className="text-right">
+              {intl.formatNumber(product.price[0].price, priceStyle)}
+            </Col>
+          </Row>
+        )),
+        (chemistry && (
+          <Row>
+            <Col xs={8}>
+              <span className="item">
+                <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry" />
+              </span>
+            </Col>
+            <Col xs={4} className="text-right">
+              {intl.formatNumber(product.price[0].price, priceStyle)}
+            </Col>
+          </Row>
+        )),
+        (physics && (
+          <Row>
+            <Col xs={8}>
+              <span className="item">
+                <FormattedMessage id="register.course.physics" defaultMessage="Physics" />
+              </span>
+            </Col>
+            <Col xs={4} className="text-right">
+              {intl.formatNumber(product.price[0].price, priceStyle)}
+            </Col>
+          </Row>
+        ))
+      ]}
       {formattedDiscountAmount && (
         <Row>
           <Col xs={8}>

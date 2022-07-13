@@ -107,7 +107,8 @@ export const pageQuery = graphql`
       # twitter
       instagram
       # linkdin
-      # github
+      # github.
+      # tiktok
       email
 
       bannerSubtitle

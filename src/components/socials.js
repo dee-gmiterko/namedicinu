@@ -3,7 +3,7 @@ import { Dropdown } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import { pixelTrackContact } from '../fb-pixel';
 
-const Socials = ({ facebook, twitter, instagram, linkdin, github, email }) => {
+const Socials = ({ facebook, twitter, instagram, linkdin, tiktok, github, email }) => {
   return (
     <ul className="social">
       {
@@ -64,6 +64,18 @@ const Socials = ({ facebook, twitter, instagram, linkdin, github, email }) => {
             rel="noopener noreferrer"
             style={{background: '#303030'}}
           >Github</a>
+        </li>
+      }
+      {
+        tiktok &&
+        <li>
+          <a
+            className="fab fa-tiktok"
+            href={tiktok}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{background: '#fe0151'}}
+          >TikTok</a>
         </li>
       }
       {
