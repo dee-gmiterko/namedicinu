@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { Form, Alert } from 'react-bootstrap';
-import { useIntl } from 'react-intl';
-import { useForm } from '@formspree/react';
 import moment from 'moment';
+import { Form, Alert } from 'react-bootstrap';
+import { useForm } from '@formspree/react';
+import { useIntl } from 'react-intl';
 
 import { pixelTrackRegister } from '../../fb-pixel';
 
@@ -68,6 +68,11 @@ export const OrderProvider = ({ product, faculties, paymentFrequencies, locale, 
   const onSubmit = (event) => {
     pixelTrackRegister();
     handleSubmit(event);
+    typeof window !== "undefined" && window.gtag('event', 'conversion', {
+      'send_to': 'AW-946042791/tAtvCJfYv8gDEKfvjcMD',
+      'value': price.toString(),
+      'currency': locale === "sk" ? "EUR" : "CZK"
+    });
   }
 
   return (

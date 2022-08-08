@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { useForm } from '@formspree/react';
-import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
-import moment from "moment";
-
 import Markdown from "../markdown";
-import { pixelTrackRegister } from '../../fb-pixel';
-import { useOrder } from "./order_context";
+import moment from "moment";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { FormattedMessage } from 'react-intl';
+import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
 import { slugifyDocumentTitle } from "../../common";
+import { useOrder } from "./order_context";
 
 const FormPaymentMethod = () => {
   const { intl, product, formDisabled, isFullCourse, paymentFrequency, setPaymentFrequency, price, courses, priceStyle, paymentFrequencies } = useOrder();

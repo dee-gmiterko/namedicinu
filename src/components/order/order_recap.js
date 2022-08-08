@@ -1,14 +1,10 @@
 import React from "react";
-import { useForm } from '@formspree/react';
-import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
-import { useIntl, FormattedMessage } from 'react-intl';
-import Img from "gatsby-image";
-
 import Markdown from "../markdown"
-import { pixelTrackRegister } from '../../fb-pixel';
+import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { FormattedMessage } from 'react-intl';
+import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
+import { useForm } from '@formspree/react';
 import { useOrder } from "./order_context";
-import { fixNbsp, isCode } from '../../common';
 
 function OrderRecap({ logo }) {
   const { intl, product, biology, chemistry, physics, isFullCourse, priceStyle, formattedPrice, formattedDiscountAmount, formattedOldPrice } = useOrder();
