@@ -14,7 +14,8 @@ const FormPaymentMethod = () => {
   const deposit = (courses > 0 && product.price.length >= courses) ? product.price[priceIndex].deposit : 0;
   const formattedDeposit = intl.formatNumber(deposit, priceStyle);
   const depositDueDate = product.registerEnd ? (
-    moment(Math.min(moment().add(14, 'days').valueOf(), moment(product.registerEnd).valueOf()))
+    moment(Math.min(moment().add(14, 'days').valueOf(),
+    moment("2022-09-15").valueOf()))
   ) : moment();
 
   console.log(paymentFrequency);
