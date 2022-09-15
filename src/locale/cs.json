@@ -72,6 +72,7 @@
   "order.price_total": "Celková suma",
   "order.get_full_course": "Prihlásit se na celý přípravný kurz",
   "order.payment.bank_transfer": "Převodem na účet",
+  "order.payment.bank_transfer.description": "Splatné do {depositDueDate}",
   "blog.read-more": "Číst více",
   "blog.related_articles": "Související články",
   "not_found.message": "Narazili jste na stránku, která neexistuje.",
