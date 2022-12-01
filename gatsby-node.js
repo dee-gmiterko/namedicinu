@@ -46,6 +46,7 @@ exports.createPages = ({ graphql, actions }) => {
           allContentfulBlog(
             filter: {
               node_locale: { eq: $locale }
+              showOn: { eq: $locale }
             }
           ) {
             edges {

@@ -80,6 +80,7 @@ export const pageQuery = graphql`
     allContentfulBlog(
       filter: {
         node_locale: { eq: $locale }
+        showOn: { eq: $locale }
         tags: { eq: $tag }
       }
       sort: {fields: [createdAt], order: [DESC]}
