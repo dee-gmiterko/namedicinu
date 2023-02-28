@@ -1,8 +1,7 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
-import { FormattedMessage, FormattedDate } from 'react-intl';
-import { slugifyDocumentTitle } from '../common';
+import { FormattedMessage } from 'react-intl';
 
 import Layout from "../components/layout";
 import Seo from "../components/seo";

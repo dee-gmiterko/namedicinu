@@ -50,21 +50,38 @@ export default class Lecture extends Component {
             </div>
           </Col>
           <Col lg={4}>
-            <h3>
-              <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
-            </h3>
-            <div className="position-relative mb-3">
-              {locale === "sk" && (
-                <div className="lang">
-                  CZ
+            {locale === "sk" ? (
+              <>
+                <h3>
+                  <FormattedMessage id="lecture.study_prerequisites" defaultMessage="Study Prerequisites" />
+                </h3>
+                <div className="position-relative mb-3">
+                  {locale === "sk" && (
+                    <div className="lang">
+                      SK
+                    </div>
+                  )}
+                  <YouTube
+                    videoId="DkfxvI8pEPU"
+                    containerClassName="embed-responsive embed-responsive-16by9"
+                    onPlay={pixelTrackPlayLecuture}
+                  />
                 </div>
-              )}
-              <YouTube
-                videoId="X-gsQEkCVvM"
-                containerClassName="embed-responsive embed-responsive-16by9"
-                onPlay={pixelTrackPlayLecuture}
-              />
-            </div>
+              </>
+            ) : (
+              <>
+                <h3>
+                  <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
+                </h3>
+                <div className="position-relative mb-3">
+                  <YouTube
+                    videoId="X-gsQEkCVvM"
+                    containerClassName="embed-responsive embed-responsive-16by9"
+                    onPlay={pixelTrackPlayLecuture}
+                  />
+                </div>
+              </>
+            )}
           </Col>
           <Col lg={4}>
             <h3>

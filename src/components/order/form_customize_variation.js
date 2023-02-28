@@ -1,10 +1,9 @@
 import React from "react";
-import { useForm } from '@formspree/react';
-import { Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
+import { Col, Form } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
 import { useOrder } from "./order_context";
-import { fixNbsp, isCode, slugifyDocumentTitle } from '../../common';
+import { fixNbsp, slugifyDocumentTitle } from '../../common';
 
 function FormCustomizeVariation() {
   const { product, formDisabled, displayFaculties, faculty, setFaculty } = useOrder();

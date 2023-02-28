@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "gatsby";
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
@@ -6,7 +6,7 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 import Markdown from "./markdown";
 
-const Products = ({ site, products, faculties, locale }) => {
+const Products = ({ products, locale }) => {
 
   const sizing = {
     3: 6,
@@ -30,7 +30,7 @@ const Products = ({ site, products, faculties, locale }) => {
           const priceMax = Math.max( ...item.node.price.map(price => price.price) );
 
           return (
-            <Col xs={12} md={index == 1 ? 9 : sizing} className="mb-3" key={index}>
+            <Col xs={12} md={index === 1 ? 9 : sizing} className="mb-3" key={index}>
               <Card>
                 <Card.Body>
                   <Card.Title className="text-center">

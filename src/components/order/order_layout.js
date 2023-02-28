@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "gatsby";
 import { Row, Col, Button } from 'react-bootstrap';
-import { useIntl } from 'react-intl';
 import moment from 'moment';
-import { FormattedMessage, FormattedDate } from 'react-intl';
-import Img from "gatsby-image";
+import { FormattedMessage } from 'react-intl';
 
 import { useOrder } from "./order_context";
 import Markdown from "../markdown";
@@ -18,7 +16,7 @@ import FormConsent from "./form_consent";
 import Socials from "../socials"
 
 const OrderLayout = ({ site, registerRulesDocuments }) => {
-  const { product, faculties, formState, locale, formattedPrice, formattedDiscount, formattedOldPrice } = useOrder();
+  const { product, formState, locale, formattedPrice, formattedDiscount, formattedOldPrice } = useOrder();
 
   const countdown = (product.registerStart && product.registerEnd) ? (
     moment(product.registerStart).isBefore(moment()) ? moment(product.registerStart) : moment(product.registerEnd)
@@ -68,7 +66,7 @@ const OrderLayout = ({ site, registerRulesDocuments }) => {
 
                 <Row>
                   <Col className="text-center">
-                    <Button as={Link} variant="primary" to={"/order"} state={{ product: locale == "sk" ? "Celý prípravný kurz" : "Celý přípravný kurz" }}>
+                    <Button as={Link} variant="primary" to={"/order"} state={{ product: locale === "sk" ? "Celý prípravný kurz" : "Celý přípravný kurz" }}>
                       <FormattedMessage id="order.get_full_course" defaultMessage="Register to the full course" />
                     </Button>
                   </Col>

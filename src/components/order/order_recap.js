@@ -1,13 +1,11 @@
 import React from "react";
 import Markdown from "../markdown"
-import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { FormattedMessage } from 'react-intl';
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
-import { useForm } from '@formspree/react';
+import { Row, Col } from 'react-bootstrap';
 import { useOrder } from "./order_context";
 
 function OrderRecap({ logo }) {
-  const { intl, product, biology, chemistry, physics, isFullCourse, priceStyle, formattedPrice, formattedDiscountAmount, formattedOldPrice } = useOrder();
+  const { intl, product, biology, chemistry, physics, isFullCourse, priceStyle, formattedPrice, formattedDiscountAmount } = useOrder();
 
   return (
     <>

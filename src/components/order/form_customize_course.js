@@ -1,9 +1,9 @@
 import React from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { Row, Col, Form } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
-import { fixNbsp, isCode } from '../../common';
+import { fixNbsp } from '../../common';
 import { useOrder } from "./order_context";
 
 function FormCustomizeCourse() {

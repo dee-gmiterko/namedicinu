@@ -65,7 +65,7 @@ const IndexPage = ({ data, pageContext }) => {
             <Lecturers key="Lecturers" site={data.contentfulSiteInformation} lecturers={data.allContentfulLecturers} />
           </VisibilitySensor>
           <VisibilitySensor onChange={setVisibleIndex.bind(null, 4)} partialVisibility={true} minTopValue={400}>
-            <Products key="Products" site={data.contentfulSiteInformation} products={data.allContentfulProducts} faculties={data.allContentfulFaculties} locale={pageContext.locale} />
+            <Products key="Products" products={data.allContentfulProducts} locale={pageContext.locale} />
           </VisibilitySensor>
         </Col>
       </Row>

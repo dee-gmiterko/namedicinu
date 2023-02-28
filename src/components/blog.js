@@ -1,6 +1,6 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from "gatsby";
+import { Row, Col } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate } from 'react-intl';
 import Img from "gatsby-image";
 

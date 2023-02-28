@@ -1,15 +1,13 @@
 import React from "react";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { Col, Form, Button } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
-import { fixNbsp, isCode } from '../../common';
 import { useOrder } from "./order_context";
 
 function FormConsent({registerRulesDocuments}) {
   const {
-    intl, formState, productTitle, formDisabled, isFullCourse, onChangeNumCourses, codeDiscount, setCodeDiscount, displayFaculties, price, locale,
-    faculty, setFaculty, biology, setBiology, chemistry, setChemistry, physics, setPhysics, consent, setConsent
+    formState, formDisabled, isFullCourse,
+    biology, chemistry, physics, consent, setConsent
   } = useOrder();
 
   const submitDisabled = formDisabled || !consent || formState.submitting

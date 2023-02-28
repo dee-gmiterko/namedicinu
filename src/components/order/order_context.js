@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import moment from 'moment';
 import { Form, Alert } from 'react-bootstrap';
 import { useForm } from '@formspree/react';
@@ -26,7 +26,7 @@ export const OrderProvider = ({ product, faculties, paymentFrequencies, locale, 
   const isFullCourse = product.action === "BuyCourse";
   const priceIndex = courses ? courses-1 : 0;
 
-  let price, discount, deposit;
+  let price, discount;
   if (product.price.length > 0) {
     if (isFullCourse) {
       price = courses > 0 ? product.price[priceIndex].price : 0;

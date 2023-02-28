@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { StickyContainer, Sticky } from 'react-sticky';
 import { FormattedMessage } from 'react-intl';
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 

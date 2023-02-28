@@ -1,14 +1,13 @@
 import React from "react";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { useIntl, FormattedMessage } from 'react-intl';
+import { Col, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 
-import { fixNbsp, isCode } from '../../common';
+import { isCode } from '../../common';
 import { useOrder } from "./order_context";
 
 function FormContact() {
   const {
-    intl, formDisabled, codeDiscount, setCodeDiscount
+    formDisabled, codeDiscount, setCodeDiscount
   } = useOrder();
 
   return (

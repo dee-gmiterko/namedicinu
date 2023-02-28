@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Markdown from "../markdown";
 import moment from "moment";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { FormattedMessage } from 'react-intl';
-import { Row, Col, Form, Button, OverlayTrigger, Tooltip, Alert } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import { slugifyDocumentTitle } from "../../common";
 import { useOrder } from "./order_context";
 
 const FormPaymentMethod = () => {
-  const { intl, product, formDisabled, isFullCourse, paymentFrequency, setPaymentFrequency, price, courses, priceStyle, paymentFrequencies } = useOrder();
+  const { intl, product, formDisabled, isFullCourse, paymentFrequency, price, courses, priceStyle, paymentFrequencies } = useOrder();
 
   const priceIndex = courses ? courses-1 : 0;
   const deposit = (courses > 0 && product.price.length >= courses) ? product.price[priceIndex].deposit : 0;
