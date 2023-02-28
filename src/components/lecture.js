@@ -19,12 +19,12 @@ export default class Lecture extends Component {
             <Markdown value={site.lectureDescription} />
           </Col>
         </Row>
-        <Row>
-          <Col lg={4}>
-            <h3>
-              <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
-            </h3>
-            {locale === "sk" && (
+        {locale === "sk" ? (
+          <Row>
+            <Col lg={6}>
+              <h3>
+                <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
+              </h3>
               <div className="position-relative mb-3">
                 <div className="lang">
                   SK
@@ -35,59 +35,21 @@ export default class Lecture extends Component {
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
-            )}
-            <div className="position-relative mb-3">
-              {locale === "sk" && (
+              <div className="position-relative mb-3">
                 <div className="lang">
                   CZ
                 </div>
-              )}
-              <YouTube
-                videoId="OfpZI-Qm-CI"
-                containerClassName="embed-responsive embed-responsive-16by9"
-                onPlay={pixelTrackPlayLecuture}
-              />
-            </div>
-          </Col>
-          <Col lg={4}>
-            {locale === "sk" ? (
-              <>
-                <h3>
-                  <FormattedMessage id="lecture.study_prerequisites" defaultMessage="Study Prerequisites" />
-                </h3>
-                <div className="position-relative mb-3">
-                  {locale === "sk" && (
-                    <div className="lang">
-                      SK
-                    </div>
-                  )}
-                  <YouTube
-                    videoId="DkfxvI8pEPU"
-                    containerClassName="embed-responsive embed-responsive-16by9"
-                    onPlay={pixelTrackPlayLecuture}
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                <h3>
-                  <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
-                </h3>
-                <div className="position-relative mb-3">
-                  <YouTube
-                    videoId="X-gsQEkCVvM"
-                    containerClassName="embed-responsive embed-responsive-16by9"
-                    onPlay={pixelTrackPlayLecuture}
-                  />
-                </div>
-              </>
-            )}
-          </Col>
-          <Col lg={4}>
-            <h3>
-              <FormattedMessage id="lecture.biology" defaultMessage="Biology" />
-            </h3>
-            {locale === "sk" && (
+                <YouTube
+                  videoId="OfpZI-Qm-CI"
+                  containerClassName="embed-responsive embed-responsive-16by9"
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            </Col>
+            <Col lg={6}>
+              <h3>
+                <FormattedMessage id="lecture.biology" defaultMessage="Biology" />
+              </h3>
               <div className="position-relative mb-3">
                 <div className="lang">
                   SK
@@ -98,21 +60,88 @@ export default class Lecture extends Component {
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
-            )}
-            <div className="position-relative mb-3">
-              {locale === "sk" && (
+              <div className="position-relative mb-3">
                 <div className="lang">
                   CZ
                 </div>
-              )}
-              <YouTube
-                videoId="tqyiuTLe15A"
-                containerClassName="embed-responsive embed-responsive-16by9"
-                onPlay={pixelTrackPlayLecuture}
-              />
-            </div>
-          </Col>
-        </Row>
+                <YouTube
+                  videoId="tqyiuTLe15A"
+                  containerClassName="embed-responsive embed-responsive-16by9"
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            </Col>
+            <Col lg={6}>
+              <h3>
+                <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
+              </h3>
+              <div className="position-relative mb-3">
+                <div className="lang">
+                  CZ
+                </div>
+                <YouTube
+                  videoId="X-gsQEkCVvM"
+                  containerClassName="embed-responsive embed-responsive-16by9"
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            </Col>
+            <Col lg={6}>
+              <h3>
+                <FormattedMessage id="lecture.study_prerequisites" defaultMessage="Study Prerequisites" />
+              </h3>
+              <div className="position-relative mb-3">
+                <div className="lang">
+                  SK
+                </div>
+                <YouTube
+                  videoId="DkfxvI8pEPU"
+                  containerClassName="embed-responsive embed-responsive-16by9"
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            </Col>
+          </Row>
+        ) : (
+          <Row>
+            <Col lg={4}>
+              <h3>
+                <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
+              </h3>
+              <div className="position-relative mb-3">
+                <YouTube
+                  videoId="OfpZI-Qm-CI"
+                  containerClassName="embed-responsive embed-responsive-16by9"
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            </Col>
+            <Col lg={4}>
+              <h3>
+                <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
+              </h3>
+              <div className="position-relative mb-3">
+                <YouTube
+                  videoId="X-gsQEkCVvM"
+                  containerClassName="embed-responsive embed-responsive-16by9"
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            </Col>
+            <Col lg={4}>
+              <h3>
+                <FormattedMessage id="lecture.biology" defaultMessage="Biology" />
+              </h3>
+              <div className="position-relative mb-3">
+                <YouTube
+                  videoId="tqyiuTLe15A"
+                  containerClassName="embed-responsive embed-responsive-16by9"
+                  onPlay={pixelTrackPlayLecuture}
+                />
+              </div>
+            </Col>
+          </Row>
+        )}
       </Container>
     );
   }
