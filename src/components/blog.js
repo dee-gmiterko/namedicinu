@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import { Row, Col } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate } from 'react-intl';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import { slugifyDocumentTitle } from '../common';
 
@@ -14,10 +14,10 @@ const Blog = ({ articles }) => {
         <Row className="blog-article">
           {item.node.image && (
             <Col md={4} className="article-image">
-              <Img fluid={item.node.image.fluid}/>
+              <GatsbyImage image={item.node.image.gatsbyImageData}/>
             </Col>
           )}
-          <Col md={item.node.image ? 8 : undefined}>
+          <Col md={item.node.image ? 8 : undefined} className="position-relative">
             <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
               <div class="bg-circle-container">
                  <div class="bg-circle bg-1"></div>

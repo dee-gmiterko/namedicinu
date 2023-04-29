@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 export default class Header extends Component {
@@ -12,8 +12,8 @@ export default class Header extends Component {
         <Container>
           <Navbar.Brand as={AnchorLink} to={`/`}>
             {site.logo ? (
-              <Img
-                fluid={site.logo.fluid}
+              <GatsbyImage
+                image={site.logo.gatsbyImageData}
               />
             ) : (
               <span>{site.siteName}</span>

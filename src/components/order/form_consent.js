@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Form, Button } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
 import { useOrder } from "./order_context";
@@ -15,7 +15,7 @@ function FormConsent({registerRulesDocuments}) {
 
   return (
     <>
-      <Form.Row>
+      <Row>
         <Col className="text-justify">
           <FormattedMessage id="register.consent" values={{
             a1: chunks => <a href={registerRulesDocuments[0]} target="_blank">{chunks}</a>,
@@ -36,15 +36,15 @@ function FormConsent({registerRulesDocuments}) {
             )}
           </FormattedMessage>
         </Col>
-      </Form.Row>
+      </Row>
 
-      <Form.Row>
+      <Row>
         <Col className="submit-container pt-3">
           <Button variant="primary" type="submit" size="lg" disabled={submitDisabled}>
             <FormattedMessage id="register.submit" defaultMessage="Submit" />
           </Button>
         </Col>
-      </Form.Row>
+      </Row>
     </>
   );
 }

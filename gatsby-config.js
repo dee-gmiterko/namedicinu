@@ -42,7 +42,6 @@ module.exports = {
         icon: `src/images/fev_icon.png`,
       },
     },
-    `gatsby-plugin-gatsby-cloud`,
     {
       resolve: "gatsby-source-contentful",
       options: {
@@ -66,7 +65,6 @@ module.exports = {
         }
       }
     },
-    `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-anchor-links`,
     {

@@ -20,7 +20,7 @@ function FormCustomizeCourse() {
 
   return (
     <>
-      <Form.Row>
+      <Row>
         <Form.Group as={Col} md={6} controlId="registerPreferredTime">
           <FormattedMessage id="register.preferred_time" defaultMessage="Preferred time">
             {(l_preferred_time) => (
@@ -61,18 +61,24 @@ function FormCustomizeCourse() {
             )}
           </FormattedMessage>
         </Form.Group>
-      </Form.Row>
+      </Row>
 
       <Form.Group controlId="registerFaculty">
         <FormattedMessage id="register.faculty" defaultMessage="Faculty">
           {(l_faculty) => (
             <>
-              <Form.Label>
-                {l_faculty}
-              </Form.Label>
-              <AnchorLink to={`/faculties/#Quiz`} className="float-right">
-                <FormattedMessage id="register.faculty.help" defaultMessage="Do you need help with selection?" />
-              </AnchorLink>
+              <Row>
+                <Col>
+                <Form.Label>
+                  {l_faculty}
+                </Form.Label>
+                </Col>
+                <Col xs={"auto"}>
+                  <AnchorLink to={`/faculties/#Quiz`}>
+                    <FormattedMessage id="register.faculty.help" defaultMessage="Do you need help with selection?" />
+                  </AnchorLink>
+                </Col>
+              </Row>
               <Form.Control
                 name="faculty"
                 as="select"

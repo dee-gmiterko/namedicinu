@@ -49,15 +49,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        fluid(maxWidth: 300) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
+        gatsbyImageData(width: 300)
       }
       fbPageId
       fbAppId
@@ -82,7 +74,7 @@ export const pageQuery = graphql`
         showOn: { eq: $locale }
         tags: { eq: $tag }
       }
-      sort: {fields: [createdAt], order: [DESC]}
+      sort: { createdAt: DESC }
     ) {
       edges {
         node {
@@ -92,15 +84,7 @@ export const pageQuery = graphql`
           }
           createdAt
           image {
-            fluid(maxWidth: 500) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
+            gatsbyImageData(width: 500)
           }
         }
       }

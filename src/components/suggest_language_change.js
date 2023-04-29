@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Row, Button } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import preferredLocale from 'preferred-locale';
+import { preferredLocale } from 'preferred-locale';
 
 const SuggestLanguageChange = ({ locale }) => {
   const [show, setShow] = useState(false);
@@ -13,7 +13,7 @@ const SuggestLanguageChange = ({ locale }) => {
 
   useEffect(() => {
     let expected = locale === "sk" ? 'sk-sk' : 'cs-cz';
-    let preferred = preferredLocale(['sk-sk', 'cs-cz'], expected, { lowerCaseRegion: true });
+    let preferred = preferredLocale(expected, ['sk-sk', 'cs-cz'], { regionLowerCase: true });
     if (preferred !== expected) {
       let itsOk = localStorage.getItem('locale-is-ok');
       if(!itsOk) {

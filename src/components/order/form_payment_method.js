@@ -7,20 +7,22 @@ import { slugifyDocumentTitle } from "../../common";
 import { useOrder } from "./order_context";
 
 const FormPaymentMethod = () => {
-  const { intl, product, formDisabled, isFullCourse, paymentFrequency, price, courses, priceStyle, paymentFrequencies } = useOrder();
+  const { intl, product, formDisabled, isFullCourse, paymentFrequency, price, courses, priceStyle, paymentFrequencies, variation } = useOrder();
 
   const priceIndex = courses ? courses-1 : 0;
   const deposit = (courses > 0 && product.price.length >= courses) ? product.price[priceIndex].deposit : 0;
   const formattedDeposit = intl.formatNumber(deposit, priceStyle);
+  const variationDate = variation && variation.length > 0 && moment(variation.split(" ")[0], ["DD.MM.YYYY"]);
   const depositDueDate = product.registerEnd ? (
-    moment(Math.min(moment().add(14, 'days').valueOf(),
-    moment("2022-09-15").valueOf()))
-  ) : moment();
+    moment(Math.min(moment().add(14, 'days').valueOf(), moment("2023-09-15").valueOf()))
+  ) : (
+    variationDate ? variationDate.subtract(2, "days") : moment()
+  );
 
   console.log(paymentFrequency);
 
   return (
-    <Form.Row>
+    <Row>
       <Form.Group controlId="paymentMethod" className="col-12">
         <div className="switch-bg">
           <Form.Check
@@ -66,7 +68,7 @@ const FormPaymentMethod = () => {
             ))}
           </div>
         ) : (
-          <div className="pl-5 mt-3 pr-3 payment-frequency">
+          <div className="mt-3 payment-frequency">
             <Row className="pt-3 mb-2 bg-2">
               <Col>
                 <p>
@@ -86,7 +88,7 @@ const FormPaymentMethod = () => {
           </div>
         )}
       </Form.Group>
-    </Form.Row>
+    </Row>
   );
 }
 

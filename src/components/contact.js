@@ -22,7 +22,7 @@ export default class service extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={6} className="text-center text-sm-left">
+            <Col className="text-sm-left">
               <dl>
                 {
                   site.email &&
@@ -55,7 +55,7 @@ export default class service extends Component {
                 }
               </dl>
             </Col>
-            <Col md={6} className="text-right d-none d-md-block" style={{top: "-40px"}}>
+            <Col md={"auto"} className="text-right d-none d-md-block position-relative" style={{top: "-40px"}}>
               <p>
                 <FormattedMessage id="contact.register_prompt" defaultMessage="What are you waiting for?" />
               </p>

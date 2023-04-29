@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { FormattedMessage } from 'react-intl';
 import { slugifyFaculty, fixNbsp } from '../common';
@@ -100,8 +100,8 @@ export default class FacultiesOverview extends Component {
             return (
               <div key={index} className="p-3">
                 <Card>
-                  <Card.Img as={Img}
-                    fluid={item.node.image.fluid}
+                  <Card.Img as={GatsbyImage}
+                    image={item.node.image.gatsbyImageData}
                     objectFit="cover"
                     objectPosition="50% 50%"
                   />

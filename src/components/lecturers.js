@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { FormattedMessage } from 'react-intl';
 
 import Markdown from "./markdown";
@@ -28,8 +28,8 @@ export default class Lecturers extends Component {
               <Col md={4} className="col-photo">
                 <div className="square">
                   <div className="circle-img-half-border">
-                    <Img
-                      fluid={item.node.photo.fluid}
+                    <GatsbyImage
+                      image={item.node.photo.gatsbyImageData}
                     />
                   </div>
                 </div>

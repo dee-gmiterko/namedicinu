@@ -85,15 +85,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        fluid(maxWidth: 300) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
+        gatsbyImageData(width: 300)
       }
       fbPageId
       fbAppId
@@ -117,7 +109,7 @@ export const pageQuery = graphql`
         node_locale: { eq: $locale }
         showOn: { eq: $locale }
       }
-      sort: { fields: title }
+      sort: { title: ASC }
     ) {
       edges {
         node {
@@ -126,15 +118,7 @@ export const pageQuery = graphql`
           shortDescription
           website
           image {
-            fluid(maxWidth: 500) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
+            gatsbyImageData(width: 500)
           }
           dentistry
           oralInterview
@@ -165,7 +149,7 @@ export const pageQuery = graphql`
         node_locale: { eq: $locale }
         showOn: { eq: $locale }
       }
-      sort: { fields: createdAt }
+      sort: { createdAt: ASC }
     ) {
       edges {
         node {

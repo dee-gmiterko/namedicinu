@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Row, Col, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
 import { isCode } from '../../common';
@@ -12,7 +12,7 @@ function FormContact() {
 
   return (
     <>
-      <Form.Row>
+      <Row>
         <Form.Group as={Col} md={6} controlId="registerEmail">
           <FormattedMessage id="register.email" defaultMessage="Email">
             {(l_email) => (
@@ -37,9 +37,9 @@ function FormContact() {
             )}
           </FormattedMessage>
         </Form.Group>
-      </Form.Row>
+      </Row>
 
-      <Form.Row>
+      <Row>
         <Form.Group as={Col} xs={12} controlId="registerAddressStreet">
           <FormattedMessage id="register.address_street" defaultMessage="Address">
             {(l_address_street) => (
@@ -52,9 +52,9 @@ function FormContact() {
             )}
           </FormattedMessage>
         </Form.Group>
-      </Form.Row>
+      </Row>
 
-      <Form.Row>
+      <Row>
         <Form.Group as={Col} md={4} controlId="registerAddressTown">
           <FormattedMessage id="register.address_town" defaultMessage="Town">
             {(l_address_town) => (
@@ -91,7 +91,7 @@ function FormContact() {
             )}
           </FormattedMessage>
         </Form.Group>
-      </Form.Row>
+      </Row>
 
       <Form.Group controlId="registerReference" className="position-relative">
         <FormattedMessage id="register.reference" defaultMessage="Reference">

@@ -19,6 +19,7 @@ export const OrderProvider = ({ product, faculties, paymentFrequencies, locale, 
   const [consent, setConsent] = useState(false);
   const [paymentFrequency, setPaymentFrequency] = useState(false);
   const [codeDiscount, setCodeDiscount] = useState(false);
+  const [variation, setVariation] = useState("");
 
   const courses = biology + chemistry + physics;
 
@@ -103,6 +104,8 @@ export const OrderProvider = ({ product, faculties, paymentFrequencies, locale, 
               setPaymentFrequency,
               codeDiscount,
               setCodeDiscount,
+              variation,
+              setVariation,
 
               price,
               priceStyle,

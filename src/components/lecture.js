@@ -31,7 +31,7 @@ export default class Lecture extends Component {
                 </div>
                 <YouTube
                   videoId="60_7SE6LHm8"
-                  containerClassName="embed-responsive embed-responsive-16by9 "
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -41,7 +41,7 @@ export default class Lecture extends Component {
                 </div>
                 <YouTube
                   videoId="OfpZI-Qm-CI"
-                  containerClassName="embed-responsive embed-responsive-16by9"
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -56,7 +56,7 @@ export default class Lecture extends Component {
                 </div>
                 <YouTube
                   videoId="7uLn29JX8DM"
-                  containerClassName="embed-responsive embed-responsive-16by9 "
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -66,7 +66,7 @@ export default class Lecture extends Component {
                 </div>
                 <YouTube
                   videoId="tqyiuTLe15A"
-                  containerClassName="embed-responsive embed-responsive-16by9"
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -81,7 +81,7 @@ export default class Lecture extends Component {
                 </div>
                 <YouTube
                   videoId="X-gsQEkCVvM"
-                  containerClassName="embed-responsive embed-responsive-16by9"
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -96,7 +96,7 @@ export default class Lecture extends Component {
                 </div>
                 <YouTube
                   videoId="DkfxvI8pEPU"
-                  containerClassName="embed-responsive embed-responsive-16by9"
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -111,7 +111,7 @@ export default class Lecture extends Component {
               <div className="position-relative mb-3">
                 <YouTube
                   videoId="OfpZI-Qm-CI"
-                  containerClassName="embed-responsive embed-responsive-16by9"
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -123,7 +123,7 @@ export default class Lecture extends Component {
               <div className="position-relative mb-3">
                 <YouTube
                   videoId="X-gsQEkCVvM"
-                  containerClassName="embed-responsive embed-responsive-16by9"
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>
@@ -135,7 +135,7 @@ export default class Lecture extends Component {
               <div className="position-relative mb-3">
                 <YouTube
                   videoId="tqyiuTLe15A"
-                  containerClassName="embed-responsive embed-responsive-16by9"
+                  iframeClassName="width-100"
                   onPlay={pixelTrackPlayLecuture}
                 />
               </div>

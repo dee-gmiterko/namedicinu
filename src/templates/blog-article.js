@@ -3,7 +3,7 @@ import { graphql, Link } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate } from 'react-intl';
 import { slugifyDocumentTitle } from '../common';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import Layout from "../components/layout";
 import Seo from "../components/seo";
@@ -25,7 +25,7 @@ const BlogArticlePage = ({ data, pageContext }) => {
       />
       {article.image && (
         <p className="article-background-image">
-          <Img fluid={article.image.fluid} />
+          <GatsbyImage image={article.image.gatsbyImageData} />
         </p>
       )}
       <Container>
@@ -63,7 +63,7 @@ const BlogArticlePage = ({ data, pageContext }) => {
         {data.allContentfulBlog.edges.length > 0 && (
           <>
             <Row>
-              <Col md={6} className="mt-5">
+              <Col md={6} className="mt-3">
                 <h2>
                   <FormattedMessage id="blog.related_articles" defaultMessage="Related articles" />
                 </h2>
@@ -77,7 +77,7 @@ const BlogArticlePage = ({ data, pageContext }) => {
                   </Link>
                   {item.node.image && (
                     <p className="article-image">
-                      <Img fluid={item.node.image.fluid} />
+                      <GatsbyImage image={item.node.image.gatsbyImageData} />
                     </p>
                   )}
                   <p>
@@ -112,15 +112,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        fluid(maxWidth: 300) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
+        gatsbyImageData(width: 300)
       }
       fbPageId
       fbAppId
@@ -155,15 +147,7 @@ export const pageQuery = graphql`
       createdAt
       tags
       image {
-        fluid(maxWidth: 1600) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
+        gatsbyImageData(width: 1600)
       }
     }
     allContentfulBlog(
@@ -172,7 +156,7 @@ export const pageQuery = graphql`
         tags: { in: $tags }
         title: { ne: $title }
       }
-      sort: {fields: [createdAt], order: [DESC]}
+      sort: { createdAt: DESC }
       limit: 8
     ) {
       edges {
@@ -188,15 +172,7 @@ export const pageQuery = graphql`
           }
           createdAt
           image {
-            fluid(maxWidth: 500) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
+            gatsbyImageData(width: 500)
           }
         }
       }

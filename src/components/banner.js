@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import Markdown from "./markdown";
 import Socials from "./socials"
@@ -27,12 +27,12 @@ export default class Banner extends Component {
 
               <Socials facebook={site.facebook} instagram={site.instagram} tiktok={site.tiktok} email={site.email} />
             </Col>
-            <Col md={6} className="p-3 d-flex flex-column align-items-stretch justify-content-center">
+            <Col md={6} className="p-3 d-flex flex-column align-items-stretch justify-content-center position-relative">
               <div className="bg-circle-container">
                 <div className="bg-circle bg-2" />
               </div>
-              <Img
-                fluid={site.bannerImage.fluid}
+              <GatsbyImage
+                image={site.bannerImage.gatsbyImageData}
                 className="banner-image"
               />
             </Col>

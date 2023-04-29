@@ -1,19 +1,18 @@
 @use 'sass:math';
 
-$theme-colors: (
-  "primary": #ffc250,
-  "secondary": #3b7ed0,
-  "light": #ffffff,
-  "dark": #303030,
-  "warning": #df2a39,
-  "danger": #fb4444,
-  "bg-1": #fcf2e4,
-  "bg-2": #f2f6fe,
-);
+$primary: #ffc250;
+$secondary: #3b7ed0;
+$light: #ffffff;
+$dark: #303030;
+$warning: #df2a39;
+$danger: #fb4444;
+$bg-1: #fcf2e4;
+$bg-2: #f2f6fe;
 
 $font-size-base: 1.15rem;
 $font-weight-base: 300;
 $font-family-sans-serif: 'Gibson', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$link-decoration: none;
 
 $headings-font-weight: normal;
 $headings-margin-bottom: 1rem;
@@ -71,11 +70,11 @@ $social-size: 50px;
       justify-content: center;
       align-items: center;
       position: relative;
-      color: theme-color("light");
+      color: $light;
 
       &::after{
         content: "";
-        background: theme-color("primary");
+        background: $primary;
         position: absolute;
         height: 100%;
         width: 100%;
@@ -95,7 +94,7 @@ $social-size: 50px;
   }
 
   .email-text {
-    color: theme-color("dark");
+    color: $dark;
   }
 
   &.social-tiny {
@@ -123,7 +122,7 @@ $social-size: 50px;
 
 .circle-half-border {
   position: relative;
-  border: 10px solid theme-color("light");
+  border: 10px solid $light;
 
   &::before {
     content: "";
@@ -132,7 +131,7 @@ $social-size: 50px;
     right: -16px;
     bottom: -16px;
     left: -16px;
-    background: linear-gradient(theme-color("primary") 50%, theme-color("light") 50%);
+    background: linear-gradient($primary 50%, $light 50%);
     transform: rotate(45deg);
     border-radius: 50%;
     z-index: -1;
@@ -161,7 +160,7 @@ ul.circular {
     width: $ul-circular-radius-size;
     margin-top: calc($ul-circular-radius-size / -2.0);
     margin-left: calc($ul-circular-radius-size / -2.0);
-    background: theme-color("bg-2");
+    background: $bg-2;
     border-radius: 50%;
     padding: 1rem;
 
@@ -229,26 +228,26 @@ ul.checkmark {
 }
 
 .bg-1 {
-  background: theme-color("bg-1");
+  background: $bg-1;
 }
 
 @include media-breakpoint-up(md) {
   .bg-md-1 {
-    background: theme-color("bg-1");
+    background: $bg-1;
   }
 }
 
 .bg-2 {
-  background: theme-color("bg-2");
+  background: $bg-2;
 }
 
 h1 {
-  color: theme-color("dark");
+  color: $dark;
   text-transform: uppercase;
 }
 
 h2, h3 {
-  color: theme-color("secondary");
+  color: $secondary;
 }
 
 h2 {
@@ -264,7 +263,7 @@ dt {
 }
 
 em {
-  color: theme-color("danger");
+  color: $danger;
   font-style: normal;
 }
 
@@ -274,9 +273,13 @@ p {
   }
 }
 
+.width-100 {
+  width: 100%;
+}
+
 .btn-primary {
   text-transform: uppercase;
-  color: theme-color("light");
+  color: $light;
 }
 
 .navbar {
@@ -292,18 +295,18 @@ p {
 }
 
 .navbar-bg-1 {
-  background: theme-color("bg-1");
+  background: $bg-1;
 
   .navbar-nav .nav-link {
-    color: theme-color("dark");
+    color: $dark;
 
     &.btn-primary {
-      color: theme-color("light");
+      color: $light;
     }
   }
 
   .navbar-toggler-icon {
-    color: theme-color("dark");
+    color: $dark;
   }
 }
 
@@ -314,7 +317,7 @@ p {
 
     a {
       display: block;
-      color: theme-color("secondary");
+      color: $secondary;
 
       div {
         transition: transform 300ms, color 300ms;
@@ -323,7 +326,7 @@ p {
       &.active, &:hover {
         div {
           transform: translateX(1rem);
-          color: darken(theme-color("secondary"), 20%);
+          color: color-shift($secondary, -20%);
         }
       }
     }
@@ -350,8 +353,8 @@ p {
 
 .banner {
   position: relative;
-  background: theme-color("bg-1");
-  background: linear-gradient(172deg, theme-color("bg-1") 70%, theme-color("light") 70%);
+  background: $bg-1;
+  background: linear-gradient(172deg, $bg-1 70%, $light 70%);
 
   h1 {
     margin-bottom: 2rem;
@@ -361,7 +364,7 @@ p {
   h2 {
     margin-bottom: 1.7rem;
     font-size: 2.1rem;
-    color: theme-color("dark");
+    color: $dark;
   }
 
   p {
@@ -439,8 +442,8 @@ p {
 
 .banner-spacer-order {
   height: 5rem;
-  background: theme-color("bg-1");
-  background: linear-gradient(182deg, theme-color("bg-1") 50%, theme-color("light") 50%);
+  background: $bg-1;
+  background: linear-gradient(182deg, $bg-1 50%, $light 50%);
   margin-bottom: 3rem;
 }
 
@@ -450,7 +453,7 @@ p {
   margin-bottom: 8rem;
 
   .modal-title {
-    color: theme-color("secondary");
+    color: $secondary;
     font-weight: 300;
     font-size: $h2-font-size;
   }
@@ -462,7 +465,7 @@ p {
 
   form {
     a {
-      color: theme-color("danger");
+      color: $danger;
     }
 
     .form-text {
@@ -474,7 +477,7 @@ p {
     }
 
     .switch-bg {
-      background: theme-color("light");
+      background: $light;
       padding: 1rem 1.5rem;
 
       label {
@@ -509,7 +512,7 @@ p {
       .bg-circle {
         @extend .square;
         border-radius: 50%;
-        background: theme-color("bg-2");
+        background: $bg-2;
       }
     }
 
@@ -519,15 +522,18 @@ p {
 
     .social {
       a {
-        color: theme-color("light");
+        color: $light;
       }
     }
   }
 
   .payment-frequency {
+    margin-left: 3rem;
+
     input.form-check-input {
       margin-top: 12px;
     }
+
     label {
       .label-title {
         color: #7661af;
@@ -562,7 +568,7 @@ p {
     height: 40px;
 
     &::before {
-      color: theme-color("secondary");
+      color: $secondary;
       font-size: 2rem;
     }
 
@@ -580,11 +586,11 @@ p {
     li {
       button::before {
         font-size: 12px;
-        color: theme-color("secondary");
+        color: $secondary;
       }
       &.slick-active {
         button::before {
-          color: theme-color("secondary");
+          color: $secondary;
         }
       }
     }
@@ -649,7 +655,7 @@ p {
     cursor: pointer;
 
     i {
-      color: theme-color("dark");
+      color: $dark;
       font-size: 1rem;
       line-height: 2rem;
     }
@@ -657,9 +663,9 @@ p {
 }
 
 .contact {
-  background: theme-color("secondary");
-  background: linear-gradient(-3deg, theme-color("secondary") 60%, theme-color("light") 60.5%);
-  color: theme-color("light");
+  background: $secondary;
+  background: linear-gradient(-3deg, $secondary 60%, $light 60.5%);
+  color: $light;
   font-size: 1.5rem;
 
   dl {
@@ -668,8 +674,8 @@ p {
 }
 
 .faculties-overview {
-  background: theme-color("bg-1");
-  background: linear-gradient(170deg, theme-color("bg-1") 50%, theme-color("light") 50%);
+  background: $bg-1;
+  background: linear-gradient(170deg, $bg-1 50%, $light 50%);
 
   .slick-slider {
     margin-bottom: 3rem;
@@ -713,7 +719,7 @@ p {
       height: 40px;
 
       &::before {
-        color: theme-color("secondary");
+        color: $secondary;
         font-size: 2rem;
       }
 
@@ -752,7 +758,7 @@ p {
       border-top-left-radius: 2rem;
       border-bottom-left-radius: 2rem;
       padding-right: 4rem;
-      background: linear-gradient(110deg, theme-color("primary") 95%, theme-color("bg-2") 95%);
+      background: linear-gradient(110deg, $primary 95%, $bg-2 95%);
       border: none !important;
       box-shadow: none !important;
 
@@ -761,15 +767,15 @@ p {
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
-        background: theme-color("light");
-        color: theme-color("dark");
+        background: $light;
+        color: $dark;
       }
     }
   }
 
   .results {
     a {
-      color: theme-color("secondary");
+      color: $secondary;
     }
 
     dl > div {
@@ -833,7 +839,7 @@ p {
     }
 
     .percent-accepted {
-      color: theme-color("danger");
+      color: $danger;
       margin-left: 3%;
     }
   }
@@ -858,20 +864,20 @@ p {
     }
 
     a {
-      color: theme-color("dark");
+      color: $dark;
     }
   }
 
   .btn-find-course {
     background: none;
-    color: theme-color("dark");
+    color: $dark;
     width: 100%;
     font-weight: normal;
     margin-top: 2rem;
     padding: 1rem;
 
     &:hover {
-      background: scale-color(theme-color("primary"), $alpha: -50%);
+      background: scale-color($primary, $alpha: -50%);
     }
   }
 }
@@ -885,7 +891,7 @@ p {
   }
 
   a {
-    color: theme-color("light");
+    color: $light;
   }
 
   ul.inline-list {
@@ -907,7 +913,7 @@ p {
 
 .product-modal {
   .modal-title {
-    color: theme-color("secondary");
+    color: $secondary;
     font-weight: 300;
     font-size: $h2-font-size;
   }
@@ -917,7 +923,7 @@ p {
   .blog-article {
     margin-bottom: 1rem;
     border: 2px solid #e0e0e0;
-    background: theme-color("bg-2");
+    background: $bg-2;
     padding: 1rem 2rem 1rem 2rem;
     margin: 0 -2rem 1rem -2rem;
 
@@ -927,15 +933,15 @@ p {
     }
 
     .read-more {
-      background: theme-color("primary");
+      background: $primary;
       border-style: solid;
-      border-color: theme-color("primary");
+      border-color: $primary;
       border-top-width: 6px;
       border-right-width: 8px;
       border-bottom-width: 3px;
       border-left-width: 8px;
       border-radius: 1rem;
-      color: theme-color("light");
+      color: $light;
       margin: 0 0.5rem;
 
       .btn {
@@ -946,8 +952,8 @@ p {
 }
 
 .blog {
-  background: theme-color("light");
-  background: linear-gradient(170deg, theme-color("bg-1") 50%, theme-color("light") 50%);
+  background: $light;
+  background: linear-gradient(170deg, $bg-1 50%, $light 50%);
 
   .blog-article {
     &:nth-child(1), &:nth-child(2), &:nth-child(3) {
@@ -1002,15 +1008,15 @@ p {
   }
 
   .tag {
-    border: 2px solid theme-color("primary");
+    border: 2px solid $primary;
     border-radius: 1rem;
     padding: 0.2rem 0.5rem;
     margin-right: 0.5rem;
-    color: theme-color("dark");
+    color: $dark;
 
     &:hover {
-      background: theme-color("primary");
-      color: theme-color("light");
+      background: $primary;
+      color: $light;
       text-decoration: none;
     }
   }
@@ -1036,8 +1042,8 @@ p {
 }
 
 .CookieConsent {
-  background: theme-color("dark");
-  color: theme-color("light");
+  background: $dark;
+  color: $light;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -1062,11 +1068,11 @@ p {
     button {
       margin-left: 16px;
       min-width: 210px;
-      color: theme-color("dark");
+      color: $dark;
     }
 
     .btn-decline {
-      background: theme-color("dark");
+      background: $dark;
       color: #aaa;
 
       &:hover {

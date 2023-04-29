@@ -92,15 +92,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        fluid(maxWidth: 300) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
+        gatsbyImageData(width: 300)
       }
 
       facebook
@@ -118,15 +110,7 @@ export const pageQuery = graphql`
         }
       }
       bannerImage {
-        fluid(maxWidth: 1000) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
+        gatsbyImageData(width: 1000)
       }
       courseDescription {
         childMarkdownRemark {
@@ -166,7 +150,7 @@ export const pageQuery = graphql`
         node_locale: { eq: $locale }
         showOn: { eq: $locale }
       }
-      sort: { fields: [year, name], order: [DESC, ASC] }
+      sort: [{ year: DESC }, { name: ASC }]
     ) {
       edges {
         node {
@@ -190,7 +174,7 @@ export const pageQuery = graphql`
           node_locale: { eq: $locale }
           showOn: { eq: $locale }
         }
-        sort: { fields: name }
+        sort: { name: ASC }
     ) {
       edges {
         node {
@@ -202,15 +186,7 @@ export const pageQuery = graphql`
             }
           }
           photo {
-            fluid(maxWidth: 600) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
+            gatsbyImageData(width: 600)
           }
         }
       }
@@ -219,7 +195,7 @@ export const pageQuery = graphql`
       filter: {
         node_locale: { eq: $locale }
       }
-      sort: { fields: order }
+      sort: { order: ASC }
     ) {
       edges {
         node {
@@ -261,7 +237,7 @@ export const pageQuery = graphql`
         node_locale: { eq: $locale }
         showOn: { eq: $locale }
       }
-      sort: { fields: title }
+      sort: { title: ASC }
     ) {
       edges {
         node {

@@ -1,12 +1,12 @@
 import React from "react";
-import { Col, Form } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
 
 import { useOrder } from "./order_context";
 import { fixNbsp, slugifyDocumentTitle } from '../../common';
 
 function FormCustomizeVariation() {
-  const { product, formDisabled, displayFaculties, faculty, setFaculty } = useOrder();
+  const { product, formDisabled, displayFaculties, faculty, setFaculty, variation, setVariation } = useOrder();
 
   const filteredVariations = product.product_variation ? (
     product.product_variation.find(item => slugifyDocumentTitle(item.faculty.title) === faculty) || {variations:[]}
@@ -16,7 +16,7 @@ function FormCustomizeVariation() {
     <>
       {
         !product.product_variation && (
-          <Form.Row>
+          <Row>
             <Form.Group as={Col} md={6} controlId="registerPreferredTime">
               <FormattedMessage id="register.preferred_time" defaultMessage="Preferred time">
                 {(l_preferred_time) => (
@@ -57,7 +57,7 @@ function FormCustomizeVariation() {
                 )}
               </FormattedMessage>
             </Form.Group>
-          </Form.Row>
+          </Row>
         )
       }
 
@@ -101,6 +101,10 @@ function FormCustomizeVariation() {
                 name="variation"
                 as="select"
                 disabled={formDisabled}
+                value={variation}
+                onChange={event => {
+                  setVariation(event.target.value)
+                }}
               >
                 <option value=""></option>
                 {filteredVariations.map((variation, index) => {

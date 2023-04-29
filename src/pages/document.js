@@ -62,15 +62,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        fluid(maxWidth: 300) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
+        gatsbyImageData(width: 300)
       }
       fbPageId
       fbAppId
