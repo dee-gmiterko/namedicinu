@@ -1,22 +1,25 @@
 import React, { useState } from "react";
+import { CourseSideMenu } from "../components/SideMenu";
 import { graphql } from "gatsby";
 import { Row, Col } from 'react-bootstrap';
 import { StickyContainer, Sticky } from 'react-sticky';
+import Banner from "../components/Banner";
+import Contact from "../components/Contact";
+import Course from "../components/Course";
+import Layout from "../components/Layout";
+import Lecture from "../components/Lecture";
+import Lecturers from "../components/Lecturers";
+import Products from "../components/Products";
+import Seo from "../components/Seo";
+import Testimonials from "../components/Testimonials";
 import VisibilitySensor from 'react-visibility-sensor';
 
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-
-import Banner from "../components/banner";
-import Course from "../components/course";
-import Lecture from "../components/lecture";
-import Testimonials from "../components/testimonials";
-import Lecturers from "../components/lecturers";
-import Products from "../components/products";
-import Contact from "../components/contact";
-import { CourseSideMenu } from "../components/side_menu";
-
-const IndexPage = ({ data, pageContext }) => {
+const IndexPage = ({ data: {
+  contentfulSiteInformation,
+  allContentfulTestimonials,
+  allContentfulLecturers,
+  allContentfulProducts,
+}, pageContext }) => {
   const [visible, setVisible] = useState(Array(7).fill(false));
 
   const setVisibleIndex = (index, isVisible) => {
@@ -26,16 +29,16 @@ const IndexPage = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
       <Seo
         lang={pageContext.locale}
-        siteName={data.contentfulSiteInformation.siteName}
-        siteDescription={data.contentfulSiteInformation.siteDescription}
-        image={"https:"+data.contentfulSiteInformation.logo.file.url}
-        keywords={data.contentfulSiteInformation.siteKeywords}
+        siteName={contentfulSiteInformation.siteName}
+        siteDescription={contentfulSiteInformation.siteDescription}
+        image={"https:"+contentfulSiteInformation.logo.file.url}
+        keywords={contentfulSiteInformation.siteKeywords}
       />
 
-      <Banner site={data.contentfulSiteInformation}></Banner>
+      <Banner site={contentfulSiteInformation}></Banner>
 
       <Row>
         <Col xl={2} className="d-none d-xl-block">
@@ -52,26 +55,26 @@ const IndexPage = ({ data, pageContext }) => {
           </StickyContainer>
         </Col>
         <Col xl={10}>
-          <VisibilitySensor onChange={setVisibleIndex.bind(null, 0)} partialVisibility={true} minTopValue={400}>
-            <Course key="Course" site={data.contentfulSiteInformation} />
+          <VisibilitySensor onChange={() => setVisibleIndex(0)} partialVisibility={true} minTopValue={400}>
+            <Course key="Course" site={contentfulSiteInformation} />
           </VisibilitySensor>
-          <VisibilitySensor onChange={setVisibleIndex.bind(null, 1)} partialVisibility={true} minTopValue={400}>
-            <Lecture key="Lecture" site={data.contentfulSiteInformation} locale={pageContext.locale} />
+          <VisibilitySensor onChange={() => setVisibleIndex(1)} partialVisibility={true} minTopValue={400}>
+            <Lecture key="Lecture" site={contentfulSiteInformation} locale={pageContext.locale} />
           </VisibilitySensor>
-          <VisibilitySensor onChange={setVisibleIndex.bind(null, 2)} partialVisibility={true} minTopValue={400}>
-            <Testimonials key="Testimonials" site={data.contentfulSiteInformation} testimonials={data.allContentfulTestimonials} />
+          <VisibilitySensor onChange={() => setVisibleIndex(2)} partialVisibility={true} minTopValue={400}>
+            <Testimonials key="Testimonials" site={contentfulSiteInformation} testimonials={allContentfulTestimonials} />
           </VisibilitySensor>
-          <VisibilitySensor onChange={setVisibleIndex.bind(null, 3)} partialVisibility={true} minTopValue={400}>
-            <Lecturers key="Lecturers" site={data.contentfulSiteInformation} lecturers={data.allContentfulLecturers} />
+          <VisibilitySensor onChange={() => setVisibleIndex(3)} partialVisibility={true} minTopValue={400}>
+            <Lecturers key="Lecturers" site={contentfulSiteInformation} lecturers={allContentfulLecturers} />
           </VisibilitySensor>
-          <VisibilitySensor onChange={setVisibleIndex.bind(null, 4)} partialVisibility={true} minTopValue={400}>
-            <Products key="Products" products={data.allContentfulProducts} locale={pageContext.locale} />
+          <VisibilitySensor onChange={() => setVisibleIndex(4)} partialVisibility={true} minTopValue={400}>
+            <Products key="Products" products={allContentfulProducts} locale={pageContext.locale} />
           </VisibilitySensor>
         </Col>
       </Row>
 
-      <VisibilitySensor onChange={setVisibleIndex.bind(null, 6)}>
-        <Contact key="Contact" site={data.contentfulSiteInformation}></Contact>
+      <VisibilitySensor onChange={() => setVisibleIndex(6)}>
+        <Contact key="Contact" site={contentfulSiteInformation}></Contact>
       </VisibilitySensor>
 
     </Layout>
@@ -92,7 +95,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        gatsbyImageData(width: 300)
+        gatsbyImageData(width: 300, placeholder: NONE)
       }
 
       facebook
@@ -110,7 +113,7 @@ export const pageQuery = graphql`
         }
       }
       bannerImage {
-        gatsbyImageData(width: 1000)
+        gatsbyImageData(width: 1000, placeholder: BLURRED)
       }
       courseDescription {
         childMarkdownRemark {
@@ -186,7 +189,7 @@ export const pageQuery = graphql`
             }
           }
           photo {
-            gatsbyImageData(width: 600)
+            gatsbyImageData(width: 600, placeholder: BLURRED)
           }
         }
       }
@@ -229,20 +232,6 @@ export const pageQuery = graphql`
             showOn
             variations
           }
-        }
-      }
-    }
-    allContentfulFaculties(
-      filter: {
-        node_locale: { eq: $locale }
-        showOn: { eq: $locale }
-      }
-      sort: { title: ASC }
-    ) {
-      edges {
-        node {
-          title
-          country
         }
       }
     }

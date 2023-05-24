@@ -12,11 +12,26 @@ if (process.env.ENVIRONMENT !== "production") {
   dotenv.config();
 }
 
-let { spaceId, accessToken, locale } = process.env;
+let { locale } = process.env;
 
 if (!locale) {
   locale = "sk";
 }
+
+// let pathTranslations;
+// if (locale === "sk") {
+//   pathTranslations = {
+//     "document": "dokument",
+//     "fields": "odbory",
+//     "order": "objednavka",
+//   }
+// } else {
+//   pathTranslations = {
+//     "document": "dokument",
+//     "fields": "obory",
+//     "order": "objednavka",
+//   }
+// }
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -24,6 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
     const documentTemplate = path.resolve("src/templates/document.js");
     const blogArticleTemplate = path.resolve("src/templates/blog-article.js");
     const blogTagTemplate =  path.resolve("src/templates/blog-tag.js");
+    const studyFieldTemplate = path.resolve("src/templates/study-field.js");
 
     resolve(
       graphql(`
@@ -56,14 +72,25 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
+          allContentfulStudyField(
+            filter: {
+              node_locale: { eq: $locale }
+            }
+          ) {
+            edges {
+              node {
+                title
+              }
+            }
+          }
         }
       `, { locale }).then(result => {
         if (result.errors) {
           reject(result.errors);
         }
 
-        result.data.allContentfulAsset.edges.forEach(edge => {
-          const slug = slugify(edge.node.title||"", {
+        result.data.allContentfulAsset.edges.forEach(({ node }) => {
+          const slug = slugify(node.title||"", {
             remove: /[.\?]/g
           }).toLowerCase();
 
@@ -72,16 +99,16 @@ exports.createPages = ({ graphql, actions }) => {
             component: documentTemplate,
             context: {
               slug: slug,
-              title: edge.node.title,
-              url: edge.node.file.url,
+              title: node.title,
+              url: node.file.url,
             }
           });
         });
 
         const allTags = [];
 
-        result.data.allContentfulBlog.edges.forEach(edge => {
-          const slug = slugify(edge.node.title||"", {
+        result.data.allContentfulBlog.edges.forEach(({ node }) => {
+          const slug = slugify(node.title||"", {
             remove: /[.\?]/g
           }).toLowerCase();
 
@@ -90,12 +117,12 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogArticleTemplate,
             context: {
               slug: slug,
-              title: edge.node.title,
-              tags: edge.node.tags,
+              title: node.title,
+              tags: node.tags,
             }
           });
 
-          edge.node.tags.forEach(tag => {
+          node.tags.forEach(tag => {
             if (!allTags.includes(tag)) {
               allTags.push(tag);
             }
@@ -116,6 +143,29 @@ exports.createPages = ({ graphql, actions }) => {
             }
           });
         });
+
+        result.data.allContentfulStudyField.edges.forEach(({ node }) => {
+          const slug = slugify(node.title||"", {
+            remove: /[.\?]/g
+          }).toLowerCase();
+
+          createPage({
+            path: "field/"+slug,
+            component: studyFieldTemplate,
+            context: {
+              slug: slug,
+              title: node.title,
+            }
+          });
+        });
+
+        // Object.entries(pathTranslations).forEach(([page, localePath]) => {
+        //   const filePath = path.resolve(`src/pages/${page}.js`);
+        //   createPage({
+        //     path: localePath,
+        //     component: filePath,
+        //   });
+        // });
 
         return;
       })

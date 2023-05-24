@@ -1,34 +1,37 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { graphql } from "gatsby";
+import { OrderProvider } from "../components/order/OrderContext"
+import { slugifyDocumentTitle } from '../utils';
+import Contact from "../components/Contact";
+import Layout from "../components/Layout";
+import OrderLayout from "../components/order/OrderLayout";
+import Seo from "../components/Seo";
 
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-
-import { slugifyDocumentTitle } from '../common';
-import { OrderProvider } from "../components/order/order_context"
-import OrderLayout from "../components/order/order_layout";
-import Contact from "../components/contact";
-
-const OrderPage = ({ data, pageContext, location }) => {
+const OrderPage = ({ data: {
+  contentfulSiteInformation,
+  allContentfulProducts,
+  allContentfulFaculties,
+  allContentfulPaymentFrequency, 
+}, pageContext, location }) => {
   const productTitle = location.state && location.state.product;
-  const product = productTitle && data.allContentfulProducts.edges.find(product => product.node.title === productTitle).node;
+  const product = productTitle && allContentfulProducts.edges.find(product => product.node.title === productTitle).node;
 
-  const registerRulesDocuments = data.contentfulSiteInformation.registerDocuments.map((document) => "/document/"+slugifyDocumentTitle(document.title));
+  const registerRulesDocuments = contentfulSiteInformation.registerDocuments.map((document) => "/document/"+slugifyDocumentTitle(document.title));
 
   return (
-    <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
       <FormattedMessage id="title.order" defaultMessage="Order">
         {(title) => (
           <Seo
             lang={pageContext.locale}
             title={title[0]}
-            siteName={data.contentfulSiteInformation.siteName}
-            siteDescription={data.contentfulSiteInformation.siteDescription}
-            image={"https:"+data.contentfulSiteInformation.logo.file.url}
-            keywords={data.contentfulSiteInformation.siteKeywords}
+            siteName={contentfulSiteInformation.siteName}
+            siteDescription={contentfulSiteInformation.siteDescription}
+            image={"https:"+contentfulSiteInformation.logo.file.url}
+            keywords={contentfulSiteInformation.siteKeywords}
           />
         )}
       </FormattedMessage>
@@ -38,8 +41,8 @@ const OrderPage = ({ data, pageContext, location }) => {
       <Container>
         {product ? (
           <div className="order">
-            <OrderProvider product={product} faculties={data.allContentfulFaculties} locale={pageContext.locale} paymentFrequencies={data.allContentfulPaymentFrequency}>
-              <OrderLayout site={data.contentfulSiteInformation} registerRulesDocuments={registerRulesDocuments} />
+            <OrderProvider product={product} faculties={allContentfulFaculties} locale={pageContext.locale} paymentFrequencies={allContentfulPaymentFrequency}>
+              <OrderLayout site={contentfulSiteInformation} registerRulesDocuments={registerRulesDocuments} />
             </OrderProvider>
           </div>
         ) : (
@@ -56,7 +59,7 @@ const OrderPage = ({ data, pageContext, location }) => {
         )}
       </Container>
 
-      <Contact key="Contact" site={data.contentfulSiteInformation} />
+      <Contact key="Contact" site={contentfulSiteInformation} />
     </Layout>
   )
 };
@@ -73,7 +76,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        gatsbyImageData(width: 300)
+        gatsbyImageData(width: 300, placeholder: NONE)
       }
       fbPageId
       fbAppId

@@ -689,6 +689,11 @@ p {
         & > div, & > div > div {
           height: 100%;
         }
+
+        .card {
+          max-width: 540px;
+          margin: 0 auto;
+        }
       }
 
       .card {
@@ -878,6 +883,27 @@ p {
 
     &:hover {
       background: scale-color($primary, $alpha: -50%);
+    }
+  }
+}
+
+.fields {
+  h3 {
+    color: #7661af;
+    font-size: 2rem;
+    font-weight: lighter;
+  }
+
+  .bg-circle-container {
+    position: absolute;
+    width: 140px;
+    top: -20px;
+    left: -20px;
+    z-index: -1;
+
+    .bg-circle {
+      @extend .square;
+      border-radius: 50%;
     }
   }
 }

@@ -1,0 +1,4 @@
+/document    /dokument
+/document/*  /dokument/:splat
+/faculties   /odbor/lekarstvo
+/order       /objednavka

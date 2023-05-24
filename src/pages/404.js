@@ -1,22 +1,23 @@
 import React from "react";
-import { graphql } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import { graphql } from "gatsby";
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
 
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-
-const NotFoundPage = ({ data, pageContext }) => (
-  <Layout site={data.contentfulSiteInformation}>
+const NotFoundPage = ({ data: {
+  contentfulSiteInformation,
+}, pageContext }) => (
+  <Layout site={contentfulSiteInformation}>
     <FormattedMessage id="title.not_found" defaultMessage="Not found">
       {(title) => (
         <Seo
           lang={pageContext.locale}
           title={title[0]}
-          siteName={data.contentfulSiteInformation.siteName}
-          siteDescription={data.contentfulSiteInformation.siteDescription}
-          image={"https:"+data.contentfulSiteInformation.logo.file.url}
-          keywords={data.contentfulSiteInformation.siteKeywords}
+          siteName={contentfulSiteInformation.siteName}
+          siteDescription={contentfulSiteInformation.siteDescription}
+          image={"https:"+contentfulSiteInformation.logo.file.url}
+          keywords={contentfulSiteInformation.siteKeywords}
         />
       )}
     </FormattedMessage>
@@ -25,7 +26,7 @@ const NotFoundPage = ({ data, pageContext }) => (
 
     <Container className="p-3">
       <Row>
-        <Col md={12} className="p-3">
+        <Col className="p-3">
           <h1>
             <FormattedMessage id="title.not_found" defaultMessage="Not found" />
           </h1>
@@ -50,7 +51,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        gatsbyImageData(width: 300)
+        gatsbyImageData(width: 300, placeholder: NONE)
       }
       legalDocuments {
         title

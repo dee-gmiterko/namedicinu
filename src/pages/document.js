@@ -1,26 +1,27 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
-import { slugifyDocumentTitle } from '../common';
+import { graphql, Link } from "gatsby";
+import { slugifyDocumentTitle } from '../utils';
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
 
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-
-
-const DocumentListPage = ({ data, pageContext }) => {
+const DocumentListPage = ({ data: {
+  contentfulSiteInformation,
+  allContentfulAsset,
+}, pageContext }) => {
 
   return (
-    <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
       <FormattedMessage id="title.document_list" defaultMessage="Documents">
         {(title) => (
           <Seo
             lang={pageContext.locale}
             title={title[0]}
-            siteName={data.contentfulSiteInformation.siteName}
-            siteDescription={data.contentfulSiteInformation.siteDescription}
-            image={"https:"+data.contentfulSiteInformation.logo.file.url}
-            keywords={data.contentfulSiteInformation.siteKeywords}
+            siteName={contentfulSiteInformation.siteName}
+            siteDescription={contentfulSiteInformation.siteDescription}
+            image={"https:"+contentfulSiteInformation.logo.file.url}
+            keywords={contentfulSiteInformation.siteKeywords}
           />
         )}
       </FormattedMessage>
@@ -35,7 +36,7 @@ const DocumentListPage = ({ data, pageContext }) => {
         <Row>
           <Col md={5} className="p-3">
             <ul className="checkmark">
-              {data.allContentfulAsset.edges.map((item, index) => (
+              {allContentfulAsset.edges.map((item, index) => (
                 <li key={index}>
                   <Link to={"/document/"+slugifyDocumentTitle(item.node.title)}>
                     {item.node.title}
@@ -62,18 +63,13 @@ export const pageQuery = graphql`
         file {
           url
         }
-        gatsbyImageData(width: 300)
+        gatsbyImageData(width: 300, placeholder: NONE)
       }
       fbPageId
       fbAppId
       facebook
       instagram
       email
-      facultiesDescription {
-        childMarkdownRemark {
-          html
-        }
-      }
       legalDocuments {
         title
         file {

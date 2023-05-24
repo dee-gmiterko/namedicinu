@@ -1,27 +1,29 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage, FormattedDate } from 'react-intl';
-import { slugifyDocumentTitle } from '../common';
 import { GatsbyImage } from "gatsby-plugin-image";
+import { graphql, Link } from "gatsby";
+import { slugifyDocumentTitle } from '../utils';
+import Layout from "../components/Layout";
+import Markdown from "../components/Markdown";
+import Seo from "../components/Seo";
 
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-import Markdown from "../components/markdown";
-
-
-const BlogArticlePage = ({ data, pageContext }) => {
-  const article = data.contentfulBlog;
+const BlogArticlePage = ({ data: {
+  contentfulSiteInformation,
+  contentfulBlog,
+  allContentfulBlog,
+}, pageContext }) => {
+  const article = contentfulBlog;
 
   return (
-    <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
       <Seo
         lang={pageContext.locale}
         title={article.title}
-        siteName={data.contentfulSiteInformation.siteName}
-        siteDescription={data.contentfulSiteInformation.siteDescription}
-        image={"https:"+data.contentfulSiteInformation.logo.file.url}
-        keywords={data.contentfulSiteInformation.siteKeywords}
+        siteName={contentfulSiteInformation.siteName}
+        siteDescription={contentfulSiteInformation.siteDescription}
+        image={"https:"+contentfulSiteInformation.logo.file.url}
+        keywords={contentfulSiteInformation.siteKeywords}
       />
       {article.image && (
         <p className="article-background-image">
@@ -60,7 +62,7 @@ const BlogArticlePage = ({ data, pageContext }) => {
             </Col>
           </Row>
         </div>
-        {data.allContentfulBlog.edges.length > 0 && (
+        {allContentfulBlog.edges.length > 0 && (
           <>
             <Row>
               <Col md={6} className="mt-3">
@@ -70,7 +72,7 @@ const BlogArticlePage = ({ data, pageContext }) => {
               </Col>
             </Row>
             <Row>
-              {data.allContentfulBlog.edges.map((item, index) => (
+              {allContentfulBlog.edges.map((item, index) => (
                 <Col md={4} className="related-article p-3">
                   <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
                     <h3>{item.node.title}</h3>
@@ -112,18 +114,13 @@ export const pageQuery = graphql`
         file {
           url
         }
-        gatsbyImageData(width: 300)
+        gatsbyImageData(width: 300, placeholder: NONE)
       }
       fbPageId
       fbAppId
       facebook
       instagram
       email
-      facultiesDescription {
-        childMarkdownRemark {
-          html
-        }
-      }
       legalDocuments {
         title
         file {
@@ -147,7 +144,7 @@ export const pageQuery = graphql`
       createdAt
       tags
       image {
-        gatsbyImageData(width: 1600)
+        gatsbyImageData(width: 1600, placeholder: BLURRED)
       }
     }
     allContentfulBlog(
@@ -172,7 +169,7 @@ export const pageQuery = graphql`
           }
           createdAt
           image {
-            gatsbyImageData(width: 500)
+            gatsbyImageData(width: 500, placeholder: BLURRED)
           }
         }
       }

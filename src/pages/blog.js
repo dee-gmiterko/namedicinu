@@ -1,25 +1,27 @@
 import React from "react";
-import { graphql } from "gatsby";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FormattedMessage } from 'react-intl';
+import { graphql } from "gatsby";
+import Blog from "../components/Blog";
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
 
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-import Blog from "../components/blog";
-
-const BlogPage = ({ data, pageContext }) => {
+const BlogPage = ({ data: {
+  contentfulSiteInformation,
+  allContentfulBlog,
+}, pageContext }) => {
 
   return (
-    <Layout site={data.contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
       <FormattedMessage id="title.blog" defaultMessage="Blog">
         {(title) => (
           <Seo
             lang={pageContext.locale}
             title={title[0]}
-            siteName={data.contentfulSiteInformation.siteName}
-            siteDescription={data.contentfulSiteInformation.siteDescription}
-            image={"https:"+data.contentfulSiteInformation.logo.file.url}
-            keywords={data.contentfulSiteInformation.siteKeywords}
+            siteName={contentfulSiteInformation.siteName}
+            siteDescription={contentfulSiteInformation.siteDescription}
+            image={"https:"+contentfulSiteInformation.logo.file.url}
+            keywords={contentfulSiteInformation.siteKeywords}
           />
         )}
       </FormattedMessage>
@@ -32,7 +34,7 @@ const BlogPage = ({ data, pageContext }) => {
               </h2>
             </Col>
           </Row>
-          <Blog articles={data.allContentfulBlog} />
+          <Blog articles={allContentfulBlog} />
         </Container>
       </div>
     </Layout>
@@ -51,18 +53,13 @@ export const pageQuery = graphql`
         file {
           url
         }
-        gatsbyImageData(width: 300)
+        gatsbyImageData(width: 300, placeholder: NONE)
       }
       fbPageId
       fbAppId
       facebook
       instagram
       email
-      facultiesDescription {
-        childMarkdownRemark {
-          html
-        }
-      }
       legalDocuments {
         title
         file {
@@ -85,7 +82,7 @@ export const pageQuery = graphql`
           }
           createdAt
           image {
-            gatsbyImageData(width: 500)
+            gatsbyImageData(width: 500, placeholder: BLURRED)
           }
         }
       }
