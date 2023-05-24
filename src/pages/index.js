@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { CourseSideMenu } from "../components/SideMenu";
 import { graphql } from "gatsby";
-import { Row, Col } from 'react-bootstrap';
-import { StickyContainer, Sticky } from 'react-sticky';
+import { Row, Col } from "react-bootstrap";
+import { StickyContainer, Sticky } from "react-sticky";
 import Banner from "../components/Banner";
 import Contact from "../components/Contact";
 import Course from "../components/Course";
@@ -12,29 +12,36 @@ import Lecturers from "../components/Lecturers";
 import Products from "../components/Products";
 import Seo from "../components/Seo";
 import Testimonials from "../components/Testimonials";
-import VisibilitySensor from 'react-visibility-sensor';
+import VisibilitySensor from "react-visibility-sensor";
 
-const IndexPage = ({ data: {
-  contentfulSiteInformation,
-  allContentfulTestimonials,
-  allContentfulLecturers,
-  allContentfulProducts,
-}, pageContext }) => {
+const IndexPage = ({
+  data: {
+    contentfulSiteInformation,
+    allContentfulTestimonials,
+    allContentfulLecturers,
+    allContentfulProducts,
+  },
+  pageContext,
+}) => {
   const [visible, setVisible] = useState(Array(7).fill(false));
 
   const setVisibleIndex = (index, isVisible) => {
     let newVisible = visible.slice();
     newVisible[index] = isVisible;
     setVisible(newVisible);
-  }
+  };
 
   return (
-    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout
+      site={contentfulSiteInformation}
+      header="home"
+      locale={pageContext.locale}
+    >
       <Seo
         lang={pageContext.locale}
         siteName={contentfulSiteInformation.siteName}
         siteDescription={contentfulSiteInformation.siteDescription}
-        image={"https:"+contentfulSiteInformation.logo.file.url}
+        image={"https:" + contentfulSiteInformation.logo.file.url}
         keywords={contentfulSiteInformation.siteKeywords}
       />
 
@@ -42,7 +49,7 @@ const IndexPage = ({ data: {
 
       <Row>
         <Col xl={2} className="d-none d-xl-block">
-          <StickyContainer style={{height: "100%"}}>
+          <StickyContainer style={{ height: "100%" }}>
             <Sticky>
               {({ style }) => {
                 return (
@@ -55,20 +62,56 @@ const IndexPage = ({ data: {
           </StickyContainer>
         </Col>
         <Col xl={10}>
-          <VisibilitySensor onChange={() => setVisibleIndex(0)} partialVisibility={true} minTopValue={400}>
+          <VisibilitySensor
+            onChange={() => setVisibleIndex(0)}
+            partialVisibility={true}
+            minTopValue={400}
+          >
             <Course key="Course" site={contentfulSiteInformation} />
           </VisibilitySensor>
-          <VisibilitySensor onChange={() => setVisibleIndex(1)} partialVisibility={true} minTopValue={400}>
-            <Lecture key="Lecture" site={contentfulSiteInformation} locale={pageContext.locale} />
+          <VisibilitySensor
+            onChange={() => setVisibleIndex(1)}
+            partialVisibility={true}
+            minTopValue={400}
+          >
+            <Lecture
+              key="Lecture"
+              site={contentfulSiteInformation}
+              locale={pageContext.locale}
+            />
           </VisibilitySensor>
-          <VisibilitySensor onChange={() => setVisibleIndex(2)} partialVisibility={true} minTopValue={400}>
-            <Testimonials key="Testimonials" site={contentfulSiteInformation} testimonials={allContentfulTestimonials} />
+          <VisibilitySensor
+            onChange={() => setVisibleIndex(2)}
+            partialVisibility={true}
+            minTopValue={400}
+          >
+            <Testimonials
+              key="Testimonials"
+              site={contentfulSiteInformation}
+              testimonials={allContentfulTestimonials}
+            />
           </VisibilitySensor>
-          <VisibilitySensor onChange={() => setVisibleIndex(3)} partialVisibility={true} minTopValue={400}>
-            <Lecturers key="Lecturers" site={contentfulSiteInformation} lecturers={allContentfulLecturers} />
+          <VisibilitySensor
+            onChange={() => setVisibleIndex(3)}
+            partialVisibility={true}
+            minTopValue={400}
+          >
+            <Lecturers
+              key="Lecturers"
+              site={contentfulSiteInformation}
+              lecturers={allContentfulLecturers}
+            />
           </VisibilitySensor>
-          <VisibilitySensor onChange={() => setVisibleIndex(4)} partialVisibility={true} minTopValue={400}>
-            <Products key="Products" products={allContentfulProducts} locale={pageContext.locale} />
+          <VisibilitySensor
+            onChange={() => setVisibleIndex(4)}
+            partialVisibility={true}
+            minTopValue={400}
+          >
+            <Products
+              key="Products"
+              products={allContentfulProducts}
+              locale={pageContext.locale}
+            />
           </VisibilitySensor>
         </Col>
       </Row>
@@ -76,16 +119,15 @@ const IndexPage = ({ data: {
       <VisibilitySensor onChange={() => setVisibleIndex(6)}>
         <Contact key="Contact" site={contentfulSiteInformation}></Contact>
       </VisibilitySensor>
-
     </Layout>
-  )
+  );
 };
 
 export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexQuery($locale: String!) {
-    contentfulSiteInformation(node_locale: {eq: $locale}) {
+    contentfulSiteInformation(node_locale: { eq: $locale }) {
       siteName
       siteDescription
       siteKeywords
@@ -149,10 +191,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulTestimonials(
-      filter: {
-        node_locale: { eq: $locale }
-        showOn: { eq: $locale }
-      }
+      filter: { node_locale: { eq: $locale }, showOn: { eq: $locale } }
       sort: [{ year: DESC }, { name: ASC }]
     ) {
       edges {
@@ -173,11 +212,8 @@ export const pageQuery = graphql`
       }
     }
     allContentfulLecturers(
-        filter: {
-          node_locale: { eq: $locale }
-          showOn: { eq: $locale }
-        }
-        sort: { name: ASC }
+      filter: { node_locale: { eq: $locale }, showOn: { eq: $locale } }
+      sort: { name: ASC }
     ) {
       edges {
         node {
@@ -195,9 +231,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulProducts(
-      filter: {
-        node_locale: { eq: $locale }
-      }
+      filter: { node_locale: { eq: $locale } }
       sort: { order: ASC }
     ) {
       edges {

@@ -1,95 +1,108 @@
 import React from "react";
-import { Dropdown } from 'react-bootstrap';
-import { pixelTrackContact } from '../fb-pixel';
+import { Dropdown } from "react-bootstrap";
+import { pixelTrackContact } from "../fb-pixel";
 import PropTypes from "prop-types";
 
-const Socials = ({ facebook, twitter, instagram, linkdin, tiktok, github, email }) => {
+const Socials = ({
+  facebook,
+  twitter,
+  instagram,
+  linkdin,
+  tiktok,
+  github,
+  email,
+}) => {
   return (
     <ul className="social">
-      {
-        facebook &&
+      {facebook && (
         <li>
           <a
             className="fab fa-facebook-f"
             href={facebook}
             target="_blank"
             rel="noopener noreferrer"
-            style={{background: '#00a2f8'}}
-          >Facebook</a>
+            style={{ background: "#00a2f8" }}
+          >
+            Facebook
+          </a>
         </li>
-      }
-      {
-        twitter &&
+      )}
+      {twitter && (
         <li>
           <a
             className="fab fa-twitter"
             href={twitter}
             target="_blank"
             rel="noopener noreferrer"
-            style={{background: '#00a2f8'}}
-          >Twitter</a>
+            style={{ background: "#00a2f8" }}
+          >
+            Twitter
+          </a>
         </li>
-      }
-      {
-        instagram &&
+      )}
+      {instagram && (
         <li>
           <a
             className="fab fa-instagram"
             href={instagram}
             target="_blank"
             rel="noopener noreferrer"
-            style={{background: '#f24747'}}
-          >Instagram</a>
+            style={{ background: "#f24747" }}
+          >
+            Instagram
+          </a>
         </li>
-      }
-      {
-        linkdin &&
+      )}
+      {linkdin && (
         <li>
           <a
             className="fab fa-linkedin-in"
             href={linkdin}
             target="_blank"
             rel="noopener noreferrer"
-            style={{background: '#00a2f8'}}
-          >LinkedIn</a>
+            style={{ background: "#00a2f8" }}
+          >
+            LinkedIn
+          </a>
         </li>
-      }
-      {
-        github &&
+      )}
+      {github && (
         <li>
           <a
             className="fab fa-github"
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            style={{background: '#303030'}}
-          >Github</a>
+            style={{ background: "#303030" }}
+          >
+            Github
+          </a>
         </li>
-      }
-      {
-        tiktok &&
+      )}
+      {tiktok && (
         <li>
           <a
             className="fab fa-tiktok"
             href={tiktok}
             target="_blank"
             rel="noopener noreferrer"
-            style={{background: '#fe0151'}}
-          >TikTok</a>
+            style={{ background: "#fe0151" }}
+          >
+            TikTok
+          </a>
         </li>
-      }
-      {
-        email &&
+      )}
+      {email && (
         <li>
           {/* Dropdown is a fallback for users without email client */}
           <Dropdown>
             <Dropdown.Toggle
               className="far fa-envelope"
-              href={"mailto:"+email}
+              href={"mailto:" + email}
               onClick={pixelTrackContact}
               target="_blank"
               rel="noopener noreferrer"
-              style={{background: '#303030', border: 'none'}}
+              style={{ background: "#303030", border: "none" }}
             >
               Email
             </Dropdown.Toggle>
@@ -99,7 +112,7 @@ const Socials = ({ facebook, twitter, instagram, linkdin, tiktok, github, email 
             </Dropdown.Menu>
           </Dropdown>
         </li>
-      }
+      )}
     </ul>
   );
 };

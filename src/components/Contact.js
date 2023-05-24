@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
-import { pixelTrackContact } from '../fb-pixel';
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
+import { pixelTrackContact } from "../fb-pixel";
 
 export default class service extends Component {
   shouldComponentUpdate() {
@@ -24,20 +24,24 @@ export default class service extends Component {
           <Row>
             <Col className="text-sm-left">
               <dl>
-                {
-                  site.email &&
+                {site.email && (
                   <Row>
                     <dt className="col-sm-4">
-                      <FormattedMessage id="contact.email" defaultMessage="Email" />
+                      <FormattedMessage
+                        id="contact.email"
+                        defaultMessage="Email"
+                      />
                     </dt>
                     <dd className="col-sm-8">{site.email}</dd>
                   </Row>
-                }
-                {
-                  site.fbPageId && site.fbAppId &&
+                )}
+                {site.fbPageId && site.fbAppId && (
                   <Row>
                     <dt className="col-sm-4">
-                      <FormattedMessage id="contact.messenger" defaultMessage="Messenger" />
+                      <FormattedMessage
+                        id="contact.messenger"
+                        defaultMessage="Messenger"
+                      />
                     </dt>
                     <dd className="col-sm-8">
                       <Button
@@ -48,19 +52,33 @@ export default class service extends Component {
                         variant="primary"
                         size="sm"
                       >
-                        <i className="fab fa-facebook-messenger" /> <FormattedMessage id="contact.message_us" defaultMessage="Message Us" />
+                        <i className="fab fa-facebook-messenger" />{" "}
+                        <FormattedMessage
+                          id="contact.message_us"
+                          defaultMessage="Message Us"
+                        />
                       </Button>
                     </dd>
                   </Row>
-                }
+                )}
               </dl>
             </Col>
-            <Col md={"auto"} className="text-right d-none d-md-block position-relative" style={{top: "-40px"}}>
+            <Col
+              md={"auto"}
+              className="text-right d-none d-md-block position-relative"
+              style={{ top: "-40px" }}
+            >
               <p>
-                <FormattedMessage id="contact.register_prompt" defaultMessage="What are you waiting for?" />
+                <FormattedMessage
+                  id="contact.register_prompt"
+                  defaultMessage="What are you waiting for?"
+                />
               </p>
               <Button as={AnchorLink} to="/#Products" variant="primary">
-                <FormattedMessage id="contact.register" defaultMessage="Submit" />
+                <FormattedMessage
+                  id="contact.register"
+                  defaultMessage="Submit"
+                />
               </Button>
             </Col>
           </Row>

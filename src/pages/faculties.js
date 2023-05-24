@@ -1,32 +1,41 @@
 import React, { useState } from "react";
 import { FacultiesSideMenu } from "../components/SideMenu";
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from "react-intl";
 import { graphql } from "gatsby";
-import { Row, Col } from 'react-bootstrap';
-import { StickyContainer, Sticky } from 'react-sticky';
+import { Row, Col } from "react-bootstrap";
+import { StickyContainer, Sticky } from "react-sticky";
 import Contact from "../components/Contact";
 import FacultiesOverview from "../components/FacultiesOverview";
 import FacultiesQuiz from "../components/FacultiesQuiz";
 import FieldsComparison from "../components/FieldsComparison";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import VisibilitySensor from 'react-visibility-sensor';
+import VisibilitySensor from "react-visibility-sensor";
 
-const FacultiesPage = ({ data: {
-  contentfulSiteInformation,
-  allContentfulFaculties,
-  allContentfulQuizQuestion,
-}, pageContext }) => {
-  const [visible, setVisible] = useState(Array(3 + allContentfulFaculties.edges.length).fill(false));
+const FacultiesPage = ({
+  data: {
+    contentfulSiteInformation,
+    allContentfulFaculties,
+    allContentfulQuizQuestion,
+  },
+  pageContext,
+}) => {
+  const [visible, setVisible] = useState(
+    Array(3 + allContentfulFaculties.edges.length).fill(false)
+  );
 
   const setVisibleIndex = (index, isVisible) => {
     let newVisible = visible.slice();
     newVisible[index] = isVisible;
     setVisible(newVisible);
-  }
+  };
 
   return (
-    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout
+      site={contentfulSiteInformation}
+      header="home"
+      locale={pageContext.locale}
+    >
       <FormattedMessage id="title.faculties" defaultMessage="Faculties">
         {(title) => (
           <Seo
@@ -34,25 +43,38 @@ const FacultiesPage = ({ data: {
             title={title[0]}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}
-            image={"https:"+contentfulSiteInformation.logo.file.url}
+            image={"https:" + contentfulSiteInformation.logo.file.url}
             keywords={contentfulSiteInformation.siteKeywords}
           />
         )}
       </FormattedMessage>
 
       <div className="banner-spacer"></div>
-      <VisibilitySensor onChange={() => setVisibleIndex(0)} partialVisibility={true} minTopValue={400}>
-        <FacultiesOverview key="Faculties" faculties={allContentfulFaculties.edges.map(({node}) => node)} site={contentfulSiteInformation} />
+      <VisibilitySensor
+        onChange={() => setVisibleIndex(0)}
+        partialVisibility={true}
+        minTopValue={400}
+      >
+        <FacultiesOverview
+          key="Faculties"
+          faculties={allContentfulFaculties.edges.map(({ node }) => node)}
+          site={contentfulSiteInformation}
+        />
       </VisibilitySensor>
 
       <Row>
         <Col xl={2} className="d-none d-xl-block">
-          <StickyContainer style={{height: "100%"}}>
+          <StickyContainer style={{ height: "100%" }}>
             <Sticky>
               {({ style }) => {
                 return (
                   <div style={style}>
-                    <FacultiesSideMenu faculties={allContentfulFaculties.edges.map(({node}) => node)} visible={visible} />
+                    <FacultiesSideMenu
+                      faculties={allContentfulFaculties.edges.map(
+                        ({ node }) => node
+                      )}
+                      visible={visible}
+                    />
                   </div>
                 );
               }}
@@ -60,19 +82,39 @@ const FacultiesPage = ({ data: {
           </StickyContainer>
         </Col>
         <Col xl={10}>
-          <VisibilitySensor onChange={() => setVisibleIndex(1)} partialVisibility={true} minTopValue={400}>
-            <FacultiesQuiz key="FacultiesQuiz" quizQuestions={allContentfulQuizQuestion} faculties={allContentfulFaculties} />
+          <VisibilitySensor
+            onChange={() => setVisibleIndex(1)}
+            partialVisibility={true}
+            minTopValue={400}
+          >
+            <FacultiesQuiz
+              key="FacultiesQuiz"
+              quizQuestions={allContentfulQuizQuestion}
+              faculties={allContentfulFaculties}
+            />
           </VisibilitySensor>
-          <FieldsComparison key="FacultiesComparison" fields={allContentfulFaculties.edges.map(({node}) => ({...node, faculty: node}))} setVisibleIndex={(index, isVisible) => setVisibleIndex(index+2, isVisible)} />
+          <FieldsComparison
+            key="FacultiesComparison"
+            fields={allContentfulFaculties.edges.map(({ node }) => ({
+              ...node,
+              faculty: node,
+            }))}
+            setVisibleIndex={(index, isVisible) =>
+              setVisibleIndex(index + 2, isVisible)
+            }
+          />
         </Col>
       </Row>
 
-      <VisibilitySensor onChange={() => setVisibleIndex(allContentfulFaculties.edges.length+2)}>
+      <VisibilitySensor
+        onChange={() =>
+          setVisibleIndex(allContentfulFaculties.edges.length + 2)
+        }
+      >
         <Contact key="Contact" site={contentfulSiteInformation} />
       </VisibilitySensor>
-
     </Layout>
-  )
+  );
 };
 
 export default FacultiesPage;
@@ -107,10 +149,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulFaculties(
-      filter: {
-        node_locale: { eq: $locale }
-        showOn: { eq: $locale }
-      }
+      filter: { node_locale: { eq: $locale }, showOn: { eq: $locale } }
       sort: { title: ASC }
     ) {
       edges {
@@ -147,10 +186,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulQuizQuestion(
-      filter: {
-        node_locale: { eq: $locale }
-        showOn: { eq: $locale }
-      }
+      filter: { node_locale: { eq: $locale }, showOn: { eq: $locale } }
       sort: { createdAt: ASC }
     ) {
       edges {

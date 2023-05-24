@@ -17,7 +17,8 @@ module.exports = {
     title: `Na medicinu`,
     description: `Course site`,
     author: `Dominik Gmiterko <d.gmiterko@gmail.com>`,
-    siteUrl: locale == "sk" ? `https://namedicinu.sk/` : `https://namedicinu.cz/`
+    siteUrl:
+      locale == "sk" ? `https://namedicinu.sk/` : `https://namedicinu.cz/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -26,8 +27,8 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        smartypants: true
-      }
+        smartypants: true,
+      },
     },
     `gatsby-plugin-sharp`,
     {
@@ -46,24 +47,22 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId,
-        accessToken
-      }
+        accessToken,
+      },
     },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [
-          locale == "sk" ? `G-3JM3E0KK8S` : `G-061BLGVHEV`,
-        ],
+        trackingIds: [locale == "sk" ? `G-3JM3E0KK8S` : `G-061BLGVHEV`],
       },
     },
     {
-      resolve: 'gatsby-plugin-global-context',
+      resolve: "gatsby-plugin-global-context",
       options: {
         context: {
-          locale: locale
-        }
-      }
+          locale: locale,
+        },
+      },
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-anchor-links`,
@@ -85,21 +84,19 @@ module.exports = {
           }
         `,
         resolveSiteUrl: ({ site }) => site.siteMetadata.siteUrl,
-        resolvePages: ({
-          allSitePage: { nodes: allPages },
-        }) => {
-          return allPages.map(page => {
-            return { ...page }
-          })
+        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
+          return allPages.map((page) => {
+            return { ...page };
+          });
         },
         serialize: (page) => {
           return {
             url: page.path,
             changefreq: `monthly`,
             priority: 0.5,
-          }
-        }
-      }
-    }
+          };
+        },
+      },
+    },
   ],
-}
+};

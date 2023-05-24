@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
 
-import { pixelInit, pixelTrackPage } from './src/fb-pixel';
+import { pixelInit, pixelTrackPage } from "./src/fb-pixel";
 
 export const onClientEntry = () => {
   try {
@@ -12,7 +12,7 @@ export const onClientEntry = () => {
   } catch (e) {
     console.log(e);
   }
-}
+};
 
 export const onRouteUpdate = ({ location, prevLocation }) => {
   try {
@@ -20,4 +20,4 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
   } catch (e) {
     console.log(e);
   }
-}
+};

@@ -1,13 +1,11 @@
 import React from "react";
-import { Container, Row, Col } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { Container, Row, Col } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
-const NotFoundPage = ({ data: {
-  contentfulSiteInformation,
-}, pageContext }) => (
+const NotFoundPage = ({ data: { contentfulSiteInformation }, pageContext }) => (
   <Layout site={contentfulSiteInformation}>
     <FormattedMessage id="title.not_found" defaultMessage="Not found">
       {(title) => (
@@ -16,7 +14,7 @@ const NotFoundPage = ({ data: {
           title={title[0]}
           siteName={contentfulSiteInformation.siteName}
           siteDescription={contentfulSiteInformation.siteDescription}
-          image={"https:"+contentfulSiteInformation.logo.file.url}
+          image={"https:" + contentfulSiteInformation.logo.file.url}
           keywords={contentfulSiteInformation.siteKeywords}
         />
       )}
@@ -31,7 +29,10 @@ const NotFoundPage = ({ data: {
             <FormattedMessage id="title.not_found" defaultMessage="Not found" />
           </h1>
           <p>
-            <FormattedMessage id="not_found.message" defaultMessage="You just hit a route that doesn't exist." />
+            <FormattedMessage
+              id="not_found.message"
+              defaultMessage="You just hit a route that doesn't exist."
+            />
           </p>
         </Col>
       </Row>
@@ -43,7 +44,7 @@ export default NotFoundPage;
 
 export const pageQuery = graphql`
   query NotFoundQuery($locale: String!) {
-    contentfulSiteInformation(node_locale: {eq: $locale}) {
+    contentfulSiteInformation(node_locale: { eq: $locale }) {
       siteName
       siteDescription
       siteKeywords

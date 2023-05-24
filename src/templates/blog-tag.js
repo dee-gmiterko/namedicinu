@@ -1,18 +1,21 @@
 import React from "react";
-import { Container, Row, Col } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { Container, Row, Col } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 import { graphql } from "gatsby";
 import Blog from "../components/Blog";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
-const BlogPage = ({ data: {
-  contentfulSiteInformation,
-  allContentfulBlog,
-}, pageContext }) => {
-
+const BlogPage = ({
+  data: { contentfulSiteInformation, allContentfulBlog },
+  pageContext,
+}) => {
   return (
-    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout
+      site={contentfulSiteInformation}
+      header="home"
+      locale={pageContext.locale}
+    >
       <FormattedMessage id="title.blog" defaultMessage="Blog">
         {(title) => (
           <Seo
@@ -20,7 +23,7 @@ const BlogPage = ({ data: {
             title={pageContext.tag}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}
-            image={"https:"+contentfulSiteInformation.logo.file.url}
+            image={"https:" + contentfulSiteInformation.logo.file.url}
             keywords={contentfulSiteInformation.siteKeywords}
           />
         )}
@@ -36,7 +39,7 @@ const BlogPage = ({ data: {
         </Container>
       </div>
     </Layout>
-  )
+  );
 };
 
 export default BlogPage;

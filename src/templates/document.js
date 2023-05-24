@@ -9,11 +9,15 @@ const RedirectPage = ({ pageContext }) => {
       <Helmet
         htmlAttributes={{
           lang: pageContext.locale,
-          class: "html-fullscreen"
+          class: "html-fullscreen",
         }}
         title={pageContext.title}
       />
-      <iframe id="included-document-frame" src={pageContext.url} title={pageContext.title} />
+      <iframe
+        id="included-document-frame"
+        src={pageContext.url}
+        title={pageContext.title}
+      />
     </>
   );
 };

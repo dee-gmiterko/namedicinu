@@ -1,18 +1,21 @@
 import React from "react";
-import { Container, Row, Col } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { Container, Row, Col } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 import { graphql, Link } from "gatsby";
-import { slugifyDocumentTitle } from '../utils';
+import { slugifyDocumentTitle } from "../utils";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
-const DocumentListPage = ({ data: {
-  contentfulSiteInformation,
-  allContentfulAsset,
-}, pageContext }) => {
-
+const DocumentListPage = ({
+  data: { contentfulSiteInformation, allContentfulAsset },
+  pageContext,
+}) => {
   return (
-    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout
+      site={contentfulSiteInformation}
+      header="home"
+      locale={pageContext.locale}
+    >
       <FormattedMessage id="title.document_list" defaultMessage="Documents">
         {(title) => (
           <Seo
@@ -20,7 +23,7 @@ const DocumentListPage = ({ data: {
             title={title[0]}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}
-            image={"https:"+contentfulSiteInformation.logo.file.url}
+            image={"https:" + contentfulSiteInformation.logo.file.url}
             keywords={contentfulSiteInformation.siteKeywords}
           />
         )}
@@ -29,7 +32,10 @@ const DocumentListPage = ({ data: {
         <Row>
           <Col md={3} className="p-3">
             <h2 id="Documents">
-              <FormattedMessage id="title.document_list" defaultMessage="Documents" />
+              <FormattedMessage
+                id="title.document_list"
+                defaultMessage="Documents"
+              />
             </h2>
           </Col>
         </Row>
@@ -38,7 +44,9 @@ const DocumentListPage = ({ data: {
             <ul className="checkmark">
               {allContentfulAsset.edges.map((item, index) => (
                 <li key={index}>
-                  <Link to={"/document/"+slugifyDocumentTitle(item.node.title)}>
+                  <Link
+                    to={"/document/" + slugifyDocumentTitle(item.node.title)}
+                  >
                     {item.node.title}
                   </Link>
                 </li>
@@ -48,7 +56,7 @@ const DocumentListPage = ({ data: {
         </Row>
       </Container>
     </Layout>
-  )
+  );
 };
 
 export default DocumentListPage;
@@ -79,7 +87,7 @@ export const pageQuery = graphql`
     }
     allContentfulAsset(
       filter: {
-        file: {contentType: {eq: "application/pdf"}}
+        file: { contentType: { eq: "application/pdf" } }
         node_locale: { eq: $locale }
       }
     ) {

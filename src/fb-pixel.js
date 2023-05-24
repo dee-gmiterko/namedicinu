@@ -4,20 +4,20 @@ let ReactPixel;
 if (typeof window === "undefined") {
   ReactPixel = null;
 } else {
-  ReactPixel = require('react-facebook-pixel').default;
+  ReactPixel = require("react-facebook-pixel").default;
 }
 
 export const pixelInit = () => {
   if (ReactPixel) {
-    ReactPixel.init('460630345218830', null, {
+    ReactPixel.init("460630345218830", null, {
       autoConfig: true,
       debug: false,
     });
-    if(!getCookieConsentValue()) {
+    if (!getCookieConsentValue()) {
       ReactPixel.revokeConsent();
     }
   }
-}
+};
 
 export const pixelTrackRegister = () => {
   if (ReactPixel) {
@@ -25,28 +25,28 @@ export const pixelTrackRegister = () => {
       content_name: "Course",
     });
   }
-}
+};
 
 export const pixelTrackPage = () => {
   if (ReactPixel) {
     ReactPixel.pageView();
   }
-}
+};
 
 export const pixelTrackPlayLecuture = () => {
   ReactPixel.trackCustom("PlayLecuture");
-}
+};
 
 export const pixelTrackQuiz = (question, answer) => {
-  ReactPixel.trackCustom("Quiz", {question, answer});
-}
+  ReactPixel.trackCustom("Quiz", { question, answer });
+};
 
 export const pixelTrackContact = () => {
   ReactPixel.trackCustom("Contact");
-}
+};
 
 export const pixelGrantConsent = () => {
   if (ReactPixel) {
     ReactPixel.grantConsent();
   }
-}
+};

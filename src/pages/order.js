@@ -1,28 +1,43 @@
 import React from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
 import { graphql } from "gatsby";
-import { OrderProvider } from "../components/order/OrderContext"
-import { slugifyDocumentTitle } from '../utils';
+import { OrderProvider } from "../components/order/OrderContext";
+import { slugifyDocumentTitle } from "../utils";
 import Contact from "../components/Contact";
 import Layout from "../components/Layout";
 import OrderLayout from "../components/order/OrderLayout";
 import Seo from "../components/Seo";
 
-const OrderPage = ({ data: {
-  contentfulSiteInformation,
-  allContentfulProducts,
-  allContentfulFaculties,
-  allContentfulPaymentFrequency, 
-}, pageContext, location }) => {
+const OrderPage = ({
+  data: {
+    contentfulSiteInformation,
+    allContentfulProducts,
+    allContentfulFaculties,
+    allContentfulPaymentFrequency,
+  },
+  pageContext,
+  location,
+}) => {
   const productTitle = location.state && location.state.product;
-  const product = productTitle && allContentfulProducts.edges.find(product => product.node.title === productTitle).node;
+  const product =
+    productTitle &&
+    allContentfulProducts.edges.find(
+      (product) => product.node.title === productTitle
+    ).node;
 
-  const registerRulesDocuments = contentfulSiteInformation.registerDocuments.map((document) => "/document/"+slugifyDocumentTitle(document.title));
+  const registerRulesDocuments =
+    contentfulSiteInformation.registerDocuments.map(
+      (document) => "/document/" + slugifyDocumentTitle(document.title)
+    );
 
   return (
-    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout
+      site={contentfulSiteInformation}
+      header="home"
+      locale={pageContext.locale}
+    >
       <FormattedMessage id="title.order" defaultMessage="Order">
         {(title) => (
           <Seo
@@ -30,7 +45,7 @@ const OrderPage = ({ data: {
             title={title[0]}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}
-            image={"https:"+contentfulSiteInformation.logo.file.url}
+            image={"https:" + contentfulSiteInformation.logo.file.url}
             keywords={contentfulSiteInformation.siteKeywords}
           />
         )}
@@ -41,18 +56,32 @@ const OrderPage = ({ data: {
       <Container>
         {product ? (
           <div className="order">
-            <OrderProvider product={product} faculties={allContentfulFaculties} locale={pageContext.locale} paymentFrequencies={allContentfulPaymentFrequency}>
-              <OrderLayout site={contentfulSiteInformation} registerRulesDocuments={registerRulesDocuments} />
+            <OrderProvider
+              product={product}
+              faculties={allContentfulFaculties}
+              locale={pageContext.locale}
+              paymentFrequencies={allContentfulPaymentFrequency}
+            >
+              <OrderLayout
+                site={contentfulSiteInformation}
+                registerRulesDocuments={registerRulesDocuments}
+              />
             </OrderProvider>
           </div>
         ) : (
           <Row>
             <Col>
               <h3>
-                <FormattedMessage id="order.empty" defaultMessage="Basket is empty" />
+                <FormattedMessage
+                  id="order.empty"
+                  defaultMessage="Basket is empty"
+                />
               </h3>
               <Button as={AnchorLink} to="/#Products">
-                <FormattedMessage id="order.choose_product" defaultMessage="Choose product" />
+                <FormattedMessage
+                  id="order.choose_product"
+                  defaultMessage="Choose product"
+                />
               </Button>
             </Col>
           </Row>
@@ -61,7 +90,7 @@ const OrderPage = ({ data: {
 
       <Contact key="Contact" site={contentfulSiteInformation} />
     </Layout>
-  )
+  );
 };
 
 export default OrderPage;
@@ -97,9 +126,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulProducts(
-      filter: {
-        node_locale: { eq: $locale }
-      }
+      filter: { node_locale: { eq: $locale } }
       sort: { order: ASC }
     ) {
       edges {
@@ -144,10 +171,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulFaculties(
-      filter: {
-        node_locale: { eq: $locale }
-        showOn: { eq: $locale }
-      }
+      filter: { node_locale: { eq: $locale }, showOn: { eq: $locale } }
       sort: { title: ASC }
     ) {
       edges {
@@ -158,9 +182,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulPaymentFrequency(
-      filter: {
-        node_locale: { eq: $locale }
-      }
+      filter: { node_locale: { eq: $locale } }
       sort: { order: ASC }
     ) {
       edges {

@@ -1,13 +1,11 @@
 import React from "react";
-import { FormattedMessage } from 'react-intl';
-import { isCode } from '../../utils';
-import { Row, Col, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { FormattedMessage } from "react-intl";
+import { isCode } from "../../utils";
+import { Row, Col, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useOrder } from "./OrderContext";
 
 function FormContact() {
-  const {
-    formDisabled, codeDiscount, setCodeDiscount
-  } = useOrder();
+  const { formDisabled, codeDiscount, setCodeDiscount } = useOrder();
 
   return (
     <>
@@ -16,10 +14,13 @@ function FormContact() {
           <FormattedMessage id="register.email" defaultMessage="Email">
             {(l_email) => (
               <>
-                <Form.Label>
-                  {l_email} *
-                </Form.Label>
-                <Form.Control require="true" name="email" type="email" disabled={formDisabled} />
+                <Form.Label>{l_email} *</Form.Label>
+                <Form.Control
+                  require="true"
+                  name="email"
+                  type="email"
+                  disabled={formDisabled}
+                />
               </>
             )}
           </FormattedMessage>
@@ -28,10 +29,13 @@ function FormContact() {
           <FormattedMessage id="register.name" defaultMessage="Name">
             {(l_name) => (
               <>
-                <Form.Label>
-                  {l_name} *
-                </Form.Label>
-                <Form.Control require="true" name="name" type="input" disabled={formDisabled} />
+                <Form.Label>{l_name} *</Form.Label>
+                <Form.Control
+                  require="true"
+                  name="name"
+                  type="input"
+                  disabled={formDisabled}
+                />
               </>
             )}
           </FormattedMessage>
@@ -40,13 +44,19 @@ function FormContact() {
 
       <Row>
         <Form.Group as={Col} xs={12} controlId="registerAddressStreet">
-          <FormattedMessage id="register.address_street" defaultMessage="Address">
+          <FormattedMessage
+            id="register.address_street"
+            defaultMessage="Address"
+          >
             {(l_address_street) => (
               <>
-                <Form.Label>
-                  {l_address_street} *
-                </Form.Label>
-                <Form.Control require="true" name="address_street" type="input" disabled={formDisabled} />
+                <Form.Label>{l_address_street} *</Form.Label>
+                <Form.Control
+                  require="true"
+                  name="address_street"
+                  type="input"
+                  disabled={formDisabled}
+                />
               </>
             )}
           </FormattedMessage>
@@ -58,10 +68,13 @@ function FormContact() {
           <FormattedMessage id="register.address_town" defaultMessage="Town">
             {(l_address_town) => (
               <>
-                <Form.Label>
-                  {l_address_town} *
-                </Form.Label>
-                <Form.Control require="true" name="address_town" type="input" disabled={formDisabled} />
+                <Form.Label>{l_address_town} *</Form.Label>
+                <Form.Control
+                  require="true"
+                  name="address_town"
+                  type="input"
+                  disabled={formDisabled}
+                />
               </>
             )}
           </FormattedMessage>
@@ -70,22 +83,31 @@ function FormContact() {
           <FormattedMessage id="register.address_zip" defaultMessage="Zip code">
             {(l_address_zip) => (
               <>
-                <Form.Label>
-                  {l_address_zip} *
-                </Form.Label>
-                <Form.Control require="true" name="address_zip" type="input" disabled={formDisabled} />
+                <Form.Label>{l_address_zip} *</Form.Label>
+                <Form.Control
+                  require="true"
+                  name="address_zip"
+                  type="input"
+                  disabled={formDisabled}
+                />
               </>
             )}
           </FormattedMessage>
         </Form.Group>
         <Form.Group as={Col} md={5} controlId="registerAddressCountry">
-          <FormattedMessage id="register.address_country" defaultMessage="Country">
+          <FormattedMessage
+            id="register.address_country"
+            defaultMessage="Country"
+          >
             {(l_address_country) => (
               <>
-                <Form.Label>
-                  {l_address_country} *
-                </Form.Label>
-                <Form.Control require="true" name="address_country" type="input" disabled={formDisabled} />
+                <Form.Label>{l_address_country} *</Form.Label>
+                <Form.Control
+                  require="true"
+                  name="address_country"
+                  type="input"
+                  disabled={formDisabled}
+                />
               </>
             )}
           </FormattedMessage>
@@ -102,18 +124,27 @@ function FormContact() {
                   placement="bottom"
                   overlay={
                     <Tooltip id="tooltip-reference">
-                      <FormattedMessage id="register.reference.help" defaultMessage="E.g., Facebook" />
+                      <FormattedMessage
+                        id="register.reference.help"
+                        defaultMessage="E.g., Facebook"
+                      />
                     </Tooltip>
                   }
                 >
                   <i className="fa fa-question-circle help" />
                 </OverlayTrigger>
               </Form.Label>
-              <Form.Control onChange={(e) => setCodeDiscount(isCode(e.target.value))} name="reference" type="input" disabled={formDisabled} />
-              {
-                codeDiscount &&
-                <div className="code-discount"><em>-10%</em></div>
-              }
+              <Form.Control
+                onChange={(e) => setCodeDiscount(isCode(e.target.value))}
+                name="reference"
+                type="input"
+                disabled={formDisabled}
+              />
+              {codeDiscount && (
+                <div className="code-discount">
+                  <em>-10%</em>
+                </div>
+              )}
             </>
           )}
         </FormattedMessage>

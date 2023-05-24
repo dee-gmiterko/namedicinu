@@ -1,11 +1,21 @@
 import React from "react";
-import { FormattedMessage } from 'react-intl';
-import { Row, Col } from 'react-bootstrap';
+import { FormattedMessage } from "react-intl";
+import { Row, Col } from "react-bootstrap";
 import { useOrder } from "./OrderContext";
-import Markdown from "../Markdown"
+import Markdown from "../Markdown";
 
 function OrderRecap({ logo }) {
-  const { intl, product, biology, chemistry, physics, isFullCourse, priceStyle, formattedPrice, formattedDiscountAmount } = useOrder();
+  const {
+    intl,
+    product,
+    biology,
+    chemistry,
+    physics,
+    isFullCourse,
+    priceStyle,
+    formattedPrice,
+    formattedDiscountAmount,
+  } = useOrder();
 
   return (
     <>
@@ -16,48 +26,60 @@ function OrderRecap({ logo }) {
         </Col>
       </Row>
       {isFullCourse && [
-        (biology && (
+        biology && (
           <Row>
             <Col xs={8}>
               <span className="item">
-                <FormattedMessage id="register.course.biology" defaultMessage="Biology" />
+                <FormattedMessage
+                  id="register.course.biology"
+                  defaultMessage="Biology"
+                />
               </span>
             </Col>
             <Col xs={4} className="text-right">
               {intl.formatNumber(product.price[0].price, priceStyle)}
             </Col>
           </Row>
-        )),
-        (chemistry && (
+        ),
+        chemistry && (
           <Row>
             <Col xs={8}>
               <span className="item">
-                <FormattedMessage id="register.course.chemistry" defaultMessage="Chemistry" />
+                <FormattedMessage
+                  id="register.course.chemistry"
+                  defaultMessage="Chemistry"
+                />
               </span>
             </Col>
             <Col xs={4} className="text-right">
               {intl.formatNumber(product.price[0].price, priceStyle)}
             </Col>
           </Row>
-        )),
-        (physics && (
+        ),
+        physics && (
           <Row>
             <Col xs={8}>
               <span className="item">
-                <FormattedMessage id="register.course.physics" defaultMessage="Physics" />
+                <FormattedMessage
+                  id="register.course.physics"
+                  defaultMessage="Physics"
+                />
               </span>
             </Col>
             <Col xs={4} className="text-right">
               {intl.formatNumber(product.price[0].price, priceStyle)}
             </Col>
           </Row>
-        ))
+        ),
       ]}
       {formattedDiscountAmount && (
         <Row>
           <Col xs={8}>
             <span className="item">
-              <FormattedMessage id="order.price_discount" defaultMessage="Discount" />
+              <FormattedMessage
+                id="order.price_discount"
+                defaultMessage="Discount"
+              />
             </span>
           </Col>
           <Col xs={4} className="text-right">

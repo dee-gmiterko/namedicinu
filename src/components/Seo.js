@@ -2,62 +2,69 @@ import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 
-function Seo({ lang, title, siteName, siteDescription, image, keywords, meta }) {
+function Seo({
+  lang,
+  title,
+  siteName,
+  siteDescription,
+  image,
+  keywords,
+  meta,
+}) {
   return (
     <Helmet
       htmlAttributes={{
-        lang
+        lang,
       }}
       title={title ? `${title} | ${siteName}` : siteName}
       meta={[
         {
           nsame: `description`,
-          content: siteDescription
+          content: siteDescription,
         },
         {
           property: `og:title`,
-          content: siteName
+          content: siteName,
         },
         {
           property: `og:description`,
-          content: siteDescription
+          content: siteDescription,
         },
         {
           property: `og:type`,
-          content: `website`
+          content: `website`,
         },
         {
           property: `og:image`,
-          content: image
+          content: image,
         },
         {
           name: `twitter:card`,
-          content: `summary`
+          content: `summary`,
         },
         {
           name: `twitter:title`,
-          content: title
+          content: title,
         },
         {
           name: `twitter:description`,
-          content: siteDescription
+          content: siteDescription,
         },
         {
           property: `twitter:image`,
-          content: image
+          content: image,
         },
       ]
         .concat(
           keywords.length > 0
             ? {
                 name: `keywords`,
-                content: keywords.join(`, `)
+                content: keywords.join(`, `),
               }
             : []
         )
         .concat(meta)}
-    >
-    </Helmet>
+    ></Helmet>
   );
 }
 

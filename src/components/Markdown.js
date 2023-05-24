@@ -6,7 +6,7 @@ const Markdown = ({ value, params }) => {
   return (
     <div
       dangerouslySetInnerHTML={{
-        __html: replaceParams(fixAll(value.childMarkdownRemark.html), params)
+        __html: replaceParams(fixAll(value.childMarkdownRemark.html), params),
       }}
     />
   );
@@ -15,17 +15,17 @@ const Markdown = ({ value, params }) => {
 Markdown.propTypes = {
   value: PropTypes.shape({
     childMarkdownRemark: PropTypes.shape({
-      html: PropTypes.string.isRequired
-    }).isRequired
+      html: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   params: PropTypes.object,
 };
 Markdown.defaultProps = {
   value: {
     childMarkdownRemark: {
-      html: ""
-    }
-  }
+      html: "",
+    },
+  },
 };
 
 export default Markdown;

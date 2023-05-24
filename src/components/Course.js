@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 import Markdown from "./Markdown";
 // import { Row, Col } from 'react-bootstrap';
 // import { FormattedMessage } from 'react-intl';
-
 
 export default class Course extends Component {
   shouldComponentUpdate() {

@@ -1,28 +1,31 @@
 import React from "react";
-import { Container, Row, Col } from 'react-bootstrap';
-import { FormattedMessage, FormattedDate } from 'react-intl';
+import { Container, Row, Col } from "react-bootstrap";
+import { FormattedMessage, FormattedDate } from "react-intl";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql, Link } from "gatsby";
-import { slugifyDocumentTitle } from '../utils';
+import { slugifyDocumentTitle } from "../utils";
 import Layout from "../components/Layout";
 import Markdown from "../components/Markdown";
 import Seo from "../components/Seo";
 
-const BlogArticlePage = ({ data: {
-  contentfulSiteInformation,
-  contentfulBlog,
-  allContentfulBlog,
-}, pageContext }) => {
+const BlogArticlePage = ({
+  data: { contentfulSiteInformation, contentfulBlog, allContentfulBlog },
+  pageContext,
+}) => {
   const article = contentfulBlog;
 
   return (
-    <Layout site={contentfulSiteInformation} header="home" locale={pageContext.locale}>
+    <Layout
+      site={contentfulSiteInformation}
+      header="home"
+      locale={pageContext.locale}
+    >
       <Seo
         lang={pageContext.locale}
         title={article.title}
         siteName={contentfulSiteInformation.siteName}
         siteDescription={contentfulSiteInformation.siteDescription}
-        image={"https:"+contentfulSiteInformation.logo.file.url}
+        image={"https:" + contentfulSiteInformation.logo.file.url}
         keywords={contentfulSiteInformation.siteKeywords}
       />
       {article.image && (
@@ -52,11 +55,9 @@ const BlogArticlePage = ({ data: {
           </Row>
           <Row>
             <Col className="p-3">
-              {article.tags.map(tag => (
-                <Link to={"/blog/tag/"+slugifyDocumentTitle(tag)}>
-                  <span className="tag">
-                    {tag}
-                  </span>
+              {article.tags.map((tag) => (
+                <Link to={"/blog/tag/" + slugifyDocumentTitle(tag)}>
+                  <span className="tag">{tag}</span>
                 </Link>
               ))}
             </Col>
@@ -67,14 +68,17 @@ const BlogArticlePage = ({ data: {
             <Row>
               <Col md={6} className="mt-3">
                 <h2>
-                  <FormattedMessage id="blog.related_articles" defaultMessage="Related articles" />
+                  <FormattedMessage
+                    id="blog.related_articles"
+                    defaultMessage="Related articles"
+                  />
                 </h2>
               </Col>
             </Row>
             <Row>
               {allContentfulBlog.edges.map((item, index) => (
                 <Col md={4} className="related-article p-3">
-                  <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
+                  <Link to={"/blog/" + slugifyDocumentTitle(item.node.title)}>
                     <h3>{item.node.title}</h3>
                   </Link>
                   {item.node.image && (
@@ -82,13 +86,14 @@ const BlogArticlePage = ({ data: {
                       <GatsbyImage image={item.node.image.gatsbyImageData} />
                     </p>
                   )}
-                  <p>
-                    {item.node.abstract.abstract}
-                  </p>
+                  <p>{item.node.abstract.abstract}</p>
                   <div className="text-right">
-                    <Link to={"/blog/"+slugifyDocumentTitle(item.node.title)}>
+                    <Link to={"/blog/" + slugifyDocumentTitle(item.node.title)}>
                       <span className="btn btn-primary">
-                        <FormattedMessage id="blog.read-more" defaultMessage="Read more" />
+                        <FormattedMessage
+                          id="blog.read-more"
+                          defaultMessage="Read more"
+                        />
                       </span>
                     </Link>
                   </div>
@@ -99,7 +104,7 @@ const BlogArticlePage = ({ data: {
         )}
       </Container>
     </Layout>
-  )
+  );
 };
 
 export default BlogArticlePage;
@@ -128,10 +133,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    contentfulBlog(
-      node_locale: { eq: $locale }
-      title: { eq: $title }
-    ) {
+    contentfulBlog(node_locale: { eq: $locale }, title: { eq: $title }) {
       title
       abstract {
         abstract

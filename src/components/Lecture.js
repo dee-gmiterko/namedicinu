@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
-import { pixelTrackPlayLecuture } from '../fb-pixel';
+import { Container, Row, Col } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
+import { pixelTrackPlayLecuture } from "../fb-pixel";
 import Markdown from "./Markdown";
-import YouTube from 'react-youtube';
+import YouTube from "react-youtube";
 
 export default class Lecture extends Component {
   render() {
@@ -22,12 +22,13 @@ export default class Lecture extends Component {
           <Row>
             <Col lg={6}>
               <h3>
-                <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
+                <FormattedMessage
+                  id="lecture.chemistry"
+                  defaultMessage="Chemistry"
+                />
               </h3>
               <div className="position-relative mb-3">
-                <div className="lang">
-                  SK
-                </div>
+                <div className="lang">SK</div>
                 <YouTube
                   videoId="60_7SE6LHm8"
                   iframeClassName="width-100"
@@ -35,9 +36,7 @@ export default class Lecture extends Component {
                 />
               </div>
               <div className="position-relative mb-3">
-                <div className="lang">
-                  CZ
-                </div>
+                <div className="lang">CZ</div>
                 <YouTube
                   videoId="OfpZI-Qm-CI"
                   iframeClassName="width-100"
@@ -47,12 +46,13 @@ export default class Lecture extends Component {
             </Col>
             <Col lg={6}>
               <h3>
-                <FormattedMessage id="lecture.biology" defaultMessage="Biology" />
+                <FormattedMessage
+                  id="lecture.biology"
+                  defaultMessage="Biology"
+                />
               </h3>
               <div className="position-relative mb-3">
-                <div className="lang">
-                  SK
-                </div>
+                <div className="lang">SK</div>
                 <YouTube
                   videoId="7uLn29JX8DM"
                   iframeClassName="width-100"
@@ -60,9 +60,7 @@ export default class Lecture extends Component {
                 />
               </div>
               <div className="position-relative mb-3">
-                <div className="lang">
-                  CZ
-                </div>
+                <div className="lang">CZ</div>
                 <YouTube
                   videoId="tqyiuTLe15A"
                   iframeClassName="width-100"
@@ -72,12 +70,13 @@ export default class Lecture extends Component {
             </Col>
             <Col lg={6}>
               <h3>
-                <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
+                <FormattedMessage
+                  id="lecture.physics"
+                  defaultMessage="Physics"
+                />
               </h3>
               <div className="position-relative mb-3">
-                <div className="lang">
-                  CZ
-                </div>
+                <div className="lang">CZ</div>
                 <YouTube
                   videoId="X-gsQEkCVvM"
                   iframeClassName="width-100"
@@ -87,12 +86,13 @@ export default class Lecture extends Component {
             </Col>
             <Col lg={6}>
               <h3>
-                <FormattedMessage id="lecture.study_prerequisites" defaultMessage="Study Prerequisites" />
+                <FormattedMessage
+                  id="lecture.study_prerequisites"
+                  defaultMessage="Study Prerequisites"
+                />
               </h3>
               <div className="position-relative mb-3">
-                <div className="lang">
-                  SK
-                </div>
+                <div className="lang">SK</div>
                 <YouTube
                   videoId="DkfxvI8pEPU"
                   iframeClassName="width-100"
@@ -105,7 +105,10 @@ export default class Lecture extends Component {
           <Row>
             <Col lg={4}>
               <h3>
-                <FormattedMessage id="lecture.chemistry" defaultMessage="Chemistry" />
+                <FormattedMessage
+                  id="lecture.chemistry"
+                  defaultMessage="Chemistry"
+                />
               </h3>
               <div className="position-relative mb-3">
                 <YouTube
@@ -117,7 +120,10 @@ export default class Lecture extends Component {
             </Col>
             <Col lg={4}>
               <h3>
-                <FormattedMessage id="lecture.physics" defaultMessage="Physics" />
+                <FormattedMessage
+                  id="lecture.physics"
+                  defaultMessage="Physics"
+                />
               </h3>
               <div className="position-relative mb-3">
                 <YouTube
@@ -129,7 +135,10 @@ export default class Lecture extends Component {
             </Col>
             <Col lg={4}>
               <h3>
-                <FormattedMessage id="lecture.biology" defaultMessage="Biology" />
+                <FormattedMessage
+                  id="lecture.biology"
+                  defaultMessage="Biology"
+                />
               </h3>
               <div className="position-relative mb-3">
                 <YouTube

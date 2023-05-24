@@ -1,22 +1,21 @@
 import React from "react";
-import { FormspreeProvider } from '@formspree/react';
-import { IntlProvider, FormattedMessage } from 'react-intl';
-import { pixelGrantConsent } from '../fb-pixel';
+import { FormspreeProvider } from "@formspree/react";
+import { IntlProvider, FormattedMessage } from "react-intl";
+import { pixelGrantConsent } from "../fb-pixel";
 import CookieConsent from "react-cookie-consent";
 import Footer from "./Footer";
 import Header from "./Header";
 import PropTypes from "prop-types";
 import SuggestLanguageChange from "./SuggestLanguageChange";
 
-import messages_sk from "../locale/sk.json"
-import messages_cs from "../locale/cs.json"
+import messages_sk from "../locale/sk.json";
+import messages_cs from "../locale/cs.json";
 
 import "../css/style.scss";
 import "../css/gibson.scss";
 import "../css/font-awesome.scss";
 
 const Layout = ({ site, header, locale, children }) => {
-
   var messages = messages_sk;
   if (locale === "cs") {
     messages = messages_cs;
@@ -25,10 +24,7 @@ const Layout = ({ site, header, locale, children }) => {
   return (
     <IntlProvider locale={locale} messages={messages}>
       <FormspreeProvider project="1651131023250947820">
-        <Header
-          site={site}
-          header={header}
-        />
+        <Header site={site} header={header} />
         <div>
           <SuggestLanguageChange locale={locale} />
           <main>{children}</main>
@@ -49,7 +45,10 @@ const Layout = ({ site, header, locale, children }) => {
                   enableDeclineButton
                   onAccept={pixelGrantConsent}
                 >
-                  <FormattedMessage id="gdpr.message" defaultMessage="This website uses cookies to enhance the user experience." />
+                  <FormattedMessage
+                    id="gdpr.message"
+                    defaultMessage="This website uses cookies to enhance the user experience."
+                  />
                 </CookieConsent>
               )}
             </FormattedMessage>
@@ -61,7 +60,7 @@ const Layout = ({ site, header, locale, children }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

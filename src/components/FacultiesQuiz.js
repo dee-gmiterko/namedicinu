@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { Container, Row, Col, Button, ProgressBar } from 'react-bootstrap';
-import { FormattedMessage } from 'react-intl';
-import { pixelTrackQuiz } from '../fb-pixel';
-import { slugifyFaculty, fixAll } from '../utils';
+import { Container, Row, Col, Button, ProgressBar } from "react-bootstrap";
+import { FormattedMessage } from "react-intl";
+import { pixelTrackQuiz } from "../fb-pixel";
+import { slugifyFaculty, fixAll } from "../utils";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.scss";
@@ -19,24 +19,23 @@ var sliderSettings = {
 };
 
 export default class FacultiesQuiz extends Component {
-
   constructor(props) {
     super(props);
     this.sliderRef = null;
     this.state = {
-      answers: {}
-    }
+      answers: {},
+    };
   }
 
   answer(index, option) {
     this.setState({
       answers: Object.assign(this.state.answers, {
-        [index]: option
-      })
+        [index]: option,
+      }),
     });
     this.sliderRef.slickNext();
     try {
-      pixelTrackQuiz(index, option)
+      pixelTrackQuiz(index, option);
     } catch (e) {
       console.log(e);
     }
@@ -52,10 +51,10 @@ export default class FacultiesQuiz extends Component {
       facultiesPoints[edge.node.title] = 0;
     });
     quizQuestions.edges.forEach((item, index) => {
-      if(answers.hasOwnProperty(index)) {
+      if (answers.hasOwnProperty(index)) {
         const answer = answers[index];
-        const result = item.node["result"+answer];
-        if(result) {
+        const result = item.node["result" + answer];
+        if (result) {
           result.forEach((result_item) => {
             facultiesPoints[result_item.title] += 1;
           });
@@ -65,7 +64,7 @@ export default class FacultiesQuiz extends Component {
 
     // calculate and sort results
     const maxPoints = Object.keys(facultiesPoints)
-      .map(item => facultiesPoints[item])
+      .map((item) => facultiesPoints[item])
       .reduce((a, b) => {
         return Math.max(a, b);
       }, 1);
@@ -73,7 +72,7 @@ export default class FacultiesQuiz extends Component {
     let facultiesResults = [];
     faculties.edges.forEach((edge, index) => {
       const points = facultiesPoints[edge.node.title];
-      if(points > 0) {
+      if (points > 0) {
         facultiesResults.push({
           title: edge.node.title,
           shortTitle: edge.node.shortTitle,
@@ -82,10 +81,13 @@ export default class FacultiesQuiz extends Component {
         });
       }
     });
-    facultiesResults = facultiesResults.sort((a, b) => {
-      var x = a.points; var y = b.points;
-      return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-    }).slice(0, 5);
+    facultiesResults = facultiesResults
+      .sort((a, b) => {
+        var x = a.points;
+        var y = b.points;
+        return x < y ? 1 : x > y ? -1 : 0;
+      })
+      .slice(0, 5);
 
     return (
       <div className="faculties-quiz mb-5">
@@ -95,21 +97,38 @@ export default class FacultiesQuiz extends Component {
               <h2 id="Quiz" className="pt-3 pb-0">
                 <FormattedMessage id="title.quiz" defaultMessage="Quiz" />
               </h2>
-              <Slider ref={slider => (this.sliderRef = slider)} {...sliderSettings}>
+              <Slider
+                ref={(slider) => (this.sliderRef = slider)}
+                {...sliderSettings}
+              >
                 {quizQuestions.edges.map((item, index) => {
                   return (
-                    <div key={index} className="d-flex flex-column justify-content-around">
-                      <div className="question">{index+1}. {fixAll(item.node.question)}</div>
+                    <div
+                      key={index}
+                      className="d-flex flex-column justify-content-around"
+                    >
+                      <div className="question">
+                        {index + 1}. {fixAll(item.node.question)}
+                      </div>
                       <ul className="options">
                         {["A", "B", "C"].map((char) => {
-                          return (item.node["answer"+char]) && (
-                            <li className="p-3" key={char}>
-                              <Button className="btn-block d-flex align-items-center" onClick={() => this.answer(index, char)}>
-                                <span className="letter flex-shrink-0">{char}</span>
-                                <span className="flex-grow-1">{item.node["answer"+char]}</span>
-                              </Button>
-                            </li>
-                          )
+                          return (
+                            item.node["answer" + char] && (
+                              <li className="p-3" key={char}>
+                                <Button
+                                  className="btn-block d-flex align-items-center"
+                                  onClick={() => this.answer(index, char)}
+                                >
+                                  <span className="letter flex-shrink-0">
+                                    {char}
+                                  </span>
+                                  <span className="flex-grow-1">
+                                    {item.node["answer" + char]}
+                                  </span>
+                                </Button>
+                              </li>
+                            )
+                          );
                         })}
                       </ul>
                     </div>
@@ -117,7 +136,10 @@ export default class FacultiesQuiz extends Component {
                 })}
                 <div className="results" key="results">
                   <h3>
-                    <FormattedMessage id="faculties_quiz.results" defaultMessage="Results" />
+                    <FormattedMessage
+                      id="faculties_quiz.results"
+                      defaultMessage="Results"
+                    />
                   </h3>
                   <Container as="dl">
                     {facultiesResults.map((item, index) => {
@@ -125,9 +147,11 @@ export default class FacultiesQuiz extends Component {
                         <div key={index}>
                           <Row as="dt">
                             <Col xs={12} className="text-left">
-                              {index+1}.&nbsp;
-                              <AnchorLink to={"/faculties#"+slugifyFaculty(item)}>
-                              {fixAll(item.title)}
+                              {index + 1}.&nbsp;
+                              <AnchorLink
+                                to={"/faculties#" + slugifyFaculty(item)}
+                              >
+                                {fixAll(item.title)}
                               </AnchorLink>
                             </Col>
                           </Row>

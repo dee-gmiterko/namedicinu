@@ -18,9 +18,7 @@
         "variation": { "type": "text", "required": false },
         "product": { "type": "text", "required": false }
       },
-      "actions": [
-        { "type": "email", "to": "jakub.copak@gmail.com" }
-      ]
+      "actions": [{ "type": "email", "to": "jakub.copak@gmail.com" }]
     }
   }
 }
