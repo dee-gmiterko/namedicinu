@@ -45,7 +45,7 @@ const StudyFieldPage = ({
 
       <div className="banner-spacer"></div>
       <VisibilitySensor
-        onChange={() => setVisibleIndex(0)}
+        onChange={(isVisible) => setVisibleIndex(0, isVisible)}
         partialVisibility={true}
         minTopValue={400}
       >
@@ -88,7 +88,7 @@ const StudyFieldPage = ({
       </Row>
 
       <VisibilitySensor
-        onChange={() => setVisibleIndex(contentfulStudyField.fields.length + 1)}
+        onChange={(isVisible) => setVisibleIndex(contentfulStudyField.fields.length + 1, isVisible)}
       >
         <Contact key="Contact" site={contentfulSiteInformation} />
       </VisibilitySensor>

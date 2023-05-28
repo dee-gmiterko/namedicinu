@@ -12,7 +12,7 @@ export default class FieldsComparison extends Component {
         {fields.map((field, index) => {
           return (
             <VisibilitySensor
-              onChange={() => setVisibleIndex(index)}
+              onChange={(isVisible) => setVisibleIndex(index, isVisible)}
               partialVisibility={true}
               key={index}
             >

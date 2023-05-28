@@ -63,14 +63,14 @@ const IndexPage = ({
         </Col>
         <Col xl={10}>
           <VisibilitySensor
-            onChange={() => setVisibleIndex(0)}
+            onChange={(isVisible) => setVisibleIndex(0, isVisible)}
             partialVisibility={true}
             minTopValue={400}
           >
             <Course key="Course" site={contentfulSiteInformation} />
           </VisibilitySensor>
           <VisibilitySensor
-            onChange={() => setVisibleIndex(1)}
+            onChange={(isVisible) => setVisibleIndex(1, isVisible)}
             partialVisibility={true}
             minTopValue={400}
           >
@@ -81,7 +81,7 @@ const IndexPage = ({
             />
           </VisibilitySensor>
           <VisibilitySensor
-            onChange={() => setVisibleIndex(2)}
+            onChange={(isVisible) => setVisibleIndex(2, isVisible)}
             partialVisibility={true}
             minTopValue={400}
           >
@@ -92,7 +92,7 @@ const IndexPage = ({
             />
           </VisibilitySensor>
           <VisibilitySensor
-            onChange={() => setVisibleIndex(3)}
+            onChange={(isVisible) => setVisibleIndex(3, isVisible)}
             partialVisibility={true}
             minTopValue={400}
           >
@@ -103,7 +103,7 @@ const IndexPage = ({
             />
           </VisibilitySensor>
           <VisibilitySensor
-            onChange={() => setVisibleIndex(4)}
+            onChange={(isVisible) => setVisibleIndex(4, isVisible)}
             partialVisibility={true}
             minTopValue={400}
           >
@@ -116,7 +116,7 @@ const IndexPage = ({
         </Col>
       </Row>
 
-      <VisibilitySensor onChange={() => setVisibleIndex(6)}>
+      <VisibilitySensor onChange={(isVisible) => setVisibleIndex(6, isVisible)}>
         <Contact key="Contact" site={contentfulSiteInformation}></Contact>
       </VisibilitySensor>
     </Layout>

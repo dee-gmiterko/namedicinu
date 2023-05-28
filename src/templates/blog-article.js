@@ -146,7 +146,7 @@ export const pageQuery = graphql`
       createdAt
       tags
       image {
-        gatsbyImageData(width: 1600, placeholder: BLURRED)
+        gatsbyImageData(width: 1200, height: 400, placeholder: BLURRED)
       }
     }
     allContentfulBlog(
@@ -171,7 +171,7 @@ export const pageQuery = graphql`
           }
           createdAt
           image {
-            gatsbyImageData(width: 500, placeholder: BLURRED)
+            gatsbyImageData(width: 500, height: 250, placeholder: BLURRED)
           }
         }
       }

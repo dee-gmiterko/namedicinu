@@ -51,7 +51,7 @@ const FacultiesPage = ({
 
       <div className="banner-spacer"></div>
       <VisibilitySensor
-        onChange={() => setVisibleIndex(0)}
+        onChange={(isVisible) => setVisibleIndex(0, isVisible)}
         partialVisibility={true}
         minTopValue={400}
       >
@@ -83,7 +83,7 @@ const FacultiesPage = ({
         </Col>
         <Col xl={10}>
           <VisibilitySensor
-            onChange={() => setVisibleIndex(1)}
+            onChange={(isVisible) => setVisibleIndex(1, isVisible)}
             partialVisibility={true}
             minTopValue={400}
           >
@@ -107,8 +107,8 @@ const FacultiesPage = ({
       </Row>
 
       <VisibilitySensor
-        onChange={() =>
-          setVisibleIndex(allContentfulFaculties.edges.length + 2)
+        onChange={(isVisible) =>
+          setVisibleIndex(allContentfulFaculties.edges.length + 2, isVisible)
         }
       >
         <Contact key="Contact" site={contentfulSiteInformation} />

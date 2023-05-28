@@ -124,23 +124,15 @@ export const FacultiesSideMenu = ({ faculties, visible }) => {
   return <SideMenu items={items} />;
 };
 
-export const StudyFieldsSideMenu = ({ studyFields, visible }) => {
-  const lastVisible = visible.reduce((accumulator, currentValue, index) => {
-    if (currentValue) {
-      return Math.max(accumulator, index);
-    } else {
-      return accumulator;
-    }
-  }, -1);
+export const StudyFieldsSideMenu = ({ studyFields }) => {
 
   const items = [
     {
       link: "/fields",
       name: <FormattedMessage id="title.fields" defaultMessage="Fields" />,
-      active: lastVisible === 0,
     },
   ].concat(
-    studyFields.map((studyField, index) => {
+    studyFields.map(studyField => {
       return {
         link: "/fields#" + slugifyStudyField(studyField),
         name: (
@@ -148,7 +140,6 @@ export const StudyFieldsSideMenu = ({ studyFields, visible }) => {
             <span>{fixNbsp(studyField.title)}</span>
           </>
         ),
-        active: lastVisible === index + 1,
       };
     })
   );

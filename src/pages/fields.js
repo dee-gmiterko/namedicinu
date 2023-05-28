@@ -16,15 +16,6 @@ const FieldsPage = ({
   data: { contentfulSiteInformation: site, allContentfulStudyField },
   pageContext,
 }) => {
-  const [visible, setVisible] = useState(
-    Array(3 + allContentfulStudyField.edges.length).fill(false)
-  );
-
-  const setVisibleIndex = (index, isVisible) => {
-    let newVisible = visible.slice();
-    newVisible[index] = isVisible;
-    setVisible(newVisible);
-  };
 
   return (
     <Layout site={site} header="home" locale={pageContext.locale}>
@@ -54,7 +45,6 @@ const FieldsPage = ({
                       studyFields={allContentfulStudyField.edges.map(
                         ({ node: studyField }) => studyField
                       )}
-                      visible={visible}
                     />
                   </div>
                 );
@@ -65,7 +55,7 @@ const FieldsPage = ({
         <Col xl={10}>
           <Container className="fields-list">
             <Row>
-              <Col>
+              <Col>  
                 <h3 className="mt-3">
                   <FormattedMessage
                     id="title.more_fields"
@@ -81,104 +71,98 @@ const FieldsPage = ({
               {allContentfulStudyField.edges.map(
                 ({ node: studyField }, index) => (
                   <Col xs={12} md={6} key={index}>
-                    <VisibilitySensor
-                      onChange={() => setVisibleIndex(index + 1)}
-                      partialVisibility={true}
-                      minTopValue={400}
-                    >
-                      <Row className="pb-3">
-                        <Col>
+                    <Row className="pb-3">
+                      <Col>
+                        <Row>
+                          <Col>
+                            <h2 id={slugifyStudyField(studyField)}>
+                              {fixNbsp(studyField.title)}
+                            </h2>
+                          </Col>
+                        </Row>
+                        {studyField.image && (
                           <Row>
-                            <Col>
-                              <h2 id={slugifyStudyField(studyField)}>
-                                {fixNbsp(studyField.title)}
-                              </h2>
+                            <Col className="mb-3">
+                              <GatsbyImage
+                                image={studyField.image.gatsbyImageData}
+                                alt={studyField.title}
+                                className="width-100"
+                              />
                             </Col>
                           </Row>
-                          {studyField.image && (
-                            <Row>
-                              <Col className="mb-3">
-                                <GatsbyImage
-                                  image={studyField.image.gatsbyImageData}
-                                  alt={studyField.title}
-                                  className="width-100"
-                                />
-                              </Col>
-                            </Row>
-                          )}
-                          <Row>
-                            <Col className="position-relative">
-                              <div className="bg-circle-container">
-                                <div className="bg-circle bg-1" />
-                              </div>
-                              {studyField.description && (
-                                <Markdown
-                                  value={{
-                                    childMarkdownRemark: {
-                                      html: studyField.description.childMarkdownRemark.html.split(
-                                        /\r?\n/
-                                      )[0],
-                                    },
-                                  }}
-                                />
-                              )}
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col md={{ span: 3, order: 2 }}>
-                              <Button
-                                as={Link}
-                                to={`/field/${slugifyStudyField(studyField)}`}
-                              >
-                                <FormattedMessage
-                                  id="fields.read_more"
-                                  defaultMessage="Read more"
-                                />
-                              </Button>
-                            </Col>
-                            <Col md={{ span: 9, order: 1 }}>
-                              <p className="mb-0">
-                                <FormattedMessage
-                                  id="fields.study_at_faculties"
-                                  defaultMessage="You can choose from following faculties:"
-                                />
-                              </p>
-                              <ul>
-                                {studyField.fields
-                                  .sort((a, b) =>
-                                    a.faculty.title.localeCompare(
-                                      b.faculty.title
-                                    )
+                        )}
+                        <Row>
+                          <Col className="position-relative">
+                            <div className="bg-circle-container">
+                              <div className="bg-circle bg-1" />
+                            </div>
+                            {studyField.description && (
+                              <Markdown
+                                value={{
+                                  childMarkdownRemark: {
+                                    html: studyField.description.childMarkdownRemark.html.split(
+                                      /\r?\n/
+                                    )[0],
+                                  },
+                                }}
+                              />
+                            )}
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={{ span: 3, order: 2 }}>
+                            <Button
+                              as={Link}
+                              to={`/field/${slugifyStudyField(studyField)}`}
+                            >
+                              <FormattedMessage
+                                id="fields.read_more"
+                                defaultMessage="Read more"
+                              />
+                            </Button>
+                          </Col>
+                          <Col md={{ span: 9, order: 1 }}>
+                            <p className="mb-0">
+                              <FormattedMessage
+                                id="fields.study_at_faculties"
+                                defaultMessage="You can choose from following faculties:"
+                              />
+                            </p>
+                            <ul>
+                              {studyField.fields
+                                .sort((a, b) =>
+                                  a.faculty.title.localeCompare(
+                                    b.faculty.title
                                   )
-                                  .slice(0, 3)
-                                  .map(({ faculty }) => (
-                                    <li key={faculty.title}>
-                                      <Link
-                                        to={`/field/${slugifyStudyField(
-                                          studyField
-                                        )}#${slugifyFaculty(faculty)}`}
-                                      >
-                                        {fixNbsp(faculty.title)}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                {studyField.fields.length > 3 && (
-                                  <li>
-                                    <FormattedMessage
-                                      id="fields.and_more"
-                                      defaultMessage="And {amount} more..."
-                                      values={{
-                                        amount: studyField.fields.length - 3,
-                                      }}
-                                    />
+                                )
+                                .slice(0, 3)
+                                .map(({ faculty }) => (
+                                  <li key={faculty.title}>
+                                    <Link
+                                      to={`/field/${slugifyStudyField(
+                                        studyField
+                                      )}#${slugifyFaculty(faculty)}`}
+                                    >
+                                      {fixNbsp(faculty.title)}
+                                    </Link>
                                   </li>
-                                )}
-                              </ul>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </VisibilitySensor>
+                                ))}
+                              {studyField.fields.length > 3 && (
+                                <li>
+                                  <FormattedMessage
+                                    id="fields.and_more"
+                                    defaultMessage="And {amount} more..."
+                                    values={{
+                                      amount: studyField.fields.length - 3,
+                                    }}
+                                  />
+                                </li>
+                              )}
+                            </ul>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
                   </Col>
                 )
               )}
@@ -187,13 +171,7 @@ const FieldsPage = ({
         </Col>
       </Row>
 
-      <VisibilitySensor
-        onChange={() =>
-          setVisibleIndex(allContentfulStudyField.edges.length + 1)
-        }
-      >
-        <Contact key="Contact" site={site} />
-      </VisibilitySensor>
+      <Contact key="Contact" site={site} />
     </Layout>
   );
 };

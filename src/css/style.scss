@@ -959,12 +959,13 @@ p {
     }
 
     .read-more {
+      display: inline-block;
       background: $primary;
       border-style: solid;
       border-color: $primary;
-      border-top-width: 6px;
+      border-top-width: 5px;
       border-right-width: 8px;
-      border-bottom-width: 3px;
+      border-bottom-width: 2px;
       border-left-width: 8px;
       border-radius: 1rem;
       color: $light;

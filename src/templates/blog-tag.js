@@ -16,22 +16,18 @@ const BlogPage = ({
       header="home"
       locale={pageContext.locale}
     >
-      <FormattedMessage id="title.blog" defaultMessage="Blog">
-        {(title) => (
-          <Seo
-            lang={pageContext.locale}
-            title={pageContext.tag}
-            siteName={contentfulSiteInformation.siteName}
-            siteDescription={contentfulSiteInformation.siteDescription}
-            image={"https:" + contentfulSiteInformation.logo.file.url}
-            keywords={contentfulSiteInformation.siteKeywords}
-          />
-        )}
-      </FormattedMessage>
+      <Seo
+        lang={pageContext.locale}
+        title={pageContext.tag}
+        siteName={contentfulSiteInformation.siteName}
+        siteDescription={contentfulSiteInformation.siteDescription}
+        image={"https:" + contentfulSiteInformation.logo.file.url}
+        keywords={contentfulSiteInformation.siteKeywords}
+      />
       <div className="blog-tag">
         <Container className="p-3">
           <Row>
-            <Col md={3} className="p-3">
+            <Col className="p-3">
               <h2>{pageContext.tag}</h2>
             </Col>
           </Row>
