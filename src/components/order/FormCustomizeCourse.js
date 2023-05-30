@@ -19,8 +19,11 @@ function FormCustomizeCourse() {
     setChemistry,
     physics,
     setPhysics,
+    tsp,
+    setTsp,
   } = useOrder();
   const BA_UK = fixNbsp("Univerzita Komenského v\u00A0Bratislave");
+  const MT_UK = fixNbsp("Jesseniova lekárska fakulta v Martine, Univerzita Komenského")
 
   const facultiesCountry = {};
   displayFaculties.forEach((faculty) => {
@@ -119,6 +122,9 @@ function FormCustomizeCourse() {
                   if (facultiesCountry[event.target.value] === "sk") {
                     setPhysics(false);
                   }
+                  if (!faculty.includes(MT_UK)) {
+                    setTsp(false);
+                  }
                 }}
                 disabled={formDisabled}
               >
@@ -185,35 +191,59 @@ function FormCustomizeCourse() {
                       )}
                     </FormattedMessage>
                   </Col>
-                  <Col sm={4}>
-                    <FormattedMessage
-                      id={
-                        faculty.includes(BA_UK)
-                          ? "register.course.biophysics"
-                          : "register.course.physics"
-                      }
-                      defaultMessage="Physics"
-                    >
-                      {(label) => (
-                        <div className="switch-bg">
-                          <Form.Check
-                            label={label}
-                            type="switch"
-                            id="physics"
-                            disabled={
-                              formDisabled ||
-                              facultiesCountry[faculty] === "sk"
-                              // && !state.faculty.includes(BA_UK)
-                            }
-                            checked={physics}
-                            onChange={(event) =>
-                              setPhysics(event.target.checked)
-                            }
-                          />
-                        </div>
-                      )}
-                    </FormattedMessage>
-                  </Col>
+                  {faculty.includes(MT_UK) ? (
+                    <Col sm={4}>
+                      <FormattedMessage
+                        id="register.course.tsp"
+                        defaultMessage="TSP"
+                      >
+                        {(label) => (
+                          <div className="switch-bg">
+                            <Form.Check
+                              label={label}
+                              type="switch"
+                              id="tsp"
+                              disabled={formDisabled}
+                              checked={tsp}
+                              onChange={(event) =>
+                                setTsp(event.target.checked)
+                              }
+                            />
+                          </div>
+                        )}
+                      </FormattedMessage>
+                    </Col>
+                  ) : (
+                    <Col sm={4}>
+                      <FormattedMessage
+                        id={
+                          faculty.includes(BA_UK)
+                            ? "register.course.biophysics"
+                            : "register.course.physics"
+                        }
+                        defaultMessage="Physics"
+                      >
+                        {(label) => (
+                          <div className="switch-bg">
+                            <Form.Check
+                              label={label}
+                              type="switch"
+                              id="physics"
+                              disabled={
+                                formDisabled ||
+                                facultiesCountry[faculty] === "sk"
+                                // && !state.faculty.includes(BA_UK)
+                              }
+                              checked={physics}
+                              onChange={(event) =>
+                                setPhysics(event.target.checked)
+                              }
+                            />
+                          </div>
+                        )}
+                      </FormattedMessage>
+                    </Col>
+                  )}
                   <input
                     type="hidden"
                     name="courses"
@@ -228,6 +258,9 @@ function FormCustomizeCourse() {
                         : "",
                       physics
                         ? intl.formatMessage({ id: "register.course.physics" })
+                        : "",
+                      tsp
+                        ? intl.formatMessage({ id: "register.course.tsp" })
                         : "",
                     ]
                       .filter(Boolean)

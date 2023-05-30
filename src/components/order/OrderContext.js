@@ -21,12 +21,13 @@ export const OrderProvider = ({
   const [biology, setBiology] = useState(true);
   const [chemistry, setChemistry] = useState(true);
   const [physics, setPhysics] = useState(false);
+  const [tsp, setTsp] = useState(false);
   const [consent, setConsent] = useState(false);
   const [paymentFrequency, setPaymentFrequency] = useState(false);
   const [codeDiscount, setCodeDiscount] = useState(false);
   const [variation, setVariation] = useState("");
 
-  const courses = biology + chemistry + physics;
+  const courses = biology + chemistry + physics + tsp;
 
   const priceStyle = {
     style: "currency",
@@ -68,11 +69,11 @@ export const OrderProvider = ({
   const formattedOldPrice =
     discount > 0 ? intl.formatNumber(discount + price, priceStyle) : "";
 
-  const formDisabled =
+  const formDisabled = false;/*
     product.registerStart &&
     product.registerEnd &&
     (moment.now() < moment(product.registerStart) ||
-      moment.now() > moment(product.registerEnd));
+      moment.now() > moment(product.registerEnd));*/
 
   const displayFaculties = product.product_variation
     ? product.product_variation
@@ -117,6 +118,8 @@ export const OrderProvider = ({
         setChemistry,
         physics,
         setPhysics,
+        tsp,
+        setTsp,
         consent,
         setConsent,
         paymentFrequency,
