@@ -3,21 +3,17 @@ import Helmet from "react-helmet";
 
 import "../css/included-document.scss";
 
-const RedirectPage = ({ pageContext }) => {
+const RedirectPage = ({ pageContext: { title, url, locale } }) => {
   return (
     <>
       <Helmet
         htmlAttributes={{
-          lang: pageContext.locale,
+          lang: locale,
           class: "html-fullscreen",
         }}
-        title={pageContext.title}
+        title={title}
       />
-      <iframe
-        id="included-document-frame"
-        src={pageContext.url}
-        title={pageContext.title}
-      />
+      <iframe id="included-document-frame" src={url} title={title} />
     </>
   );
 };

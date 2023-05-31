@@ -5,12 +5,15 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
-const NotFoundPage = ({ data: { contentfulSiteInformation }, pageContext }) => (
+const NotFoundPage = ({
+  data: { contentfulSiteInformation },
+  pageContext: { locale },
+}) => (
   <Layout site={contentfulSiteInformation}>
     <FormattedMessage id="title.not_found" defaultMessage="Not found">
       {(title) => (
         <Seo
-          lang={pageContext.locale}
+          lang={locale}
           title={title[0]}
           siteName={contentfulSiteInformation.siteName}
           siteDescription={contentfulSiteInformation.siteDescription}

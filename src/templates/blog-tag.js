@@ -8,17 +8,13 @@ import Seo from "../components/Seo";
 
 const BlogPage = ({
   data: { contentfulSiteInformation, allContentfulBlog },
-  pageContext,
+  pageContext: { tag, locale },
 }) => {
   return (
-    <Layout
-      site={contentfulSiteInformation}
-      header="home"
-      locale={pageContext.locale}
-    >
+    <Layout site={contentfulSiteInformation} header="home" locale={locale}>
       <Seo
-        lang={pageContext.locale}
-        title={pageContext.tag}
+        lang={locale}
+        title={tag}
         siteName={contentfulSiteInformation.siteName}
         siteDescription={contentfulSiteInformation.siteDescription}
         image={"https:" + contentfulSiteInformation.logo.file.url}
@@ -28,7 +24,7 @@ const BlogPage = ({
         <Container className="p-3">
           <Row>
             <Col className="p-3">
-              <h2>{pageContext.tag}</h2>
+              <h2>{tag}</h2>
             </Col>
           </Row>
           <Blog articles={allContentfulBlog} />

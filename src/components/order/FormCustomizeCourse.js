@@ -23,7 +23,9 @@ function FormCustomizeCourse() {
     setTsp,
   } = useOrder();
   const BA_UK = fixNbsp("Univerzita Komenského v\u00A0Bratislave");
-  const MT_UK = fixNbsp("Jesseniova lekárska fakulta v Martine, Univerzita Komenského")
+  const MT_UK = fixNbsp(
+    "Jesseniova lekárska fakulta v Martine, Univerzita Komenského"
+  );
 
   const facultiesCountry = {};
   displayFaculties.forEach((faculty) => {
@@ -205,9 +207,7 @@ function FormCustomizeCourse() {
                               id="tsp"
                               disabled={formDisabled}
                               checked={tsp}
-                              onChange={(event) =>
-                                setTsp(event.target.checked)
-                              }
+                              onChange={(event) => setTsp(event.target.checked)}
                             />
                           </div>
                         )}

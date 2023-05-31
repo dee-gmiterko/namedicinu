@@ -17,7 +17,7 @@ const OrderPage = ({
     allContentfulFaculties,
     allContentfulPaymentFrequency,
   },
-  pageContext,
+  pageContext: { locale },
   location,
 }) => {
   const productTitle = location.state && location.state.product;
@@ -33,15 +33,11 @@ const OrderPage = ({
     );
 
   return (
-    <Layout
-      site={contentfulSiteInformation}
-      header="home"
-      locale={pageContext.locale}
-    >
+    <Layout site={contentfulSiteInformation} header="home" locale={locale}>
       <FormattedMessage id="title.order" defaultMessage="Order">
         {(title) => (
           <Seo
-            lang={pageContext.locale}
+            lang={locale}
             title={title[0]}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}
@@ -59,7 +55,7 @@ const OrderPage = ({
             <OrderProvider
               product={product}
               faculties={allContentfulFaculties}
-              locale={pageContext.locale}
+              locale={locale}
               paymentFrequencies={allContentfulPaymentFrequency}
             >
               <OrderLayout
@@ -88,7 +84,7 @@ const OrderPage = ({
         )}
       </Container>
 
-      <Contact key="Contact" site={contentfulSiteInformation} />
+      <Contact site={contentfulSiteInformation} />
     </Layout>
   );
 };

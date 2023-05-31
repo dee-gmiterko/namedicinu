@@ -125,14 +125,13 @@ export const FacultiesSideMenu = ({ faculties, visible }) => {
 };
 
 export const StudyFieldsSideMenu = ({ studyFields }) => {
-
   const items = [
     {
       link: "/fields",
       name: <FormattedMessage id="title.fields" defaultMessage="Fields" />,
     },
   ].concat(
-    studyFields.map(studyField => {
+    studyFields.map((studyField) => {
       return {
         link: "/fields#" + slugifyStudyField(studyField),
         name: (

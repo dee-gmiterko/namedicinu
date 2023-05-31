@@ -20,7 +20,7 @@ function OrderRecap({ logo }) {
     formattedDiscountAmount,
   } = useOrder();
   const BA_UK = fixNbsp("Univerzita Komenského v\u00A0Bratislave");
-  
+
   return (
     <>
       <Row>

@@ -8,18 +8,14 @@ import Seo from "../components/Seo";
 
 const BlogPage = ({
   data: { contentfulSiteInformation, allContentfulBlog },
-  pageContext,
+  pageContext: { locale },
 }) => {
   return (
-    <Layout
-      site={contentfulSiteInformation}
-      header="home"
-      locale={pageContext.locale}
-    >
+    <Layout site={contentfulSiteInformation} header="home" locale={locale}>
       <FormattedMessage id="title.blog" defaultMessage="Blog">
         {(title) => (
           <Seo
-            lang={pageContext.locale}
+            lang={locale}
             title={title[0]}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}

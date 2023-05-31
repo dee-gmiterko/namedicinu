@@ -21,7 +21,7 @@ const IndexPage = ({
     allContentfulLecturers,
     allContentfulProducts,
   },
-  pageContext,
+  pageContext: { locale },
 }) => {
   const [visible, setVisible] = useState(Array(7).fill(false));
 
@@ -32,13 +32,9 @@ const IndexPage = ({
   };
 
   return (
-    <Layout
-      site={contentfulSiteInformation}
-      header="home"
-      locale={pageContext.locale}
-    >
+    <Layout site={contentfulSiteInformation} header="home" locale={locale}>
       <Seo
-        lang={pageContext.locale}
+        lang={locale}
         siteName={contentfulSiteInformation.siteName}
         siteDescription={contentfulSiteInformation.siteDescription}
         image={"https:" + contentfulSiteInformation.logo.file.url}
@@ -67,7 +63,7 @@ const IndexPage = ({
             partialVisibility={true}
             minTopValue={400}
           >
-            <Course key="Course" site={contentfulSiteInformation} />
+            <Course site={contentfulSiteInformation} />
           </VisibilitySensor>
           <VisibilitySensor
             onChange={(isVisible) => setVisibleIndex(1, isVisible)}
@@ -75,9 +71,8 @@ const IndexPage = ({
             minTopValue={400}
           >
             <Lecture
-              key="Lecture"
               site={contentfulSiteInformation}
-              locale={pageContext.locale}
+              locale={locale}
             />
           </VisibilitySensor>
           <VisibilitySensor
@@ -86,7 +81,6 @@ const IndexPage = ({
             minTopValue={400}
           >
             <Testimonials
-              key="Testimonials"
               site={contentfulSiteInformation}
               testimonials={allContentfulTestimonials}
             />
@@ -97,7 +91,6 @@ const IndexPage = ({
             minTopValue={400}
           >
             <Lecturers
-              key="Lecturers"
               site={contentfulSiteInformation}
               lecturers={allContentfulLecturers}
             />
@@ -108,16 +101,15 @@ const IndexPage = ({
             minTopValue={400}
           >
             <Products
-              key="Products"
               products={allContentfulProducts}
-              locale={pageContext.locale}
+              locale={locale}
             />
           </VisibilitySensor>
         </Col>
       </Row>
 
       <VisibilitySensor onChange={(isVisible) => setVisibleIndex(6, isVisible)}>
-        <Contact key="Contact" site={contentfulSiteInformation}></Contact>
+        <Contact site={contentfulSiteInformation}></Contact>
       </VisibilitySensor>
     </Layout>
   );

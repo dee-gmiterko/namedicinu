@@ -14,15 +14,14 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 const FieldsPage = ({
   data: { contentfulSiteInformation: site, allContentfulStudyField },
-  pageContext,
+  pageContext: { locale },
 }) => {
-
   return (
-    <Layout site={site} header="home" locale={pageContext.locale}>
+    <Layout site={site} header="home" locale={locale}>
       <FormattedMessage id="title.fields" defaultMessage="Fields">
         {(title) => (
           <Seo
-            lang={pageContext.locale}
+            lang={locale}
             title={title[0]}
             siteName={site.siteName}
             siteDescription={site.siteDescription}
@@ -55,7 +54,7 @@ const FieldsPage = ({
         <Col xl={10}>
           <Container className="fields-list">
             <Row>
-              <Col>  
+              <Col>
                 <h3 className="mt-3">
                   <FormattedMessage
                     id="title.more_fields"
@@ -130,10 +129,11 @@ const FieldsPage = ({
                             </p>
                             <ul>
                               {studyField.fields
+                                .filter((a) =>
+                                  (a.showOn || []).includes(locale)
+                                )
                                 .sort((a, b) =>
-                                  a.faculty.title.localeCompare(
-                                    b.faculty.title
-                                  )
+                                  a.faculty.title.localeCompare(b.faculty.title)
                                 )
                                 .slice(0, 3)
                                 .map(({ faculty }) => (
@@ -147,13 +147,17 @@ const FieldsPage = ({
                                     </Link>
                                   </li>
                                 ))}
-                              {studyField.fields.length > 3 && (
+                              {studyField.fields.filter((a) =>
+                                  (a.showOn || []).includes(locale)
+                                ).length > 3 && (
                                 <li>
                                   <FormattedMessage
                                     id="fields.and_more"
                                     defaultMessage="And {amount} more..."
                                     values={{
-                                      amount: studyField.fields.length - 3,
+                                      amount: studyField.fields.filter((a) =>
+                                        (a.showOn || []).includes(locale)
+                                      ).length - 3,
                                     }}
                                   />
                                 </li>
@@ -171,7 +175,7 @@ const FieldsPage = ({
         </Col>
       </Row>
 
-      <Contact key="Contact" site={site} />
+      <Contact site={site} />
     </Layout>
   );
 };

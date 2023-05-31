@@ -8,18 +8,14 @@ import Seo from "../components/Seo";
 
 const DocumentListPage = ({
   data: { contentfulSiteInformation, allContentfulAsset },
-  pageContext,
+  pageContext: { locale },
 }) => {
   return (
-    <Layout
-      site={contentfulSiteInformation}
-      header="home"
-      locale={pageContext.locale}
-    >
+    <Layout site={contentfulSiteInformation} header="home" locale={locale}>
       <FormattedMessage id="title.document_list" defaultMessage="Documents">
         {(title) => (
           <Seo
-            lang={pageContext.locale}
+            lang={locale}
             title={title[0]}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}

@@ -12,7 +12,7 @@ import VisibilitySensor from "react-visibility-sensor";
 
 const StudyFieldPage = ({
   data: { contentfulSiteInformation, contentfulStudyField },
-  pageContext,
+  pageContext: { locale },
 }) => {
   const [visible, setVisible] = useState(
     Array(2 + contentfulStudyField.fields.length).fill(false)
@@ -24,18 +24,22 @@ const StudyFieldPage = ({
     setVisible(newVisible);
   };
 
-  const faculties = contentfulStudyField.fields
+  const fields = (
+    contentfulStudyField.fields
+    .filter((a) => (a.showOn || []).includes(locale))
     .sort((a, b) => a.faculty.title.localeCompare(b.faculty.title))
-    .map((f) => f.faculty);
+  );
+  const faculties = (
+    contentfulStudyField.fields
+    .filter((a) => (a.showOn || []).includes(locale))
+    .map((f) => f.faculty)
+    .sort((a, b) => a.title.localeCompare(b.title))
+  );
 
   return (
-    <Layout
-      site={contentfulSiteInformation}
-      header="home"
-      locale={pageContext.locale}
-    >
+    <Layout site={contentfulSiteInformation} header="home" locale={locale}>
       <Seo
-        lang={pageContext.locale}
+        lang={locale}
         title={contentfulStudyField.title}
         siteName={contentfulSiteInformation.siteName}
         siteDescription={contentfulSiteInformation.siteDescription}
@@ -50,7 +54,6 @@ const StudyFieldPage = ({
         minTopValue={400}
       >
         <StudyFieldFacultiesOverview
-          key="Faculties"
           studyField={contentfulStudyField}
           faculties={faculties}
           site={contentfulSiteInformation}
@@ -77,9 +80,7 @@ const StudyFieldPage = ({
         </Col>
         <Col xl={10}>
           <FieldsComparison
-            fields={contentfulStudyField.fields.sort((a, b) =>
-              a.faculty.title.localeCompare(b.faculty.title)
-            )}
+            fields={fields}
             setVisibleIndex={(index, isVisible) =>
               setVisibleIndex(index + 2, isVisible)
             }
@@ -88,9 +89,11 @@ const StudyFieldPage = ({
       </Row>
 
       <VisibilitySensor
-        onChange={(isVisible) => setVisibleIndex(contentfulStudyField.fields.length + 1, isVisible)}
+        onChange={(isVisible) =>
+          setVisibleIndex(contentfulStudyField.fields.length + 1, isVisible)
+        }
       >
-        <Contact key="Contact" site={contentfulSiteInformation} />
+        <Contact site={contentfulSiteInformation} />
       </VisibilitySensor>
     </Layout>
   );

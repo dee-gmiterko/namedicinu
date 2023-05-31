@@ -18,7 +18,7 @@ const FacultiesPage = ({
     allContentfulFaculties,
     allContentfulQuizQuestion,
   },
-  pageContext,
+  pageContext: { locale },
 }) => {
   const [visible, setVisible] = useState(
     Array(3 + allContentfulFaculties.edges.length).fill(false)
@@ -31,15 +31,11 @@ const FacultiesPage = ({
   };
 
   return (
-    <Layout
-      site={contentfulSiteInformation}
-      header="home"
-      locale={pageContext.locale}
-    >
+    <Layout site={contentfulSiteInformation} header="home" locale={locale}>
       <FormattedMessage id="title.faculties" defaultMessage="Faculties">
         {(title) => (
           <Seo
-            lang={pageContext.locale}
+            lang={locale}
             title={title[0]}
             siteName={contentfulSiteInformation.siteName}
             siteDescription={contentfulSiteInformation.siteDescription}
@@ -56,7 +52,6 @@ const FacultiesPage = ({
         minTopValue={400}
       >
         <FacultiesOverview
-          key="Faculties"
           faculties={allContentfulFaculties.edges.map(({ node }) => node)}
           site={contentfulSiteInformation}
         />
@@ -88,13 +83,11 @@ const FacultiesPage = ({
             minTopValue={400}
           >
             <FacultiesQuiz
-              key="FacultiesQuiz"
               quizQuestions={allContentfulQuizQuestion}
               faculties={allContentfulFaculties}
             />
           </VisibilitySensor>
           <FieldsComparison
-            key="FacultiesComparison"
             fields={allContentfulFaculties.edges.map(({ node }) => ({
               ...node,
               faculty: node,
@@ -111,7 +104,7 @@ const FacultiesPage = ({
           setVisibleIndex(allContentfulFaculties.edges.length + 2, isVisible)
         }
       >
-        <Contact key="Contact" site={contentfulSiteInformation} />
+        <Contact site={contentfulSiteInformation} />
       </VisibilitySensor>
     </Layout>
   );
