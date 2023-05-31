@@ -69,11 +69,11 @@ export const OrderProvider = ({
   const formattedOldPrice =
     discount > 0 ? intl.formatNumber(discount + price, priceStyle) : "";
 
-  const formDisabled = false;/*
+  const formDisabled = 
     product.registerStart &&
     product.registerEnd &&
     (moment.now() < moment(product.registerStart) ||
-      moment.now() > moment(product.registerEnd));*/
+      moment.now() > moment(product.registerEnd));
 
   const displayFaculties = product.product_variation
     ? product.product_variation
