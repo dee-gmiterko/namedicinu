@@ -11,6 +11,7 @@ function FormConsent({ registerRulesDocuments }) {
     biology,
     chemistry,
     physics,
+    tsp,
     consent,
     setConsent,
   } = useOrder();
@@ -19,7 +20,7 @@ function FormConsent({ registerRulesDocuments }) {
     formDisabled ||
     !consent ||
     formState.submitting ||
-    (isFullCourse && !(biology || chemistry || physics));
+    (isFullCourse && !(biology || chemistry || physics || tsp));
 
   return (
     <>
